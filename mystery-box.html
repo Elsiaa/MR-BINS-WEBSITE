@@ -3941,6 +3941,26 @@
     <!-- MYSTERY BOX SHOP :: pick your box -->
     <section id="online">
       <style>
+        /* the opener fits one screen neatly at any desktop height */
+        @media (min-width: 768px) {
+          #online .mstage {
+            padding-top: 92px;
+            padding-bottom: 20px;
+            justify-content: center;
+            gap: clamp(8px, 1.6svh, 22px);
+          }
+          #online .mbox video {
+            max-height: min(47svh, 470px);
+            width: auto;
+            max-width: 100%;
+          }
+          #online .mboxes {
+            align-items: flex-end;
+          }
+        }
+      </style>
+
+      <style>
         .mbuy {
           display: flex;
           flex-direction: column;
