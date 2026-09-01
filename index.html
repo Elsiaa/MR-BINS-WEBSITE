@@ -1646,8 +1646,17 @@
         position: relative;
         height: clamp(320px, 42vw, 460px);
         max-width: 760px;
-        /* headroom above the box so risen items never crowd the cards above */
-        margin: clamp(96px, 12vw, 168px) auto clamp(16px, 2.4vw, 28px);
+        margin: clamp(4px, 1vw, 10px) auto clamp(16px, 2.4vw, 28px);
+      }
+      .boxrevealvid {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        /* the render is on pure white; multiply melts the white into the
+           section background so the box floats with no visible frame */
+        mix-blend-mode: multiply;
       }
       .brglow {
         position: absolute;
@@ -3407,6 +3416,94 @@
           gap: 8px;
         }
       }
+      /* ============ MOBILE HERO REBUILD (<768px) ============
+   The walk-in hero, redesigned for phones: captions anchored to the
+   lower third (clear of the in-video signage), phone-scale type, a
+   heavier legibility scrim, and a compact non-overlapping header.
+   Desktop (>=768px) is untouched. */
+      @media (max-width: 767px) {
+        /* header: compact, no logo/clock collision */
+        .row {
+          gap: 10px;
+        }
+        .brand {
+          min-width: 0;
+          flex: 0 1 auto;
+          gap: 7px;
+        }
+        .brand .brandlive {
+          height: 40px;
+          flex: none;
+        }
+        .brand .brandlogo {
+          height: 17px;
+          max-width: 34vw;
+          object-fit: contain;
+          object-position: left center;
+        }
+        .hright {
+          flex: none;
+        }
+
+        /* hero stage: full small-viewport height, legibility tint that
+           darkens toward the caption zone at the bottom */
+        #walk .stage {
+          height: 100svh;
+        }
+        #walk .tint {
+          background: linear-gradient(
+            180deg,
+            rgba(4, 10, 22, 0.62),
+            rgba(4, 10, 22, 0.18) 34%,
+            rgba(4, 10, 22, 0.12) 52%,
+            rgba(4, 10, 22, 0.62) 78%,
+            rgba(4, 10, 22, 0.82)
+          );
+        }
+        #walk .wcaps::before {
+          display: none;
+        }
+
+        /* captions: pinned to the lower third, sized for a phone screen */
+        #walk .wcap {
+          height: auto;
+          top: auto;
+          bottom: 0;
+          padding: 0 22px calc(11svh + env(safe-area-inset-bottom, 0px));
+          justify-content: flex-end;
+        }
+        #walk .wcap .k {
+          font-size: 11px;
+          letter-spacing: 0.18em;
+          padding: 0.55em 1em;
+          margin-bottom: 12px;
+        }
+        #walk .wcap h1,
+        #walk .wcap h2 {
+          font-size: clamp(40px, 11.5vw, 52px);
+          line-height: 0.94;
+          letter-spacing: -0.03em;
+        }
+        #walk .wcap h2.h2m {
+          font-size: clamp(30px, 9vw, 40px);
+        }
+        #walk .wcap img {
+          width: min(300px, 74vw) !important;
+        }
+        #walk .wcap .sub {
+          font-size: 14.5px;
+          line-height: 1.45;
+          max-width: 32ch;
+          margin-top: 12px;
+        }
+
+        /* scroll cue sits above the home-indicator area */
+        #walk .hcue {
+          bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+          font-size: 11px;
+        }
+      }
+
       /* ============ PHONE BUILD (<768px) ============
    Dedicated mobile flow: static hero walkthrough, native scrolling only,
    condensed section order. Desktop (≥768px) is untouched. */
@@ -4366,14 +4463,17 @@
         </div>
         <div class="brhint">Every box is a surprise &mdash; scroll to open one &darr;</div>
         <div class="boxreveal" id="boxreveal" aria-hidden="true">
-          <div class="brglow" id="brglow"></div>
-          <div class="britem"><img src="mrbins-prod-lego.jpg" alt="" /></div>
-          <div class="britem"><img src="mrbins-prod-head.jpg" alt="" /></div>
-          <div class="britem"><img src="mrbins-prod-drone.jpg" alt="" /></div>
-          <div class="britem"><img src="mrbins-prod-coffee.jpg" alt="" /></div>
-          <div class="britem"><img src="mrbins-prod-speaker.jpg" alt="" /></div>
-          <img class="brbox bclosed" id="brclosed" src="mrbins-mystery-closed.png" alt="" />
-          <img class="brbox bopen" id="bropen" src="mrbins-mystery-open.png" alt="" />
+          <video
+            class="boxrevealvid"
+            id="boxrevealvid"
+            muted
+            playsinline
+            webkit-playsinline
+            preload="metadata"
+            poster="mrbins-box-reveal-poster.png"
+          >
+            <source src="mrbins-box-reveal.mp4" type="video/mp4" />
+          </video>
         </div>
         <div class="lycta">
           <a class="dbtn gold" href="https://primebins.com" target="_blank" rel="noopener"
@@ -5022,63 +5122,33 @@
         });
       })();
 
-      /* ---- LOYALTY: mystery box opens & reveals items as you scroll ---- */
+      /* ---- LOYALTY: mystery box opens & items float out — one AI-rendered
+              shot (Higgsfield), scrubbed by scroll like the other stages ---- */
       (function () {
-        var st = document.getElementById("boxreveal");
-        if (!st) return;
-        var closed = document.getElementById("brclosed"),
-          opend = document.getElementById("bropen"),
-          glow = document.getElementById("brglow"),
-          items = [].slice.call(st.querySelectorAll(".britem"));
-        var T = [
-          [-200, 245, -14],
-          [-105, 330, -7],
-          [0, 370, 0],
-          [105, 330, 8],
-          [200, 245, 14],
-        ]; /* [x offset, rise, rotate] — rises measured from inside the box */
+        var st = document.getElementById("boxreveal"),
+          v = document.getElementById("boxrevealvid");
+        if (!st || !v) return;
+        var dur = 0,
+          ticking = false;
         var RM = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        function setState(q, o) {
-          closed.style.opacity = String(1 - o);
-          opend.style.opacity = String(o);
-          glow.style.opacity = String(o * 0.9);
-          var sc = window.innerWidth < 521 ? 0.6 : 1;
-          for (var i = 0; i < items.length; i++) {
-            var s = clampN(q * 1.35 - Math.abs(i - 2) * 0.09);
-            s = s * s * (3 - 2 * s);
-            /* fully opaque almost immediately: while low they are hidden
-               BEHIND the box art, so they read as coming out of it rather
-               than fading in beside it */
-            items[i].style.opacity = String(Math.min(1, s * 8));
-            /* lift first, fan out second: the sideways spread lags the rise so
-               each item clears the mouth of the box before drifting outward */
-            var sx = s * s;
-            items[i].style.transform =
-              "translate(" +
-              (T[i][0] * sx * sc).toFixed(1) +
-              "px," +
-              (-T[i][1] * s * sc).toFixed(1) +
-              "px) rotate(" +
-              (T[i][2] * s).toFixed(1) +
-              "deg) scale(" +
-              (0.45 + 0.55 * s).toFixed(3) +
-              ")";
+        v.addEventListener("loadedmetadata", function () {
+          dur = v.duration || 5;
+          if (RM) {
+            seekTo(v, dur - 0.05); /* reduced motion: rest on the final frame */
+          } else {
+            paint();
           }
-        }
-        if (RM) {
-          setState(1, 1);
-          return;
-        }
-        var ticking = false;
+        });
+        if (RM) return;
         function paint() {
           ticking = false;
+          if (!dur) return;
           var r = st.getBoundingClientRect(),
             vh = window.innerHeight;
-          /* start only once the box is well inside the viewport and finish as
-             it settles mid-screen, so items rise into the empty space above
-             the box instead of over the cards before it */
-          var p = clampN((vh * 0.66 - r.top) / (vh * 0.52));
-          setState(clampN((p - 0.3) / 0.7), clampN((p - 0.16) / 0.14));
+          /* start once the box is well inside the viewport, finish as it
+             settles mid-screen */
+          var p = clampN((vh * 0.72 - r.top) / (vh * 0.6));
+          seekTo(v, p * (dur - 0.05));
         }
         function onS() {
           if (!ticking) {
@@ -5197,7 +5267,7 @@
     iOS only trusts play() from a user gesture (Low Power Mode, Data Saver) */
         function primeAll() {
           [].forEach.call(
-            document.querySelectorAll("#walkvid,#cartvid,#clothesvid,#shoesvid,.boxvid"),
+            document.querySelectorAll("#walkvid,#cartvid,#clothesvid,#shoesvid,#boxrevealvid,.boxvid"),
             function (x) {
               try {
                 var q = x.play();
@@ -5220,7 +5290,7 @@
                 v.pause();
               }).catch(function () {});
           } catch (e) {}
-          [].forEach.call(document.querySelectorAll("#clothesvid,#shoesvid,.boxvid"), function (x) {
+          [].forEach.call(document.querySelectorAll("#clothesvid,#shoesvid,#boxrevealvid,.boxvid"), function (x) {
             try {
               x.preload = "metadata";
             } catch (e) {}
@@ -5265,8 +5335,10 @@
                 op = 0;
                 sc = 0.94;
               } else {
-                var fin = i === 0 ? 1 : clampN(t / 0.16),
-                  fout = i === n - 1 ? 1 : 1 - clampN((t - 0.84) / 0.32);
+                /* phones: bottom-anchored captions sit at differing heights, so a
+                   long crossfade reads as two captions stacked — hand off fast */
+                var fin = i === 0 ? 1 : clampN(t / (mob ? 0.09 : 0.16)),
+                  fout = i === n - 1 ? 1 : 1 - clampN((t - (mob ? 0.91 : 0.84)) / (mob ? 0.12 : 0.32));
                 op = Math.min(fin, fout);
                 sc = 0.94 + 0.12 * clampN(t);
               }
