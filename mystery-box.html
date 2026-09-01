@@ -4546,37 +4546,7 @@
           /* one tier: jump straight to its Payment Link with quantity */
           window.open(STRIPE_PAYMENT_LINKS[ks[0]], "_blank", "noopener");
         });
-        /* boxes close up as you scroll past the fill stage */
-        var online = document.getElementById("online");
-        if (online) {
-          [].forEach.call(online.querySelectorAll(".mbox"), function (b) {
-            var im = document.createElement("img");
-            im.src = "mrbins-mystery-closed.png";
-            im.style.cssText =
-              "position:absolute;inset:auto 0 0 0;width:100%;height:auto;opacity:0;pointer-events:none;transition:opacity .1s linear";
-            b.style.position = "relative";
-            b.appendChild(im);
-            b._close = im;
-          });
-          var tick2 = false;
-          window.addEventListener(
-            "scroll",
-            function () {
-              if (tick2) return;
-              tick2 = true;
-              requestAnimationFrame(function () {
-                tick2 = false;
-                var r = online.getBoundingClientRect();
-                var p = Math.min(1, Math.max(0, (-r.top - r.height * 0.45) / (r.height * 0.3)));
-                [].forEach.call(online.querySelectorAll(".mbox"), function (b) {
-                  if (b._close) b._close.style.opacity = String(p);
-                });
-              });
-            },
-            { passive: true },
-          );
-        }
-        render();
+          render();
       })();
     </script>
     <footer id="footer">
