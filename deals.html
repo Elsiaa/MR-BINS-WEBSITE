@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Mr. Bins · Where your returns go</title>
+    <title>Deals · Mr. Bins</title>
     <meta
       name="description"
       content="Mr. Bins: dig through bins of brand-new Amazon returns across 4 Northeast PA stores. One price for everything, dropping $14 to $9 through the week, or get a hand-packed mystery box shipped to your door."
@@ -4684,6 +4684,7 @@
         if (MRB_PHONE) return; /* phone: #cart hidden, no scrub */
         var cart = document.getElementById("cart"),
           v = document.getElementById("cartvid");
+        if (!cart || !v) return; /* page without the roll-in stage */
         if (!cart || !v) return; /* the roll-in stage was retired */
         var cs = document.getElementById("clothesSide"),
           cv = document.getElementById("clothesvid");

@@ -5224,6 +5224,7 @@
         if (MRB_PHONE) return; /* phone: #cart hidden, no scrub */
         var cart = document.getElementById("cart"),
           v = document.getElementById("cartvid");
+        if (!cart || !v) return; /* page without the roll-in stage */
         if (!cart || !v) return; /* the roll-in stage was retired */
         var cs = document.getElementById("clothesSide"),
           cv = document.getElementById("clothesvid");
