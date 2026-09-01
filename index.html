@@ -634,14 +634,18 @@
         bottom: clamp(10px, 2.2vh, 24px);
         z-index: 2;
         font-family: "Bricolage Grotesque", sans-serif;
-        font-size: clamp(14px, 1.5vw, 19px);
-        font-weight: 800;
-        letter-spacing: -0.01em;
-        color: #fff;
-        padding: 10px 22px;
+        font-size: clamp(11px, 1.1vw, 14px);
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        color: #0b2447;
+        padding: 6px 14px;
         border-radius: 999px;
         white-space: nowrap;
-        box-shadow: 0 10px 24px rgba(11, 36, 71, 0.22);
+        background: rgba(255, 255, 255, 0.72) !important;
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        border: 1px solid rgba(11, 36, 71, 0.1);
+        box-shadow: 0 6px 16px rgba(11, 36, 71, 0.14);
         transform: translateX(-50%) translateY(14px) scale(0.7);
         opacity: 0;
         transition:
@@ -978,7 +982,7 @@
       }
       .lamp {
         position: absolute;
-        top: clamp(104px, 13vh, 132px);
+        top: clamp(64px, 8vh, 88px);
         left: 50%;
         transform: translateX(-50%);
         z-index: 6;
@@ -3896,28 +3900,15 @@
   <body>
     <header class="bar">
       <div class="row">
-        <div class="brand">
-          <video
-            class="brandlive"
-            id="brandlive"
-            autoplay
-            muted
-            loop
-            playsinline
-            poster="mrbins-navbin-navy.jpg"
-            onloadeddata="this.classList.add('ready')"
-            aria-label=""
-          >
-            <source src="mrbins-navbin-navy.mp4" type="video/mp4" />
-          </video>
+        <a class="brand" href="index.html" aria-label="Mr. Bins home" style="text-decoration: none">
           <img class="brandlogo" src="mrbins-logo-dark.png" alt="Mr. Bins" />
-        </div>
+        </a>
         <nav class="tabs">
           <a href="#footer">Locations</a>
           <a href="#price">Pricing</a>
           <a href="#deals">Deals</a>
           <a href="#loyalty">Loyalty</a>
-          <a href="#online">Mystery Box</a>
+          <a href="mystery-box.html">Mystery Box</a>
           <a href="#careers">Careers</a>
         </nav>
         <div class="hright">
@@ -3943,7 +3934,7 @@
       <a href="#price">Pricing</a>
       <a href="#deals">Daily Deals</a>
       <a href="#loyalty">Loyalty Rewards</a>
-      <a href="#online">Mystery Box</a>
+      <a href="mystery-box.html">Mystery Box</a>
       <a href="#careers">Careers</a>
       <a href="#footer">Locations &amp; Hours</a>
     </nav>
@@ -3959,10 +3950,8 @@
           <source data-mob="mrbins-cart.mp4" type="video/mp4" />
         </video>
         <div class="wmcap">
-          <div class="wk">In store</div>
           <h3>One bin.<br />One price.</h3>
           <div class="wprice" id="wmP1">$&mdash;</div>
-          <div class="wsub">everything in the bins today</div>
         </div>
       </div>
     </section>
@@ -3972,7 +3961,7 @@
           <source data-mob="mrbins-clothes.mp4" type="video/mp4" />
         </video>
         <div class="wmcap">
-          <div class="wk">Restocked daily</div>
+          <div class="wk" style="font-size: 1.5em">Restocked daily</div>
           <h3>We sell<br />clothing.</h3>
           <div class="wprice" id="wmP2">$&mdash;</div>
           <div class="wsub">all clothing today</div>
@@ -4072,8 +4061,7 @@
     <section id="cart">
       <div class="cartstage">
         <div class="cartcap">
-          <div class="k">This week in store</div>
-          <h2>The bins are just <span class="o">the beginning.</span></h2>
+                    <h2>The bins are just <span class="o">the beginning.</span></h2>
         </div>
         <div class="trio">
           <div class="tside" id="clothesSide">
@@ -4127,8 +4115,7 @@
           </video>
           <div class="boverlay"></div>
           <div class="binner">
-            <div class="blabel">Real brands &middot; a fraction of retail</div>
-            <div class="bviewport"><div class="bmarq" id="bmarq"></div></div>
+                        <div class="bviewport"><div class="bmarq" id="bmarq"></div></div>
           </div>
         </section>
       </div>
@@ -4160,8 +4147,7 @@
         </div>
         <div class="beam" aria-hidden="true"></div>
         <div class="dhead">
-          <div class="k">In the bins right now</div>
-          <h2>See <span class="o">this week&rsquo;s bins.</span></h2>
+                    <h2>See <span class="o">this week&rsquo;s bins.</span></h2>
           <div class="today" id="dtoday"></div>
         </div>
         <div class="carousel-wrap">
@@ -4216,7 +4202,7 @@
               Love the thrill of the hunt? Our hand-packed mystery boxes bring the treasure-hunt
               home &mdash; in standard and premium sizes, shipped to your door.
             </p>
-            <a class="flk" href="#online" data-buy="Mystery Box">Buy now &rarr;</a>
+            <a class="flk" href="mystery-box.html" data-buy="Mystery Box">Buy now &rarr;</a>
           </div>
           <div class="fcard c3">
             <div class="tagpill">From $25</div>
@@ -4484,113 +4470,11 @@
       </div>
     </section>
 
-    <!-- MYSTERY BOX SHOP :: opening -->
-    <section id="unbox">
-      <div class="ustage">
-        <div class="k">The Mr. Bins Mystery Box Shop</div>
-        <h2>Too good to keep <span class="o">local.</span></h2>
-        <p class="up">
-          We hand-pack brand-new finds from the bins into every box &mdash; always worth more than
-          you paid, and never the same box twice. Here&rsquo;s one getting opened at home.
-        </p>
-        <div class="uvid">
-          <video
-            class="couplevid"
-            id="couplevid"
-            autoplay
-            muted
-            loop
-            playsinline
-            preload="none"
-            poster="mrbins-couple.jpg"
-          >
-            <source src="mrbins-couple.mp4" type="video/mp4" />
-          </video>
-        </div>
-      </div>
-    </section>
-
-    <!-- MYSTERY BOX SHOP :: pick your box -->
-    <section id="online">
-      <div class="mstage">
-        <div class="mhead">
-          <div class="k">Pick your box &middot; watch it fill</div>
-          <h2>Three sizes. <span class="o">One rule:</span> always worth more.</h2>
-          <p class="mp">Scroll and watch each box fill with a different haul of brand-new finds.</p>
-        </div>
-        <div class="mboxes">
-          <div class="mbox s">
-            <video
-              class="bxm boxvid"
-              muted
-              playsinline
-              preload="none"
-              poster="mrbins-box-small-poster.jpg"
-            >
-              <source data-desk="mrbins-box-small.mp4" type="video/mp4" />
-            </video>
-            <div class="mtag">
-              <span class="tn">Taster</span><span class="tp">$25</span
-              ><span class="td">3&ndash;4 finds</span>
-            </div>
-          </div>
-          <div class="mbox m">
-            <video
-              class="bxm boxvid"
-              muted
-              playsinline
-              preload="none"
-              poster="mrbins-box-med-poster.jpg"
-            >
-              <source data-desk="mrbins-box-med.mp4" type="video/mp4" />
-            </video>
-            <div class="mtag">
-              <span class="tn">Classic</span><span class="tp">$50</span
-              ><span class="td">6&ndash;8 finds</span>
-            </div>
-          </div>
-          <div class="mbox l">
-            <video
-              class="bxm boxvid"
-              muted
-              playsinline
-              preload="none"
-              poster="mrbins-box-large-poster.jpg"
-            >
-              <source data-desk="mrbins-box-large.mp4" type="video/mp4" />
-            </video>
-            <div class="mtag">
-              <span class="tn">Loaded</span><span class="tp">$100</span
-              ><span class="td">12&ndash;15 finds</span>
-            </div>
-          </div>
-        </div>
-        <a
-          class="mcta big"
-          href="https://primebins.com"
-          target="_blank"
-          rel="noopener"
-          data-buy="Mystery Box"
-          >Buy a mystery box today<span>Arrives in 1&ndash;2 business days typically</span></a
-        >
-      </div>
-    </section>
-
-    <!-- MYSTERY BOX SHOP :: what could be inside -->
-    <section id="boxitems">
-      <div class="ucar">
-        <h3 class="ucar-h">Real brands. Real finds. Every single box.</h3>
-        <div class="ustrip"><div class="strack" id="strackBot"></div></div>
-      </div>
-    </section>
-
-    <!-- REAL HAULS, runs on real phone footage from the floor (sample + film-this placeholders for the Shalom demo) -->
+    <!-- REAL HAULS: real phone footage from the floor -->
     <section id="hauls">
-      <div class="k">Real hauls &middot; shot in store</div>
       <h2>See it happen <span class="o">for real.</span></h2>
       <p class="sub">
-        This section runs on real phone footage from the floor &mdash; new clips every week,
-        straight from the store.
+        Real phone footage from the floor &mdash; new clips every week, straight from the store.
       </p>
       <div class="hwrap">
         <button class="hnav prev" id="hcprev" aria-label="Previous clip">&lsaquo;</button>
@@ -4598,54 +4482,43 @@
           <div class="hslides" id="hslidesEl">
             <figure class="hslide">
               <div class="hmedia">
-                <span class="chip">Sample</span
-                ><img src="mrbins-store.jpg" alt="Inside the Mr. Bins store" loading="lazy" />
+                <video class="haulvid" src="mrbins-haul-1.mp4" muted playsinline webkit-playsinline loop preload="metadata"></video>
               </div>
               <figcaption class="hinfo">
-                <b>Sunday: fresh bins hit the floor</b
+                <b>Fresh bins hit the floor</b
                 ><span>Drop day &middot; <em>$14</em> &middot; best selection of the week</span>
               </figcaption>
             </figure>
             <figure class="hslide">
               <div class="hmedia">
-                <div class="gbox">
-                  <svg viewBox="0 0 24 24">
-                    <rect x="2.5" y="6.5" width="13" height="11" rx="2.5" />
-                    <path d="M15.5 10.5l6-3.2v9.4l-6-3.2z" />
-                  </svg>
-                  <div class="gt">Film this</div>
-                  <div class="gd">Someone pulling a big-brand find out of the pile</div>
-                </div>
+                <video class="haulvid" src="mrbins-haul-2.mp4" muted playsinline webkit-playsinline loop preload="metadata"></video>
               </div>
               <figcaption class="hinfo">
-                <b>The big-brand pull</b
-                ><span>New clips every week &middot; <em>coming soon</em></span>
+                <b>Digging the pile</b><span>Straight off the pallet &middot; totally unsorted</span>
               </figcaption>
             </figure>
             <figure class="hslide">
               <div class="hmedia">
-                <div class="gbox">
-                  <svg viewBox="0 0 24 24">
-                    <rect x="2.5" y="6.5" width="13" height="11" rx="2.5" />
-                    <path d="M15.5 10.5l6-3.2v9.4l-6-3.2z" />
-                  </svg>
-                  <div class="gt">Film this</div>
-                  <div class="gd">A full $9-Friday haul laid out on the tailgate</div>
-                </div>
+                <video class="haulvid" src="mrbins-haul-3.mp4" muted playsinline webkit-playsinline loop preload="metadata"></video>
               </div>
               <figcaption class="hinfo">
-                <b>The $9-Friday haul</b
-                ><span>Whole tailgate for pocket change &middot; <em>coming soon</em></span>
+                <b>The big-brand pull</b><span>Brand-new in box &middot; from the bins</span>
               </figcaption>
             </figure>
             <figure class="hslide">
               <div class="hmedia">
-                <span class="chip">Sample</span
-                ><img src="mrbins-couple.jpg" alt="Opening a mystery box at home" loading="lazy" />
+                <video class="haulvid" src="mrbins-haul-4.mp4" muted playsinline webkit-playsinline loop preload="metadata"></video>
               </div>
               <figcaption class="hinfo">
-                <b>Mystery box, opened at home</b
-                ><span>Shipped anywhere &middot; from <em>$25</em></span>
+                <b>On the floor, live</b><span>Shot in store &middot; real shoppers, real finds</span>
+              </figcaption>
+            </figure>
+            <figure class="hslide">
+              <div class="hmedia">
+                <video class="haulvid" src="mrbins-haul-5.mp4" muted playsinline webkit-playsinline loop preload="metadata"></video>
+              </div>
+              <figcaption class="hinfo">
+                <b>The haul, laid out</b><span>One trip &middot; pocket change</span>
               </figcaption>
             </figure>
           </div>
@@ -4668,6 +4541,11 @@
             >Check our Google reviews &rarr;</a
           >
         </p>
+        <div class="gbadge" style="display:inline-flex;align-items:center;gap:10px;margin-top:14px;padding:9px 16px;border-radius:999px;background:#fff;border:1px solid rgba(11,36,71,0.12);box-shadow:0 6px 22px rgba(11,36,71,0.10)">
+          <svg width="22" height="22" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+          <span style="font-weight:700;color:#0b2447;font-family:'Hanken Grotesk',system-ui,sans-serif">Google Reviews</span>
+          <span style="color:#fbbc05;letter-spacing:2px">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        </div>
       </div>
       <div class="marquee"><div class="mtrack" id="mtrack"></div></div>
     </section>
@@ -4723,7 +4601,7 @@
           <p>
             That&rsquo;s what the <b>mystery boxes</b> are for &mdash; we hand-pack finds from the
             bins and ship them anywhere.
-            <a href="#online" style="color: var(--blue); font-weight: 700">Pick your size &uarr;</a>
+            <a href="mystery-box.html" style="color: var(--blue); font-weight: 700">Pick your size &uarr;</a>
           </p>
         </details>
       </div>
@@ -4900,7 +4778,7 @@
             <a href="#deals">Daily Deals</a>
             <a href="#loyalty">Loyalty Rewards</a>
             <a href="#price">Pricing</a>
-            <a href="#online">Mystery Box</a>
+            <a href="mystery-box.html">Mystery Box</a>
             <a href="#careers">Careers</a>
           </nav>
           <div class="social">
@@ -5148,27 +5026,38 @@
         function target() {
           var r = st.getBoundingClientRect(),
             vh = window.innerHeight;
-          /* start once the box is well inside the viewport, finish as it
-             settles mid-screen */
-          var p = clampN((vh * 0.72 - r.top) / (vh * 0.6));
+          /* stays closed until the whole box has cleared the fold, then opens
+             across the next stretch of scroll and settles while centered */
+          var p = clampN((vh - r.bottom + vh * 0.03) / (vh * 0.42));
           p = p * p * (3 - 2 * p);
           return p * (dur - 0.05);
+        }
+        function offscreen() {
+          var r = st.getBoundingClientRect();
+          return r.bottom < 0 || r.top > window.innerHeight;
         }
         function tick() {
           if (!dur) {
             running = false;
             return;
           }
-          var t = target(),
-            d = t - cur;
+          var t = target();
+          /* out of view: track the target silently, no decode work */
+          if (offscreen()) {
+            cur = t;
+            running = false;
+            return;
+          }
+          var d = t - cur;
           if (Math.abs(d) < 0.004) {
             cur = t;
             seekTo(v, cur);
             running = false; /* settled — sleep until the next scroll */
             return;
           }
-          cur += d * 0.16;
-          seekTo(v, cur);
+          cur += d * 0.28;
+          /* only touch the decoder when the glide has moved a visible amount */
+          if (Math.abs(cur - v.currentTime) > 0.02) seekTo(v, cur);
           requestAnimationFrame(tick);
         }
         function onS() {
@@ -5274,6 +5163,7 @@
           caps = [].slice.call(document.querySelectorAll("#wcaps .wcap")),
           hcue = document.getElementById("hcue"),
           hprog = document.getElementById("hprog");
+        if (!walk || !v) return; /* page without the walk hero */
         var n = caps.length,
           cur = -1,
           dur = 0,
@@ -5468,34 +5358,24 @@
         var top = document.getElementById("strackTop"),
           bot = document.getElementById("strackBot");
         if (!top && !bot) return;
+        /* only images that actually ship with the site — anything else used to
+           404 on every build of the strip and spam the console */
         var items = [
-          "drone",
-          "head",
-          "gaming",
-          "speaker",
-          "air",
-          "espresso",
-          "basketball",
-          "soccer",
-          "grill",
-          "drill",
-          "camera",
-          "projector",
-          "vacuum",
-          "keyboard",
-          "mixer",
-          "coffee",
-          "lego",
-          "shoe",
-          "sneakerwatch",
+          "mrbins-prod-drone.jpg",
+          "mrbins-prod-head.jpg",
+          "mrbins-prod-speaker.jpg",
+          "mrbins-prod-coffee.jpg",
+          "mrbins-prod-lego.jpg",
+          "mrbins-shoes-poster.jpg",
+          "mrbins-lamp.png",
+          "mrbins-feat-bike.jpg",
+          "mrbins-feat-clothes.jpg",
+          "mrbins-feat-mystery.jpg",
         ];
         function build(host, arr) {
           var h = "";
           for (var i = 0; i < arr.length; i++) {
-            h +=
-              '<img src="mrbins-prod-' +
-              arr[i] +
-              '.jpg" alt="" loading="lazy" onerror="this.style.display=\'none\'">';
+            h += '<img src="' + arr[i] + '" alt="" loading="lazy">';
           }
           host.innerHTML = h + h;
         }
@@ -5654,15 +5534,17 @@
       /* ---- discover carousel ---- */
       (function () {
         var todayP = tp === null ? "$" + LADDER[0] : "$" + tp;
-        document.getElementById("dtoday").innerHTML =
+        var dtoday = document.getElementById("dtoday");
+        if (!dtoday) return; /* page without the discover section */
+        dtoday.innerHTML =
           "Everything below is <b>" + todayP + " today.</b> Tomorrow it drops another dollar.";
         var items = [
           ["Audio", "Sony Wireless Headphones", "$98", "mrbins-prod-head.jpg"],
-          ["Footwear", "Nike Running Sneakers", "$110", "mrbins-prod-shoe.jpg"],
+          ["Footwear", "Nike Running Sneakers", "$110", "mrbins-shoes-poster.jpg"],
           ["Kitchen", "Keurig Coffee Maker", "$99", "mrbins-prod-coffee.jpg"],
           ["Toys", "LEGO City Set", "$79", "mrbins-prod-lego.jpg"],
           ["Audio", "JBL Bluetooth Speaker", "$89", "mrbins-prod-speaker.jpg"],
-          ["Kitchen", "Ninja Air Fryer", "$119", "mrbins-prod-air.jpg"],
+          ["Home", "Modern Accent Lamp", "$59", "mrbins-lamp.png"],
         ];
         var friTag = tp === null || day >= 5 ? "&darr; restock Sat" : "&darr; $" + FRI + " Fri";
         var t = document.getElementById("track"),
