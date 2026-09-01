@@ -3937,6 +3937,38 @@
         max-width: 100%;
       }
     </style>
+      <style id="btnpolish">
+      /* unified button feel, every button on the site */
+      .dbtn, .sbtn, .paybtn, .cbtn, .mcta, .ccta, .mbuy, .locbtns a,
+      #lyjoin button, .hnav, .cnav, .cartbtn, .menubtn {
+        transition:
+          transform 0.18s cubic-bezier(0.2, 0.8, 0.2, 1),
+          box-shadow 0.18s ease,
+          background-color 0.18s ease,
+          border-color 0.18s ease,
+          color 0.18s ease !important;
+      }
+      .dbtn:hover, .sbtn:hover, .paybtn:not([disabled]):hover, .cbtn:hover,
+      .mcta:hover, .ccta:hover, #lyjoin button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 30px rgba(11, 36, 71, 0.22);
+      }
+      .dbtn:active, .sbtn:active, .paybtn:not([disabled]):active, .cbtn:active,
+      .mcta:active, .ccta:active, .mbuy:active, #lyjoin button:active {
+        transform: translateY(0) scale(0.98);
+      }
+      .dbtn:focus-visible, .sbtn:focus-visible, .paybtn:focus-visible, .cbtn:focus-visible,
+      .mbuy:focus-visible, .locbtns a:focus-visible, #lyjoin button:focus-visible {
+        outline: 3px solid var(--orange);
+        outline-offset: 2px;
+      }
+      .hnav:hover, .cnav:hover {
+        transform: scale(1.08);
+      }
+      .locbtns a:hover {
+        transform: translateY(-1px);
+      }
+    </style>
   </head>
   <body>
     <header class="bar">

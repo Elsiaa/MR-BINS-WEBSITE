@@ -3892,6 +3892,38 @@
         max-width: 100%;
       }
     </style>
+      <style id="btnpolish">
+      /* unified button feel, every button on the site */
+      .dbtn, .sbtn, .paybtn, .cbtn, .mcta, .ccta, .mbuy, .locbtns a,
+      #lyjoin button, .hnav, .cnav, .cartbtn, .menubtn {
+        transition:
+          transform 0.18s cubic-bezier(0.2, 0.8, 0.2, 1),
+          box-shadow 0.18s ease,
+          background-color 0.18s ease,
+          border-color 0.18s ease,
+          color 0.18s ease !important;
+      }
+      .dbtn:hover, .sbtn:hover, .paybtn:not([disabled]):hover, .cbtn:hover,
+      .mcta:hover, .ccta:hover, #lyjoin button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 30px rgba(11, 36, 71, 0.22);
+      }
+      .dbtn:active, .sbtn:active, .paybtn:not([disabled]):active, .cbtn:active,
+      .mcta:active, .ccta:active, .mbuy:active, #lyjoin button:active {
+        transform: translateY(0) scale(0.98);
+      }
+      .dbtn:focus-visible, .sbtn:focus-visible, .paybtn:focus-visible, .cbtn:focus-visible,
+      .mbuy:focus-visible, .locbtns a:focus-visible, #lyjoin button:focus-visible {
+        outline: 3px solid var(--orange);
+        outline-offset: 2px;
+      }
+      .hnav:hover, .cnav:hover {
+        transform: scale(1.08);
+      }
+      .locbtns a:hover {
+        transform: translateY(-1px);
+      }
+    </style>
   </head>
   <body>
     <header class="bar">
@@ -3943,16 +3975,34 @@
       <style>
         /* the opener fits one screen neatly at any desktop height */
         @media (min-width: 768px) {
+          /* no pinned travel: boxes + items carousel share one screen */
+          #online {
+            height: auto !important;
+          }
           #online .mstage {
+            position: static;
+            height: auto;
+            min-height: 0;
             padding-top: 92px;
-            padding-bottom: 20px;
+            padding-bottom: 10px;
             justify-content: center;
             gap: clamp(8px, 1.6svh, 22px);
           }
           #online .mbox video {
-            max-height: min(47svh, 470px);
+            max-height: min(33svh, 330px);
             width: auto;
             max-width: 100%;
+          }
+          #boxitems {
+            padding-top: 0 !important;
+            padding-bottom: 28px !important;
+          }
+          #boxitems .ucar-h {
+            margin-top: 0;
+            margin-bottom: 10px;
+          }
+          #online .mstage {
+            padding-top: 84px;
           }
           #online .mboxes {
             align-items: flex-end;
