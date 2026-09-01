@@ -5140,23 +5140,60 @@
           }
         });
         if (RM) return;
-        function paint() {
-          ticking = false;
-          if (!dur) return;
+        /* smooth scrub: the playhead glides toward the scroll target every
+           frame instead of jumping on each scroll event, and the progress is
+           smoothstep-eased so the shot starts and settles gently */
+        var cur = 0,
+          running = false;
+        function target() {
           var r = st.getBoundingClientRect(),
             vh = window.innerHeight;
           /* start once the box is well inside the viewport, finish as it
              settles mid-screen */
           var p = clampN((vh * 0.72 - r.top) / (vh * 0.6));
-          seekTo(v, p * (dur - 0.05));
+          p = p * p * (3 - 2 * p);
+          return p * (dur - 0.05);
+        }
+        function tick() {
+          if (!dur) {
+            running = false;
+            return;
+          }
+          var t = target(),
+            d = t - cur;
+          if (Math.abs(d) < 0.004) {
+            cur = t;
+            seekTo(v, cur);
+            running = false; /* settled — sleep until the next scroll */
+            return;
+          }
+          cur += d * 0.16;
+          seekTo(v, cur);
+          requestAnimationFrame(tick);
         }
         function onS() {
-          if (!ticking) {
-            requestAnimationFrame(paint);
-            ticking = true;
+          if (!running) {
+            running = true;
+            requestAnimationFrame(tick);
           }
         }
-        window.addEventListener("scroll", onS, { passive: true });
+        /* have frames decoded before the box scrolls into view */
+        var warm = false;
+        function paint() {
+          if (
+            !warm &&
+            st.getBoundingClientRect().top < window.innerHeight * 2 &&
+            v.preload !== "auto"
+          ) {
+            warm = true;
+            v.preload = "auto";
+            try {
+              v.load();
+            } catch (e) {}
+          }
+          onS();
+        }
+        window.addEventListener("scroll", paint, { passive: true });
         window.addEventListener("resize", onS);
         paint();
       })();
