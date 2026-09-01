@@ -3983,24 +3983,100 @@
      scroll-scrubbed walk-in as desktop (#walk, mobile rendition), then each of
      these pinned stages scrubs its animation with the scroll, bin, clothing,
      shoes, so you go through them in order before the rest of the site. -->
-    <!-- CAREERS -->
-    <section id="careers" aria-label="Careers at Mr. Bins">
-      <div class="cwrap">
-        <h2>Come work <span class="o">the bins.</span></h2>
-        <p class="sub">
-          Fast-paced, friendly, and never boring &mdash; help unload the truckloads, stock the bins,
-          and make people&rsquo;s day across our four Northeast PA stores.
+        <section id="careers">
+      <style>
+        #careers { background: #f4f7fb; padding: 0 0 clamp(64px, 7vw, 110px); }
+        #careers .chero { background: linear-gradient(180deg, #0b2447, #0e3fa6); color: #fff; text-align: center; padding: clamp(72px, 9vw, 140px) clamp(20px, 5vw, 44px) clamp(88px, 10vw, 150px); clip-path: ellipse(140% 100% at 50% 0%); }
+        #careers .chero h1 { font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: clamp(38px, 5.6vw, 72px); letter-spacing: -0.02em; margin: 0 0 14px; }
+        #careers .chero p { color: rgba(255, 255, 255, 0.75); font-size: clamp(15px, 1.5vw, 18px); max-width: 52ch; margin: 0 auto; line-height: 1.6; }
+        #careers .cwrap { max-width: 1120px; margin: clamp(-48px, -5vw, -70px) auto 0; padding: 0 clamp(20px, 5vw, 44px); }
+        #careers .cwhy { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: clamp(48px, 6vw, 80px); }
+        @media (max-width: 900px) { #careers .cwhy { grid-template-columns: 1fr 1fr; } }
+        #careers .cwhy .wcardc { background: #fff; border-radius: 18px; padding: 22px 20px; border: 1px solid rgba(11, 36, 71, 0.08); box-shadow: 0 14px 36px rgba(11, 36, 71, 0.08); }
+        #careers .cwhy .em { font-size: 26px; }
+        #careers .cwhy h3 { margin: 10px 0 4px; font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: 17px; color: #0b2447; }
+        #careers .cwhy p { margin: 0; font-size: 13px; line-height: 1.5; color: var(--muted); }
+        #careers .csplit { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(28px, 4vw, 56px); align-items: start; }
+        @media (max-width: 900px) { #careers .csplit { grid-template-columns: 1fr; } }
+        #careers .roles h2, #careers .apply h2 { font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: clamp(26px, 2.6vw, 34px); color: #0b2447; margin: 0 0 18px; }
+        #careers .role { background: #fff; border: 1px solid rgba(11, 36, 71, 0.08); border-radius: 16px; padding: 18px 20px; margin-bottom: 12px; box-shadow: 0 10px 28px rgba(11, 36, 71, 0.06); }
+        #careers .role h3 { margin: 0 0 3px; font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: 17.5px; color: #0b2447; }
+        #careers .role p { margin: 0; font-size: 13px; color: var(--muted); line-height: 1.5; }
+        #careers .role .rt { display: inline-block; margin-top: 8px; font: 700 11px "Space Mono", monospace; letter-spacing: 0.14em; text-transform: uppercase; color: var(--orange); }
+        #careers .apply { background: #fff; border: 1px solid rgba(11, 36, 71, 0.08); border-radius: 22px; padding: clamp(24px, 3vw, 36px); box-shadow: 0 24px 56px rgba(11, 36, 71, 0.1); }
+        #careers .apply .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+        @media (max-width: 560px) { #careers .apply .frow { grid-template-columns: 1fr; } }
+        #careers .apply input, #careers .apply select, #careers .apply textarea { width: 100%; font: 600 14.5px "Hanken Grotesk", sans-serif; color: #0b2447; padding: 13px 16px; border-radius: 13px; border: 1.5px solid rgba(11, 36, 71, 0.18); background: #fbfcfe; outline-color: var(--orange); }
+        #careers .apply textarea { min-height: 96px; resize: vertical; }
+        #careers .apply label { display: block; font: 700 12px "Hanken Grotesk", sans-serif; color: var(--muted); margin: 0 0 5px 3px; text-transform: uppercase; letter-spacing: 0.06em; }
+        #careers .apply .cbtn { width: 100%; margin-top: 6px; border: 0; cursor: pointer; font: 800 16px "Hanken Grotesk", sans-serif; color: #0b2447; background: var(--orange); padding: 15px 0; border-radius: 999px; box-shadow: 0 14px 34px rgba(255, 143, 82, 0.4); transition: transform 0.2s; }
+        #careers .apply .cbtn:hover { transform: translateY(-2px); }
+        #careers .apply .fine { margin: 12px 0 0; font-size: 11.5px; color: var(--muted); text-align: center; }
+      </style>
+      <div class="chero">
+        <h1>Work the <span style="color: var(--orange)">treasure hunt.</span></h1>
+        <p>
+          Mr. Bins is Northeast Pennsylvania&rsquo;s fastest-growing discount outlet &mdash; five
+          stores, fresh pallets every week, and a floor that&rsquo;s never boring. Come build it
+          with us.
         </p>
-        <div class="cperks">
-          <div class="cperk">Flexible shifts<span>full &amp; part-time</span></div>
-          <div class="cperk">Team discount<span>on everything</span></div>
-          <div class="cperk">Room to grow<span>we promote from within</span></div>
-          <div class="cperk">Good people<span>a crew that has fun</span></div>
-        </div>
-        <a class="ccta" href="mailto:careers@primebins.com?subject=Careers%20at%20Mr.%20Bins"
-          >See open roles &rarr;</a
-        >
       </div>
+      <div class="cwrap">
+        <div class="cwhy">
+          <div class="wcardc"><div class="em">&#128176;</div><h3>Weekly pay</h3><p>Competitive rates, paid every single week.</p></div>
+          <div class="wcardc"><div class="em">&#128230;</div><h3>First dibs</h3><p>Team members shop fresh pallets before drop day.</p></div>
+          <div class="wcardc"><div class="em">&#128200;</div><h3>Real growth</h3><p>Floor to keyholder to store lead &mdash; we promote from within.</p></div>
+          <div class="wcardc"><div class="em">&#9889;</div><h3>Never boring</h3><p>New stock, new crowd, new finds &mdash; every day is drop day somewhere.</p></div>
+        </div>
+        <div class="csplit">
+          <div class="roles">
+            <h2>Open roles</h2>
+            <div class="role"><h3>Floor Associate</h3><p>Keep the bins stocked, the floor moving, and the treasure hunters happy.</p><span class="rt">All locations &middot; Full &amp; part time</span></div>
+            <div class="role"><h3>Drop-Day Crew</h3><p>High-energy restock team for our biggest days of the week.</p><span class="rt">All locations &middot; Part time</span></div>
+            <div class="role"><h3>Keyholder / Shift Lead</h3><p>Open, close, and run the floor. Retail leadership experience a plus.</p><span class="rt">All locations &middot; Full time</span></div>
+            <div class="role"><h3>Warehouse &amp; Pallets</h3><p>Receive, sort, and stage truckloads of brand-new stock.</p><span class="rt">Wilkes-Barre &middot; Full time</span></div>
+          </div>
+          <div class="apply">
+            <h2>Apply in two minutes</h2>
+            <form id="capply">
+              <div class="frow">
+                <div><label>First name</label><input type="text" name="first" required autocomplete="given-name" /></div>
+                <div><label>Last name</label><input type="text" name="last" required autocomplete="family-name" /></div>
+              </div>
+              <div class="frow">
+                <div><label>Phone</label><input type="tel" name="phone" required autocomplete="tel" /></div>
+                <div><label>Email</label><input type="email" name="email" required autocomplete="email" /></div>
+              </div>
+              <div class="frow">
+                <div><label>Store</label><select name="store" required><option value="">Choose a store&hellip;</option><option>Wilkes-Barre</option><option>Bethlehem</option><option>Allentown</option><option>Hazleton</option><option>Scranton</option></select></div>
+                <div><label>Role</label><select name="role" required><option value="">Choose a role&hellip;</option><option>Floor Associate</option><option>Drop-Day Crew</option><option>Keyholder / Shift Lead</option><option>Warehouse &amp; Pallets</option></select></div>
+              </div>
+              <label>Tell us about yourself (optional)</label>
+              <textarea name="about" placeholder="Availability, experience, why Mr. Bins&hellip;"></textarea>
+              <button class="cbtn" type="submit">Send my application &rarr;</button>
+              <p class="fine">We reply to every application within 2 business days.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+      <script>
+        document.getElementById("capply").addEventListener("submit", function (e) {
+          e.preventDefault();
+          var d = new FormData(this);
+          var body = encodeURIComponent(
+            "Name: " + d.get("first") + " " + d.get("last") +
+            "\nPhone: " + d.get("phone") + "\nEmail: " + d.get("email") +
+            "\nStore: " + d.get("store") + "\nRole: " + d.get("role") +
+            "\n\n" + (d.get("about") || "")
+          );
+          window.location.href =
+            "mailto:careers@primebins.com?subject=" +
+            encodeURIComponent("Application: " + d.get("role") + " — " + d.get("first") + " " + d.get("last")) +
+            "&body=" + body;
+          this.innerHTML =
+            '<h2 style="margin:0 0 8px">Application started! &#127881;</h2><p style="font:600 14.5px \'Hanken Grotesk\',sans-serif;color:var(--muted);margin:0">Your email app just opened with everything filled in &mdash; hit send and we&rsquo;ll be in touch within 2 business days.</p>';
+        });
+      </script>
     </section>
     <footer id="footer">
       <div class="fwrap">
