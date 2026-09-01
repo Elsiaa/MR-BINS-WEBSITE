@@ -1646,7 +1646,8 @@
         position: relative;
         height: clamp(320px, 42vw, 460px);
         max-width: 760px;
-        margin: clamp(4px, 1vw, 10px) auto clamp(16px, 2.4vw, 28px);
+        /* headroom above the box so risen items never crowd the cards above */
+        margin: clamp(96px, 12vw, 168px) auto clamp(16px, 2.4vw, 28px);
       }
       .brglow {
         position: absolute;
@@ -5043,15 +5044,18 @@
           glow.style.opacity = String(o * 0.9);
           var sc = window.innerWidth < 521 ? 0.6 : 1;
           for (var i = 0; i < items.length; i++) {
-            var s = clampN(q * 1.3 - i * 0.06);
+            var s = clampN(q * 1.35 - Math.abs(i - 2) * 0.09);
             s = s * s * (3 - 2 * s);
             /* fully opaque almost immediately: while low they are hidden
                BEHIND the box art, so they read as coming out of it rather
                than fading in beside it */
             items[i].style.opacity = String(Math.min(1, s * 8));
+            /* lift first, fan out second: the sideways spread lags the rise so
+               each item clears the mouth of the box before drifting outward */
+            var sx = s * s;
             items[i].style.transform =
               "translate(" +
-              (T[i][0] * s * sc).toFixed(1) +
+              (T[i][0] * sx * sc).toFixed(1) +
               "px," +
               (-T[i][1] * s * sc).toFixed(1) +
               "px) rotate(" +
@@ -5070,8 +5074,11 @@
           ticking = false;
           var r = st.getBoundingClientRect(),
             vh = window.innerHeight;
-          var p = clampN((vh * 0.92 - r.top) / (vh * 0.6));
-          setState(clampN((p - 0.36) / 0.6), clampN((p - 0.32) / 0.14));
+          /* start only once the box is well inside the viewport and finish as
+             it settles mid-screen, so items rise into the empty space above
+             the box instead of over the cards before it */
+          var p = clampN((vh * 0.66 - r.top) / (vh * 0.52));
+          setState(clampN((p - 0.3) / 0.7), clampN((p - 0.16) / 0.14));
         }
         function onS() {
           if (!ticking) {
