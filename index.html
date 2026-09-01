@@ -3449,8 +3449,10 @@
           flex: none;
         }
 
-        /* hero stage: full small-viewport height, legibility tint that
-           darkens toward the caption zone at the bottom */
+        /* phones skip the walkthrough entirely and open on the spinning bin */
+        #walk {
+          display: none !important;
+        }
         #walk .stage {
           height: 100svh;
         }
@@ -3950,6 +3952,7 @@
           <source data-mob="mrbins-cart.mp4" type="video/mp4" />
         </video>
         <div class="wmcap">
+          <div class="k">Welcome to Mr.&nbsp;Bins</div>
           <h3>One bin.<br />One price.</h3>
           <div class="wprice" id="wmP1">$&mdash;</div>
         </div>
@@ -4171,7 +4174,10 @@
     <section id="featured">
       <div class="fstage">
         <div class="fhead">
-          <div class="k">Something for everyone</div>
+          <h2 style="margin: 0 0 12px">
+            You&rsquo;ve seen the bins&hellip; but did you know
+            <span class="o">we also sell..</span>
+          </h2>
           <h2>More than just <span class="o">the bins.</span></h2>
           <p class="sub">Fresh stock lands daily &mdash; here&rsquo;s what people come back for.</p>
         </div>
@@ -4391,7 +4397,7 @@
         <div class="lyintro">
           <div class="lytext">
             <div class="k">Mr. Bins Loyalty</div>
-            <h2>Dig more. <span class="o">Earn more.</span></h2>
+            <h2>Buy a Mr&nbsp;Bins <span class="o">mystery box!!</span></h2>
             <p class="sub">
               Loyalty members get the best of every drop day, every week &mdash; free to join.
             </p>
@@ -4447,7 +4453,6 @@
             </p>
           </div>
         </div>
-        <div class="brhint">Every box is a surprise &mdash; scroll to open one &darr;</div>
         <div class="boxreveal" id="boxreveal" aria-hidden="true">
           <video
             class="boxrevealvid"
@@ -4462,10 +4467,7 @@
           </video>
         </div>
         <div class="lycta">
-          <a class="dbtn gold" href="https://primebins.com" target="_blank" rel="noopener"
-            >&#9733; Become a loyalty member</a
-          >
-          <div class="lynote">Free to join &middot; sign up in store or online</div>
+          <a class="dbtn gold" href="mystery-box.html">Buy a mystery box</a>
         </div>
       </div>
     </section>
