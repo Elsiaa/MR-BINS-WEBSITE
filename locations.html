@@ -3422,8 +3422,14 @@
       }
       /* desktop fit: one screen per section */
       @media (min-width: 1100px) {
-        #hauls { padding-top: 56px !important; padding-bottom: 64px !important; }
-        #price { padding-top: 56px !important; padding-bottom: 56px !important; }
+        #hauls {
+          padding-top: 56px !important;
+          padding-bottom: 64px !important;
+        }
+        #price {
+          padding-top: 56px !important;
+          padding-bottom: 56px !important;
+        }
       }
       /* ============ MOBILE HERO REBUILD (<768px) ============
    The walk-in hero, redesigned for phones: captions anchored to the
@@ -3944,7 +3950,7 @@
           <a href="deals.html">Deals</a>
           <a href="index.html#loyalty">Loyalty</a>
           <a href="mystery-box.html">Mystery Box</a>
-          <a href="index.html#careers">Careers</a>
+          <a href="careers.html">Careers</a>
         </nav>
         <div class="hright">
           <div class="clock"><span class="dot"></span><span class="p" id="clk">&mdash;</span></div>
@@ -3970,7 +3976,7 @@
       <a href="deals.html">Daily Deals</a>
       <a href="index.html#loyalty">Loyalty Rewards</a>
       <a href="mystery-box.html">Mystery Box</a>
-      <a href="index.html#careers">Careers</a>
+      <a href="careers.html">Careers</a>
       <a href="#footer">Locations &amp; Hours</a>
     </nav>
     <div class="toast" id="toast"></div>
@@ -3980,7 +3986,9 @@
      these pinned stages scrubs its animation with the scroll, bin, clothing,
      shoes, so you go through them in order before the rest of the site. -->
     <style>
-      #locm { display: block !important; }
+      #locm {
+        display: block !important;
+      }
     </style>
     <section id="locm" aria-label="Locations and hours">
       <div class="lmwrap">
@@ -4133,7 +4141,7 @@
             <a href="index.html#loyalty">Loyalty Rewards</a>
             <a href="index.html#price">Pricing</a>
             <a href="mystery-box.html">Mystery Box</a>
-            <a href="index.html#careers">Careers</a>
+            <a href="careers.html">Careers</a>
           </nav>
           <div class="social">
             <a
@@ -4465,7 +4473,6 @@
         price.after(deals);
       })();
 
-
       /* ---- FEATURED: cards scrub their clips with scroll (inertia-smoothed) ---- */
       (function () {
         var sec = document.getElementById("featured");
@@ -4474,17 +4481,28 @@
         if (!vids.length) return;
         var RM = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         if (RM) return;
-        var cur = 0, running = false;
+        var cur = 0,
+          running = false;
         function target() {
-          var r = sec.getBoundingClientRect(), vh = window.innerHeight;
+          var r = sec.getBoundingClientRect(),
+            vh = window.innerHeight;
           var p = Math.min(1, Math.max(0, (vh * 0.92 - r.top) / (vh + r.height * 0.6)));
           return p * p * (3 - 2 * p);
         }
         function tick() {
           var r = sec.getBoundingClientRect();
-          if (r.bottom < 0 || r.top > window.innerHeight) { cur = target(); running = false; return; }
-          var t = target(), d = t - cur;
-          if (Math.abs(d) < 0.002) { cur = t; running = false; return; }
+          if (r.bottom < 0 || r.top > window.innerHeight) {
+            cur = target();
+            running = false;
+            return;
+          }
+          var t = target(),
+            d = t - cur;
+          if (Math.abs(d) < 0.002) {
+            cur = t;
+            running = false;
+            return;
+          }
           cur += d * 0.25;
           vids.forEach(function (v) {
             if (v.duration && Math.abs(cur * v.duration - v.currentTime) > 0.02)
@@ -4492,7 +4510,16 @@
           });
           requestAnimationFrame(tick);
         }
-        window.addEventListener("scroll", function () { if (!running) { running = true; requestAnimationFrame(tick); } }, { passive: true });
+        window.addEventListener(
+          "scroll",
+          function () {
+            if (!running) {
+              running = true;
+              requestAnimationFrame(tick);
+            }
+          },
+          { passive: true },
+        );
       })();
       /* ---- shopping cart: live badge + toast (adds when you click an item) ---- */
       (function () {
@@ -4590,7 +4617,9 @@
     iOS only trusts play() from a user gesture (Low Power Mode, Data Saver) */
         function primeAll() {
           [].forEach.call(
-            document.querySelectorAll("#walkvid,#cartvid,#clothesvid,#shoesvid,#boxrevealvid,.boxvid"),
+            document.querySelectorAll(
+              "#walkvid,#cartvid,#clothesvid,#shoesvid,#boxrevealvid,.boxvid",
+            ),
             function (x) {
               try {
                 var q = x.play();
@@ -4613,11 +4642,14 @@
                 v.pause();
               }).catch(function () {});
           } catch (e) {}
-          [].forEach.call(document.querySelectorAll("#clothesvid,#shoesvid,#boxrevealvid,.boxvid"), function (x) {
-            try {
-              x.preload = "metadata";
-            } catch (e) {}
-          });
+          [].forEach.call(
+            document.querySelectorAll("#clothesvid,#shoesvid,#boxrevealvid,.boxvid"),
+            function (x) {
+              try {
+                x.preload = "metadata";
+              } catch (e) {}
+            },
+          );
         } else {
           primeAll();
         }
@@ -4661,7 +4693,8 @@
                 /* phones: bottom-anchored captions sit at differing heights, so a
                    long crossfade reads as two captions stacked — hand off fast */
                 var fin = i === 0 ? 1 : clampN(t / (mob ? 0.09 : 0.16)),
-                  fout = i === n - 1 ? 1 : 1 - clampN((t - (mob ? 0.91 : 0.84)) / (mob ? 0.12 : 0.32));
+                  fout =
+                    i === n - 1 ? 1 : 1 - clampN((t - (mob ? 0.91 : 0.84)) / (mob ? 0.12 : 0.32));
                 op = Math.min(fin, fout);
                 sc = 0.94 + 0.12 * clampN(t);
               }
