@@ -3453,6 +3453,34 @@
         #walk {
           display: none !important;
         }
+        #wm1 .wmcap {
+          left: 0;
+          right: 0;
+          text-align: center;
+          width: auto;
+        }
+        #wm1 .wmwelc {
+          font-family: "Space Mono", monospace;
+          font-size: 13px;
+          font-weight: 700;
+          letter-spacing: 0.24em;
+          text-transform: uppercase;
+          color: var(--muted, #5b6b83);
+          margin-bottom: 10px;
+        }
+        #wm1 .wmlogo {
+          width: min(62vw, 240px);
+          height: auto;
+          margin: 0 auto 14px;
+          display: block;
+        }
+        #wm1 .wmcap h3 {
+          margin: 0 auto;
+        }
+        /* phone flow: bin opener, then discover, price, deals */
+        #deals {
+          display: block !important;
+        }
         #walk .stage {
           height: 100svh;
         }
@@ -3952,7 +3980,8 @@
           <source data-mob="mrbins-cart.mp4" type="video/mp4" />
         </video>
         <div class="wmcap">
-          <div class="k">Welcome to Mr.&nbsp;Bins</div>
+          <div class="wmwelc">Welcome to</div>
+          <img class="wmlogo" src="mrbins-logo.png" alt="Mr. Bins" />
           <h3>One bin.<br />One price.</h3>
           <div class="wprice" id="wmP1">$&mdash;</div>
         </div>
@@ -4060,67 +4089,19 @@
       </div>
     </section>
 
-    <!-- CART ROLL-IN: holds the screen -->
-    <section id="cart">
-      <div class="cartstage">
-        <div class="cartcap">
-                    <h2>The bins are just <span class="o">the beginning.</span></h2>
-        </div>
-        <div class="trio">
-          <div class="tside" id="clothesSide">
-            <video
-              id="clothesvid"
-              muted
-              playsinline
-              preload="none"
-              poster="mrbins-clothes-poster.jpg"
-            >
-              <source data-desk="mrbins-clothes.mp4" type="video/mp4" />
-            </video>
-            <div class="tshadow"></div>
-            <div class="tchip">We sell clothing</div>
-          </div>
-          <div class="titem" id="binItem">
-            <video
-              class="cartvid"
-              id="cartvid"
-              muted
-              playsinline
-              preload="metadata"
-              poster="mrbins-cart-poster.jpg"
-            >
-              <source data-desk="mrbins-cart.mp4" type="video/mp4" />
-            </video>
-            <div class="tshadow"></div>
-            <div class="tchip">One bin. One price.</div>
-          </div>
-          <div class="tside" id="shoesSide">
-            <video id="shoesvid" muted playsinline preload="none" poster="mrbins-shoes-poster.jpg">
-              <source data-desk="mrbins-shoes.mp4" type="video/mp4" />
-            </video>
-            <div class="tshadow"></div>
-            <div class="tchip">We sell shoes</div>
-          </div>
-        </div>
-        <!-- BRAND TICKER, bottom strip, shares the screen with the bin -->
-        <section id="brands" aria-label="Brands you'll find in the bins">
-          <video
-            class="bbg"
-            id="bbg"
-            autoplay
-            muted
-            loop
-            playsinline
-            preload="none"
-            poster="mrbins-store.jpg"
-          >
-            <source data-desk="mrbins-brandbg.mp4" type="video/mp4" />
-          </video>
-          <div class="boverlay"></div>
-          <div class="binner">
-                        <div class="bviewport"><div class="bmarq" id="bmarq"></div></div>
-          </div>
-        </section>
+    <!-- BIN LIVE: people digging through the new bin (AI-rendered, scroll-scrubbed) -->
+    <section id="binlive">
+      <style>
+        #binlive { background: #f4f7fb; text-align: center; padding: clamp(56px, 7vw, 100px) clamp(20px, 5vw, 44px); }
+        #binlive .blwrap { max-width: 980px; margin: 0 auto; }
+        #binlive video { width: 100%; height: auto; mix-blend-mode: multiply; }
+      </style>
+      <div class="blwrap">
+        <div class="k">The main event</div>
+        <h2>Dig in. <span class="o">Everyone does.</span></h2>
+        <video id="binlivevid" muted playsinline webkit-playsinline autoplay loop preload="metadata">
+          <source src="mrbins-bin-live.mp4" type="video/mp4" />
+        </video>
       </div>
     </section>
 
@@ -4174,23 +4155,37 @@
     <section id="featured">
       <div class="fstage">
         <div class="fhead">
-          <h2 style="margin: 0 0 12px">
-            You&rsquo;ve seen the bins&hellip; but did you know
-            <span class="o">we also sell..</span>
-          </h2>
-          <h2>More than just <span class="o">the bins.</span></h2>
-          <p class="sub">Fresh stock lands daily &mdash; here&rsquo;s what people come back for.</p>
+          <h2 style="margin: 0 0 12px">Discover everything <span class="o">we sell.</span></h2>
+          <p class="sub">
+            You&rsquo;ve seen the bins&hellip; racks, boxes and bikes land fresh every day too.
+          </p>
         </div>
         <div class="fgrid">
           <div class="fcard c1">
             <div class="tagpill">Refilled daily</div>
             <div class="fimg">
-              <img src="mrbins-feat-clothes.jpg" alt="Brand-new clothes and shoes" loading="lazy" />
+              <video class="fvid" muted loop playsinline autoplay preload="metadata" poster="mrbins-clothes-poster.jpg">
+                <source src="mrbins-clothes.mp4" type="video/mp4" />
+              </video>
             </div>
-            <h3>Clothes &amp; Shoes</h3>
+            <h3>Clothing</h3>
             <p>
-              Clothing and shoes get restocked every single day &mdash; so there&rsquo;s always a
-              fresh pile to dig through. Blink and you&rsquo;ll miss the good stuff.
+              Racks of brand-new clothing, restocked every single day &mdash; there&rsquo;s always
+              a fresh rack to flip through.
+            </p>
+            <a class="flk" href="#price">See pricing &rarr;</a>
+          </div>
+          <div class="fcard c1">
+            <div class="tagpill">New in box</div>
+            <div class="fimg">
+              <video class="fvid" muted loop playsinline autoplay preload="metadata" poster="mrbins-shoes-poster.jpg">
+                <source src="mrbins-shoes.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <h3>Shoes</h3>
+            <p>
+              Name-brand shoes in the box &mdash; sneakers, boots and more, straight off the
+              pallet at bin prices.
             </p>
             <a class="flk" href="#price">See pricing &rarr;</a>
           </div>
@@ -4238,6 +4233,143 @@
     </section>
 
     <!-- PRICE -->
+    <!-- REAL HAULS: real phone footage from the floor -->
+    <section id="hauls">
+      <h2>See it happen <span class="o">for real.</span></h2>
+      <p class="sub">
+        Real phone footage from the floor &mdash; new clips every week, straight from the store.
+      </p>
+      <div class="hwrap">
+        <button class="hnav prev" id="hcprev" aria-label="Previous clip">&lsaquo;</button>
+        <div class="hstage">
+          <div class="hslides" id="hslidesEl">
+            <figure class="hslide">
+              <div class="hmedia">
+                <video class="haulvid" src="mrbins-haul-1.mp4" muted playsinline webkit-playsinline loop preload="metadata"></video>
+              </div>
+              <figcaption class="hinfo">
+                <b>Fresh bins hit the floor</b
+                ><span>Drop day &middot; <em>$14</em> &middot; best selection of the week</span>
+              </figcaption>
+            </figure>
+            <figure class="hslide">
+              <div class="hmedia">
+                <video class="haulvid" src="mrbins-haul-2.mp4" muted playsinline webkit-playsinline loop preload="metadata"></video>
+              </div>
+              <figcaption class="hinfo">
+                <b>Digging the pile</b><span>Straight off the pallet &middot; totally unsorted</span>
+              </figcaption>
+            </figure>
+            <figure class="hslide">
+              <div class="hmedia">
+                <video class="haulvid" src="mrbins-haul-3.mp4" muted playsinline webkit-playsinline loop preload="metadata"></video>
+              </div>
+              <figcaption class="hinfo">
+                <b>The big-brand pull</b><span>Brand-new in box &middot; from the bins</span>
+              </figcaption>
+            </figure>
+            <figure class="hslide">
+              <div class="hmedia">
+                <video class="haulvid" src="mrbins-haul-4.mp4" muted playsinline webkit-playsinline loop preload="metadata"></video>
+              </div>
+              <figcaption class="hinfo">
+                <b>On the floor, live</b><span>Shot in store &middot; real shoppers, real finds</span>
+              </figcaption>
+            </figure>
+            <figure class="hslide">
+              <div class="hmedia">
+                <video class="haulvid" src="mrbins-haul-5.mp4" muted playsinline webkit-playsinline loop preload="metadata"></video>
+              </div>
+              <figcaption class="hinfo">
+                <b>The haul, laid out</b><span>One trip &middot; pocket change</span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+        <button class="hnav next" id="hcnext" aria-label="Next clip">&rsaquo;</button>
+      </div>
+    </section>
+
+    <section id="loyalty">
+      <div class="lywrap">
+        <div class="lyintro">
+          <div class="lytext">
+            <div class="k">Mr. Bins Loyalty</div>
+            <h2>Buy a Mr&nbsp;Bins <span class="o">mystery box!!</span></h2>
+            <p class="sub">
+              Loyalty members get the best of every drop day, every week &mdash; free to join.
+            </p>
+          </div>
+          <img
+            class="lyhero"
+            src="mrbins-loyal-hero.png"
+            alt="A loyalty member pushing a shopping cart piled high with brand-new finds"
+            loading="lazy"
+          />
+        </div>
+        <div class="lygrid">
+          <div class="lycard">
+            <div class="limg"><img src="mrbins-loyal-drop.jpg" alt="" loading="lazy" /></div>
+            <h3>Drop-day head start</h3>
+            <p>
+              Members get first crack at the bins when fresh pallets land &mdash; before the crowds
+              dig in.
+            </p>
+          </div>
+          <div class="lycard">
+            <div class="limg">
+              <img
+                src="mrbins-loyal-alerts.jpg"
+                alt=""
+                loading="lazy"
+                style="object-fit: contain; padding: 6px"
+              />
+            </div>
+            <h3>Price-drop alerts</h3>
+            <p>
+              A text the moment your department hits the price you&rsquo;re waiting for. Nothing
+              else, ever.
+            </p>
+          </div>
+          <div class="lycard">
+            <div class="limg"><img src="mrbins-loyal-card.jpg" alt="" loading="lazy" /></div>
+            <h3>Members-only deals</h3>
+            <p>Special member prices and bonus deal days all year long, in every department.</p>
+          </div>
+          <div class="lycard">
+            <div class="limg">
+              <img
+                src="mrbins-mystery-closed.png"
+                alt=""
+                loading="lazy"
+                style="object-fit: contain; padding: 8px"
+              />
+            </div>
+            <h3>Mystery box perks</h3>
+            <p>
+              Member pricing on every mystery box we pack &mdash; always worth more than you pay.
+            </p>
+          </div>
+        </div>
+        <div class="boxreveal" id="boxreveal" aria-hidden="true">
+          <video
+            class="boxrevealvid"
+            id="boxrevealvid"
+            muted
+            playsinline
+            webkit-playsinline
+            preload="metadata"
+            poster="mrbins-box-reveal-poster.png"
+          >
+            <source src="mrbins-box-reveal.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="lycta">
+          <a class="dbtn gold" href="mystery-box.html">Mystery box store</a>
+        </div>
+      </div>
+    </section>
+
     <section id="price">
       <div class="pwrap">
         <div class="peb">One price. The whole store.</div>
@@ -4392,141 +4524,18 @@
     </section>
 
     <!-- LOYALTY, member reward program -->
-    <section id="loyalty">
-      <div class="lywrap">
-        <div class="lyintro">
-          <div class="lytext">
-            <div class="k">Mr. Bins Loyalty</div>
-            <h2>Buy a Mr&nbsp;Bins <span class="o">mystery box!!</span></h2>
-            <p class="sub">
-              Loyalty members get the best of every drop day, every week &mdash; free to join.
-            </p>
-          </div>
-          <img
-            class="lyhero"
-            src="mrbins-loyal-hero.png"
-            alt="A loyalty member pushing a shopping cart piled high with brand-new finds"
-            loading="lazy"
-          />
-        </div>
-        <div class="lygrid">
-          <div class="lycard">
-            <div class="limg"><img src="mrbins-loyal-drop.jpg" alt="" loading="lazy" /></div>
-            <h3>Drop-day head start</h3>
-            <p>
-              Members get first crack at the bins when fresh pallets land &mdash; before the crowds
-              dig in.
-            </p>
-          </div>
-          <div class="lycard">
-            <div class="limg">
-              <img
-                src="mrbins-loyal-alerts.jpg"
-                alt=""
-                loading="lazy"
-                style="object-fit: contain; padding: 6px"
-              />
-            </div>
-            <h3>Price-drop alerts</h3>
-            <p>
-              A text the moment your department hits the price you&rsquo;re waiting for. Nothing
-              else, ever.
-            </p>
-          </div>
-          <div class="lycard">
-            <div class="limg"><img src="mrbins-loyal-card.jpg" alt="" loading="lazy" /></div>
-            <h3>Members-only deals</h3>
-            <p>Special member prices and bonus deal days all year long, in every department.</p>
-          </div>
-          <div class="lycard">
-            <div class="limg">
-              <img
-                src="mrbins-mystery-closed.png"
-                alt=""
-                loading="lazy"
-                style="object-fit: contain; padding: 8px"
-              />
-            </div>
-            <h3>Mystery box perks</h3>
-            <p>
-              Member pricing on every mystery box we pack &mdash; always worth more than you pay.
-            </p>
-          </div>
-        </div>
-        <div class="boxreveal" id="boxreveal" aria-hidden="true">
-          <video
-            class="boxrevealvid"
-            id="boxrevealvid"
-            muted
-            playsinline
-            webkit-playsinline
-            preload="metadata"
-            poster="mrbins-box-reveal-poster.png"
-          >
-            <source src="mrbins-box-reveal.mp4" type="video/mp4" />
-          </video>
-        </div>
-        <div class="lycta">
-          <a class="dbtn gold" href="mystery-box.html">Buy a mystery box</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- REAL HAULS: real phone footage from the floor -->
-    <section id="hauls">
-      <h2>See it happen <span class="o">for real.</span></h2>
-      <p class="sub">
-        Real phone footage from the floor &mdash; new clips every week, straight from the store.
-      </p>
-      <div class="hwrap">
-        <button class="hnav prev" id="hcprev" aria-label="Previous clip">&lsaquo;</button>
-        <div class="hstage">
-          <div class="hslides" id="hslidesEl">
-            <figure class="hslide">
-              <div class="hmedia">
-                <video class="haulvid" src="mrbins-haul-1.mp4" muted playsinline webkit-playsinline loop preload="metadata"></video>
-              </div>
-              <figcaption class="hinfo">
-                <b>Fresh bins hit the floor</b
-                ><span>Drop day &middot; <em>$14</em> &middot; best selection of the week</span>
-              </figcaption>
-            </figure>
-            <figure class="hslide">
-              <div class="hmedia">
-                <video class="haulvid" src="mrbins-haul-2.mp4" muted playsinline webkit-playsinline loop preload="metadata"></video>
-              </div>
-              <figcaption class="hinfo">
-                <b>Digging the pile</b><span>Straight off the pallet &middot; totally unsorted</span>
-              </figcaption>
-            </figure>
-            <figure class="hslide">
-              <div class="hmedia">
-                <video class="haulvid" src="mrbins-haul-3.mp4" muted playsinline webkit-playsinline loop preload="metadata"></video>
-              </div>
-              <figcaption class="hinfo">
-                <b>The big-brand pull</b><span>Brand-new in box &middot; from the bins</span>
-              </figcaption>
-            </figure>
-            <figure class="hslide">
-              <div class="hmedia">
-                <video class="haulvid" src="mrbins-haul-4.mp4" muted playsinline webkit-playsinline loop preload="metadata"></video>
-              </div>
-              <figcaption class="hinfo">
-                <b>On the floor, live</b><span>Shot in store &middot; real shoppers, real finds</span>
-              </figcaption>
-            </figure>
-            <figure class="hslide">
-              <div class="hmedia">
-                <video class="haulvid" src="mrbins-haul-5.mp4" muted playsinline webkit-playsinline loop preload="metadata"></video>
-              </div>
-              <figcaption class="hinfo">
-                <b>The haul, laid out</b><span>One trip &middot; pocket change</span>
-              </figcaption>
-            </figure>
-          </div>
-        </div>
-        <button class="hnav next" id="hcnext" aria-label="Next clip">&rsaquo;</button>
-      </div>
+    <!-- MYSTERY BOX STORE PROMO -->
+    <section id="mbpromo">
+      <style>
+        #mbpromo { background: #0b2447; color: #fff; text-align: center; padding: clamp(56px, 7vw, 100px) clamp(20px, 5vw, 44px); }
+        #mbpromo img { width: min(320px, 60vw); height: auto; margin: 18px auto 6px; display: block; }
+        #mbpromo h2 { font-weight: 800; font-size: clamp(30px, 4.4vw, 52px); margin: 0 0 10px; }
+        #mbpromo p { color: rgba(255,255,255,0.75); max-width: 46ch; margin: 0 auto 8px; }
+      </style>
+      <h2>The <span class="o">Mystery Box</span> Store</h2>
+      <p>Can&rsquo;t make it to the bins? We hand-pack the treasure hunt and ship it to your door.</p>
+      <img src="mrbins-mystery-open.png" alt="An open Mr. Bins mystery box" loading="lazy" />
+      <a class="dbtn gold" href="mystery-box.html">Shop mystery boxes &rarr;</a>
     </section>
 
     <!-- REVIEWS -->
@@ -5100,6 +5109,19 @@
         } catch (e) {}
       }
 
+      /* phone: reorder flow to bin opener -> discover -> price -> deals */
+      (function () {
+        if (!window.matchMedia("(max-width:767px)").matches) return;
+        var wm1 = document.getElementById("wm1"),
+          disc = document.getElementById("discover"),
+          price = document.getElementById("price"),
+          deals = document.getElementById("deals");
+        if (!wm1 || !disc || !price || !deals) return;
+        wm1.after(disc);
+        disc.after(price);
+        price.after(deals);
+      })();
+
       /* ---- shopping cart: live badge + toast (adds when you click an item) ---- */
       (function () {
         var count = 0,
@@ -5293,6 +5315,7 @@
         if (MRB_PHONE) return; /* phone: #cart hidden, no scrub */
         var cart = document.getElementById("cart"),
           v = document.getElementById("cartvid");
+        if (!cart || !v) return; /* the roll-in stage was retired */
         var cs = document.getElementById("clothesSide"),
           cv = document.getElementById("clothesvid");
         var ss = document.getElementById("shoesSide"),
@@ -5518,6 +5541,7 @@
         var names = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
           el = document.getElementById("ladderEl"),
           h = "";
+        if (!el) return; /* page without the price ladder */
         for (var d = 0; d < 7; d++) {
           var val = LADDER[d];
           h +=
