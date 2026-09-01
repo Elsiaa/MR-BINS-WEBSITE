@@ -374,7 +374,7 @@
         top: 0;
         height: 100vh;
         overflow: hidden;
-        background: #04070e url("mrbins-store.jpg") center/cover no-repeat;
+        background: #04070e url("mrbins-walk-poster.jpg") center/cover no-repeat;
       }
       .walkvid {
         position: absolute;
@@ -4037,7 +4037,7 @@
           playsinline
           webkit-playsinline
           preload="none"
-          poster="mrbins-store.jpg"
+          poster="mrbins-walk-poster.jpg"
         >
           <source data-desk="mrbins-walk.mp4" data-mob="mrbins-walk-mobile.mp4" type="video/mp4" />
         </video>
@@ -4089,22 +4089,6 @@
       </div>
     </section>
 
-    <!-- BIN LIVE: people digging through the new bin (AI-rendered, scroll-scrubbed) -->
-    <section id="binlive">
-      <style>
-        #binlive { background: #f4f7fb; text-align: center; padding: clamp(56px, 7vw, 100px) clamp(20px, 5vw, 44px); }
-        #binlive .blwrap { max-width: 980px; margin: 0 auto; }
-        #binlive video { width: 100%; height: auto; mix-blend-mode: multiply; }
-      </style>
-      <div class="blwrap">
-        <div class="k">The main event</div>
-        <h2>Dig in. <span class="o">Everyone does.</span></h2>
-        <video id="binlivevid" muted playsinline webkit-playsinline autoplay loop preload="metadata">
-          <source src="mrbins-bin-live.mp4" type="video/mp4" />
-        </video>
-      </div>
-    </section>
-
     <!-- DISCOVER -->
     <section id="discover">
       <div class="dstage">
@@ -4130,6 +4114,15 @@
           <div class="glow"></div>
         </div>
         <div class="beam" aria-hidden="true"></div>
+        <video class="dcorner" muted playsinline webkit-playsinline autoplay loop preload="metadata" aria-hidden="true">
+          <source src="mrbins-bin-live.mp4" type="video/mp4" />
+        </video>
+        <style>
+          .dcorner { display: none; }
+          @media (min-width: 1100px) {
+            .dcorner { display: block; position: absolute; right: 26px; bottom: 20px; width: clamp(210px, 19vw, 300px); mix-blend-mode: multiply; z-index: 3; pointer-events: none; }
+          }
+        </style>
         <div class="dhead">
                     <h2>See <span class="o">this week&rsquo;s bins.</span></h2>
           <div class="today" id="dtoday"></div>
@@ -4153,6 +4146,19 @@
 
     <!-- FEATURED CATEGORIES -->
     <section id="featured">
+      <style>
+        #featured .fgrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; max-width: 1240px; margin: 34px auto 0; align-items: stretch; }
+        @media (max-width: 1100px) { #featured .fgrid { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 640px) { #featured .fgrid { grid-template-columns: 1fr; max-width: 420px; } }
+        #featured .fcard { position: relative; display: flex; flex-direction: column; text-align: left; background: #fff; border: 1px solid rgba(11, 36, 71, 0.08); border-radius: 20px; overflow: hidden; padding: 0; box-shadow: 0 16px 40px rgba(11, 36, 71, 0.07); transition: transform 0.25s ease, box-shadow 0.25s ease; }
+        #featured .fcard:hover { transform: translateY(-5px); box-shadow: 0 26px 60px rgba(11, 36, 71, 0.12); }
+        #featured .fimg { position: relative; aspect-ratio: 4 / 3; overflow: hidden; margin: 0; border-radius: 0; width: 100%; }
+        #featured .fimg video, #featured .fimg img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        #featured .tagpill { position: absolute; top: 12px; left: 12px; z-index: 2; margin: 0; }
+        #featured .fcard h3 { margin: 15px 18px 5px; }
+        #featured .fcard p { margin: 0 18px 12px; font-size: 13.5px; line-height: 1.55; flex: 1; }
+        #featured .flk { margin: 0 18px 18px; }
+      </style>
       <div class="fstage">
         <div class="fhead">
           <h2 style="margin: 0 0 12px">Discover everything <span class="o">we sell.</span></h2>
@@ -4295,7 +4301,7 @@
         <div class="lyintro">
           <div class="lytext">
             <div class="k">Mr. Bins Loyalty</div>
-            <h2>Buy a Mr&nbsp;Bins <span class="o">mystery box!!</span></h2>
+            <h2>Never miss a <span class="o">drop day.</span></h2>
             <p class="sub">
               Loyalty members get the best of every drop day, every week &mdash; free to join.
             </p>
@@ -4365,7 +4371,17 @@
           </video>
         </div>
         <div class="lycta">
-          <a class="dbtn gold" href="mystery-box.html">Mystery box store</a>
+          <form id="lyjoin" style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+            <input type="tel" name="phone" required placeholder="Your phone number" autocomplete="tel"
+              style="font:600 15px 'Hanken Grotesk',sans-serif;padding:13px 18px;border-radius:999px;border:1.5px solid rgba(11,36,71,0.25);min-width:min(260px,70vw);outline-color:var(--orange)" />
+            <button class="dbtn gold" type="submit" style="cursor:pointer;border:0">Join free</button>
+          </form>
+          <script>
+            document.getElementById("lyjoin").addEventListener("submit", function (e) {
+              e.preventDefault();
+              this.innerHTML = '<div style="font:700 17px \'Hanken Grotesk\',sans-serif;color:var(--orange);padding:12px 0">You&rsquo;re in! Watch your texts for the next drop day. &#128230;</div>';
+            });
+          </script>
         </div>
       </div>
     </section>
