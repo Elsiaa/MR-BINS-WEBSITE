@@ -180,6 +180,16 @@
         <div id="deptCards"></div>
 
         <div class="card">
+          <h2>This week&rsquo;s bins (product carousel)</h2>
+          <p class="note">
+            These are the item cards on the home page carousel. Change a picture with &ldquo;Choose
+            photo&rdquo;; new photos upload to the site when you publish.
+          </p>
+          <div id="itemRows"></div>
+          <button class="btn" id="addItem" style="margin-top: 10px">+ Add item</button>
+        </div>
+
+        <div class="card">
           <h2>Publish</h2>
           <p class="note">
             <b>Preview on this device</b> saves instantly in this browser only, so you can check
@@ -246,7 +256,60 @@
           );
         }
 
+        function itemRow(it) {
+          var d = document.createElement("div");
+          d.className = "itrow";
+          d.style.cssText =
+            "display:grid;grid-template-columns:64px 1fr 1fr 90px auto auto;gap:10px;align-items:center;margin-top:10px";
+          d.innerHTML =
+            '<img class="i-thumb" src="' +
+            it[3] +
+            '" alt="" style="width:64px;height:64px;object-fit:contain;background:#f4f6fb;border-radius:10px" />' +
+            '<input class="i-name" value="' +
+            String(it[1]).replace(/"/g, "&quot;") +
+            '" placeholder="Item name" />' +
+            '<input class="i-cat" value="' +
+            String(it[0]).replace(/"/g, "&quot;") +
+            '" placeholder="Category" />' +
+            '<input class="i-retail" value="' +
+            String(it[2]).replace(/"/g, "&quot;") +
+            '" placeholder="$99" />' +
+            '<button type="button" class="btn i-pick" style="padding:9px 14px;font-size:13px">Choose photo</button>' +
+            '<button type="button" class="btn i-del" style="padding:9px 14px;font-size:13px;background:#c8102e">&times;</button>';
+          d.dataset.img = it[3];
+          var file = document.createElement("input");
+          file.type = "file";
+          file.accept = "image/*";
+          file.style.display = "none";
+          d.appendChild(file);
+          d.querySelector(".i-pick").addEventListener("click", function () {
+            file.click();
+          });
+          file.addEventListener("change", function () {
+            var f = file.files[0];
+            if (!f) return;
+            var rd = new FileReader();
+            rd.onload = function () {
+              d.dataset.img = rd.result; /* dataURL now, becomes a real file on publish */
+              d.querySelector(".i-thumb").src = rd.result;
+            };
+            rd.readAsDataURL(f);
+          });
+          d.querySelector(".i-del").addEventListener("click", function () {
+            d.remove();
+          });
+          return d;
+        }
+
         function build() {
+          var ih = document.getElementById("itemRows");
+          ih.innerHTML = "";
+          (window.MRB_ITEMS || []).forEach(function (it) {
+            ih.appendChild(itemRow(it));
+          });
+          document.getElementById("addItem").onclick = function () {
+            ih.appendChild(itemRow(["Category", "New item", "$0", "mrbins-prod-head.jpg"]));
+          };
           var ml = document.getElementById("mainLadder");
           ml.innerHTML = DAYS.map(function (d, i) {
             return cell(d, window.MRB_LADDER[i]);
@@ -309,7 +372,16 @@
               prices: prices,
             };
           });
-          return { ladder: ladder, depts: depts };
+          var items = [];
+          document.querySelectorAll("#itemRows .itrow").forEach(function (d) {
+            items.push([
+              d.querySelector(".i-cat").value,
+              d.querySelector(".i-name").value,
+              d.querySelector(".i-retail").value,
+              d.dataset.img,
+            ]);
+          });
+          return { ladder: ladder, depts: depts, items: items };
         }
 
         function pricingSource(cfg) {
@@ -321,9 +393,13 @@
             "window.MRB_DEPTS = " +
             JSON.stringify(cfg.depts, null, 2) +
             ";\n" +
+            "window.MRB_ITEMS = " +
+            JSON.stringify(cfg.items, null, 2) +
+            ";\n" +
             'try {\n  var _ov = JSON.parse(localStorage.getItem("mrb-pricing-override") || "null");\n' +
             "  if (_ov && _ov.ladder) window.PRICE_CONFIG.ladder = _ov.ladder;\n" +
-            "  if (_ov && _ov.depts) window.MRB_DEPTS = _ov.depts;\n} catch (e) {}\n" +
+            "  if (_ov && _ov.depts) window.MRB_DEPTS = _ov.depts;\n" +
+            "  if (_ov && _ov.items) window.MRB_ITEMS = _ov.items;\n} catch (e) {}\n" +
             "window.MRB_LADDER = window.PRICE_CONFIG.ladder;\n" +
             "window.MRB_DAY = (function () {\n  try {\n" +
             '    var w = new Intl.DateTimeFormat("en-US", { weekday: "short", timeZone: "America/New_York" }).format(new Date());\n' +
@@ -361,7 +437,31 @@
           msg.className = "msg";
           msg.textContent = "Publishing…";
           try {
-            var body = pricingSource(collect());
+            var cfg = collect();
+            var head0 = { Authorization: "Bearer " + tok, Accept: "application/vnd.github+json" };
+            for (var ii = 0; ii < cfg.items.length; ii++) {
+              var img = cfg.items[ii][3];
+              if (img && img.indexOf("data:") === 0) {
+                var ext = img.indexOf("image/png") > -1 ? "png" : "jpg";
+                var fname = "mrbins-week-" + Date.now() + "-" + ii + "." + ext;
+                msg.textContent = "Uploading photo " + (ii + 1) + "…";
+                var up = await fetch(
+                  "https://api.github.com/repos/Elsiaa/MR-BINS-WEBSITE/contents/" + fname,
+                  {
+                    method: "PUT",
+                    headers: head0,
+                    body: JSON.stringify({
+                      message: "Upload week item photo via admin",
+                      content: img.split(",")[1],
+                    }),
+                  },
+                );
+                if (!up.ok)
+                  throw new Error("GitHub says " + up.status + " uploading photo " + (ii + 1));
+                cfg.items[ii][3] = fname;
+              }
+            }
+            var body = pricingSource(cfg);
             var api = "https://api.github.com/repos/Elsiaa/MR-BINS-WEBSITE/contents/pricing.js";
             var head = {
               Authorization: "Bearer " + tok,

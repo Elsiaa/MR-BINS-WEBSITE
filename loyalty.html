@@ -4686,14 +4686,7 @@
         if (!dtoday) return; /* page without the discover section */
         dtoday.innerHTML =
           "Everything below is <b>" + todayP + " today.</b> Tomorrow it drops another dollar.";
-        var items = [
-          ["Audio", "Sony Wireless Headphones", "$98", "mrbins-prod-head.jpg"],
-          ["Footwear", "Nike Running Sneakers", "$110", "mrbins-shoes-poster.jpg"],
-          ["Kitchen", "Keurig Coffee Maker", "$99", "mrbins-prod-coffee.jpg"],
-          ["Toys", "LEGO City Set", "$79", "mrbins-prod-lego.jpg"],
-          ["Audio", "JBL Bluetooth Speaker", "$89", "mrbins-prod-speaker.jpg"],
-          ["Home", "Modern Accent Lamp", "$59", "mrbins-lamp.png"],
-        ];
+        var items = window.MRB_ITEMS || [];
         var friTag = tp === null || day >= 5 ? "&darr; restock Sat" : "&darr; $" + FRI + " Fri";
         var t = document.getElementById("track"),
           h = "";

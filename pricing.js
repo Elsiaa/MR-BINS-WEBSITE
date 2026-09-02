@@ -34,10 +34,19 @@ window.MRB_DEPTS = {
     prices: [3, 2, 2, 1, 1, 1, null],
   },
 };
+window.MRB_ITEMS = [
+  ["Audio", "Sony Wireless Headphones", "$98", "mrbins-prod-head.jpg"],
+  ["Footwear", "Nike Running Sneakers", "$110", "mrbins-prod-shoe.jpg"],
+  ["Kitchen", "Keurig Coffee Maker", "$99", "mrbins-prod-coffee.jpg"],
+  ["Toys", "LEGO City Set", "$79", "mrbins-prod-lego.jpg"],
+  ["Audio", "JBL Bluetooth Speaker", "$89", "mrbins-prod-speaker.jpg"],
+  ["Home", "Modern Accent Lamp", "$59", "mrbins-lamp.png"],
+];
 try {
   var _ov = JSON.parse(localStorage.getItem("mrb-pricing-override") || "null");
   if (_ov && _ov.ladder) window.PRICE_CONFIG.ladder = _ov.ladder;
   if (_ov && _ov.depts) window.MRB_DEPTS = _ov.depts;
+  if (_ov && _ov.items) window.MRB_ITEMS = _ov.items;
 } catch (e) {}
 window.MRB_LADDER = window.PRICE_CONFIG.ladder;
 window.MRB_DAY = function () {
