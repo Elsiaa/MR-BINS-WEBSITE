@@ -3514,9 +3514,30 @@
         .dstrip .blogo img {
           height: 20px;
         }
+        /* featured: tight 2x2 on phones — titles carry it, prose hides */
         #featured .fgrid {
-          grid-template-columns: 1fr;
-          max-width: 420px;
+          grid-template-columns: 1fr 1fr !important;
+          gap: 12px;
+          max-width: 440px;
+        }
+        #featured .fmedia {
+          aspect-ratio: 1 / 1;
+        }
+        #featured .ftxt {
+          padding: 10px 12px 12px;
+        }
+        #featured .ftxt h3 {
+          font-size: 16px;
+          margin-bottom: 2px;
+        }
+        #featured .ftxt p {
+          display: none;
+        }
+        #featured .ftxt .go {
+          font-size: 12px;
+        }
+        #featured .fhead .sub {
+          font-size: 14px;
         }
         /* stores: swipeable carousel on phones */
         #stores .locgrid {
