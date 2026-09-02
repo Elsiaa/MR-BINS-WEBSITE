@@ -5354,7 +5354,32 @@
             "</div></div>";
         }
         t.innerHTML = h + h;
-        t.style.animationDuration = R.length * 4 + "s";
+        /* swipeable: native horizontal scroll + auto-drift with seamless wrap */
+        t.style.animation = "none";
+        var wrap = t.parentElement;
+        wrap.style.overflowX = "auto";
+        wrap.style.scrollbarWidth = "none";
+        wrap.style.scrollBehavior = "auto";
+        wrap.style.webkitOverflowScrolling = "touch";
+        var hold = 0;
+        ["pointerdown", "touchstart", "wheel"].forEach(function (ev) {
+          wrap.addEventListener(
+            ev,
+            function () {
+              hold = Date.now() + 2500;
+            },
+            { passive: true },
+          );
+        });
+        (function drift() {
+          var half = t.scrollWidth / 2;
+          if (half > 0) {
+            if (Date.now() > hold) wrap.scrollLeft += 0.6;
+            if (wrap.scrollLeft >= half) wrap.scrollLeft -= half;
+            else if (wrap.scrollLeft <= 0 && hold > Date.now()) wrap.scrollLeft += half;
+          }
+          requestAnimationFrame(drift);
+        })();
       })();
 
       /* ---- brand ticker (over live store-video band) ---- */
