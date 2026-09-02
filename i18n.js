@@ -3,6 +3,17 @@
    the dictionary below. Unmatched strings stay English (fail-soft). */
 (function () {
   var ES = {
+    "Nope. Just walk in.": "No. Solo entra.",
+    "Your cart is empty. Tap an item to add it":
+      "Tu carrito está vacío. Toca un artículo para agregarlo",
+    "Five locations across Northeast Pennsylvania, with new pallets landing every week.":
+      "Cinco tiendas en el noreste de Pensilvania, con pallets nuevos cada semana.",
+    "Floor to keyholder to store lead. We promote from within.":
+      "De piso a encargado a líder de tienda. Promovemos desde adentro.",
+    "New faces, new finds. No two shifts are alike.":
+      "Caras nuevas, hallazgos nuevos. No hay dos turnos iguales.",
+    "High-energy crew for drop day, our biggest day of the week.":
+      "Equipo de alta energía para el día de reposición, nuestro día más grande de la semana.",
     "$14 on Sunday": "$14 el domingo",
     "$3 credit per 100 points": "$3 de crédito por cada 100 puntos",
     "$9 on Friday": "$9 el viernes",
