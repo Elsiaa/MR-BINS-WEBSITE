@@ -133,9 +133,10 @@
         display: flex;
         align-items: center;
         gap: 8px;
-        font-family: "Space Mono", monospace;
-        font-weight: 700;
-        font-size: 13px;
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
+        font-weight: 800;
+        font-size: 14px;
+        letter-spacing: 0.01em;
         color: #fff;
         background: rgba(255, 255, 255, 0.09);
         border: 1px solid rgba(255, 255, 255, 0.16);
@@ -4699,7 +4700,7 @@
 
         <div class="alertcard" id="alertcard">
           <img
-            src="mrbins-ly-cash.jpg"
+            src="mrbins-ly-cash.png"
             alt=""
             style="
               width: min(150px, 40vw);
@@ -5039,7 +5040,9 @@
     <section id="stores">
       <style>
         #stores {
-          background: #f4f7fb;
+          background:
+            linear-gradient(rgba(244, 247, 251, 0.88), rgba(244, 247, 251, 0.93)),
+            url("mrbins-gal-0.jpg") center / cover no-repeat;
           padding: clamp(56px, 7vw, 100px) clamp(20px, 5vw, 44px);
           text-align: center;
         }
@@ -5127,20 +5130,6 @@
         }
       </style>
       <h2>Visit our <span class="o">stores.</span></h2>
-      <img
-        src="mrbins-gal-0.jpg"
-        alt="Bird's-eye view of the Mr. Bins floor"
-        loading="lazy"
-        style="
-          display: block;
-          width: min(1080px, calc(100% - 8px));
-          margin: 26px auto 6px;
-          aspect-ratio: 21 / 9;
-          object-fit: cover;
-          border-radius: 22px;
-          box-shadow: 0 18px 50px rgba(11, 36, 71, 0.18);
-        "
-      />
       <p class="ssub">
         Five locations across Northeast Pennsylvania &mdash; new pallets landing every week.
       </p>
@@ -5171,7 +5160,7 @@
           <h3>Bethlehem</h3>
           <p class="locaddr">104 E 3rd St, Bethlehem, PA 18015</p>
           <div class="locbtns">
-            <a href="tel:5705002637">570-500-2637</a>
+            <a href="tel:5705002637">Call flagship</a>
             <a href="https://maps.app.goo.gl/a7dCWwpr3Hwb5f9k7" target="_blank" rel="noopener"
               >Directions</a
             >
@@ -6477,16 +6466,16 @@
         var t = document.getElementById("bmarq");
         if (!t) return;
         var B = [
-          ["NIKE", "#111111", "up arc"],
-          ["adidas", "#000000", "low"],
-          ["SONY", "#000000", "up arc"],
-          ["SAMSUNG", "#1428a0", "up"],
+          ["NIKE", "logos/nike.svg", "#111111", "up arc"],
+          ["adidas", "logos/adidas.svg", "#000000", "low"],
+          ["SONY", "logos/sony.svg", "#000000", "up arc"],
+          ["SAMSUNG", "logos/samsung.svg", "#1428a0", "up"],
           ["LEGO", "#d01012", "up arc"],
           ["Nintendo", "#e60012", "arc"],
-          ["BOSE", "#000000", "up arc"],
+          ["BOSE", "logos/bose.svg", "#000000", "up arc"],
           ["dyson", "#333333", "low mono"],
-          ["JBL", "#ff3300", "up arc"],
-          ["Beats", "#e01f3d", "it"],
+          ["JBL", "logos/jbl.svg", "#ff3300", "up arc"],
+          ["Beats", "logos/beats.svg", "#e01f3d", "it"],
           ["Anker", "#00a7e1", ""],
           ["Logitech", "#00b8fc", ""],
           ["PHILIPS", "#0b5ed7", "up"],
@@ -6500,19 +6489,19 @@
           ["NERF", "#f26522", "up it arc"],
           ["Levi's", "#c41230", "arc"],
           ["Carhartt", "#ee7623", ""],
-          ["THE NORTH FACE", "#000000", "up"],
+          ["THE NORTH FACE", "logos/thenorthface.svg", "#000000", "up"],
           ["Columbia", "#0071ce", ""],
-          ["UNDER ARMOUR", "#000000", "up"],
-          ["PUMA", "#000000", "up arc"],
-          ["Reebok", "#e41b23", "it arc"],
-          ["new balance", "#cf0a2c", "low it"],
+          ["UNDER ARMOUR", "logos/underarmour.svg", "#000000", "up"],
+          ["PUMA", "logos/puma.svg", "#000000", "up arc"],
+          ["Reebok", "logos/reebok.svg", "#e41b23", "it arc"],
+          ["new balance", "logos/newbalance.svg", "#cf0a2c", "low it"],
           ["SKECHERS", "#0033a0", "up it arc"],
           ["crocs", "#6bc04e", "low arc"],
           ["VANS", "#c8102e", "up arc"],
           ["CONVERSE", "#111111", "up"],
           ["Champion", "#1f2f6b", "it"],
           ["Hanes", "#c8102e", ""],
-          ["YETI", "#00263a", "up arc"],
+          ["YETI", "logos/yeti.svg", "#00263a", "up arc"],
           ["STANLEY", "#1a1a1a", "up arc"],
           ["Contigo", "#0072ce", ""],
           ["KitchenAid", "#c41230", ""],
@@ -6528,24 +6517,34 @@
           ["Pyrex", "#d31245", "arc"],
           ["Rubbermaid", "#c8102e", ""],
           ["AmazonBasics", "#ff9900", ""],
-          ["fitbit", "#00b0b9", "low mono"],
-          ["GARMIN", "#000000", "up"],
+          ["fitbit", "logos/fitbit.svg", "#00b0b9", "low mono"],
+          ["GARMIN", "logos/garmin.svg", "#000000", "up"],
           ["GoPro", "#0085c9", "arc"],
           ["Ray-Ban", "#c8102e", "it"],
           ["OAKLEY", "#111111", "up arc"],
           ["Timberland", "#5c4033", ""],
           ["Dickies", "#1e3f7a", "arc"],
-          ["Apple", "#555555", ""],
+          ["Apple", "logos/apple.svg", "#555555", ""],
         ];
         function fill() {
           for (var i = 0; i < B.length; i++) {
             var w = document.createElement("span");
             w.className = "blogo";
-            var sp = document.createElement("span");
-            sp.className = "bword" + (B[i][2] ? " " + B[i][2] : "");
-            sp.textContent = B[i][0];
-            sp.style.color = B[i][1];
-            w.appendChild(sp);
+            if (B[i].length === 4) {
+              /* real brand mark */
+              var img = document.createElement("img");
+              img.src = B[i][1];
+              img.alt = B[i][0];
+              img.style.height = "56%";
+              img.style.width = "auto";
+              w.appendChild(img);
+            } else {
+              var sp = document.createElement("span");
+              sp.className = "bword" + (B[i][2] ? " " + B[i][2] : "");
+              sp.textContent = B[i][0];
+              sp.style.color = B[i][1];
+              w.appendChild(sp);
+            }
             t.appendChild(w);
           }
         }
