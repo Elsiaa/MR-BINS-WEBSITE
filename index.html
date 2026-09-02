@@ -2645,7 +2645,7 @@
         position: relative;
         max-width: 1240px;
         margin: clamp(18px, 2.2vw, 30px) auto 0;
-        height: calc(clamp(170px, 17vw, 240px) * 1.7778 + 80px);
+        height: calc(clamp(170px, 17vw, 240px) * 1.7778 + 126px);
         overflow: hidden;
         -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
         mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
@@ -2705,18 +2705,39 @@
         border-radius: 6px;
       }
       .hslide .hinfo {
-        display: block;
-        margin-top: 12px;
-        background: linear-gradient(135deg, #1455d6, #0e3fa6);
+        margin: 10px auto 0;
+        max-width: 100%;
+        background: #fff;
         border-radius: 14px;
-        padding: 12px 16px;
+        padding: 10px 14px 11px;
         text-align: left;
-        opacity: 0;
-        transform: translateY(6px);
-        transition:
-          opacity 0.45s ease 0.12s,
-          transform 0.45s ease 0.12s;
-        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 10px 26px rgba(11, 36, 71, 0.18);
+        transform: rotate(-0.6deg);
+      }
+      .hinfo .hh {
+        display: block;
+        font:
+          700 10.5px "Space Mono",
+          monospace;
+        color: #1f66c8;
+        letter-spacing: 0.04em;
+        margin-bottom: 2px;
+      }
+      .hinfo b {
+        display: block;
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-weight: 800;
+        font-size: 13.5px;
+        color: #0b2447;
+        line-height: 1.25;
+      }
+      .hinfo > span:last-child {
+        display: block;
+        font:
+          400 11px "Hanken Grotesk",
+          sans-serif;
+        color: #64748f;
+        margin-top: 2px;
       }
       .hslide.act .hinfo {
         opacity: 1;
@@ -4276,10 +4297,179 @@
     <!-- PRICE -->
     <!-- REAL HAULS: real phone footage from the floor -->
     <section id="hauls">
-      <h2>The viral <span class="o">bins store</span></h2>
-      <p class="sub" style="font-size: clamp(19px, 2.2vw, 26px); font-weight: 700">
-        As seen on Instagram and TikTok
-      </p>
+      <style>
+        #hauls .hhead {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: clamp(26px, 4vw, 64px);
+        }
+        #hauls .fone {
+          flex: none;
+          width: 108px;
+          aspect-ratio: 9 / 19;
+          border-radius: 26px;
+          border: 5px solid #0b1626;
+          background: #000;
+          box-shadow:
+            0 22px 50px rgba(0, 0, 0, 0.45),
+            inset 0 0 0 2px rgba(255, 255, 255, 0.06);
+          position: relative;
+          overflow: hidden;
+          transform: rotate(5deg);
+          transition: transform 0.35s ease;
+        }
+        #hauls .fone:hover {
+          transform: rotate(0deg) scale(1.04);
+        }
+        #hauls .fone .fnotch {
+          position: absolute;
+          top: 7px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 52px;
+          height: 14px;
+          border-radius: 999px;
+          background: #0b1626;
+          z-index: 3;
+        }
+        #hauls .fone video {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition:
+            transform 0.45s cubic-bezier(0.3, 0.8, 0.3, 1),
+            opacity 0.45s ease;
+        }
+        #hauls .fone video.fout {
+          transform: translateY(-100%);
+          opacity: 0;
+        }
+        #hauls .fui {
+          position: absolute;
+          inset: 0;
+          z-index: 2;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          padding: 10px 8px;
+          background: linear-gradient(transparent 62%, rgba(0, 0, 0, 0.55));
+          pointer-events: none;
+        }
+        #hauls .facts {
+          position: absolute;
+          right: 7px;
+          bottom: 52px;
+          display: flex;
+          flex-direction: column;
+          gap: 9px;
+          text-align: center;
+          font:
+            700 9px "Hanken Grotesk",
+            sans-serif;
+          color: #fff;
+          text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+        }
+        #hauls .facts span {
+          display: block;
+          font-size: 15px;
+          line-height: 1.1;
+        }
+        #hauls .facts b {
+          display: block;
+          font-size: 9px;
+        }
+        #hauls .fcap {
+          font:
+            700 9.5px "Hanken Grotesk",
+            sans-serif;
+          color: #fff;
+          text-align: left;
+          line-height: 1.35;
+          text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+          max-width: 78%;
+        }
+        @media (max-width: 860px) {
+          #hauls .fone {
+            display: none;
+          }
+        }
+      </style>
+      <div class="hhead">
+        <div>
+          <h2>The viral <span class="o">bins store</span></h2>
+          <p class="sub" style="font-size: clamp(19px, 2.2vw, 26px); font-weight: 700">
+            As seen on Instagram and TikTok
+          </p>
+        </div>
+        <div class="fone" aria-hidden="true">
+          <div class="fnotch"></div>
+          <video id="fypv" muted playsinline webkit-playsinline preload="none" loop></video>
+          <div class="fui">
+            <div class="facts">
+              <div><span>&#10084;&#65039;</span><b id="fyplikes">12.4K</b></div>
+              <div><span>&#128172;</span><b>891</b></div>
+              <div><span>&#10150;</span><b>Share</b></div>
+            </div>
+            <div class="fcap"><b>@mrbins</b> everything&rsquo;s $11 today &#128293; #binstore</div>
+          </div>
+        </div>
+      </div>
+      <script>
+        /* mini-phone FYP: cycles reels with a swipe-up, likes tick along */
+        (function () {
+          var v = document.getElementById("fypv");
+          if (!v) return;
+          var FEED = [
+            "mrbins-haul-8.mp4",
+            "mrbins-haul-10.mp4",
+            "mrbins-haul-2.mp4",
+            "mrbins-haul-7.mp4",
+            "mrbins-haul-13.mp4",
+          ];
+          var i = 0,
+            likes = 12400,
+            started = false,
+            lk = document.getElementById("fyplikes");
+          function fmt(n) {
+            return n >= 1000 ? (n / 1000).toFixed(1) + "K" : n;
+          }
+          function playIdx() {
+            v.src = FEED[i % FEED.length];
+            v.currentTime = 0;
+            var q = v.play();
+            if (q && q.catch) q.catch(function () {});
+          }
+          function next() {
+            v.classList.add("fout");
+            setTimeout(function () {
+              i++;
+              playIdx();
+              v.classList.remove("fout");
+              likes += 40 + Math.floor((i * 137) % 260);
+              if (lk) lk.textContent = fmt(likes);
+            }, 430);
+          }
+          var io = new IntersectionObserver(
+            function (es) {
+              es.forEach(function (e) {
+                if (e.isIntersecting && !started) {
+                  started = true;
+                  playIdx();
+                  setInterval(next, 7000);
+                } else if (started) {
+                  if (e.isIntersecting) v.play && v.play().catch && v.play().catch(function () {});
+                  else v.pause();
+                }
+              });
+            },
+            { threshold: 0.2 },
+          );
+          io.observe(v);
+        })();
+      </script>
       <div class="hwrap">
         <button class="hnav prev" id="hcprev" aria-label="Previous clip">&lsaquo;</button>
         <div class="hstage">
@@ -4297,8 +4487,8 @@
                 ></video>
               </div>
               <figcaption class="hinfo">
-                <b>Fresh bins hit the floor</b
-                ><span>Drop day &middot; <em>$14</em> &middot; best selection of the week</span>
+                <span class="hh">@mrbins</span><b>fresh bins just hit the floor 👀</b
+                ><span>sunday · first dibs on everything</span>
               </figcaption>
             </figure>
             <figure class="hslide">
@@ -4314,8 +4504,8 @@
                 ></video>
               </div>
               <figcaption class="hinfo">
-                <b>Digging the pile</b
-                ><span>Straight off the pallet &middot; totally unsorted</span>
+                <span class="hh">@mrbins</span><b>no sorting, no shelves. that&rsquo;s the fun</b
+                ><span>dig till you hit something good</span>
               </figcaption>
             </figure>
             <figure class="hslide">
@@ -4331,7 +4521,8 @@
                 ></video>
               </div>
               <figcaption class="hinfo">
-                <b>The big-brand pull</b><span>Brand-new in box &middot; from the bins</span>
+                <span class="hh">@mrbins</span><b>$6 for THESE?? still sealed 😭</b
+                ><span>someone returned it, we don&rsquo;t ask why</span>
               </figcaption>
             </figure>
             <figure class="hslide">
@@ -4347,8 +4538,8 @@
                 ></video>
               </div>
               <figcaption class="hinfo">
-                <b>On the floor, live</b
-                ><span>Shot in store &middot; real shoppers, real finds</span>
+                <span class="hh">@mrbins</span><b>a random tuesday on the floor</b
+                ><span>everyone&rsquo;s hunting for something</span>
               </figcaption>
             </figure>
             <figure class="hslide">
@@ -4364,7 +4555,8 @@
                 ></video>
               </div>
               <figcaption class="hinfo">
-                <b>The haul, laid out</b><span>One trip &middot; pocket change</span>
+                <span class="hh">@mrbins</span><b>the whole haul: one trip, pocket change</b
+                ><span>do the math on retail… don&rsquo;t actually</span>
               </figcaption>
             </figure>
             <figure class="hslide">
@@ -4380,7 +4572,8 @@
                 ></video>
               </div>
               <figcaption class="hinfo">
-                <b>Fresh pallets, fresh finds</b><span>Straight off the truck</span>
+                <span class="hh">@mrbins</span><b>truck came in heavy today 🚛</b
+                ><span>straight off the pallet, into the bins</span>
               </figcaption>
             </figure>
             <figure class="hslide">
@@ -4396,7 +4589,8 @@
                 ></video>
               </div>
               <figcaption class="hinfo">
-                <b>Digging for gold</b><span>Every bin hides something</span>
+                <span class="hh">@mrbins</span><b>elbow deep is the only way</b
+                ><span>the good stuff hides at the bottom</span>
               </figcaption>
             </figure>
             <figure class="hslide">
@@ -4412,7 +4606,8 @@
                 ></video>
               </div>
               <figcaption class="hinfo">
-                <b>The lucky pull</b><span>Right place, right bin</span>
+                <span class="hh">@mrbins</span><b>he did NOT expect that pull</b
+                ><span>right place, right bin</span>
               </figcaption>
             </figure>
             <figure class="hslide">
@@ -4427,7 +4622,10 @@
                   preload="metadata"
                 ></video>
               </div>
-              <figcaption class="hinfo"><b>Bin day energy</b><span>Shot in store</span></figcaption>
+              <figcaption class="hinfo">
+                <span class="hh">@mrbins</span><b>drop day energy is unmatched</b
+                ><span>doors open, it&rsquo;s a sprint</span>
+              </figcaption>
             </figure>
             <figure class="hslide">
               <div class="hmedia">
@@ -4442,7 +4640,8 @@
                 ></video>
               </div>
               <figcaption class="hinfo">
-                <b>The full walkaround</b><span>Real shoppers, real finds</span>
+                <span class="hh">@mrbins</span><b>full walkthrough for the doubters</b
+                ><span>yes it&rsquo;s all real, come see</span>
               </figcaption>
             </figure>
             <figure class="hslide">
@@ -4458,7 +4657,8 @@
                 ></video>
               </div>
               <figcaption class="hinfo">
-                <b>Another day, another haul</b><span>From the floor</span>
+                <span class="hh">@mrbins</span><b>she&rsquo;s back for round two 😅</b
+                ><span>regulars know the schedule by heart</span>
               </figcaption>
             </figure>
             <figure class="hslide">
@@ -4474,7 +4674,8 @@
                 ></video>
               </div>
               <figcaption class="hinfo">
-                <b>Straight into the pile</b><span>Shot in store</span>
+                <span class="hh">@mrbins</span><b>no hesitation. straight in</b
+                ><span>you can&rsquo;t be shy in here</span>
               </figcaption>
             </figure>
             <figure class="hslide">
@@ -4490,7 +4691,8 @@
                 ></video>
               </div>
               <figcaption class="hinfo">
-                <b>First dig of the day</b><span>Fresh pallets</span>
+                <span class="hh">@mrbins</span><b>9am. first dig. best picks</b
+                ><span>early bird gets the sealed boxes</span>
               </figcaption>
             </figure>
             <figure class="hslide">
@@ -4506,7 +4708,8 @@
                 ></video>
               </div>
               <figcaption class="hinfo">
-                <b>The good stuff surfaces</b><span>Real finds</span>
+                <span class="hh">@mrbins</span><b>called it — the good stuff surfaces</b
+                ><span>patience pays in the pile</span>
               </figcaption>
             </figure>
             <figure class="hslide">
@@ -4522,7 +4725,8 @@
                 ></video>
               </div>
               <figcaption class="hinfo">
-                <b>The whole run</b><span>Bins to checkout</span>
+                <span class="hh">@mrbins</span><b>bins to checkout in 20 minutes</b
+                ><span>that&rsquo;s the whole game</span>
               </figcaption>
             </figure>
           </div>
