@@ -5710,6 +5710,7 @@
         /* faster auto-scroll + arrow controls */
         var car = document.getElementById("carousel");
         if (car) {
+          car.style.scrollBehavior = "auto"; /* per-frame drift needs instant scroll */
           var half = 0,
             paused = false,
             raf;
