@@ -3870,7 +3870,7 @@
               <div class="hmedia">
                 <video
                   class="haulvid"
-                  src="mrbins-haul-1.mp4"
+                  data-src="mrbins-haul-1.mp4"
                   muted
                   playsinline
                   webkit-playsinline
@@ -3887,7 +3887,7 @@
               <div class="hmedia">
                 <video
                   class="haulvid"
-                  src="mrbins-haul-2.mp4"
+                  data-src="mrbins-haul-2.mp4"
                   muted
                   playsinline
                   webkit-playsinline
@@ -3904,7 +3904,7 @@
               <div class="hmedia">
                 <video
                   class="haulvid"
-                  src="mrbins-haul-3.mp4"
+                  data-src="mrbins-haul-3.mp4"
                   muted
                   playsinline
                   webkit-playsinline
@@ -3920,7 +3920,7 @@
               <div class="hmedia">
                 <video
                   class="haulvid"
-                  src="mrbins-haul-4.mp4"
+                  data-src="mrbins-haul-4.mp4"
                   muted
                   playsinline
                   webkit-playsinline
@@ -3937,7 +3937,7 @@
               <div class="hmedia">
                 <video
                   class="haulvid"
-                  src="mrbins-haul-5.mp4"
+                  data-src="mrbins-haul-5.mp4"
                   muted
                   playsinline
                   webkit-playsinline
@@ -3953,7 +3953,7 @@
               <div class="hmedia">
                 <video
                   class="haulvid"
-                  src="mrbins-haul-6.mp4"
+                  data-src="mrbins-haul-6.mp4"
                   muted
                   playsinline
                   webkit-playsinline
@@ -3969,7 +3969,7 @@
               <div class="hmedia">
                 <video
                   class="haulvid"
-                  src="mrbins-haul-7.mp4"
+                  data-src="mrbins-haul-7.mp4"
                   muted
                   playsinline
                   webkit-playsinline
@@ -3985,7 +3985,7 @@
               <div class="hmedia">
                 <video
                   class="haulvid"
-                  src="mrbins-haul-8.mp4"
+                  data-src="mrbins-haul-8.mp4"
                   muted
                   playsinline
                   webkit-playsinline
@@ -4001,7 +4001,7 @@
               <div class="hmedia">
                 <video
                   class="haulvid"
-                  src="mrbins-haul-9.mp4"
+                  data-src="mrbins-haul-9.mp4"
                   muted
                   playsinline
                   webkit-playsinline
@@ -4015,7 +4015,7 @@
               <div class="hmedia">
                 <video
                   class="haulvid"
-                  src="mrbins-haul-10.mp4"
+                  data-src="mrbins-haul-10.mp4"
                   muted
                   playsinline
                   webkit-playsinline
@@ -4031,7 +4031,7 @@
               <div class="hmedia">
                 <video
                   class="haulvid"
-                  src="mrbins-haul-11.mp4"
+                  data-src="mrbins-haul-11.mp4"
                   muted
                   playsinline
                   webkit-playsinline
@@ -4047,7 +4047,7 @@
               <div class="hmedia">
                 <video
                   class="haulvid"
-                  src="mrbins-haul-12.mp4"
+                  data-src="mrbins-haul-12.mp4"
                   muted
                   playsinline
                   webkit-playsinline
@@ -4063,7 +4063,7 @@
               <div class="hmedia">
                 <video
                   class="haulvid"
-                  src="mrbins-haul-13.mp4"
+                  data-src="mrbins-haul-13.mp4"
                   muted
                   playsinline
                   webkit-playsinline
@@ -4079,7 +4079,7 @@
               <div class="hmedia">
                 <video
                   class="haulvid"
-                  src="mrbins-haul-14.mp4"
+                  data-src="mrbins-haul-14.mp4"
                   muted
                   playsinline
                   webkit-playsinline
@@ -4095,7 +4095,7 @@
               <div class="hmedia">
                 <video
                   class="haulvid"
-                  src="mrbins-haul-15.mp4"
+                  data-src="mrbins-haul-15.mp4"
                   muted
                   playsinline
                   webkit-playsinline
@@ -5291,6 +5291,11 @@
             s.classList.toggle("act", d === 0);
             var v = s.querySelector("video");
             if (v) {
+              /* lazy: only the active slide and its neighbors ever download */
+              if (!v.getAttribute("src") && v.dataset.src && Math.abs(d) <= 1) {
+                v.src = v.dataset.src;
+                v.preload = "auto";
+              }
               if (d === 0) {
                 v.muted = true;
                 var q = v.play();
