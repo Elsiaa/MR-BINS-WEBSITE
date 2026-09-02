@@ -3791,10 +3791,51 @@
         #careers .role {
           background: #fff;
           border: 1px solid rgba(11, 36, 71, 0.08);
+          border-left: 5px solid #f89b1c;
           border-radius: 16px;
           padding: 18px 20px;
-          margin-bottom: 12px;
+          margin-bottom: 14px;
           box-shadow: 0 10px 28px rgba(11, 36, 71, 0.06);
+          display: flex;
+          gap: 16px;
+          align-items: flex-start;
+          text-align: left;
+          transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease;
+        }
+        #careers .role:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 18px 40px rgba(11, 36, 71, 0.12);
+        }
+        #careers .ric {
+          flex: none;
+          width: 46px;
+          height: 46px;
+          border-radius: 14px;
+          background: #eef4fb;
+          display: grid;
+          place-items: center;
+          font-size: 22px;
+        }
+        #careers .rbody {
+          flex: 1;
+          min-width: 0;
+        }
+        #careers .rrow {
+          display: flex;
+          gap: 8px;
+          flex-wrap: wrap;
+          margin-top: 9px;
+        }
+        #careers .rpill {
+          font:
+            700 12px "Hanken Grotesk",
+            sans-serif;
+          color: #1f66c8;
+          background: rgba(31, 102, 200, 0.1);
+          border-radius: 999px;
+          padding: 5px 12px;
         }
         #careers .role h3 {
           margin: 0 0 3px;
@@ -3981,31 +4022,44 @@
           <div class="roles" id="openroles" style="scroll-margin-top: 110px">
             <h2>Open roles</h2>
             <div class="role">
-              <h3>Floor Associate</h3>
-              <p>Keep the bins full and the treasure hunters happy.</p>
-              <div class="rrow">
-                <span class="rt">All locations &middot; Full &amp; part time</span>
+              <div class="ric">🧤</div>
+              <div class="rbody">
+                <h3>Floor Associate</h3>
+                <p>Keep the bins full and the treasure hunters happy.</p>
+                <div class="rrow">
+                  <span class="rpill">All locations</span
+                  ><span class="rpill">Full &amp; part time</span>
+                </div>
               </div>
             </div>
             <div class="role">
-              <h3>Drop-Day Crew</h3>
-              <p>High-energy crew for drop day &mdash; our biggest day of the week.</p>
-              <div class="rrow">
-                <span class="rt">All locations &middot; Part time</span>
+              <div class="ric">⚡</div>
+              <div class="rbody">
+                <h3>Drop-Day Crew</h3>
+                <p>High-energy crew for drop day &mdash; our biggest day of the week.</p>
+                <div class="rrow">
+                  <span class="rpill">All locations</span><span class="rpill">Part time</span>
+                </div>
               </div>
             </div>
             <div class="role">
-              <h3>Keyholder / Shift Lead</h3>
-              <p>Open, close, and run the floor. Retail leadership experience a plus.</p>
-              <div class="rrow">
-                <span class="rt">All locations &middot; Full time</span>
+              <div class="ric">🔑</div>
+              <div class="rbody">
+                <h3>Keyholder / Shift Lead</h3>
+                <p>Open, close, and run the floor. Retail leadership experience a plus.</p>
+                <div class="rrow">
+                  <span class="rpill">All locations</span><span class="rpill">Full time</span>
+                </div>
               </div>
             </div>
             <div class="role">
-              <h3>Warehouse &amp; Pallets</h3>
-              <p>Receive, sort, and stage every truckload that comes in.</p>
-              <div class="rrow">
-                <span class="rt">Wilkes-Barre &middot; Full time</span>
+              <div class="ric">📦</div>
+              <div class="rbody">
+                <h3>Warehouse &amp; Pallets</h3>
+                <p>Receive, sort, and stage every truckload that comes in.</p>
+                <div class="rrow">
+                  <span class="rpill">Wilkes-Barre</span><span class="rpill">Full time</span>
+                </div>
               </div>
             </div>
           </div>
