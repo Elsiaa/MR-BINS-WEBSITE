@@ -5818,5 +5818,91 @@
         });
       })();
     </script>
+
+    <script>
+      /* click the active reel -> big player with full controls (pause, scrub, speed, volume, fullscreen) */
+      (function () {
+        var slides = document.querySelectorAll(".hslide");
+        if (!slides.length) return;
+        var ov = document.createElement("div");
+        ov.id = "vlight";
+        ov.style.cssText =
+          "position:fixed;inset:0;z-index:300;display:none;align-items:center;justify-content:center;flex-direction:column;gap:14px;background:rgba(4,10,20,.94);padding:20px";
+        ov.innerHTML =
+          '<button id="vlx" aria-label="Close" style="position:absolute;top:18px;right:20px;width:46px;height:46px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:#fff;font-size:22px;cursor:pointer">&times;</button>' +
+          '<video id="vlv" controls playsinline style="max-height:76vh;max-width:min(92vw,480px);border-radius:18px;box-shadow:0 30px 80px rgba(0,0,0,.6);background:#000"></video>' +
+          '<div id="vlspeeds" style="display:flex;gap:8px">' +
+          [0.5, 1, 1.5, 2]
+            .map(function (r) {
+              return (
+                '<button data-rate="' +
+                r +
+                '" style="border:0;cursor:pointer;padding:9px 16px;border-radius:999px;font:700 14px Hanken Grotesk,sans-serif;background:' +
+                (r === 1 ? "#f89b1c" : "rgba(255,255,255,.14)") +
+                ';color:#fff">' +
+                r +
+                "x</button>"
+              );
+            })
+            .join("") +
+          "</div>";
+        document.body.appendChild(ov);
+        var vlv = ov.querySelector("#vlv");
+        function close() {
+          ov.style.display = "none";
+          vlv.pause();
+          vlv.removeAttribute("src");
+          vlv.load();
+          document.body.style.overflow = "";
+        }
+        ov.querySelector("#vlx").addEventListener("click", close);
+        ov.addEventListener("click", function (e) {
+          if (e.target === ov) close();
+        });
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") close();
+          if (ov.style.display === "flex") {
+            if (e.key === " ") {
+              e.preventDefault();
+              vlv.paused ? vlv.play() : vlv.pause();
+            }
+            if (e.key === "ArrowRight") vlv.currentTime += 5;
+            if (e.key === "ArrowLeft") vlv.currentTime -= 5;
+          }
+        });
+        ov.querySelectorAll("[data-rate]").forEach(function (b) {
+          b.addEventListener("click", function () {
+            vlv.playbackRate = parseFloat(b.dataset.rate);
+            ov.querySelectorAll("[data-rate]").forEach(function (x) {
+              x.style.background = x === b ? "#f89b1c" : "rgba(255,255,255,.14)";
+            });
+          });
+        });
+        slides.forEach(function (sl) {
+          sl.addEventListener("click", function () {
+            if (!sl.classList.contains("act")) return; /* side slides just navigate */
+            var v = sl.querySelector("video");
+            if (!v) return;
+            var src = v.currentSrc || v.getAttribute("src") || v.dataset.src;
+            if (!src) return;
+            document.querySelectorAll("video").forEach(function (o) {
+              try {
+                o.pause();
+              } catch (e) {}
+            });
+            vlv.src = src;
+            vlv.muted = false;
+            vlv.playbackRate = 1;
+            ov.querySelectorAll("[data-rate]").forEach(function (x) {
+              x.style.background = x.dataset.rate === "1" ? "#f89b1c" : "rgba(255,255,255,.14)";
+            });
+            ov.style.display = "flex";
+            document.body.style.overflow = "hidden";
+            var q = vlv.play();
+            if (q && q.catch) q.catch(function () {});
+          });
+        });
+      })();
+    </script>
   </body>
 </html>
