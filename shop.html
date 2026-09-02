@@ -3956,12 +3956,15 @@
           transform: translateY(-5px);
           box-shadow: 0 26px 56px rgba(11, 36, 71, 0.14);
         }
+        #shopall .bingrid {
+          gap: 14px;
+        }
         #shopall .bimg {
-          aspect-ratio: 1 / 1;
+          aspect-ratio: 4 / 3;
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 16px;
+          padding: 10px;
           background: #fff;
           position: relative;
         }
@@ -4018,6 +4021,45 @@
           text-decoration: line-through;
         }
 
+        /* pager */
+        #shopall .pager {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+          margin-top: 26px;
+        }
+        #shopall .pager button {
+          min-width: 44px;
+          min-height: 44px;
+          border-radius: 999px;
+          border: 1.5px solid rgba(11, 36, 71, 0.18);
+          background: #fff;
+          color: #0b2447;
+          font:
+            800 14px "Hanken Grotesk",
+            sans-serif;
+          cursor: pointer;
+          -webkit-tap-highlight-color: transparent;
+          transition:
+            transform 0.18s cubic-bezier(0.2, 0.8, 0.2, 1),
+            background-color 0.18s,
+            color 0.18s,
+            border-color 0.18s;
+        }
+        #shopall .pager button:hover {
+          transform: translateY(-2px);
+          border-color: var(--orange);
+        }
+        #shopall .pager button:focus-visible {
+          outline: 3px solid var(--orange);
+          outline-offset: 2px;
+        }
+        #shopall .pager button.on {
+          background: #0b2447;
+          border-color: #0b2447;
+          color: #fff;
+        }
         /* departments */
         #shopall .depts {
           display: grid;
@@ -4216,6 +4258,7 @@
           Every one of these costs today&rsquo;s bin price &mdash; dig and you&rsquo;ll find them.
         </p>
         <div class="bingrid" id="shopBins"></div>
+        <div class="pager" id="shopPager" aria-label="Featured item pages"></div>
 
         <h2>Every <span class="o">department.</span></h2>
         <p class="ssub">Clothing, shoes and bikes run their own weekly ladders.</p>
@@ -4339,35 +4382,92 @@
           }
           var host = document.getElementById("shopBins");
           if (!host) return;
-          var items = [
-            ["Audio", "Sony Wireless Headphones", "$98", "mrbins-prod-head.jpg"],
-            ["Footwear", "Nike Running Sneakers", "$110", "mrbins-prod-shoe.jpg"],
-            ["Kitchen", "Keurig Coffee Maker", "$99", "mrbins-prod-coffee.jpg"],
-            ["Toys", "LEGO City Set", "$79", "mrbins-prod-lego.jpg"],
-            ["Audio", "JBL Bluetooth Speaker", "$89", "mrbins-prod-speaker.jpg"],
-            ["Home", "Modern Accent Lamp", "$59", "mrbins-lamp.png"],
-            ["Tech", "Camera Drone", "$129", "mrbins-prod-drone.jpg"],
-            ["Pantry", "Name-Brand Groceries", "", "mrbins-dept-food.jpg"],
+          var PAGES = [
+            [
+              ["Audio", "Sony Wireless Headphones", "$98", "mrbins-prod-head.jpg"],
+              ["Footwear", "Nike Running Sneakers", "$110", "mrbins-prod-shoe.jpg"],
+              ["Kitchen", "Keurig Coffee Maker", "$99", "mrbins-prod-coffee.jpg"],
+              ["Toys", "LEGO City Set", "$79", "mrbins-prod-lego.jpg"],
+              ["Audio", "JBL Bluetooth Speaker", "$89", "mrbins-prod-speaker.jpg"],
+              ["Home", "Modern Accent Lamp", "$59", "mrbins-lamp.png"],
+              ["Tech", "Camera Drone", "$129", "mrbins-prod-drone.jpg"],
+              ["Pantry", "Name-Brand Groceries", "", "mrbins-dept-food.jpg"],
+            ],
+            [
+              ["Audio", "Beats-Style Studio Headphones", "$149", "mrbins-prod-head.jpg"],
+              ["Footwear", "Trail Running Shoes", "$95", "mrbins-prod-shoe.jpg"],
+              ["Kitchen", "Single-Serve Brewer", "$79", "mrbins-prod-coffee.jpg"],
+              ["Toys", "Building Brick Mega Set", "$120", "mrbins-prod-lego.jpg"],
+              ["Audio", "Party Speaker", "$139", "mrbins-prod-speaker.jpg"],
+              ["Home", "Reading Lamp", "$45", "mrbins-lamp.png"],
+              ["Tech", "FPV Mini Drone", "$159", "mrbins-prod-drone.jpg"],
+              ["Pantry", "Snack Haul", "", "mrbins-dept-food.jpg"],
+            ],
+            [
+              ["Audio", "Noise-Cancelling Headset", "$179", "mrbins-prod-head.jpg"],
+              ["Footwear", "Court Sneakers", "$85", "mrbins-prod-shoe.jpg"],
+              ["Kitchen", "Espresso Pod Machine", "$129", "mrbins-prod-coffee.jpg"],
+              ["Toys", "Creator Vehicle Set", "$64", "mrbins-prod-lego.jpg"],
+              ["Audio", "Waterproof Speaker", "$69", "mrbins-prod-speaker.jpg"],
+              ["Home", "Desk Lamp", "$39", "mrbins-lamp.png"],
+              ["Tech", "4K Camera Drone", "$249", "mrbins-prod-drone.jpg"],
+              ["Pantry", "Breakfast Bundle", "", "mrbins-dept-food.jpg"],
+            ],
+            [
+              ["Audio", "Kids' Headphones", "$39", "mrbins-prod-head.jpg"],
+              ["Footwear", "Everyday Sneakers", "$75", "mrbins-prod-shoe.jpg"],
+              ["Kitchen", "Coffee Maker Combo", "$149", "mrbins-prod-coffee.jpg"],
+              ["Toys", "Space Shuttle Set", "$99", "mrbins-prod-lego.jpg"],
+              ["Audio", "Soundbar", "$119", "mrbins-prod-speaker.jpg"],
+              ["Home", "Floor Lamp", "$89", "mrbins-lamp.png"],
+              ["Tech", "Selfie Drone", "$99", "mrbins-prod-drone.jpg"],
+              ["Pantry", "Pantry Restock Box", "", "mrbins-dept-food.jpg"],
+            ],
           ];
-          var h2 = "";
-          for (var i = 0; i < items.length; i++) {
-            var it = items[i];
-            h2 +=
-              '<div class="bcard"><div class="bimg"><span class="bcat">' +
-              it[0] +
-              '</span><img src="' +
-              it[3] +
-              '" alt="' +
-              it[1] +
-              '" loading="lazy" /></div><div class="bmeta"><div class="bname">' +
-              it[1] +
-              '</div><div class="bprice"><span class="bnow">' +
-              (it[2] ? price : "$1+") +
-              "</span>" +
-              (it[2] ? '<span class="bwas">Retail ' + it[2] + "</span>" : "") +
-              "</div></div></div>";
+          function renderPage(pi) {
+            var items = PAGES[pi],
+              h2 = "";
+            for (var i = 0; i < items.length; i++) {
+              var it = items[i];
+              h2 +=
+                '<div class="bcard"><div class="bimg"><span class="bcat">' +
+                it[0] +
+                '</span><img src="' +
+                it[3] +
+                '" alt="' +
+                it[1] +
+                '" loading="lazy" /></div><div class="bmeta"><div class="bname">' +
+                it[1] +
+                '</div><div class="bprice"><span class="bnow">' +
+                (it[2] ? price : "$1+") +
+                "</span>" +
+                (it[2] ? '<span class="bwas">Retail ' + it[2] + "</span>" : "") +
+                "</div></div></div>";
+            }
+            host.innerHTML = h2;
+            var pg = document.getElementById("shopPager");
+            if (pg) {
+              [].forEach.call(pg.children, function (b, j) {
+                b.classList.toggle("on", j === pi);
+              });
+            }
           }
-          host.innerHTML = h2;
+          var pgHost = document.getElementById("shopPager");
+          if (pgHost) {
+            for (var p = 0; p < PAGES.length; p++) {
+              (function (pi) {
+                var b = document.createElement("button");
+                b.type = "button";
+                b.textContent = pi + 1;
+                b.setAttribute("aria-label", "Page " + (pi + 1));
+                b.addEventListener("click", function () {
+                  renderPage(pi);
+                });
+                pgHost.appendChild(b);
+              })(p);
+            }
+          }
+          renderPage(0);
         })();
       </script>
     </section>
