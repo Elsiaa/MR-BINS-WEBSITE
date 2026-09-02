@@ -4340,15 +4340,27 @@
       <style>
         #shop {
           background: #f4f7fb;
-          padding: clamp(40px, 6vw, 72px) clamp(20px, 5vw, 44px);
+          padding: clamp(34px, 5vw, 60px) clamp(20px, 5vw, 44px);
           text-align: center;
+        }
+        #shop > h2 {
+          font-family: "Bricolage Grotesque", sans-serif;
+          font-weight: 800;
+          font-size: clamp(38px, 5.6vw, 72px);
+          letter-spacing: -0.025em;
+          line-height: 1;
+          color: #0b2447;
+          margin: 0;
+        }
+        #shop > h2 .o {
+          color: #f89b1c;
         }
         #shop .sgrid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
           gap: clamp(14px, 2vw, 26px);
           max-width: 1040px;
-          margin: clamp(26px, 4vw, 44px) auto 0;
+          margin: clamp(20px, 3vw, 34px) auto 0;
         }
         @media (max-width: 760px) {
           #shop .sgrid {
