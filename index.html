@@ -4698,22 +4698,6 @@
             "
           />
           <h3>Loyalty members save even more!</h3>
-          <p>
-            Drop your number and we&rsquo;ll text you the morning it hits <b>$9</b>. One text a week
-            &mdash; nothing else, ever.
-          </p>
-          <form class="alertform" id="alertform">
-            <input
-              type="tel"
-              id="alerttel"
-              placeholder="(570) 555-0123"
-              autocomplete="tel"
-              required
-            /><button type="submit">Text me at $9</button>
-          </form>
-          <div class="alertok">
-            &#10003; You&rsquo;re on the list &mdash; alerts start texting once we go live.
-          </div>
           <div style="margin-top: 16px; text-align: center">
             <a class="dbtn gold" href="loyalty.html">Join the loyalty club &rarr;</a>
           </div>
@@ -4799,6 +4783,7 @@
         }
         #mbpromo .mbcard::before {
           content: "";
+          pointer-events: none;
           position: absolute;
           inset: -8%;
           background: radial-gradient(
@@ -4810,6 +4795,7 @@
         }
         #mbpromo .mbframe {
           position: relative;
+          z-index: 1;
           background: #fff;
           border-radius: 26px;
           overflow: hidden;
