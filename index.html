@@ -4735,90 +4735,83 @@
         </div>
         <button class="hnav next" id="hcnext" aria-label="Next clip">&rsaquo;</button>
       </div>
-      <div
-        style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 26px"
-      >
-        <a
-          class="socstat"
-          href="https://www.facebook.com/PrimeBins"
-          target="_blank"
-          rel="noopener"
-          style="
-            display: inline-flex;
-            align-items: baseline;
-            gap: 8px;
-            padding: 10px 20px;
-            border-radius: 999px;
-            background: rgba(255, 255, 255, 0.92);
-            text-decoration: none;
-            box-shadow: 0 8px 22px rgba(11, 36, 71, 0.15);
-            font-family: &quot;Hanken Grotesk&quot;, sans-serif;
-          "
-          ><b style="font-family: &quot;Bricolage Grotesque&quot;; font-size: 19px; color: #0b2447"
-            >24.4K</b
-          ><span style="font-weight: 700; font-size: 13px; color: #4a5a75"
-            >followers on Facebook</span
-          ></a
-        >
-        <a
-          class="socstat"
-          href="https://www.instagram.com/mrbinsofficial/"
-          target="_blank"
-          rel="noopener"
-          style="
-            display: inline-flex;
-            align-items: baseline;
-            gap: 8px;
-            padding: 10px 20px;
-            border-radius: 999px;
-            background: rgba(255, 255, 255, 0.92);
-            text-decoration: none;
-            box-shadow: 0 8px 22px rgba(11, 36, 71, 0.15);
-            font-family: &quot;Hanken Grotesk&quot;, sans-serif;
-          "
-          ><b style="font-family: &quot;Bricolage Grotesque&quot;; font-size: 19px; color: #0b2447"
-            >5K</b
-          ><span style="font-weight: 700; font-size: 13px; color: #4a5a75"
-            >followers on Instagram</span
-          ></a
-        >
-        <a
-          class="socstat"
-          href="https://www.tiktok.com/@mrbinsofficial"
-          target="_blank"
-          rel="noopener"
-          style="
-            display: inline-flex;
-            align-items: baseline;
-            gap: 8px;
-            padding: 10px 20px;
-            border-radius: 999px;
-            background: rgba(255, 255, 255, 0.92);
-            text-decoration: none;
-            box-shadow: 0 8px 22px rgba(11, 36, 71, 0.15);
-            font-family: &quot;Hanken Grotesk&quot;, sans-serif;
-          "
-          ><b style="font-family: &quot;Bricolage Grotesque&quot;; font-size: 19px; color: #0b2447"
-            >29K</b
-          ><span style="font-weight: 700; font-size: 13px; color: #4a5a75">likes on TikTok</span></a
-        >
-        <span
-          style="
-            display: inline-flex;
-            align-items: baseline;
-            gap: 8px;
-            padding: 10px 20px;
-            border-radius: 999px;
-            background: #f89b1c;
-            box-shadow: 0 8px 22px rgba(248, 155, 28, 0.35);
-            font-family: &quot;Hanken Grotesk&quot;, sans-serif;
-          "
-          ><b style="font-family: &quot;Bricolage Grotesque&quot;; font-size: 19px; color: #fff"
-            >100K+</b
-          ><span style="font-weight: 700; font-size: 13px; color: #fff"
-            >views across our reels</span
-          ></span
-        >
+      <style>
+        .statbar {
+          display: flex;
+          justify-content: center;
+          margin-top: 28px;
+        }
+        .statbar-in {
+          display: flex;
+          background: #fff;
+          border-radius: 20px;
+          box-shadow: 0 14px 38px rgba(11, 36, 71, 0.18);
+          overflow: hidden;
+        }
+        .statbar a,
+        .statbar .stseg {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 2px;
+          padding: 16px 26px;
+          text-decoration: none;
+          transition: background 0.2s;
+        }
+        .statbar a:hover {
+          background: #f2f6fc;
+        }
+        .statbar a + a,
+        .statbar .stseg {
+          border-left: 1px solid rgba(11, 36, 71, 0.08);
+        }
+        .statbar .stn {
+          font-family: "Bricolage Grotesque", sans-serif;
+          font-weight: 800;
+          font-size: clamp(22px, 2.4vw, 30px);
+          color: #0b2447;
+          line-height: 1;
+        }
+        .statbar .stl {
+          font:
+            700 11.5px "Hanken Grotesk",
+            sans-serif;
+          color: #64748f;
+        }
+        .statbar .stseg {
+          background: #f89b1c;
+        }
+        .statbar .stseg .stn,
+        .statbar .stseg .stl {
+          color: #fff;
+        }
+        @media (max-width: 720px) {
+          .statbar-in {
+            flex-wrap: wrap;
+            border-radius: 18px;
+          }
+          .statbar a,
+          .statbar .stseg {
+            flex: 1 1 50%;
+            padding: 13px 10px;
+          }
+        }
+      </style>
+      <div class="statbar">
+        <div class="statbar-in">
+          <a href="https://www.facebook.com/PrimeBins" target="_blank" rel="noopener">
+            <span class="stn">24.4K</span><span class="stl">Facebook followers</span>
+          </a>
+          <a href="https://www.instagram.com/mrbinsofficial/" target="_blank" rel="noopener">
+            <span class="stn">5K</span><span class="stl">Instagram followers</span>
+          </a>
+          <a href="https://www.tiktok.com/@mrbinsofficial" target="_blank" rel="noopener">
+            <span class="stn">29K</span><span class="stl">TikTok likes</span>
+          </a>
+          <span class="stseg"
+            ><span class="stn">100K+</span><span class="stl">reel views</span></span
+          >
+        </div>
       </div>
       <div style="display: flex; justify-content: center; margin-top: 18px">
         <a class="dbtn gold" href="gallery.html">Gallery &rarr;</a>
