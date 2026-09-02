@@ -3614,7 +3614,7 @@
           <a href="deals.html">Pricing</a>
           <a href="loyalty.html">Loyalty</a>
           <a href="mystery-box.html">Mystery Box</a>
-          <a href="#careers">Careers</a>
+          <a href="careers.html">Careers</a>
         </nav>
         <div class="hright">
           <div class="clock"><span class="dot"></span><span class="p" id="clk">&mdash;</span></div>
@@ -3639,7 +3639,7 @@
       <a href="deals.html">Daily Deals</a>
       <a href="loyalty.html">Loyalty Rewards</a>
       <a href="mystery-box.html">Mystery Box</a>
-      <a href="#careers">Careers</a>
+      <a href="careers.html">Careers</a>
       <a href="index.html#footer">Locations &amp; Hours</a>
     </nav>
     <div class="toast" id="toast"></div>
@@ -3748,6 +3748,45 @@
           color: var(--muted);
           line-height: 1.5;
         }
+        #careers .rrow {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 10px;
+          flex-wrap: wrap;
+          margin-top: 8px;
+        }
+        #careers .rapply {
+          border: 0;
+          cursor: pointer;
+          font:
+            800 13px "Hanken Grotesk",
+            sans-serif;
+          color: #fff;
+          background: #0b2447;
+          padding: 11px 22px;
+          min-height: 44px;
+          border-radius: 999px;
+          -webkit-tap-highlight-color: transparent;
+          transition:
+            transform 0.18s cubic-bezier(0.2, 0.8, 0.2, 1),
+            background-color 0.18s ease,
+            box-shadow 0.18s ease;
+        }
+        #careers .rapply:hover {
+          background: #1f66c8;
+          transform: translateY(-2px);
+          box-shadow: 0 12px 26px rgba(11, 36, 71, 0.22);
+        }
+        #careers .rapply:focus-visible {
+          outline: 3px solid var(--orange);
+          outline-offset: 2px;
+        }
+        @media (max-width: 640px) {
+          #careers .rapply {
+            flex: 1 1 100%;
+          }
+        }
         #careers .role .rt {
           display: inline-block;
           margin-top: 8px;
@@ -3836,6 +3875,24 @@
           stores, fresh pallets every week, and a floor that&rsquo;s never boring. Come build it
           with us.
         </p>
+        <a
+          href="#openroles"
+          class="chcta"
+          style="
+            display: inline-block;
+            margin-top: 22px;
+            font:
+              800 15px &quot;Hanken Grotesk&quot;,
+              sans-serif;
+            color: #0b2447;
+            background: var(--orange);
+            padding: 14px 28px;
+            border-radius: 999px;
+            text-decoration: none;
+            -webkit-tap-highlight-color: transparent;
+          "
+          >See open roles &darr;</a
+        >
       </div>
       <div class="cwrap">
         <div class="cwhy">
@@ -3861,27 +3918,47 @@
           </div>
         </div>
         <div class="csplit">
-          <div class="roles">
+          <div class="roles" id="openroles" style="scroll-margin-top: 110px">
             <h2>Open roles</h2>
             <div class="role">
               <h3>Floor Associate</h3>
               <p>Keep the bins stocked, the floor moving, and the treasure hunters happy.</p>
-              <span class="rt">All locations &middot; Full &amp; part time</span>
+              <div class="rrow">
+                <span class="rt">All locations &middot; Full &amp; part time</span
+                ><button type="button" class="rapply" data-role="Floor Associate">
+                  Apply &rarr;
+                </button>
+              </div>
             </div>
             <div class="role">
               <h3>Drop-Day Crew</h3>
               <p>High-energy restock team for our biggest days of the week.</p>
-              <span class="rt">All locations &middot; Part time</span>
+              <div class="rrow">
+                <span class="rt">All locations &middot; Part time</span
+                ><button type="button" class="rapply" data-role="Drop-Day Crew">
+                  Apply &rarr;
+                </button>
+              </div>
             </div>
             <div class="role">
               <h3>Keyholder / Shift Lead</h3>
               <p>Open, close, and run the floor. Retail leadership experience a plus.</p>
-              <span class="rt">All locations &middot; Full time</span>
+              <div class="rrow">
+                <span class="rt">All locations &middot; Full time</span
+                ><button type="button" class="rapply" data-role="Keyholder / Shift Lead">
+                  Apply &rarr;
+                </button>
+              </div>
             </div>
             <div class="role">
               <h3>Warehouse &amp; Pallets</h3>
               <p>Receive, sort, and stage truckloads of brand-new stock.</p>
-              <span class="rt">Wilkes-Barre &middot; Full time</span>
+              <div class="rrow">
+                <span class="rt">Wilkes-Barre &middot; Full time</span
+                ><button type="button" class="rapply" data-role="Warehouse & Pallets">
+                  Apply &rarr;
+                </button>
+              </div>
             </div>
           </div>
           <div class="apply">
@@ -3941,6 +4018,21 @@
         </div>
       </div>
       <script>
+        document.querySelectorAll(".rapply").forEach(function (b) {
+          b.addEventListener("click", function () {
+            var sel = document.querySelector('#capply select[name="role"]');
+            if (sel) {
+              sel.value = this.dataset.role;
+              sel.dispatchEvent(new Event("change", { bubbles: true }));
+            }
+            var ap = document.querySelector(".apply");
+            if (ap) ap.scrollIntoView({ behavior: "smooth", block: "center" });
+            setTimeout(function () {
+              var f = document.querySelector('#capply input[name="first"]');
+              if (f) f.focus({ preventScroll: true });
+            }, 550);
+          });
+        });
         document.getElementById("capply").addEventListener("submit", function (e) {
           e.preventDefault();
           var d = new FormData(this);
@@ -3968,7 +4060,7 @@
             "&body=" +
             body;
           this.innerHTML =
-            '<h2 style="margin:0 0 8px">Application started! &#127881;</h2><p style="font:600 14.5px \'Hanken Grotesk\',sans-serif;color:var(--muted);margin:0">Your email app just opened with everything filled in &mdash; hit send and we&rsquo;ll be in touch within 2 business days.</p>';
+            '<h2 style="margin:0 0 8px">Application started! &#127881;</h2><p style="font:600 14.5px \'Hanken Grotesk\',sans-serif;color:var(--muted);margin:0">Your email app should have opened with everything filled in &mdash; hit send and we&rsquo;ll be in touch within 2 business days. If it didn&rsquo;t open, email <a href=\"mailto:careers@primebins.com\" style=\"color: var(--orange); font-weight: 800\">careers@primebins.com</a>.</p>';
         });
       </script>
     </section>
@@ -3983,7 +4075,7 @@
             <a href="deals.html">Daily Deals</a>
             <a href="loyalty.html">Loyalty Rewards</a>
             <a href="mystery-box.html">Mystery Box</a>
-            <a href="#careers">Careers</a>
+            <a href="careers.html">Careers</a>
           </nav>
           <div class="social">
             <a
