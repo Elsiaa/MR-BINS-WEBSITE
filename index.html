@@ -5394,6 +5394,35 @@
           { passive: true },
         );
       })();
+      /* ---- home stores carousel: infinite loop on phones ---- */
+      (function () {
+        if (!window.matchMedia("(max-width:767px)").matches) return;
+        var g = document.querySelector("#stores .locgrid");
+        if (!g || g.dataset.looped) return;
+        g.dataset.looped = "1";
+        var cards = [].slice.call(g.children);
+        cards.forEach(function (c) {
+          g.appendChild(c.cloneNode(true));
+        });
+        var half = 0;
+        function measure() {
+          half = g.scrollWidth / 2;
+        }
+        window.addEventListener("load", measure);
+        setTimeout(measure, 500);
+        measure();
+        g.addEventListener(
+          "scroll",
+          function () {
+            if (!half) return;
+            if (g.scrollLeft >= half) g.scrollLeft -= half;
+            if (g.scrollLeft <= 0) g.scrollLeft += half;
+          },
+          { passive: true },
+        );
+        g.scrollLeft = 1; /* off the hard edge so wrapping works both ways */
+      })();
+
       /* ---- shopping cart: live badge + toast (adds when you click an item) ---- */
       (function () {
         var count = 0,
@@ -5888,9 +5917,11 @@
           setTimeout(measure, 400);
           measure();
           function step() {
-            if (!paused && half) {
-              car.scrollLeft += 1.4;
+            if (half) {
+              if (!paused) car.scrollLeft += 1.4;
+              /* seamless loop in every state, including mid-swipe */
               if (car.scrollLeft >= half) car.scrollLeft -= half;
+              if (car.scrollLeft < 0) car.scrollLeft += half;
             }
             raf = requestAnimationFrame(step);
           }
