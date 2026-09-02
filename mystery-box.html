@@ -1984,7 +1984,7 @@
       /* online */
       #online {
         position: relative;
-        height: 200vh;
+        height: 170vh;
         background: #fff;
       }
       .mstage {
@@ -1997,8 +1997,8 @@
         align-items: center;
         justify-content: flex-start;
         text-align: center;
-        gap: clamp(10px, 1.8vh, 24px);
-        padding: clamp(100px, 12vh, 128px) clamp(20px, 5vw, 44px) clamp(14px, 2vh, 26px);
+        gap: clamp(6px, 1.2vh, 14px);
+        padding: clamp(88px, 11vh, 112px) clamp(20px, 5vw, 44px) clamp(10px, 1.4vh, 18px);
         overflow: hidden;
         background: #fff;
       }
@@ -2159,13 +2159,13 @@
         z-index: 0;
       }
       .mbox.s .bxm {
-        height: clamp(200px, 31vh, 350px);
+        height: clamp(160px, 24vh, 260px);
       }
       .mbox.m .bxm {
-        height: clamp(240px, 38vh, 430px);
+        height: clamp(190px, 29vh, 320px);
       }
       .mbox.l .bxm {
-        height: clamp(280px, 45vh, 510px);
+        height: clamp(220px, 34vh, 380px);
       }
       .mtag {
         display: inline-flex;
@@ -2285,7 +2285,7 @@
         padding: 0 24px;
       }
       .ucar {
-        margin-top: auto;
+        margin-top: clamp(6px, 1.2vh, 16px);
         width: 100%;
       }
       .ucar .ucar-h {
@@ -2296,7 +2296,7 @@
       .ustrip {
         position: relative;
         width: 100%;
-        height: clamp(84px, 12vh, 128px);
+        height: clamp(72px, 10vh, 104px);
         overflow: hidden;
         display: flex;
         align-items: center;
@@ -3828,25 +3828,35 @@
             position: sticky;
             top: 0;
             height: 100svh;
-            padding-top: 88px;
-            padding-bottom: 12px;
-            justify-content: center;
-            gap: clamp(6px, 1.4svh, 18px);
+            padding-top: 92px;
+            padding-bottom: 10px;
+            justify-content: flex-start;
+            gap: clamp(6px, 1.2svh, 14px);
           }
           #online .mbox video {
-            max-height: min(30svh, 300px);
+            max-height: min(24svh, 240px);
             width: auto;
             max-width: 100%;
+          }
+          #online .mbox.s video {
+            max-height: min(18svh, 185px);
+          }
+          #online .mbox.m video {
+            max-height: min(21svh, 210px);
           }
           #online .ucar {
             margin-top: clamp(6px, 1.4svh, 16px);
           }
           #online .ucar-h {
-            margin: 0 auto 8px;
+            margin: 0 auto 4px;
             text-align: center;
+            font-size: clamp(18px, 2vw, 27px);
           }
           #online .ustrip img {
-            max-height: min(13svh, 120px);
+            max-height: min(8.5svh, 82px);
+          }
+          #online .ustrip {
+            height: min(11svh, 100px);
           }
           #online .mboxes {
             align-items: flex-end;
