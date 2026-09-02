@@ -140,7 +140,6 @@
       "Camiones nuevos llegan al noreste de Pensilvania cada semana. Elige tu tienda, revisa el día de drop y ven a escarbar.",
     "New unboxings every week, straight from our customers.":
       "Unboxings nuevos cada semana, directo de nuestros clientes.",
-    "No cherry-picking. No games.": "Sin filtros. Sin trucos.",
     "Nope — just walk in. Sundays are the busiest, so come early if you want first crack at the fresh bins.":
       "No — solo entra. Los domingos son los más concurridos, así que llega temprano si quieres ser el primero en los bins frescos.",
     "On the floor, live": "En el piso, en vivo",
