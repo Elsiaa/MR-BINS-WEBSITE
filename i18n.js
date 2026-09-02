@@ -72,7 +72,7 @@
     Email: "Correo",
     Every: "Cada",
     "Every bin hides something": "Cada bin esconde algo",
-    "Every buyer reviews.": "Cada comprador deja reseña.",
+    "Reviews": "Reseñas",
     "Every dollar you spend at any Mr. Bins store racks up a point.":
       "Cada dólar que gastas en cualquier tienda Mr. Bins suma un punto.",
     "Every one gets posted.": "Todas se publican.",
