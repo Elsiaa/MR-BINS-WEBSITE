@@ -244,19 +244,36 @@
         <div class="card">
           <h2>Publish</h2>
           <p class="note">
-            <b>Preview on this device</b> saves instantly in this browser only, so you can check
-            every page before going live. <b>Publish to live site</b> commits the new prices to
-            GitHub and updates the real website for everyone (takes a minute to deploy). Publishing
-            needs a GitHub token with access to Elsiaa/MR-BINS-WEBSITE; it stays in this browser.
+            <b>Preview</b> shows your changes on this device only. <b>Publish edits</b> puts them on
+            the live website for everyone (live in 1&ndash;2 minutes).
           </p>
-          <label>GitHub token (fine-grained, contents read/write)</label>
-          <input type="password" id="ghtok" placeholder="github_pat_..." />
-          <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px">
+          <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px">
             <button class="btn" id="preview">Preview on this device</button>
-            <button class="btn gold" id="publish">Publish to live site &rarr;</button>
+            <button class="btn gold" id="publish">Publish edits &rarr;</button>
             <button class="btn" id="clearprev" style="background: #64748f">Clear preview</button>
           </div>
           <div class="msg" id="pubMsg"></div>
+          <details id="setupBox" style="margin-top: 16px">
+            <summary
+              style="
+                cursor: pointer;
+                font:
+                  700 12px &quot;Space Mono&quot;,
+                  monospace;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                color: #64748f;
+              "
+            >
+              One-time setup (ELSIAA)
+            </summary>
+            <p class="note" style="margin-top: 10px">
+              Publishing is secured by a key that ELSIAA installs once on each device you publish
+              from. It stays in this browser only.
+            </p>
+            <label>Publish key</label>
+            <input type="password" id="ghtok" placeholder="paste the key ELSIAA sends you" />
+          </details>
         </div>
       </div>
     </div>
@@ -583,13 +600,18 @@
         });
 
         var savedTok = localStorage.getItem("mrb-gh-token");
-        if (savedTok) document.getElementById("ghtok").value = savedTok;
+        if (savedTok) {
+          document.getElementById("ghtok").value = savedTok;
+          var sb = document.getElementById("setupBox");
+          if (sb) sb.style.display = "none"; /* set up: day to day is just Publish edits */
+        }
 
         document.getElementById("publish").addEventListener("click", async function () {
           var tok = document.getElementById("ghtok").value.trim();
           if (!tok) {
             msg.className = "msg err";
-            msg.textContent = "Paste a GitHub token to publish.";
+            msg.textContent =
+              "This device isn\u2019t set up to publish yet. Open \u2018One-time setup\u2019 below and paste the key from ELSIAA.";
             return;
           }
           localStorage.setItem("mrb-gh-token", tok);
