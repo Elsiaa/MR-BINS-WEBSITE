@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Mr. Bins · Where your returns go</title>
+    <title>Shop · Mr. Bins</title>
     <meta
       name="description"
       content="Mr. Bins: dig through bins of brand-new Amazon returns across 4 Northeast PA stores. One price for everything, dropping $14 to $9 through the week, or get a hand-packed mystery box shipped to your door."
@@ -3598,18 +3598,9 @@
           display: none;
         }
         #stores .locard {
-          flex: 0 0 62vw;
-          max-width: 250px;
+          flex: 0 0 78vw;
+          max-width: 320px;
           scroll-snap-align: center;
-        }
-        #stores .locimg {
-          aspect-ratio: 16 / 10;
-        }
-        #stores .locbody h3 {
-          font-size: 17px;
-        }
-        #stores .locaddr {
-          font-size: 12px;
         }
       }
 
@@ -3753,1141 +3744,395 @@
       </div>
     </header>
     <nav class="mnav" id="mnav" aria-label="Mobile menu">
-      <a href="#discover">This Week&rsquo;s Bins</a>
+      <a href="index.html#discover">This Week&rsquo;s Bins</a>
       <a href="deals.html">Daily Deals</a>
       <a href="loyalty.html">Loyalty Rewards</a>
       <a href="mystery-box.html">Mystery Box</a>
       <a href="careers.html">Careers</a>
-      <a href="#footer">Locations &amp; Hours</a>
+      <a href="index.html#footer">Locations &amp; Hours</a>
     </nav>
     <div class="toast" id="toast"></div>
-    <section id="walk">
-      <div class="stage">
-        <video
-          class="walkvid"
-          id="walkvid"
-          muted
-          playsinline
-          webkit-playsinline
-          preload="none"
-          poster="mrbins-walk-poster.jpg"
-        >
-          <source data-desk="mrbins-walk.mp4" data-mob="mrbins-walk-mobile.mp4" type="video/mp4" />
-        </video>
-        <div class="tint"></div>
-        <div class="wcaps" id="wcaps">
-          <div class="wcap">
-            <h1
-              class="sr-hide"
-              style="
-                position: absolute;
-                width: 1px;
-                height: 1px;
-                overflow: hidden;
-                clip: rect(0 0 0 0);
-              "
-            >
-              Mr. Bins
-            </h1>
-            <img
-              src="mrbins-logo-dark.png"
-              alt=""
-              style="
-                width: min(560px, 72vw);
-                height: auto;
-                filter: drop-shadow(0 10px 44px rgba(0, 0, 0, 0.55));
-              "
-            />
-            <p class="sub">The <b>VIRAL</b> bin store everyone&rsquo;s talking about.</p>
-          </div>
-          <div class="wcap">
-            <h2 class="h2m"><span class="stk">Brand&#8209;new</span><br />Amazon returns.</h2>
-            <p class="sub">
-              Returns &amp; overstock from Amazon and big&#8209;box stores &mdash;
-              <b>new in box, never used</b> &mdash; dumped into our bins.
-            </p>
-          </div>
-          <div class="wcap">
-            <h2>You dig.<br /><span class="g">You score.</span></h2>
-          </div>
-          <div class="wcap">
-            <h2><span class="g">$14</span> &rarr; <span class="o">$9</span></h2>
-          </div>
-        </div>
-        <div class="hcue bob" id="hcue">scroll to walk in &darr;</div>
-        <div class="hprog" id="hprog"></div>
-      </div>
-    </section>
-
-    <!-- DISCOVER -->
-    <section id="discover">
-      <div class="dstage">
-        <!-- mobile-only light-switch bit -->
-        <div class="dnite" aria-hidden="true"></div>
-        <img class="sw-lamp" src="mrbins-lamp-cute.png" alt="" aria-hidden="true" />
-        <div class="sw-glow" aria-hidden="true"></div>
-        <div class="sw-hint" aria-hidden="true">psst&hellip; hit the lights &rarr;</div>
-        <button class="sw-btn" id="swBtn" aria-label="Turn on the savings light">
-          <img class="off" src="mrbins-switch-off.png" alt="" /><img
-            class="on"
-            src="mrbins-switch-on.png"
-            alt=""
-          />
-        </button>
-        <div class="sw-mode" aria-hidden="true">
-          <span class="dot"></span>SAVINGS MODE&nbsp;ACTIVATED
-        </div>
-        <div class="dnight"></div>
-        <div class="lamp" aria-hidden="true">
-          <div class="cord"></div>
-          <img class="shade" src="mrbins-lamp.png" alt="" />
-          <div class="glow"></div>
-        </div>
-        <div class="beam" aria-hidden="true"></div>
-        <div class="dhead">
-          <h2>See <span class="o">this week&rsquo;s bins.</span></h2>
-          <div class="today" id="dtoday"></div>
-        </div>
-        <div class="carousel-wrap">
-          <button class="cnav prev" id="cprev" aria-label="Scroll left">&lsaquo;</button>
-          <div class="carousel" id="carousel"><div class="track" id="track"></div></div>
-          <button class="cnav next" id="cnext" aria-label="Scroll right">&rsaquo;</button>
-        </div>
-        <style>
-          .dstrip {
-            margin-top: 48px;
-            overflow: hidden;
-            -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-            mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-          }
-          .dstrip .strack {
-            display: flex;
-            gap: clamp(34px, 4vw, 60px);
-            align-items: center;
-            width: max-content;
-            animation: dslide 45s linear infinite;
-          }
-          .dstrip .blogo {
-            height: clamp(26px, 3.8vh, 36px);
-          }
-          .dstrip .blogo img {
-            height: 100%;
-            width: auto;
-            filter: none;
-            opacity: 1;
-          }
-          .dstrip .bword {
-            font:
-              800 clamp(15px, 1.6vw, 20px) "Bricolage Grotesque",
-              sans-serif;
-            color: #0b2447;
-            white-space: nowrap;
-          }
-          @keyframes dslide {
-            from {
-              transform: translateX(0);
-            }
-            to {
-              transform: translateX(-50%);
-            }
-          }
-        </style>
-        <div class="dstrip">
-          <style>
-            .dstrip {
-              margin-top: clamp(12px, 2vh, 26px);
-              overflow: hidden;
-            }
-            .dstrip .strack {
-              display: flex;
-              gap: clamp(28px, 3.4vw, 52px);
-              align-items: center;
-              width: max-content;
-              animation: dslide 40s linear infinite;
-            }
-            .dstrip .blogo img {
-              height: clamp(22px, 3.4vh, 32px);
-            }
-            .dstrip .bword {
-              font:
-                800 clamp(15px, 1.6vw, 20px) "Bricolage Grotesque",
-                sans-serif;
-              color: rgba(11, 36, 71, 0.55);
-              white-space: nowrap;
-            }
-            @keyframes dslide {
-              from {
-                transform: translateX(0);
-              }
-              to {
-                transform: translateX(-50%);
-              }
-            }
-          </style>
-          <div class="strack" id="bmarq"></div>
-        </div>
-        <div class="dbtns">
-          <a class="dbtn primary" href="shop.html">See all of this week&rsquo;s bins &rarr;</a>
-          <a class="dbtn gold" href="https://primebins.com" target="_blank" rel="noopener"
-            >&#9733; Become a loyalty member</a
-          >
-          <a class="dbtn ghost" href="#footer">Directions &rarr;</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- FEATURED CATEGORIES -->
-    <section id="featured">
+    <section id="shopall">
       <style>
-        #featured .fgrid {
-          width: 100%;
+        #shopall {
+          background: #f4f7fb;
+          padding: 0 0 clamp(64px, 7vw, 110px);
+        }
+        #shopall .shero {
+          background: linear-gradient(180deg, #0b2447, #0e3fa6);
+          color: #fff;
+          text-align: center;
+          padding: clamp(88px, 10vw, 150px) clamp(20px, 5vw, 44px) clamp(64px, 7vw, 110px);
+        }
+        #shopall .shero h1 {
+          font-family: "Bricolage Grotesque", sans-serif;
+          font-weight: 800;
+          font-size: clamp(38px, 5.6vw, 72px);
+          letter-spacing: -0.02em;
+          margin: 0 0 14px;
+        }
+        #shopall .shero p {
+          color: rgba(255, 255, 255, 0.75);
+          font-size: clamp(15px, 1.5vw, 18px);
+          max-width: 52ch;
+          margin: 0 auto;
+          line-height: 1.6;
+        }
+        #shopall .swrap {
+          max-width: 1240px;
+          margin: 0 auto;
+          padding: 0 clamp(20px, 4vw, 44px);
+        }
+        #shopall h2 {
+          font-family: "Bricolage Grotesque", sans-serif;
+          font-weight: 800;
+          font-size: clamp(26px, 3vw, 40px);
+          color: #0b2447;
+          margin: clamp(48px, 6vw, 76px) 0 6px;
+          text-align: center;
+        }
+        #shopall .ssub {
+          text-align: center;
+          color: var(--muted);
+          margin: 0 0 30px;
+          font-size: 15px;
+        }
+        #shopall .bingrid {
           display: grid;
-          grid-template-columns: repeat(4, 1fr);
+          grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
           gap: 16px;
-          max-width: 1280px;
-          margin: 38px auto 0;
-          align-items: stretch;
         }
-        @media (max-width: 1100px) {
-          #featured .fgrid {
-            grid-template-columns: 1fr 1fr;
-          }
-        }
-        @media (max-width: 620px) {
-          #featured .fgrid {
-            grid-template-columns: 1fr;
-            max-width: 440px;
-          }
-        }
-        #featured .fcard {
-          display: flex;
-          flex-direction: column;
-          border-radius: 22px;
-          overflow: hidden;
-          padding: 0;
-          text-align: left;
-          text-decoration: none;
+        #shopall .bcard {
           background: #fff;
           border: 1px solid rgba(11, 36, 71, 0.08);
-          box-shadow: 0 18px 44px rgba(11, 36, 71, 0.1);
+          border-radius: 18px;
+          overflow: hidden;
+          box-shadow: 0 14px 34px rgba(11, 36, 71, 0.07);
           transition:
-            transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
-            box-shadow 0.3s ease;
+            transform 0.25s,
+            box-shadow 0.25s;
         }
-        #featured .fcard:hover {
-          transform: translateY(-6px);
-          box-shadow: 0 30px 64px rgba(11, 36, 71, 0.16);
+        #shopall .bcard:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 24px 52px rgba(11, 36, 71, 0.13);
         }
-        #featured .fmedia {
+        #shopall .bcard .bimg {
           aspect-ratio: 1 / 1;
-          width: 100%;
-          background: #f4f7fb;
+          background: #fff;
           display: flex;
           align-items: center;
           justify-content: center;
-          overflow: hidden;
+          padding: 12px;
         }
-        #featured .fmedia video,
-        #featured .fmedia img {
-          width: 100%;
-          height: 100%;
+        #shopall .bcard .bimg img {
+          max-width: 100%;
+          max-height: 100%;
           object-fit: contain;
-          transition: transform 0.5s ease;
         }
-        #featured .fcard:hover .fmedia video,
-        #featured .fcard:hover .fmedia img {
-          transform: scale(1.04);
+        #shopall .bcard .bmeta {
+          padding: 4px 14px 14px;
         }
-        #featured .ftxt {
-          padding: 16px 18px 18px;
-          display: flex;
-          flex-direction: column;
-          flex: 1;
-        }
-        #featured .ftxt h3 {
-          margin: 0 0 5px;
-          font-family: "Bricolage Grotesque", sans-serif;
-          font-weight: 800;
-          font-size: clamp(19px, 1.7vw, 24px);
-          color: #0b2447;
-        }
-        #featured .ftxt p {
-          margin: 0 0 12px;
-          font-size: 13.5px;
-          line-height: 1.5;
-          color: var(--muted);
-          flex: 1;
-        }
-        #featured .ftxt .go {
+        #shopall .bcard .bcat {
           font:
-            700 13.5px "Hanken Grotesk",
-            sans-serif;
-          color: var(--orange);
-        }
-      </style>
-      <div class="fstage">
-        <div class="fhead">
-          <h2 style="margin: 0 0 12px">Discover everything <span class="o">we sell.</span></h2>
-          <p class="sub">
-            You&rsquo;ve seen the bins&hellip; racks, boxes and bikes land fresh every day too.
-          </p>
-        </div>
-        <div class="fgrid">
-          <a class="fcard" href="#price">
-            <div class="fmedia">
-              <video
-                class="fscrub"
-                muted
-                playsinline
-                preload="metadata"
-                poster="mrbins-clothes-poster.jpg"
-              >
-                <source src="mrbins-clothes.mp4" type="video/mp4" />
-              </video>
-            </div>
-            <div class="ftxt">
-              <h3>Clothing</h3>
-              <p>Racks of brand-new clothing, restocked every single day.</p>
-              <span class="go">See pricing &rarr;</span>
-            </div>
-          </a>
-          <a class="fcard" href="#price">
-            <div class="fmedia">
-              <video
-                class="fscrub"
-                muted
-                playsinline
-                preload="metadata"
-                poster="mrbins-shoes-poster.jpg"
-              >
-                <source src="mrbins-shoes.mp4" type="video/mp4" />
-              </video>
-            </div>
-            <div class="ftxt">
-              <h3>Shoes</h3>
-              <p>Name-brand shoes, new in box, at bin prices.</p>
-              <span class="go">See pricing &rarr;</span>
-            </div>
-          </a>
-          <a class="fcard" href="mystery-box.html">
-            <div class="fmedia">
-              <img
-                src="mrbins-feat-mystery.jpg"
-                alt="An open Mr. Bins mystery box full of finds"
-                loading="lazy"
-              />
-            </div>
-            <div class="ftxt">
-              <h3>Mystery Boxes</h3>
-              <p>The treasure hunt, hand-packed and shipped to your door.</p>
-              <span class="go">Shop boxes &rarr;</span>
-            </div>
-          </a>
-          <a class="fcard" href="#price">
-            <div class="fmedia">
-              <video
-                class="fscrub"
-                muted
-                playsinline
-                preload="metadata"
-                poster="mrbins-feat-bike.jpg"
-              >
-                <source src="mrbins-feat-bike.mp4" type="video/mp4" />
-              </video>
-            </div>
-            <div class="ftxt">
-              <h3>Bikes</h3>
-              <p>Kids&rsquo; and adults&rsquo; bikes from $25, ready to ride.</p>
-              <span class="go">See pricing &rarr;</span>
-            </div>
-          </a>
-        </div>
-        <div style="text-align: center; margin-top: clamp(26px, 3vw, 40px)">
-          <a class="dbtn gold" href="deals.html">See all pricing &rarr;</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- PRICE -->
-    <!-- REAL HAULS: real phone footage from the floor -->
-    <section id="hauls">
-      <h2>The viral <span class="o">bins store</span></h2>
-      <p class="sub" style="font-size: clamp(19px, 2.2vw, 26px); font-weight: 700">
-        As seen on Instagram and TikTok
-      </p>
-      <div class="hwrap">
-        <button class="hnav prev" id="hcprev" aria-label="Previous clip">&lsaquo;</button>
-        <div class="hstage">
-          <div class="hslides" id="hslidesEl">
-            <figure class="hslide">
-              <div class="hmedia">
-                <video
-                  class="haulvid"
-                  src="mrbins-haul-1.mp4"
-                  muted
-                  playsinline
-                  webkit-playsinline
-                  loop
-                  preload="metadata"
-                ></video>
-              </div>
-              <figcaption class="hinfo">
-                <b>Fresh bins hit the floor</b
-                ><span>Drop day &middot; <em>$14</em> &middot; best selection of the week</span>
-              </figcaption>
-            </figure>
-            <figure class="hslide">
-              <div class="hmedia">
-                <video
-                  class="haulvid"
-                  src="mrbins-haul-2.mp4"
-                  muted
-                  playsinline
-                  webkit-playsinline
-                  loop
-                  preload="metadata"
-                ></video>
-              </div>
-              <figcaption class="hinfo">
-                <b>Digging the pile</b
-                ><span>Straight off the pallet &middot; totally unsorted</span>
-              </figcaption>
-            </figure>
-            <figure class="hslide">
-              <div class="hmedia">
-                <video
-                  class="haulvid"
-                  src="mrbins-haul-3.mp4"
-                  muted
-                  playsinline
-                  webkit-playsinline
-                  loop
-                  preload="metadata"
-                ></video>
-              </div>
-              <figcaption class="hinfo">
-                <b>The big-brand pull</b><span>Brand-new in box &middot; from the bins</span>
-              </figcaption>
-            </figure>
-            <figure class="hslide">
-              <div class="hmedia">
-                <video
-                  class="haulvid"
-                  src="mrbins-haul-4.mp4"
-                  muted
-                  playsinline
-                  webkit-playsinline
-                  loop
-                  preload="metadata"
-                ></video>
-              </div>
-              <figcaption class="hinfo">
-                <b>On the floor, live</b
-                ><span>Shot in store &middot; real shoppers, real finds</span>
-              </figcaption>
-            </figure>
-            <figure class="hslide">
-              <div class="hmedia">
-                <video
-                  class="haulvid"
-                  src="mrbins-haul-5.mp4"
-                  muted
-                  playsinline
-                  webkit-playsinline
-                  loop
-                  preload="metadata"
-                ></video>
-              </div>
-              <figcaption class="hinfo">
-                <b>The haul, laid out</b><span>One trip &middot; pocket change</span>
-              </figcaption>
-            </figure>
-          </div>
-        </div>
-        <button class="hnav next" id="hcnext" aria-label="Next clip">&rsaquo;</button>
-      </div>
-      <div
-        style="display: flex; gap: 14px; justify-content: center; margin-top: 30px; flex-wrap: wrap"
-      >
-        <a
-          href="https://www.instagram.com/primebins/"
-          target="_blank"
-          rel="noopener"
-          style="
-            display: inline-flex;
-            align-items: center;
-            gap: 9px;
-            font:
-              700 15px &quot;Hanken Grotesk&quot;,
-              sans-serif;
-            color: #fff;
-            text-decoration: none;
-            padding: 13px 24px;
-            border-radius: 999px;
-            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-            box-shadow: 0 10px 26px rgba(204, 35, 102, 0.35);
-          "
-        >
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="#fff"
-            stroke-width="2"
-          >
-            <rect x="2.5" y="2.5" width="19" height="19" rx="5.5" />
-            <circle cx="12" cy="12" r="4.4" />
-            <circle cx="17.6" cy="6.4" r="1.3" fill="#fff" stroke="none" />
-          </svg>
-          Follow on Instagram
-        </a>
-        <a
-          href="https://www.tiktok.com/@primebins"
-          target="_blank"
-          rel="noopener"
-          style="
-            display: inline-flex;
-            align-items: center;
-            gap: 9px;
-            font:
-              700 15px &quot;Hanken Grotesk&quot;,
-              sans-serif;
-            color: #fff;
-            text-decoration: none;
-            padding: 13px 24px;
-            border-radius: 999px;
-            background: #010101;
-            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.14);
-          "
-        >
-          <svg width="17" height="17" viewBox="0 0 24 24">
-            <path
-              fill="#25F4EE"
-              d="M16.6 3h-.1v12.4a3.5 3.5 0 1 1-3.5-3.5c.2 0 .5 0 .7.1V8.5a7 7 0 0 0-.7 0 7 7 0 1 0 7 7V9.7a8.6 8.6 0 0 0 3.6.8V7a5.4 5.4 0 0 1-3.6-1.5A5.4 5.4 0 0 1 18.5 3h-1.9z"
-              transform="translate(-1.2 -0.6)"
-            />
-            <path
-              fill="#FE2C55"
-              d="M17.8 3.6a5.4 5.4 0 0 0 1.5 2 5.4 5.4 0 0 0 3.6 1.4v3.5a8.6 8.6 0 0 1-3.6-.8v5.7a7 7 0 1 1-7-7c.2 0 .5 0 .7 0v3.6a3.5 3.5 0 1 0 2.8 3.4V3.6h2z"
-              transform="translate(0.4 0.4)"
-            />
-            <path
-              fill="#fff"
-              d="M17.2 3.3a5.4 5.4 0 0 0 1.5 2 5.4 5.4 0 0 0 3.6 1.4v3.5a8.6 8.6 0 0 1-3.6-.8v5.7a7 7 0 1 1-7-7c.2 0 .5 0 .7 0v3.6a3.5 3.5 0 1 0 2.8 3.4V3.3h2z"
-              transform="translate(-0.4 -0.1)"
-            />
-          </svg>
-          Watch on TikTok
-        </a>
-      </div>
-    </section>
-
-    <section id="price">
-      <div class="pwrap">
-        <h2>
-          You&rsquo;ve seen the bins&hellip; now see how
-          <span class="g">ridiculously cheap</span> they are.
-        </h2>
-        <p class="sub">
-          Every item shares the same price &mdash; and it falls every day, Sunday to Friday. Come
-          early for the pick, come Friday for the price.
-        </p>
-        <div class="ladder" id="ladderEl"></div>
-        <div class="whens">
-          <div class="when">
-            <div class="ib b">
-              <svg viewBox="0 0 24 24" stroke="#1455D6">
-                <rect x="3" y="7" width="18" height="13" rx="2" />
-                <path d="M3 10h18M8 7V4h8v3" />
-              </svg>
-            </div>
-            <div>
-              <h3>Want the most to pick from?</h3>
-              <p>
-                Fresh truckloads land Sunday, so early in the week the bins are stuffed full. Best
-                selection, slightly higher price.
-              </p>
-              <span class="lk b">Come Sunday or Monday &rarr;</span>
-            </div>
-          </div>
-          <div class="when">
-            <div class="ib o">
-              <svg viewBox="0 0 24 24" stroke="#FF8F52">
-                <path d="M20 12l-8 8-8-8 8-8z" />
-                <circle cx="12" cy="9" r="1.4" />
-              </svg>
-            </div>
-            <div>
-              <h3>Want the rock-bottom price?</h3>
-              <p>
-                The price keeps falling all week. Fewer items left by Friday &mdash; but it&rsquo;s
-                as cheap as it ever gets.
-              </p>
-              <span class="lk o">Come Thursday or Friday &rarr;</span>
-            </div>
-          </div>
-        </div>
-        <div class="alertcard" id="alertcard">
-          <h3>Waiting for your price?</h3>
-          <p>
-            Drop your number and we&rsquo;ll text you the morning it hits <b>$9</b>. One text a week
-            &mdash; nothing else, ever.
-          </p>
-          <form class="alertform" id="alertform">
-            <input
-              type="tel"
-              id="alerttel"
-              placeholder="(570) 555-0123"
-              autocomplete="tel"
-              required
-            /><button type="submit">Text me at $9</button>
-          </form>
-          <div class="alertok">&#10003; You&rsquo;re on the list &mdash; see you Friday.</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- DEALS, per-department weekly price calendars (from the price-schedule flyer) -->
-
-    <!-- MYSTERY BOX STORE PROMO -->
-    <section id="mbpromo">
-      <style>
-        #mbpromo {
-          background: linear-gradient(180deg, #0b2447, #0a1f3d);
-          color: #fff;
-          overflow: hidden;
-          padding: clamp(64px, 8vw, 120px) clamp(20px, 5vw, 44px);
-        }
-        #mbpromo .mbwrap {
-          max-width: 1120px;
-          margin: 0 auto;
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: clamp(28px, 4vw, 64px);
-          align-items: center;
-        }
-        @media (max-width: 960px) {
-          #mbpromo .mbwrap {
-            grid-template-columns: 1fr;
-            text-align: center;
-          }
-        }
-        #mbpromo .mbtext .k {
-          color: rgba(255, 255, 255, 0.55);
-        }
-        #mbpromo h2 {
-          font-weight: 800;
-          font-size: clamp(32px, 4.6vw, 58px);
-          line-height: 1.02;
-          letter-spacing: -0.02em;
-          margin: 10px 0 16px;
-        }
-        #mbpromo p {
-          color: rgba(255, 255, 255, 0.72);
-          font-size: clamp(15px, 1.4vw, 17px);
-          line-height: 1.6;
-          max-width: 44ch;
-          margin: 0 0 26px;
-        }
-        @media (max-width: 960px) {
-          #mbpromo p {
-            margin-left: auto;
-            margin-right: auto;
-          }
-        }
-        #mbpromo .mbperks {
-          display: flex;
-          gap: 18px;
-          flex-wrap: wrap;
-          margin: 0 0 28px;
-          padding: 0;
-          list-style: none;
-        }
-        @media (max-width: 960px) {
-          #mbpromo .mbperks {
-            justify-content: center;
-          }
-        }
-        #mbpromo .mbperks li {
-          font:
-            600 13.5px "Hanken Grotesk",
-            sans-serif;
-          color: rgba(255, 255, 255, 0.85);
-        }
-        #mbpromo .mbperks li::before {
-          content: "\2713";
-          color: var(--orange);
-          font-weight: 800;
-          margin-right: 7px;
-        }
-        #mbpromo .mbcard {
-          position: relative;
-        }
-        #mbpromo .mbcard::before {
-          content: "";
-          position: absolute;
-          inset: -8%;
-          background: radial-gradient(
-            circle at 50% 60%,
-            rgba(255, 143, 82, 0.35),
-            rgba(255, 143, 82, 0) 65%
-          );
-          filter: blur(10px);
-        }
-        #mbpromo .mbframe {
-          position: relative;
-          background: #fff;
-          border-radius: 26px;
-          overflow: hidden;
-          box-shadow: 0 40px 90px rgba(0, 0, 0, 0.45);
-        }
-        #mbpromo .mbframe video {
-          width: 100%;
-          height: auto;
-          display: block;
-        }
-        #mbpromo .mbhint {
-          position: absolute;
-          left: 0;
-          right: 0;
-          bottom: 12px;
-          text-align: center;
-          font:
-            700 11px "Space Mono",
+            700 10px "Space Mono",
             monospace;
           letter-spacing: 0.18em;
           text-transform: uppercase;
-          color: rgba(11, 36, 71, 0.45);
+          color: var(--muted);
+        }
+        #shopall .bcard .bname {
+          font:
+            700 14.5px "Hanken Grotesk",
+            sans-serif;
+          color: #0b2447;
+          margin: 3px 0 6px;
+        }
+        #shopall .bcard .bprice {
+          display: flex;
+          align-items: baseline;
+          gap: 8px;
+        }
+        #shopall .bcard .bnow {
+          font:
+            800 20px "Bricolage Grotesque",
+            sans-serif;
+          color: var(--orange);
+        }
+        #shopall .bcard .bwas {
+          font:
+            600 12px "Hanken Grotesk",
+            sans-serif;
+          color: var(--muted);
+          text-decoration: line-through;
+        }
+        #shopall .depts {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 16px;
+        }
+        @media (max-width: 900px) {
+          #shopall .depts {
+            grid-template-columns: 1fr 1fr;
+          }
+        }
+        #shopall .dept {
+          position: relative;
+          display: block;
+          aspect-ratio: 4 / 5;
+          border-radius: 20px;
+          overflow: hidden;
+          text-decoration: none;
+          background: #0b2447;
+          box-shadow: 0 16px 40px rgba(11, 36, 71, 0.12);
+          transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        #shopall .dept:hover {
+          transform: translateY(-6px);
+        }
+        #shopall .dept video,
+        #shopall .dept img {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        #shopall .dept .dscrim {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(180deg, rgba(4, 10, 22, 0) 48%, rgba(4, 10, 22, 0.8));
+        }
+        #shopall .dept .dlbl {
+          position: absolute;
+          left: 18px;
+          right: 18px;
+          bottom: 16px;
+          color: #fff;
+        }
+        #shopall .dept .dlbl h3 {
+          margin: 0 0 2px;
+          font-family: "Bricolage Grotesque", sans-serif;
+          font-weight: 800;
+          font-size: 20px;
+        }
+        #shopall .dept .dlbl span {
+          font:
+            700 12px "Hanken Grotesk",
+            sans-serif;
+          color: var(--orange);
+        }
+        #shopall .mtiers {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 16px;
+          max-width: 940px;
+          margin: 0 auto;
+        }
+        @media (max-width: 760px) {
+          #shopall .mtiers {
+            grid-template-columns: 1fr;
+            max-width: 400px;
+          }
+        }
+        #shopall .mtier {
+          display: block;
+          text-decoration: none;
+          text-align: center;
+          background: #fff;
+          border: 1.5px solid rgba(11, 36, 71, 0.1);
+          border-radius: 20px;
+          padding: 26px 20px;
+          box-shadow: 0 14px 34px rgba(11, 36, 71, 0.08);
+          transition:
+            transform 0.25s,
+            border-color 0.25s,
+            box-shadow 0.25s;
+        }
+        #shopall .mtier:hover {
+          transform: translateY(-5px);
+          border-color: var(--orange);
+          box-shadow: 0 24px 52px rgba(11, 36, 71, 0.15);
+        }
+        #shopall .mtier .tn {
+          font:
+            700 11px "Archivo",
+            sans-serif;
+          letter-spacing: 0.22em;
+          text-transform: uppercase;
+          color: var(--muted);
+        }
+        #shopall .mtier .tp {
+          font:
+            900 34px "Archivo",
+            sans-serif;
+          color: #0b2447;
+          margin: 4px 0 2px;
+        }
+        #shopall .mtier .td {
+          font:
+            600 13px "Archivo",
+            sans-serif;
+          color: var(--orange);
+        }
+        #shopall .mtier .tgo {
+          display: inline-block;
+          margin-top: 12px;
+          font:
+            800 12px "Hanken Grotesk",
+            sans-serif;
+          color: #0b2447;
+          background: rgba(11, 36, 71, 0.06);
+          padding: 8px 18px;
+          border-radius: 999px;
+        }
+        #shopall .mtier:hover .tgo {
+          background: var(--orange);
+          color: #fff;
+        }
+        #shopall .scta {
+          text-align: center;
+          margin-top: clamp(40px, 5vw, 64px);
         }
       </style>
-      <div class="mbwrap">
-        <div class="mbtext">
-          <h2>The treasure hunt, <span class="o">shipped.</span></h2>
-          <p>
-            Can&rsquo;t make it to the bins? We hand-pack brand-new finds from the floor into every
-            box &mdash; always worth more than you paid, never the same box twice.
-          </p>
-          <ul class="mbperks">
-            <li>From $25</li>
-            <li>Ships in 1&ndash;2 days</li>
-            <li>Always worth more</li>
-          </ul>
-          <a class="dbtn gold" href="mystery-box.html">Shop mystery boxes &rarr;</a>
-        </div>
-        <div class="mbcard">
-          <div class="mbframe">
+      <div class="shero">
+        <h1>The Mr.&nbsp;Bins <span style="color: var(--orange)">Shop.</span></h1>
+        <p>
+          Everything we sell, in one place &mdash; this week&rsquo;s bins, every department, and
+          mystery boxes shipped to your door.
+        </p>
+      </div>
+      <div class="swrap">
+        <h2>This week&rsquo;s <span class="o">bins.</span></h2>
+        <p class="ssub">
+          One price for everything in the bins &mdash; <b id="shopToday">$&mdash;</b> today,
+          dropping a dollar a day.
+        </p>
+        <div class="bingrid" id="shopBins"></div>
+        <h2>Every <span class="o">department.</span></h2>
+        <p class="ssub">Each department runs its own weekly price ladder.</p>
+        <div class="depts">
+          <a class="dept" href="deals.html">
+            <img src="mrbins-cart-poster.jpg" alt="General bin items" loading="lazy" />
+            <div class="dscrim"></div>
+            <div class="dlbl">
+              <h3>General Bins</h3>
+              <span>See the ladder &rarr;</span>
+            </div>
+          </a>
+          <a class="dept" href="deals.html">
             <video
-              id="mbprvid"
               muted
+              loop
               playsinline
-              webkit-playsinline
+              autoplay
               preload="metadata"
-              poster="mrbins-box-reveal-poster.jpg"
+              poster="mrbins-clothes-poster.jpg"
             >
-              <source src="mrbins-box-reveal.mp4" type="video/mp4" />
+              <source src="mrbins-clothes.mp4" type="video/mp4" />
             </video>
-          </div>
+            <div class="dscrim"></div>
+            <div class="dlbl">
+              <h3>Clothing</h3>
+              <span>See the ladder &rarr;</span>
+            </div>
+          </a>
+          <a class="dept" href="deals.html">
+            <video
+              muted
+              loop
+              playsinline
+              autoplay
+              preload="metadata"
+              poster="mrbins-shoes-poster.jpg"
+            >
+              <source src="mrbins-shoes.mp4" type="video/mp4" />
+            </video>
+            <div class="dscrim"></div>
+            <div class="dlbl">
+              <h3>Shoes</h3>
+              <span>See the ladder &rarr;</span>
+            </div>
+          </a>
+          <a class="dept" href="deals.html">
+            <video muted loop playsinline autoplay preload="metadata" poster="mrbins-feat-bike.jpg">
+              <source src="mrbins-feat-bike.mp4" type="video/mp4" />
+            </video>
+            <div class="dscrim"></div>
+            <div class="dlbl">
+              <h3>Bikes</h3>
+              <span>From $25 &rarr;</span>
+            </div>
+          </a>
+        </div>
+        <h2>Mystery <span class="o">boxes.</span></h2>
+        <p class="ssub">
+          Hand-packed from the bins, always worth more than you paid. Ships in 1&ndash;2 days.
+        </p>
+        <div class="mtiers">
+          <a class="mtier" href="mystery-box.html#shop"
+            ><span class="tn">Taster</span>
+            <div class="tp">$25</div>
+            <div class="td">3&ndash;4 finds</div>
+            <span class="tgo">Shop &rarr;</span></a
+          >
+          <a class="mtier" href="mystery-box.html#shop"
+            ><span class="tn">Classic</span>
+            <div class="tp">$50</div>
+            <div class="td">6&ndash;8 finds</div>
+            <span class="tgo">Shop &rarr;</span></a
+          >
+          <a class="mtier" href="mystery-box.html#shop"
+            ><span class="tn">Loaded</span>
+            <div class="tp">$100</div>
+            <div class="td">12&ndash;15 finds</div>
+            <span class="tgo">Shop &rarr;</span></a
+          >
+        </div>
+        <div class="scta">
+          <a class="dbtn gold" href="locations.html">Or come dig in store &rarr;</a>
         </div>
       </div>
       <script>
         (function () {
-          var sec = document.getElementById("mbpromo"),
-            v = document.getElementById("mbprvid");
-          if (!sec || !v) return;
-          var RM =
-            window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-          var cur = 0,
-            running = false;
-          v.addEventListener("loadedmetadata", function () {
-            if (RM) seekTo(v, v.duration - 0.05);
-          });
-          if (RM) return;
-          function target() {
-            /* closed until the card is fully on screen, fully open while it
-               is still fully on screen */
-            var r = v.getBoundingClientRect(),
-              vh = window.innerHeight;
-            var p = Math.min(1, Math.max(0, (vh - r.bottom + 10) / (vh * 0.3)));
-            p = p * p * (3 - 2 * p);
-            return v.duration ? p * (v.duration - 0.05) : 0;
+          var host = document.getElementById("shopBins");
+          if (!host) return;
+          var todayP = "$12";
+          try {
+            todayP = typeof tp !== "undefined" && tp !== null ? "$" + tp : "$" + LADDER[0];
+          } catch (e) {}
+          var te = document.getElementById("shopToday");
+          if (te) te.textContent = todayP + " ";
+          var items = [
+            ["Audio", "Sony Wireless Headphones", "$98", "mrbins-prod-head.jpg"],
+            ["Footwear", "Nike Running Sneakers", "$110", "mrbins-shoes-poster.jpg"],
+            ["Kitchen", "Keurig Coffee Maker", "$99", "mrbins-prod-coffee.jpg"],
+            ["Toys", "LEGO City Set", "$79", "mrbins-prod-lego.jpg"],
+            ["Audio", "JBL Bluetooth Speaker", "$89", "mrbins-prod-speaker.jpg"],
+            ["Home", "Modern Accent Lamp", "$59", "mrbins-lamp.png"],
+            ["Tech", "Camera Drone", "$129", "mrbins-prod-drone.jpg"],
+            ["Home", "Non-Perishable Food", "varies", "mrbins-dept-food.jpg"],
+          ];
+          var h = "";
+          for (var i = 0; i < items.length; i++) {
+            var it = items[i];
+            h +=
+              '<div class="bcard"><div class="bimg"><img src="' +
+              it[3] +
+              '" alt="' +
+              it[1] +
+              '" loading="lazy" /></div><div class="bmeta"><div class="bcat">' +
+              it[0] +
+              '</div><div class="bname">' +
+              it[1] +
+              '</div><div class="bprice"><span class="bnow">' +
+              (it[2] === "varies" ? "$1+" : todayP) +
+              "</span>" +
+              (it[2] === "varies" ? "" : '<span class="bwas">Retail ' + it[2] + "</span>") +
+              "</div></div></div>";
           }
-          function tick() {
-            var r = sec.getBoundingClientRect();
-            if (r.bottom < 0 || r.top > window.innerHeight) {
-              cur = target();
-              running = false;
-              return;
-            }
-            var t = target(),
-              d = t - cur;
-            if (Math.abs(d) < 0.004) {
-              cur = t;
-              running = false;
-              return;
-            }
-            cur += d * 0.28;
-            if (Math.abs(cur - v.currentTime) > 0.02) seekTo(v, cur);
-            requestAnimationFrame(tick);
-          }
-          window.addEventListener(
-            "scroll",
-            function () {
-              if (!running) {
-                running = true;
-                requestAnimationFrame(tick);
-              }
-            },
-            { passive: true },
-          );
+          host.innerHTML = h;
         })();
       </script>
-    </section>
-
-    <!-- REVIEWS -->
-    <section id="reviews">
-      <div class="rhead">
-        <h2>Every buyer reviews. <span class="o">Every one gets posted.</span></h2>
-        <p>
-          No cherry-picking. No games.
-          <a
-            href="https://www.google.com/search?q=Prime+Bins+reviews"
-            target="_blank"
-            rel="noopener"
-            >Check our Google reviews &rarr;</a
-          >
-        </p>
-        <div
-          class="gbadge"
-          style="
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 14px;
-            padding: 9px 16px;
-            border-radius: 999px;
-            background: #fff;
-            border: 1px solid rgba(11, 36, 71, 0.12);
-            box-shadow: 0 6px 22px rgba(11, 36, 71, 0.1);
-          "
-        >
-          <svg width="22" height="22" viewBox="0 0 48 48" aria-hidden="true">
-            <path
-              fill="#EA4335"
-              d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"
-            />
-            <path
-              fill="#4285F4"
-              d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"
-            />
-            <path
-              fill="#FBBC05"
-              d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"
-            />
-            <path
-              fill="#34A853"
-              d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"
-            />
-          </svg>
-          <span
-            style="
-              font-weight: 700;
-              color: #0b2447;
-              font-family: &quot;Hanken Grotesk&quot;, system-ui, sans-serif;
-            "
-            >Google Reviews</span
-          >
-          <span style="color: #fbbc05; letter-spacing: 2px"
-            >&#9733;&#9733;&#9733;&#9733;&#9733;</span
-          >
-        </div>
-      </div>
-      <div class="marquee"><div class="mtrack" id="mtrack"></div></div>
-    </section>
-
-    <section id="stores">
-      <style>
-        #stores {
-          background: #f4f7fb;
-          padding: clamp(56px, 7vw, 100px) clamp(20px, 5vw, 44px);
-          text-align: center;
-        }
-        #stores h2 {
-          font-weight: 800;
-          font-size: clamp(34px, 4.6vw, 58px);
-          color: #0b2447;
-          margin: 0 0 8px;
-        }
-        #stores .ssub {
-          color: var(--muted);
-          margin: 0 0 36px;
-          font-size: 16px;
-        }
-        #stores .locgrid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-          gap: 18px;
-          max-width: 1320px;
-          margin: 0 auto;
-        }
-        #stores .locard {
-          background: #fff;
-          border: 1px solid rgba(11, 36, 71, 0.08);
-          border-radius: 20px;
-          overflow: hidden;
-          box-shadow: 0 16px 40px rgba(11, 36, 71, 0.08);
-          text-align: left;
-          display: flex;
-          flex-direction: column;
-          transition:
-            transform 0.25s ease,
-            box-shadow 0.25s ease;
-        }
-        #stores .locard:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 26px 58px rgba(11, 36, 71, 0.14);
-        }
-        #stores .locimg {
-          aspect-ratio: 4 / 3;
-          overflow: hidden;
-          background: #e8edf5;
-        }
-        #stores .locimg img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          display: block;
-        }
-        #stores h3 {
-          margin: 14px 16px 4px;
-          font-family: "Bricolage Grotesque", sans-serif;
-          font-weight: 800;
-          font-size: 21px;
-          color: #0b2447;
-        }
-        #stores .locaddr {
-          margin: 0 16px 12px;
-          font-size: 13.5px;
-          line-height: 1.5;
-          color: var(--muted);
-          flex: 1;
-        }
-        #stores .locbtns {
-          display: flex;
-          gap: 8px;
-          flex-wrap: wrap;
-          margin: 0 16px 16px;
-        }
-        #stores .locbtns a {
-          font:
-            700 12.5px "Hanken Grotesk",
-            sans-serif;
-          color: #0b2447;
-          text-decoration: none;
-          padding: 8px 13px;
-          border-radius: 999px;
-          border: 1.5px solid rgba(11, 36, 71, 0.18);
-          transition: all 0.2s;
-        }
-        #stores .locbtns a:hover {
-          background: var(--orange);
-          border-color: var(--orange);
-          color: #fff;
-        }
-      </style>
-      <h2>Visit our <span class="o">stores.</span></h2>
-      <p class="ssub">
-        Five locations across Northeast Pennsylvania &mdash; new pallets landing every week.
-      </p>
-      <div class="locgrid">
-        <div class="locard">
-          <div class="locimg">
-            <img src="mrbins-loc-wilkesbarre.jpg" alt="Wilkes-Barre store" loading="lazy" />
-          </div>
-          <h3>Wilkes-Barre</h3>
-          <p class="locaddr">400 S Main Street, Wilkes-Barre, PA 18701</p>
-          <div class="locbtns">
-            <a href="tel:5705002637">570-500-2637</a>
-            <a
-              href="https://www.google.com/maps/dir//400%20S.%20Main%20St.%20Wilkes-Barre,%20PA%2018701"
-              target="_blank"
-              rel="noopener"
-              >Directions</a
-            >
-            <a href="https://www.facebook.com/MrBinsWilkes/" target="_blank" rel="noopener"
-              >Facebook</a
-            >
-          </div>
-        </div>
-        <div class="locard">
-          <div class="locimg">
-            <img src="mrbins-loc-bethlehem.jpg" alt="Bethlehem store" loading="lazy" />
-          </div>
-          <h3>Bethlehem</h3>
-          <p class="locaddr">104 E 3rd St, Bethlehem, PA 18015</p>
-          <div class="locbtns">
-            <a href="tel:5705002637">570-500-2637</a>
-            <a href="https://maps.app.goo.gl/a7dCWwpr3Hwb5f9k7" target="_blank" rel="noopener"
-              >Directions</a
-            >
-            <a
-              href="https://www.facebook.com/profile.php?id=61591918074337"
-              target="_blank"
-              rel="noopener"
-              >Facebook</a
-            >
-          </div>
-        </div>
-        <div class="locard">
-          <div class="locimg">
-            <img src="mrbins-loc-allentown.jpg" alt="Allentown store" loading="lazy" />
-          </div>
-          <h3>Allentown</h3>
-          <p class="locaddr">2300 Lehigh St, Allentown, PA 18103</p>
-          <div class="locbtns">
-            <a href="tel:5707635862">570-763-5862</a>
-            <a href="https://maps.app.goo.gl/EPof4gvC6XoFjNft5" target="_blank" rel="noopener"
-              >Directions</a
-            >
-            <a
-              href="https://www.facebook.com/profile.php?id=61588881423852"
-              target="_blank"
-              rel="noopener"
-              >Facebook</a
-            >
-          </div>
-        </div>
-        <div class="locard">
-          <div class="locimg">
-            <img src="mrbins-loc-hazleton.jpg" alt="Hazleton store" loading="lazy" />
-          </div>
-          <h3>Hazleton</h3>
-          <p class="locaddr">1099 N Church St, Hazle Township, PA 18202</p>
-          <div class="locbtns">
-            <a href="tel:2722237093">272-223-7093</a>
-            <a
-              href="https://www.google.com/maps/dir//Church+Hill+Mall,+North+Church+Street,+Hazleton,+PA"
-              target="_blank"
-              rel="noopener"
-              >Directions</a
-            >
-            <a
-              href="https://www.facebook.com/profile.php?id=61567723192235"
-              target="_blank"
-              rel="noopener"
-              >Facebook</a
-            >
-          </div>
-        </div>
-        <div class="locard">
-          <div class="locimg">
-            <img src="mrbins-loc-scranton.jpg" alt="Scranton store" loading="lazy" />
-          </div>
-          <h3>Scranton</h3>
-          <p class="locaddr">1790 N Keyser Ave, Scranton, PA 18508</p>
-          <div class="locbtns">
-            <a href="tel:2722281375">272-228-1375</a>
-            <a
-              href="https://www.google.com/maps/place/Keyser+Oak+Shopping+Center"
-              target="_blank"
-              rel="noopener"
-              >Directions</a
-            >
-            <a
-              href="https://www.facebook.com/profile.php?id=61583223531760"
-              target="_blank"
-              rel="noopener"
-              >Facebook</a
-            >
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ, answers must be confirmed with Shalom before launch -->
-    <section id="faq">
-      <div class="qwrap">
-        <div class="qhead">
-          <h2>Good <span class="o">questions.</span></h2>
-        </div>
-        <details>
-          <summary>What exactly is a bin store?</summary>
-          <p>
-            Truckloads of returns and overstock from Amazon and big-box retailers get delivered to
-            us on pallets. We dump them &mdash; unsorted &mdash; into big blue bins, and everything
-            in the store is <b>one price that day</b>. You dig through and find things worth far
-            more than you pay.
-          </p>
-        </details>
-        <details>
-          <summary>How does the price work?</summary>
-          <p>
-            Simple: <b>$14 on Sunday</b>, and it drops a dollar every day down to
-            <b>$9 on Friday</b>. Every item in the bins is the same price. Come early in the week
-            for the best selection, or Friday for the lowest price.
-          </p>
-        </details>
-        <details>
-          <summary>Is everything brand new?</summary>
-          <p>
-            Most items are brand-new overstock or unopened returns &mdash; but it&rsquo;s a treasure
-            hunt, so check anything you pick up before you buy. That&rsquo;s part of the dig.
-          </p>
-        </details>
-        <details class="mtrim">
-          <summary>Why are you closed on Saturdays?</summary>
-          <p>
-            Saturday is restock day. The trucks come in, we dump fresh pallets into the bins, and
-            Sunday morning the store opens stuffed full at $14. That&rsquo;s why Sunday has the most
-            to pick from.
-          </p>
-        </details>
-        <details class="mtrim">
-          <summary>Do I need a ticket or membership?</summary>
-          <p>
-            Nope &mdash; just walk in. Sundays are the busiest, so come early if you want first
-            crack at the fresh bins.
-          </p>
-        </details>
-        <details>
-          <summary>Can&rsquo;t make it in store?</summary>
-          <p>
-            That&rsquo;s what the <b>mystery boxes</b> are for &mdash; we hand-pack finds from the
-            bins and ship them anywhere.
-            <a href="mystery-box.html" style="color: var(--blue); font-weight: 700"
-              >Pick your size &uarr;</a
-            >
-          </p>
-        </details>
-      </div>
-    </section>
-
-    <!-- CAREERS -->
-
-    <!-- MOBILE LOCATIONS (phones 
-
-    <!-- BRAND SIGN-OFF: live Mr. Bins logo -->
-
-    <!-- FOOTER -->
-
-    <section id="careers" aria-label="Careers at Mr. Bins">
-      <div class="cwrap">
-        <h2>Come work <span class="o">the bins.</span></h2>
-        <p class="sub">
-          Fast-paced, friendly, and never boring &mdash; help unload the truckloads, stock the bins,
-          and make people&rsquo;s day across our four Northeast PA stores.
-        </p>
-        <div class="cperks">
-          <div class="cperk">Flexible shifts<span>full &amp; part-time</span></div>
-          <div class="cperk">Team discount<span>on everything</span></div>
-          <div class="cperk">Room to grow<span>we promote from within</span></div>
-          <div class="cperk">Good people<span>a crew that has fun</span></div>
-        </div>
-        <a class="ccta" href="mailto:careers@primebins.com?subject=Careers%20at%20Mr.%20Bins"
-          >See open roles &rarr;</a
-        >
-      </div>
     </section>
 
     <footer id="footer">
@@ -4994,14 +4239,19 @@
 
     <section
       id="brandsign"
-      style="background: #fff; padding: 6px 0 10px; display: flex; justify-content: center"
+      style="
+        background: #fff;
+        padding: clamp(28px, 6vh, 64px) 0;
+        display: flex;
+        justify-content: center;
+      "
     >
       <video
         autoplay
         muted
         loop
         playsinline
-        style="width: min(380px, 56vw); height: auto; display: block"
+        style="width: min(680px, 86vw); height: auto; display: block"
         poster="mrbins-logo.png"
         aria-label="Mr. Bins"
       >
@@ -5051,7 +4301,7 @@
             } catch (e) {}
           }
           /* retarget anchors for the condensed phone flow */
-          [].forEach.call(document.querySelectorAll('a[href="#footer"]'), function (a) {
+          [].forEach.call(document.querySelectorAll('a[href="index.html#footer"]'), function (a) {
             a.setAttribute("href", "#locm");
           });
           [].forEach.call(document.querySelectorAll(".mnav a, .fnav a"), function (a) {
