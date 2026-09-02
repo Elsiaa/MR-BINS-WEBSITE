@@ -1575,7 +1575,7 @@
       }
       .lygrid {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 14px;
         margin: clamp(28px, 4vw, 44px) 0;
       }
@@ -4050,8 +4050,8 @@
           <div class="lytext">
             <h2>Never miss a <span class="o">drop day.</span></h2>
             <p class="sub">
-              Earn points on every visit and turn them into cash for the bins &mdash; free to join,
-              50 points on the spot.
+              We reward the people who keep coming back: earn points on every visit and turn them into
+              cash for already great-priced finds. Join free and start racking up points instantly.
             </p>
             <form
               id="lyjoin"
@@ -4126,6 +4126,22 @@
                   "! Watch your texts for the next drop day. &#128230;</div>";
               });
             </script>
+            <p
+              style="
+                margin-top: 14px;
+                font:
+                  600 13px &quot;Hanken Grotesk&quot;,
+                  sans-serif;
+                color: var(--muted);
+              "
+            >
+              Questions about your points?
+              <a
+                href="mailto:loyalty@primebinspa.com"
+                style="color: var(--blue, #0e3fa6); font-weight: 700"
+                >loyalty@primebinspa.com</a
+              >
+            </p>
           </div>
           <img
             class="lyhero"
@@ -4168,6 +4184,11 @@
             </div>
             <h3>Member-only bonus points</h3>
             <p>Members-only point promotions all year — and top earners unlock extra perks.</p>
+          </div>
+          <div class="lycard">
+            <div class="limg"><img src="mrbins-store.jpg" alt="" loading="lazy" /></div>
+            <h3>Top earners get more</h3>
+            <p>Climb the point leaderboard and extra perks and offers come your way.</p>
           </div>
         </div>
 
@@ -4238,7 +4259,7 @@
         "
       >
         <a
-          href="https://elsiaa.com/design"
+          href="https://www.elsiaa.com/designs"
           target="_blank"
           rel="noopener"
           style="
