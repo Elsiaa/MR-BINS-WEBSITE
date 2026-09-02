@@ -3105,40 +3105,18 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        height: clamp(48px, 6vh, 60px);
-        min-width: clamp(140px, 15vw, 190px);
-        padding: 0 26px;
+        width: clamp(96px, 10vw, 132px);
+        height: clamp(58px, 6.5vh, 74px);
         background: #fff;
-        border-radius: 999px;
+        border-radius: 18px;
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
         flex: none;
       }
-      .bword {
-        font-family: "Bricolage Grotesque", sans-serif;
-        font-weight: 800;
-        font-size: clamp(17px, 1.9vw, 23px);
-        white-space: nowrap;
-        letter-spacing: 0.01em;
-        line-height: 1;
-      }
-      .bword.up {
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-        font-size: clamp(15px, 1.7vw, 20px);
-      }
-      .bword.low {
-        text-transform: lowercase;
-      }
-      .bword.it {
-        font-style: italic;
-      }
-      .bword.arc {
-        font-family: "Archivo", sans-serif;
-        font-weight: 900;
-      }
-      .bword.mono {
-        font-family: "Space Mono", monospace;
-        font-weight: 700;
+      .blogo img {
+        width: 52%;
+        max-width: 58px;
+        height: auto;
+        display: block;
       }
 
       /* careers */
@@ -3661,10 +3639,7 @@
         .dhead h2 {
           font-size: clamp(26px, 8vw, 34px);
         }
-        .dstrip .blogo img {
-          height: 20px;
-          mix-blend-mode: multiply;
-        }
+
         /* featured: tight 2x2 on phones — titles carry it, prose hides */
         #featured .fgrid {
           grid-template-columns: 1fr 1fr !important;
@@ -4027,24 +4002,9 @@
             gap: clamp(34px, 4vw, 60px);
             align-items: center;
             width: max-content;
-            animation: dslide 45s linear infinite;
+            animation: dslide 150s linear infinite;
           }
-          .dstrip .blogo {
-            height: clamp(26px, 3.8vh, 36px);
-          }
-          .dstrip .blogo img {
-            height: 100%;
-            width: auto;
-            filter: none;
-            opacity: 1;
-          }
-          .dstrip .bword {
-            font:
-              800 clamp(15px, 1.6vw, 20px) "Bricolage Grotesque",
-              sans-serif;
-            color: #0b2447;
-            white-space: nowrap;
-          }
+
           @keyframes dslide {
             from {
               transform: translateX(0);
@@ -4089,37 +4049,6 @@
           Top brands <span style="color: #f89b1c">in the bins</span>
         </div>
         <div class="dstrip">
-          <style>
-            .dstrip {
-              margin-top: clamp(12px, 2vh, 26px);
-              overflow: hidden;
-            }
-            .dstrip .strack {
-              display: flex;
-              gap: clamp(28px, 3.4vw, 52px);
-              align-items: center;
-              width: max-content;
-              animation: dslide 24s linear infinite;
-            }
-            .dstrip .blogo img {
-              height: clamp(22px, 3.4vh, 32px);
-            }
-            .dstrip .bword {
-              font:
-                800 clamp(15px, 1.6vw, 20px) "Bricolage Grotesque",
-                sans-serif;
-              color: rgba(11, 36, 71, 0.55);
-              white-space: nowrap;
-            }
-            @keyframes dslide {
-              from {
-                transform: translateX(0);
-              }
-              to {
-                transform: translateX(-50%);
-              }
-            }
-          </style>
           <div class="strack" id="bmarq"></div>
         </div>
         <div class="dbtns">
@@ -6833,90 +6762,51 @@
         })();
       })();
 
-      /* ---- brand ticker: from-scratch wordmark tiles, uniform white pills, true brand colors ---- */
+      /* ---- brand ticker: real brand marks on uniform white pills ---- */
       (function () {
         var t = document.getElementById("bmarq");
         if (!t) return;
         var B = [
-          ["NIKE", "logos/nike.svg", "#111111", "up arc"],
-          ["adidas", "logos/adidas.svg", "#000000", "low"],
-          ["SONY", "logos/sony.svg", "#000000", "up arc"],
-          ["SAMSUNG", "logos/samsung.svg", "#1428a0", "up"],
-          ["LEGO", "#d01012", "up arc"],
-          ["Nintendo", "#e60012", "arc"],
-          ["BOSE", "logos/bose.svg", "#000000", "up arc"],
-          ["dyson", "#333333", "low mono"],
-          ["JBL", "logos/jbl.svg", "#ff3300", "up arc"],
-          ["Beats", "logos/beats.svg", "#e01f3d", "it"],
-          ["Anker", "#00a7e1", ""],
-          ["Logitech", "#00b8fc", ""],
-          ["PHILIPS", "#0b5ed7", "up"],
-          ["Sharpie", "#111111", "it"],
-          ["Crayola", "#ffb114", "arc"],
-          ["Fisher-Price", "#e31837", ""],
-          ["Hasbro", "#0057b8", "arc"],
-          ["Mattel", "#e4002b", "arc"],
-          ["Barbie", "#e0218a", "it"],
-          ["HOT WHEELS", "#0a4eb0", "up it arc"],
-          ["NERF", "#f26522", "up it arc"],
-          ["Levi's", "#c41230", "arc"],
-          ["Carhartt", "#ee7623", ""],
-          ["THE NORTH FACE", "logos/thenorthface.svg", "#000000", "up"],
-          ["Columbia", "#0071ce", ""],
-          ["UNDER ARMOUR", "logos/underarmour.svg", "#000000", "up"],
-          ["PUMA", "logos/puma.svg", "#000000", "up arc"],
-          ["Reebok", "logos/reebok.svg", "#e41b23", "it arc"],
-          ["new balance", "logos/newbalance.svg", "#cf0a2c", "low it"],
-          ["SKECHERS", "#0033a0", "up it arc"],
-          ["crocs", "#6bc04e", "low arc"],
-          ["VANS", "#c8102e", "up arc"],
-          ["CONVERSE", "#111111", "up"],
-          ["Champion", "#1f2f6b", "it"],
-          ["Hanes", "#c8102e", ""],
-          ["YETI", "logos/yeti.svg", "#00263a", "up arc"],
-          ["STANLEY", "#1a1a1a", "up arc"],
-          ["Contigo", "#0072ce", ""],
-          ["KitchenAid", "#c41230", ""],
-          ["Cuisinart", "#b31942", "it"],
-          ["NINJA", "#111111", "up arc"],
-          ["Keurig", "#3d2b1f", "arc"],
-          ["Nespresso", "#000000", ""],
-          ["Instant Pot", "#c8102e", "arc"],
-          ["BLACK+DECKER", "#e65300", "up arc"],
-          ["DEWALT", "#febd17", "up arc"],
-          ["RYOBI", "#8dc63f", "up it arc"],
-          ["OXO", "#111111", "up arc"],
-          ["Pyrex", "#d31245", "arc"],
-          ["Rubbermaid", "#c8102e", ""],
-          ["AmazonBasics", "#ff9900", ""],
-          ["fitbit", "logos/fitbit.svg", "#00b0b9", "low mono"],
-          ["GARMIN", "logos/garmin.svg", "#000000", "up"],
-          ["GoPro", "#0085c9", "arc"],
-          ["Ray-Ban", "#c8102e", "it"],
-          ["OAKLEY", "#111111", "up arc"],
-          ["Timberland", "#5c4033", ""],
-          ["Dickies", "#1e3f7a", "arc"],
-          ["Apple", "logos/apple.svg", "#555555", ""],
+          "nike",
+          "adidas",
+          "apple",
+          "sony",
+          "samsung",
+          "lg",
+          "panasonic",
+          "bose",
+          "jbl",
+          "beats",
+          "sennheiser",
+          "playstation",
+          "razer",
+          "dji",
+          "roku",
+          "hp",
+          "dell",
+          "lenovo",
+          "thenorthface",
+          "underarmour",
+          "puma",
+          "reebok",
+          "newbalance",
+          "yeti",
+          "fitbit",
+          "garmin",
+          "bosch",
+          "delonghi",
+          "craftsman",
         ];
         function fill() {
           for (var i = 0; i < B.length; i++) {
             var w = document.createElement("span");
             w.className = "blogo";
-            if (B[i].length === 4) {
-              /* real brand mark */
-              var img = document.createElement("img");
-              img.src = B[i][1];
-              img.alt = B[i][0];
-              img.style.height = "56%";
-              img.style.width = "auto";
-              w.appendChild(img);
-            } else {
-              var sp = document.createElement("span");
-              sp.className = "bword" + (B[i][2] ? " " + B[i][2] : "");
-              sp.textContent = B[i][0];
-              sp.style.color = B[i][1];
-              w.appendChild(sp);
-            }
+            var img = document.createElement("img");
+            img.src = "logos/" + B[i] + ".svg";
+            img.alt = B[i];
+            img.width = 52;
+            img.height = 52;
+            w.appendChild(img);
             t.appendChild(w);
           }
         }
