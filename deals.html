@@ -3744,7 +3744,12 @@
             >See today&rsquo;s prices &darr;</a
           >
         </div>
-        <div class="dealrow dz-blue" id="ladders" style="scroll-margin-top: 110px">
+        <div
+          class="dealrow dz-blue"
+          id="ladders"
+          data-dept="general"
+          style="scroll-margin-top: 110px"
+        >
           <div class="dimg">
             <img src="mrbins-dept-bins.jpg" alt="General Bin Items" loading="lazy" />
           </div>
@@ -3766,7 +3771,7 @@
             <div class="dday closed"><span class="dn">Sat</span><span class="dp">Closed</span></div>
           </div>
         </div>
-        <div class="dealrow dz-green">
+        <div class="dealrow dz-green" data-dept="shoes">
           <div class="dimg"><img src="mrbins-dept-shoes.jpg" alt="Shoes" loading="lazy" /></div>
           <div class="dlabel">
             <h3>Shoes</h3>
@@ -3786,7 +3791,7 @@
             <div class="dday closed"><span class="dn">Sat</span><span class="dp">Closed</span></div>
           </div>
         </div>
-        <div class="dealrow dz-purple">
+        <div class="dealrow dz-purple" data-dept="clothing">
           <div class="dimg">
             <img src="mrbins-dept-clothes.jpg" alt="Clothing" loading="lazy" />
           </div>
@@ -3808,7 +3813,7 @@
             <div class="dday closed"><span class="dn">Sat</span><span class="dp">Closed</span></div>
           </div>
         </div>
-        <div class="dealrow dz-orange">
+        <div class="dealrow dz-orange" data-dept="food">
           <div class="dimg"><img src="mrbins-dept-food.jpg" alt="Food" /></div>
           <div class="dlabel">
             <h3>Food</h3>
@@ -3832,6 +3837,92 @@
     </section>
 
     <!-- LOYALTY, member reward program -->
+
+    <style>
+      .dday.tdy {
+        outline: 2.5px solid #f89b1c;
+        outline-offset: -2.5px;
+        border-radius: 12px;
+        position: relative;
+      }
+      .dday.tdy::after {
+        content: "today";
+        position: absolute;
+        top: -9px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #f89b1c;
+        color: #fff;
+        font:
+          800 8.5px "Hanken Grotesk",
+          sans-serif;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 2px 8px;
+        border-radius: 999px;
+        white-space: nowrap;
+      }
+    </style>
+    <script>
+      /* department ladders render from pricing.js so the admin portal controls them */
+      (function () {
+        var names = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        var D = window.MRB_DEPTS || {};
+        document.querySelectorAll(".dealrow[data-dept]").forEach(function (row) {
+          var d = D[row.dataset.dept];
+          if (!d) return;
+          var lbl = row.querySelector(".dlabel");
+          if (lbl) {
+            var h3 = lbl.querySelector("h3"),
+              rs = lbl.querySelector(".restock"),
+              tg = lbl.querySelector(".dtag");
+            if (h3) h3.textContent = d.name;
+            if (rs) rs.textContent = d.restock;
+            if (tg) tg.textContent = d.tag;
+          }
+          var wk = row.querySelector(".dweek");
+          if (!wk) return;
+          var h = "";
+          for (var i = 0; i < 7; i++) {
+            var p = d.prices[i];
+            var cls =
+              "dday" +
+              (p === null ? " closed" : "") +
+              (i === d.drop ? " drop" : "") +
+              (i === window.MRB_DAY && p !== null ? " tdy" : "");
+            h +=
+              '<div class="' +
+              cls +
+              '"><span class="dn">' +
+              names[i] +
+              "</span>" +
+              (i === d.drop ? '<span class="badge">Drop day!</span>' : "") +
+              '<span class="dp">' +
+              (p === null ? "Closed" : "$" + p) +
+              "</span></div>";
+          }
+          wk.innerHTML = h;
+        });
+      })();
+    </script>
+    <div style="text-align: center; padding: 26px 0 34px">
+      <a
+        href="admin.html"
+        aria-label="Admin"
+        style="
+          display: inline-block;
+          padding: 8px 18px;
+          border-radius: 999px;
+          border: 1px solid rgba(11, 36, 71, 0.18);
+          color: rgba(11, 36, 71, 0.45);
+          font:
+            700 13px &quot;Space Mono&quot;,
+            monospace;
+          text-decoration: none;
+        "
+        >770</a
+      >
+    </div>
     <footer id="footer">
       <div class="fwrap">
         <div class="frow">

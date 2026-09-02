@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Admin · Mr. Bins</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Hanken+Grotesk:wght@400;700;800&family=Space+Mono:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="pricing.js"></script>
+    <style>
+      :root {
+        --navy: #0b2447;
+        --orange: #f89b1c;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
+        background: #eef2f8;
+        color: var(--navy);
+        min-height: 100vh;
+      }
+      .wrap {
+        max-width: 880px;
+        margin: 0 auto;
+        padding: 40px 20px 80px;
+      }
+      h1 {
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-weight: 800;
+        font-size: clamp(28px, 4vw, 40px);
+        margin: 0 0 4px;
+      }
+      h2 {
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-weight: 800;
+        font-size: 19px;
+        margin: 0 0 12px;
+      }
+      .card {
+        background: #fff;
+        border: 1px solid rgba(11, 36, 71, 0.1);
+        border-radius: 18px;
+        padding: 22px;
+        margin-top: 18px;
+        box-shadow: 0 12px 30px rgba(11, 36, 71, 0.07);
+      }
+      label {
+        display: block;
+        font:
+          700 11px "Space Mono",
+          monospace;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #64748f;
+        margin: 0 0 4px;
+      }
+      input,
+      select {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1.5px solid rgba(11, 36, 71, 0.15);
+        border-radius: 10px;
+        font:
+          700 15px "Hanken Grotesk",
+          sans-serif;
+        color: var(--navy);
+        background: #fff;
+      }
+      input:focus,
+      select:focus {
+        outline: 3px solid var(--orange);
+        outline-offset: 1px;
+      }
+      .grid7 {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 8px;
+      }
+      .grid7 .cell label {
+        text-align: center;
+      }
+      .grid7 input {
+        text-align: center;
+        padding: 10px 4px;
+      }
+      .row2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-top: 12px;
+      }
+      .btn {
+        display: inline-block;
+        border: 0;
+        cursor: pointer;
+        font:
+          800 15px "Hanken Grotesk",
+          sans-serif;
+        color: #fff;
+        background: var(--navy);
+        padding: 13px 26px;
+        border-radius: 999px;
+      }
+      .btn.gold {
+        background: var(--orange);
+      }
+      .btn:disabled {
+        opacity: 0.5;
+        cursor: default;
+      }
+      .note {
+        font-size: 13px;
+        color: #64748f;
+        line-height: 1.5;
+      }
+      .msg {
+        margin-top: 12px;
+        font-weight: 700;
+        font-size: 14px;
+      }
+      .msg.ok {
+        color: #2e9e4f;
+      }
+      .msg.err {
+        color: #c8102e;
+      }
+      #panel {
+        display: none;
+      }
+      .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      a.back {
+        color: #1f66c8;
+        font-weight: 700;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="topbar">
+        <div>
+          <h1>Mr. Bins <span style="color: var(--orange)">Admin</span></h1>
+          <a class="back" href="index.html">&larr; Back to site</a>
+        </div>
+        <button class="btn" id="logout" style="display: none">Log out</button>
+      </div>
+
+      <div class="card" id="gate">
+        <h2>Sign in</h2>
+        <label>Username</label>
+        <input type="text" id="user" autocomplete="username" />
+        <label style="margin-top: 12px">Passcode</label>
+        <input type="password" id="pass" autocomplete="current-password" />
+        <div style="margin-top: 14px">
+          <button class="btn gold" id="login">Sign in &rarr;</button>
+        </div>
+        <div class="msg err" id="gateMsg"></div>
+      </div>
+
+      <div id="panel">
+        <div class="card">
+          <h2>Main bin ladder (home page)</h2>
+          <div class="grid7" id="mainLadder"></div>
+          <p class="note" style="margin-bottom: 0">Leave a day blank to mark it closed.</p>
+        </div>
+
+        <div id="deptCards"></div>
+
+        <div class="card">
+          <h2>Publish</h2>
+          <p class="note">
+            <b>Preview on this device</b> saves instantly in this browser only, so you can check
+            every page before going live. <b>Publish to live site</b> commits the new prices to
+            GitHub and updates the real website for everyone (takes a minute to deploy). Publishing
+            needs a GitHub token with access to Elsiaa/MR-BINS-WEBSITE; it stays in this browser.
+          </p>
+          <label>GitHub token (fine-grained, contents read/write)</label>
+          <input type="password" id="ghtok" placeholder="github_pat_..." />
+          <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px">
+            <button class="btn" id="preview">Preview on this device</button>
+            <button class="btn gold" id="publish">Publish to live site &rarr;</button>
+            <button class="btn" id="clearprev" style="background: #64748f">Clear preview</button>
+          </div>
+          <div class="msg" id="pubMsg"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        var DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        var USER = "mrbinsadmin";
+        var PASS = "chai18moshiach!";
+        var gate = document.getElementById("gate"),
+          panel = document.getElementById("panel"),
+          logout = document.getElementById("logout");
+
+        function show() {
+          gate.style.display = "none";
+          panel.style.display = "block";
+          logout.style.display = "inline-block";
+          build();
+        }
+        document.getElementById("login").addEventListener("click", function () {
+          if (
+            document.getElementById("user").value.trim() === USER &&
+            document.getElementById("pass").value === PASS
+          ) {
+            sessionStorage.setItem("mrb-admin", "1");
+            show();
+          } else {
+            document.getElementById("gateMsg").textContent = "Wrong passcode.";
+          }
+        });
+        document.getElementById("pass").addEventListener("keydown", function (e) {
+          if (e.key === "Enter") document.getElementById("login").click();
+        });
+        logout.addEventListener("click", function () {
+          sessionStorage.removeItem("mrb-admin");
+          location.reload();
+        });
+        if (sessionStorage.getItem("mrb-admin") === "1") show();
+
+        function cell(id, val) {
+          return (
+            '<div class="cell"><label>' +
+            id +
+            '</label><input inputmode="numeric" data-day="' +
+            id +
+            '" value="' +
+            (val === null || val === undefined ? "" : val) +
+            '" /></div>'
+          );
+        }
+
+        function build() {
+          var ml = document.getElementById("mainLadder");
+          ml.innerHTML = DAYS.map(function (d, i) {
+            return cell(d, window.MRB_LADDER[i]);
+          }).join("");
+          var host = document.getElementById("deptCards");
+          host.innerHTML = "";
+          Object.keys(window.MRB_DEPTS).forEach(function (k) {
+            var d = window.MRB_DEPTS[k];
+            var c = document.createElement("div");
+            c.className = "card";
+            c.dataset.dept = k;
+            c.innerHTML =
+              "<h2>" +
+              d.name +
+              '</h2><div class="grid7">' +
+              DAYS.map(function (dd, i) {
+                return cell(dd, d.prices[i]);
+              }).join("") +
+              '</div><div class="row2"><div><label>Restock line</label><input class="f-restock" value="' +
+              d.restock.replace(/"/g, "&quot;") +
+              '" /></div><div><label>Tag line</label><input class="f-tag" value="' +
+              d.tag.replace(/"/g, "&quot;") +
+              '" /></div></div><div class="row2"><div><label>Drop day</label><select class="f-drop">' +
+              DAYS.map(function (dd, i) {
+                return (
+                  '<option value="' +
+                  i +
+                  '"' +
+                  (i === d.drop ? " selected" : "") +
+                  ">" +
+                  dd +
+                  "</option>"
+                );
+              }).join("") +
+              "</select></div></div>";
+            host.appendChild(c);
+          });
+        }
+
+        function collect() {
+          var ladder = {};
+          document.querySelectorAll("#mainLadder input").forEach(function (inp, i) {
+            var v = inp.value.trim();
+            ladder[i] = v === "" ? null : parseFloat(v);
+          });
+          var depts = {};
+          document.querySelectorAll("#deptCards .card").forEach(function (c) {
+            var k = c.dataset.dept,
+              base = window.MRB_DEPTS[k];
+            var prices = [];
+            c.querySelectorAll(".grid7 input").forEach(function (inp) {
+              var v = inp.value.trim();
+              prices.push(v === "" ? null : parseFloat(v));
+            });
+            depts[k] = {
+              name: base.name,
+              restock: c.querySelector(".f-restock").value,
+              tag: c.querySelector(".f-tag").value,
+              drop: parseInt(c.querySelector(".f-drop").value, 10),
+              prices: prices,
+            };
+          });
+          return { ladder: ladder, depts: depts };
+        }
+
+        function pricingSource(cfg) {
+          return (
+            "/* Single source of truth for all pricing. Edited via admin.html. */\n" +
+            "window.PRICE_CONFIG = {\n  ladder: " +
+            JSON.stringify(cfg.ladder) +
+            ',\n  closedLabel: "Closed · restock",\n};\n' +
+            "window.MRB_DEPTS = " +
+            JSON.stringify(cfg.depts, null, 2) +
+            ";\n" +
+            'try {\n  var _ov = JSON.parse(localStorage.getItem("mrb-pricing-override") || "null");\n' +
+            "  if (_ov && _ov.ladder) window.PRICE_CONFIG.ladder = _ov.ladder;\n" +
+            "  if (_ov && _ov.depts) window.MRB_DEPTS = _ov.depts;\n} catch (e) {}\n" +
+            "window.MRB_LADDER = window.PRICE_CONFIG.ladder;\n" +
+            "window.MRB_DAY = (function () {\n  try {\n" +
+            '    var w = new Intl.DateTimeFormat("en-US", { weekday: "short", timeZone: "America/New_York" }).format(new Date());\n' +
+            "    return { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 }[w];\n" +
+            "  } catch (e) {\n    return new Date().getDay();\n  }\n})();\n"
+          );
+        }
+
+        var msg = document.getElementById("pubMsg");
+        document.getElementById("preview").addEventListener("click", function () {
+          localStorage.setItem("mrb-pricing-override", JSON.stringify(collect()));
+          msg.className = "msg ok";
+          msg.textContent =
+            "Preview saved on this device. Open any page to see it. Visitors are unaffected.";
+        });
+        document.getElementById("clearprev").addEventListener("click", function () {
+          localStorage.removeItem("mrb-pricing-override");
+          msg.className = "msg ok";
+          msg.textContent = "Preview cleared. This device shows live prices again.";
+        });
+
+        var savedTok = localStorage.getItem("mrb-gh-token");
+        if (savedTok) document.getElementById("ghtok").value = savedTok;
+
+        document.getElementById("publish").addEventListener("click", async function () {
+          var tok = document.getElementById("ghtok").value.trim();
+          if (!tok) {
+            msg.className = "msg err";
+            msg.textContent = "Paste a GitHub token to publish.";
+            return;
+          }
+          localStorage.setItem("mrb-gh-token", tok);
+          var btn = this;
+          btn.disabled = true;
+          msg.className = "msg";
+          msg.textContent = "Publishing…";
+          try {
+            var body = pricingSource(collect());
+            var api = "https://api.github.com/repos/Elsiaa/MR-BINS-WEBSITE/contents/pricing.js";
+            var head = {
+              Authorization: "Bearer " + tok,
+              Accept: "application/vnd.github+json",
+            };
+            var cur = await fetch(api, { headers: head }).then(function (r) {
+              if (!r.ok) throw new Error("GitHub says " + r.status + " reading pricing.js");
+              return r.json();
+            });
+            var put = await fetch(api, {
+              method: "PUT",
+              headers: head,
+              body: JSON.stringify({
+                message: "Update prices via admin portal",
+                content: btoa(unescape(encodeURIComponent(body))),
+                sha: cur.sha,
+              }),
+            });
+            if (!put.ok) throw new Error("GitHub says " + put.status + " writing pricing.js");
+            localStorage.removeItem("mrb-pricing-override");
+            msg.className = "msg ok";
+            msg.textContent = "Published! The live site updates in about a minute.";
+          } catch (e) {
+            msg.className = "msg err";
+            msg.textContent = String(e.message || e);
+          }
+          btn.disabled = false;
+        });
+      })();
+    </script>
+  </body>
+</html>
