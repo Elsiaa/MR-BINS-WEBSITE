@@ -1879,33 +1879,70 @@
       .ladder {
         display: grid;
         grid-template-columns: repeat(7, 1fr);
-        gap: 10px;
+        gap: clamp(8px, 1.2vw, 16px);
         margin: clamp(30px, 3.5vw, 46px) auto 0;
         max-width: 900px;
+        align-items: end;
       }
       .day {
-        background: #fff;
-        border: 1px solid var(--grey);
-        border-radius: 14px;
-        padding: 16px 6px;
-      }
-      .day .dn {
-        font-family: "Space Mono", monospace;
-        font-size: 12px;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--muted);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 8px;
+        padding: 0;
+        background: none;
+        border: 0;
       }
       .day .dp {
         font-family: "Bricolage Grotesque";
         font-weight: 800;
-        font-size: clamp(20px, 2.4vw, 30px);
-        margin-top: 6px;
+        font-size: clamp(17px, 2vw, 26px);
+        color: var(--navy, #0b2447);
       }
-      .day.today {
-        background: linear-gradient(160deg, #12351f, #0d7a37);
-        border-color: transparent;
+      .day .lbar {
+        width: 100%;
+        max-width: 74px;
+        border-radius: 10px 10px 4px 4px;
+        background: linear-gradient(180deg, #1f66c8, #0b2447);
+        transition: height 0.4s ease;
+      }
+      .day .dn {
+        font-family: "Space Mono", monospace;
+        font-size: 11.5px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .day .lbest {
+        font:
+          800 10px "Hanken Grotesk",
+          sans-serif;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
         color: #fff;
+        background: var(--orange);
+        border-radius: 999px;
+        padding: 4px 10px;
+      }
+      .day .lbest.closedtag {
+        background: none;
+        color: var(--muted);
+        border: 1px solid var(--grey);
+      }
+      .day.closed .dp {
+        color: var(--muted);
+      }
+      .day.closed .lbar {
+        background: var(--grey);
+      }
+      .day.today .dp {
+        color: var(--orange);
+        font-size: clamp(21px, 2.5vw, 32px);
+      }
+      .day.today .lbar {
+        background: linear-gradient(180deg, var(--orange), #d97614);
+        box-shadow: 0 10px 24px rgba(248, 155, 28, 0.35);
       }
       .day.today .dn {
         color: rgba(255, 255, 255, 0.8);
@@ -5910,15 +5947,24 @@
         if (!el) return; /* page without the price ladder */
         for (var d = 0; d < 7; d++) {
           var val = LADDER[d];
+          var barH = val === null ? 10 : 22 + (val - 9) * 10;
           h +=
             '<div class="day' +
             (d === day ? " today" : "") +
             (val === null ? " closed" : "") +
-            '"><div class="dn">' +
+            '"><div class="dp">' +
+            (val === null ? "&mdash;" : "$" + val) +
+            '</div><div class="lbar" style="height:' +
+            barH +
+            'px"></div><div class="dn">' +
             names[d] +
-            '</div><div class="dp">' +
-            (val === null ? "Closed" : "$" + val) +
-            "</div></div>";
+            "</div>" +
+            (d === 5
+              ? '<div class="lbest">lowest</div>'
+              : val === null
+                ? '<div class="lbest closedtag">closed</div>'
+                : "") +
+            "</div>";
         }
         el.innerHTML = h;
       })();
