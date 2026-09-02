@@ -4047,33 +4047,65 @@
       <style>
         #stores {
           background: #f4f7fb;
-          padding: clamp(56px, 7vw, 100px) clamp(20px, 5vw, 44px);
+          padding: 0 0 clamp(64px, 7vw, 110px);
+        }
+        #stores .shero {
+          background: linear-gradient(180deg, #0b2447, #0e3fa6);
+          color: #fff;
           text-align: center;
+          padding: clamp(88px, 10vw, 150px) clamp(20px, 5vw, 44px) clamp(72px, 8vw, 120px);
         }
-        #stores h2 {
+        #stores .shero h1 {
+          font-family: "Bricolage Grotesque", sans-serif;
           font-weight: 800;
-          font-size: clamp(34px, 4.6vw, 58px);
-          color: #0b2447;
-          margin: 0 0 8px;
+          font-size: clamp(38px, 5.6vw, 72px);
+          letter-spacing: -0.02em;
+          margin: 0 0 14px;
         }
-        #stores .ssub {
-          color: var(--muted);
-          margin: 0 0 36px;
-          font-size: 16px;
+        #stores .shero .o {
+          color: var(--orange);
+        }
+        #stores .shero p {
+          color: rgba(255, 255, 255, 0.75);
+          font-size: clamp(15px, 1.5vw, 18px);
+          max-width: 50ch;
+          margin: 0 auto 22px;
+          line-height: 1.6;
+        }
+        #stores .hrschip {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          background: rgba(255, 255, 255, 0.1);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          border-radius: 999px;
+          padding: 12px 24px;
+          font:
+            700 clamp(13px, 1.3vw, 16px) "Archivo",
+            sans-serif;
+        }
+        #stores .hrschip .dot {
+          width: 9px;
+          height: 9px;
+          border-radius: 50%;
+          background: #35e07c;
+          box-shadow: 0 0 10px #35e07c;
         }
         #stores .locgrid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+          grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
           gap: 18px;
-          max-width: 1320px;
-          margin: 0 auto;
+          max-width: 1360px;
+          margin: clamp(-44px, -4vw, -60px) auto 0;
+          padding: 0 clamp(20px, 4vw, 44px);
+          position: relative;
         }
         #stores .locard {
           background: #fff;
           border: 1px solid rgba(11, 36, 71, 0.08);
-          border-radius: 20px;
+          border-radius: 22px;
           overflow: hidden;
-          box-shadow: 0 16px 40px rgba(11, 36, 71, 0.08);
+          box-shadow: 0 20px 48px rgba(11, 36, 71, 0.12);
           text-align: left;
           display: flex;
           flex-direction: column;
@@ -4082,10 +4114,11 @@
             box-shadow 0.25s ease;
         }
         #stores .locard:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 26px 58px rgba(11, 36, 71, 0.14);
+          transform: translateY(-6px);
+          box-shadow: 0 30px 64px rgba(11, 36, 71, 0.18);
         }
         #stores .locimg {
+          position: relative;
           aspect-ratio: 4 / 3;
           overflow: hidden;
           background: #e8edf5;
@@ -4095,26 +4128,57 @@
           height: 100%;
           object-fit: cover;
           display: block;
+          transition: transform 0.45s ease;
         }
-        #stores h3 {
-          margin: 14px 16px 4px;
+        #stores .locard:hover .locimg img {
+          transform: scale(1.05);
+        }
+        #stores .flagb {
+          position: absolute;
+          top: 12px;
+          left: 12px;
+          z-index: 2;
+          background: var(--orange);
+          color: #0b2447;
+          font:
+            800 11px "Archivo",
+            sans-serif;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          padding: 6px 12px;
+          border-radius: 999px;
+        }
+        #stores .locbody {
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+          padding: 16px 18px 18px;
+        }
+        #stores .locbody h3 {
+          margin: 0 0 4px;
           font-family: "Bricolage Grotesque", sans-serif;
           font-weight: 800;
-          font-size: 21px;
+          font-size: 22px;
           color: #0b2447;
         }
         #stores .locaddr {
-          margin: 0 16px 12px;
+          margin: 0 0 6px;
           font-size: 13.5px;
           line-height: 1.5;
           color: var(--muted);
+        }
+        #stores .lochrs {
+          margin: 0 0 14px;
+          font:
+            700 12.5px "Archivo",
+            sans-serif;
+          color: #0b2447;
           flex: 1;
         }
         #stores .locbtns {
           display: flex;
           gap: 8px;
           flex-wrap: wrap;
-          margin: 0 16px 16px;
         }
         #stores .locbtns a {
           font:
@@ -4122,123 +4186,178 @@
             sans-serif;
           color: #0b2447;
           text-decoration: none;
-          padding: 8px 13px;
+          padding: 9px 14px;
           border-radius: 999px;
           border: 1.5px solid rgba(11, 36, 71, 0.18);
           transition: all 0.2s;
+        }
+        #stores .locbtns a.ldir {
+          background: #0b2447;
+          color: #fff;
+          border-color: #0b2447;
         }
         #stores .locbtns a:hover {
           background: var(--orange);
           border-color: var(--orange);
           color: #fff;
+          transform: translateY(-1px);
+        }
+        #stores .scta {
+          text-align: center;
+          margin-top: clamp(48px, 6vw, 80px);
+        }
+        #stores .scta h2 {
+          font-family: "Bricolage Grotesque", sans-serif;
+          font-weight: 800;
+          font-size: clamp(26px, 3.2vw, 42px);
+          color: #0b2447;
+          margin: 0 0 14px;
         }
       </style>
-      <h2>Visit our <span class="o">stores.</span></h2>
-      <p class="ssub">
-        Five locations across Northeast Pennsylvania &mdash; new pallets landing every week.
-      </p>
+      <div class="shero">
+        <h1>Five stores. <span class="o">One treasure hunt.</span></h1>
+        <p>
+          New truckloads land across Northeast Pennsylvania every single week. Pick your store,
+          check the drop day, and come dig.
+        </p>
+        <div class="hrschip">
+          <span class="dot"></span>Open Sun&ndash;Thu 9&ndash;7 &middot; Fri 9&ndash;5 &middot; Sat
+          closed for restock
+        </div>
+      </div>
       <div class="locgrid">
         <div class="locard">
           <div class="locimg">
-            <img src="mrbins-loc-wilkesbarre.jpg" alt="Wilkes-Barre store" loading="lazy" />
+            <span class="flagb">Flagship</span
+            ><img src="mrbins-loc-wilkesbarre.jpg" alt="Wilkes-Barre store" loading="lazy" />
           </div>
-          <h3>Wilkes-Barre</h3>
-          <p class="locaddr">400 S Main Street, Wilkes-Barre, PA 18701</p>
-          <div class="locbtns">
-            <a href="tel:5705002637">570-500-2637</a>
-            <a
-              href="https://www.google.com/maps/dir//400%20S.%20Main%20St.%20Wilkes-Barre,%20PA%2018701"
-              target="_blank"
-              rel="noopener"
-              >Directions</a
-            >
-            <a href="https://www.facebook.com/MrBinsWilkes/" target="_blank" rel="noopener"
-              >Facebook</a
-            >
+          <div class="locbody">
+            <h3>Wilkes-Barre</h3>
+            <p class="locaddr">400 S Main Street, Wilkes-Barre, PA 18701</p>
+            <p class="lochrs">Sun&ndash;Thu 9&ndash;7 &middot; Fri 9&ndash;5 &middot; Sat closed</p>
+            <div class="locbtns">
+              <a
+                class="ldir"
+                href="https://www.google.com/maps/dir//400%20S.%20Main%20St.%20Wilkes-Barre,%20PA%2018701"
+                target="_blank"
+                rel="noopener"
+                >Directions &rarr;</a
+              >
+              <a href="tel:5705002637">570-500-2637</a>
+              <a href="https://www.facebook.com/MrBinsWilkes/" target="_blank" rel="noopener"
+                >Facebook</a
+              >
+            </div>
           </div>
         </div>
         <div class="locard">
           <div class="locimg">
             <img src="mrbins-loc-bethlehem.png" alt="Bethlehem store" loading="lazy" />
           </div>
-          <h3>Bethlehem</h3>
-          <p class="locaddr">104 E 3rd St, Bethlehem, PA 18015</p>
-          <div class="locbtns">
-            <a href="tel:5705002637">570-500-2637</a>
-            <a href="https://maps.app.goo.gl/a7dCWwpr3Hwb5f9k7" target="_blank" rel="noopener"
-              >Directions</a
-            >
-            <a
-              href="https://www.facebook.com/profile.php?id=61591918074337"
-              target="_blank"
-              rel="noopener"
-              >Facebook</a
-            >
+          <div class="locbody">
+            <h3>Bethlehem</h3>
+            <p class="locaddr">104 E 3rd St, Bethlehem, PA 18015</p>
+            <p class="lochrs">Sun&ndash;Thu 9&ndash;7 &middot; Fri 9&ndash;5 &middot; Sat closed</p>
+            <div class="locbtns">
+              <a
+                class="ldir"
+                href="https://maps.app.goo.gl/a7dCWwpr3Hwb5f9k7"
+                target="_blank"
+                rel="noopener"
+                >Directions &rarr;</a
+              >
+              <a href="tel:5705002637">570-500-2637</a>
+              <a
+                href="https://www.facebook.com/profile.php?id=61591918074337"
+                target="_blank"
+                rel="noopener"
+                >Facebook</a
+              >
+            </div>
           </div>
         </div>
         <div class="locard">
           <div class="locimg">
             <img src="mrbins-loc-allentown.jpg" alt="Allentown store" loading="lazy" />
           </div>
-          <h3>Allentown</h3>
-          <p class="locaddr">2300 Lehigh St, Allentown, PA 18103</p>
-          <div class="locbtns">
-            <a href="tel:5707635862">570-763-5862</a>
-            <a href="https://maps.app.goo.gl/EPof4gvC6XoFjNft5" target="_blank" rel="noopener"
-              >Directions</a
-            >
-            <a
-              href="https://www.facebook.com/profile.php?id=61588881423852"
-              target="_blank"
-              rel="noopener"
-              >Facebook</a
-            >
+          <div class="locbody">
+            <h3>Allentown</h3>
+            <p class="locaddr">2300 Lehigh St, Allentown, PA 18103</p>
+            <p class="lochrs">Sun&ndash;Thu 9&ndash;7 &middot; Fri 9&ndash;5 &middot; Sat closed</p>
+            <div class="locbtns">
+              <a
+                class="ldir"
+                href="https://maps.app.goo.gl/EPof4gvC6XoFjNft5"
+                target="_blank"
+                rel="noopener"
+                >Directions &rarr;</a
+              >
+              <a href="tel:5707635862">570-763-5862</a>
+              <a
+                href="https://www.facebook.com/profile.php?id=61588881423852"
+                target="_blank"
+                rel="noopener"
+                >Facebook</a
+              >
+            </div>
           </div>
         </div>
         <div class="locard">
           <div class="locimg">
             <img src="mrbins-loc-hazleton.jpg" alt="Hazleton store" loading="lazy" />
           </div>
-          <h3>Hazleton</h3>
-          <p class="locaddr">1099 N Church St, Hazle Township, PA 18202</p>
-          <div class="locbtns">
-            <a href="tel:2722237093">272-223-7093</a>
-            <a
-              href="https://www.google.com/maps/dir//Church+Hill+Mall,+North+Church+Street,+Hazleton,+PA"
-              target="_blank"
-              rel="noopener"
-              >Directions</a
-            >
-            <a
-              href="https://www.facebook.com/profile.php?id=61567723192235"
-              target="_blank"
-              rel="noopener"
-              >Facebook</a
-            >
+          <div class="locbody">
+            <h3>Hazleton</h3>
+            <p class="locaddr">1099 N Church St, Hazle Township, PA 18202</p>
+            <p class="lochrs">Sun&ndash;Thu 9&ndash;7 &middot; Fri 9&ndash;5 &middot; Sat closed</p>
+            <div class="locbtns">
+              <a
+                class="ldir"
+                href="https://www.google.com/maps/dir//Church+Hill+Mall,+North+Church+Street,+Hazleton,+PA"
+                target="_blank"
+                rel="noopener"
+                >Directions &rarr;</a
+              >
+              <a href="tel:2722237093">272-223-7093</a>
+              <a
+                href="https://www.facebook.com/profile.php?id=61567723192235"
+                target="_blank"
+                rel="noopener"
+                >Facebook</a
+              >
+            </div>
           </div>
         </div>
         <div class="locard">
           <div class="locimg">
             <img src="mrbins-loc-scranton.jpg" alt="Scranton store" loading="lazy" />
           </div>
-          <h3>Scranton</h3>
-          <p class="locaddr">1790 N Keyser Ave, Scranton, PA 18508</p>
-          <div class="locbtns">
-            <a href="tel:2722281375">272-228-1375</a>
-            <a
-              href="https://www.google.com/maps/place/Keyser+Oak+Shopping+Center"
-              target="_blank"
-              rel="noopener"
-              >Directions</a
-            >
-            <a
-              href="https://www.facebook.com/profile.php?id=61583223531760"
-              target="_blank"
-              rel="noopener"
-              >Facebook</a
-            >
+          <div class="locbody">
+            <h3>Scranton</h3>
+            <p class="locaddr">1790 N Keyser Ave, Scranton, PA 18508</p>
+            <p class="lochrs">Sun&ndash;Thu 9&ndash;7 &middot; Fri 9&ndash;5 &middot; Sat closed</p>
+            <div class="locbtns">
+              <a
+                class="ldir"
+                href="https://www.google.com/maps/place/Keyser+Oak+Shopping+Center"
+                target="_blank"
+                rel="noopener"
+                >Directions &rarr;</a
+              >
+              <a href="tel:2722281375">272-228-1375</a>
+              <a
+                href="https://www.facebook.com/profile.php?id=61583223531760"
+                target="_blank"
+                rel="noopener"
+                >Facebook</a
+              >
+            </div>
           </div>
         </div>
+      </div>
+      <div class="scta">
+        <h2>Can&rsquo;t make it to a store?</h2>
+        <a class="dbtn gold" href="mystery-box.html">Shop mystery boxes &rarr;</a>
       </div>
     </section>
 
