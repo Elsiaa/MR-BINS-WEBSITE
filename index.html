@@ -4191,19 +4191,41 @@
           <button class="cnav next" id="cnext" aria-label="Scroll right">&rsaquo;</button>
         </div>
         <style>
-          /* this week's bins: open up the vertical rhythm on desktop */
-          @media (min-width: 1100px) {
-            #discover .dhead {
-              margin-bottom: 44px;
+          .dstrip {
+            margin-top: 48px;
+            overflow: hidden;
+            -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+            mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+          }
+          .dstrip .strack {
+            display: flex;
+            gap: clamp(34px, 4vw, 60px);
+            align-items: center;
+            width: max-content;
+            animation: dslide 45s linear infinite;
+          }
+          .dstrip .blogo {
+            height: clamp(26px, 3.8vh, 36px);
+          }
+          .dstrip .blogo img {
+            height: 100%;
+            width: auto;
+            filter: none;
+            opacity: 1;
+          }
+          .dstrip .bword {
+            font:
+              800 clamp(15px, 1.6vw, 20px) "Bricolage Grotesque",
+              sans-serif;
+            color: #0b2447;
+            white-space: nowrap;
+          }
+          @keyframes dslide {
+            from {
+              transform: translateX(0);
             }
-            #discover .dstrip {
-              margin-top: 48px;
-            }
-            #discover .dstrip .blogo img {
-              height: clamp(26px, 3.8vh, 36px);
-            }
-            #discover .dhead h2 {
-              margin-bottom: 12px;
+            to {
+              transform: translateX(-50%);
             }
           }
         </style>
@@ -4222,8 +4244,6 @@
             }
             .dstrip .blogo img {
               height: clamp(22px, 3.4vh, 32px);
-              filter: brightness(0);
-              opacity: 0.55;
             }
             .dstrip .bword {
               font:
