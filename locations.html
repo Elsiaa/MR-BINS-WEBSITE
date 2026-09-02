@@ -4180,6 +4180,27 @@
           gap: 8px;
           flex-wrap: wrap;
         }
+        #stores .locbtns a.ldir {
+          flex: 1 1 100%;
+          text-align: center;
+        }
+        #stores .locbtns a:not(.ldir) {
+          flex: 1 1 0;
+          text-align: center;
+          white-space: nowrap;
+        }
+        @media (min-width: 1180px) {
+          #stores .locgrid {
+            grid-template-columns: repeat(5, 1fr);
+          }
+          #stores .locbtns a:not(.ldir) {
+            font-size: 11.5px;
+            padding: 8px 6px;
+          }
+          #stores .locbody {
+            padding: 14px 14px 16px;
+          }
+        }
         #stores .locbtns a {
           font:
             700 12.5px "Hanken Grotesk",
