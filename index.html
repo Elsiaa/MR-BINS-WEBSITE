@@ -3491,8 +3491,24 @@
           grid-template-columns: 1fr;
           max-width: 420px;
         }
-        .locgrid {
-          grid-template-columns: 1fr;
+        /* stores: swipeable carousel on phones */
+        #stores .locgrid {
+          display: flex !important;
+          grid-template-columns: none !important;
+          overflow-x: auto;
+          scroll-snap-type: x mandatory;
+          -webkit-overflow-scrolling: touch;
+          gap: 14px;
+          padding-bottom: 12px;
+          scrollbar-width: none;
+        }
+        #stores .locgrid::-webkit-scrollbar {
+          display: none;
+        }
+        #stores .locard {
+          flex: 0 0 78vw;
+          max-width: 320px;
+          scroll-snap-align: center;
         }
       }
 
