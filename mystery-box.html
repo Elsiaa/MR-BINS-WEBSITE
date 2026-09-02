@@ -4368,6 +4368,16 @@
             max-width: 420px;
           }
         }
+        #shop .scard[data-tier="taster"] {
+          transform: rotate(-1.3deg);
+        }
+        #shop .scard[data-tier="loaded"] {
+          transform: rotate(1.2deg);
+        }
+        #shop .scard[data-tier="taster"]:hover,
+        #shop .scard[data-tier="loaded"]:hover {
+          transform: rotate(0deg) translateY(-4px);
+        }
         #shop .scard {
           position: relative;
           background: #fff;
@@ -4428,8 +4438,8 @@
           color: #35486b;
         }
         #shop .sfeat li::before {
-          content: "\2713\00a0\00a0";
-          color: #2e9e4f;
+          content: "\2014\00a0";
+          color: var(--orange);
           font-weight: 800;
         }
         #shop .sfeat b {
@@ -4437,9 +4447,10 @@
         }
         #shop .popbadge {
           position: absolute;
-          top: -15px;
+          top: -16px;
           left: 50%;
-          transform: translateX(-50%);
+          transform: translateX(-50%) rotate(-2deg);
+          font-family: "Space Mono", monospace;
           background: var(--orange);
           color: #fff;
           font:
@@ -4603,30 +4614,46 @@
           display: block;
         }
       </style>
-      <h2>Pick your <span class="o">mystery box.</span></h2>
+      <h2>
+        Pick your
+        <span class="o" style="position: relative; display: inline-block"
+          >mystery box.<svg
+            viewBox="0 0 220 14"
+            style="position: absolute; left: 0; bottom: -12px; width: 100%; height: 14px"
+            aria-hidden="true"
+          >
+            <path
+              d="M4 9 C 40 3, 75 12, 110 7 S 185 4, 216 8"
+              fill="none"
+              stroke="#f89b1c"
+              stroke-width="4"
+              stroke-linecap="round"
+            /></svg
+        ></span>
+      </h2>
       <p class="ssell">
-        Every box is hand-packed from this week&rsquo;s bins &mdash; the same Nike, LEGO and JBL
-        pulls you see in the reels above, shipped to your door.
+        We walk the bins, grab the good stuff before it&rsquo;s gone, and tape the box up same day.
+        You open it on your doorstep. That&rsquo;s the whole idea.
       </p>
       <div class="sgrid">
         <div class="scard" data-tier="taster">
           <div class="stier">Taster</div>
           <div class="sprice"><sup>$</sup>25</div>
           <ul class="sfeat">
-            <li><b>3&ndash;4</b> brand-new finds</li>
-            <li>Hand-packed from the bins</li>
-            <li>Ships in 1&ndash;2 business days</li>
+            <li><b>3&ndash;4 finds</b> &mdash; dip a toe in</li>
+            <li>packed by our floor crew</li>
+            <li>at your door in a couple days</li>
           </ul>
           <button class="sbtn" data-add="taster">Add to cart &middot; $25</button>
         </div>
         <div class="scard pop" data-tier="classic">
-          <div class="popbadge">&#9733; Most popular</div>
+          <div class="popbadge">our regulars&rsquo; pick</div>
           <div class="stier">Classic</div>
           <div class="sprice"><sup>$</sup>50</div>
           <ul class="sfeat">
-            <li><b>6&ndash;8</b> brand-new finds</li>
-            <li>Best value per find</li>
-            <li>Free shipping included</li>
+            <li><b>6&ndash;8 finds</b> &mdash; the sweet spot</li>
+            <li>free shipping, on us</li>
+            <li>honestly, the box we&rsquo;d buy</li>
           </ul>
           <button class="sbtn hot" data-add="classic">Add to cart &middot; $50</button>
         </div>
@@ -4634,9 +4661,9 @@
           <div class="stier">Loaded</div>
           <div class="sprice"><sup>$</sup>100</div>
           <ul class="sfeat">
-            <li><b>12&ndash;15</b> brand-new finds</li>
-            <li>A whole haul in one delivery</li>
-            <li>Free shipping included</li>
+            <li><b>12&ndash;15 finds</b> &mdash; basically a bin</li>
+            <li>free shipping too</li>
+            <li>for the certified diggers</li>
           </ul>
           <button class="sbtn" data-add="loaded">Add to cart &middot; $100</button>
         </div>
