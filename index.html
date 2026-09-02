@@ -3481,6 +3481,33 @@
           max-width: min(78vw, 360px);
           margin: 18px auto 0;
         }
+        /* discover: fit one phone screen — no lamp, no leftover switch bits */
+        #discover .dnite,
+        #discover .sw-lamp,
+        #discover .sw-glow,
+        #discover .sw-hint,
+        #discover .sw-btn,
+        #discover .sw-mode,
+        #discover .dnight,
+        #discover .lamp,
+        #discover .beam {
+          display: none !important;
+        }
+        #discover,
+        #discover .dstage {
+          height: auto !important;
+          min-height: 0 !important;
+        }
+        #discover .dstage {
+          position: static !important;
+          padding: 94px 14px 30px !important;
+        }
+        #discover .dhead {
+          margin-bottom: 22px;
+        }
+        #discover .dstrip {
+          margin-top: 18px;
+        }
         .dhead h2 {
           font-size: clamp(26px, 8vw, 34px);
         }
