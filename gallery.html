@@ -5779,5 +5779,39 @@
       })();
     </script>
     <script src="i18n.js"></script>
+
+    <script>
+      /* tap the speaker to hear a reel; only one plays sound at a time */
+      (function () {
+        document.querySelectorAll(".hslide").forEach(function (sl) {
+          var v = sl.querySelector("video"),
+            m = sl.querySelector(".hmedia");
+          if (!v || !m) return;
+          var b = document.createElement("button");
+          b.className = "sndb";
+          b.textContent = "\uD83D\uDD07";
+          b.setAttribute("aria-label", "Toggle sound");
+          b.style.cssText =
+            "position:absolute;right:12px;bottom:12px;z-index:5;background:rgba(11,36,71,.72);color:#fff;border:0;border-radius:999px;width:42px;height:42px;font-size:17px;cursor:pointer";
+          m.style.position = "relative";
+          m.appendChild(b);
+          b.addEventListener("click", function (e) {
+            e.stopPropagation();
+            v.muted = !v.muted;
+            if (!v.muted) {
+              document.querySelectorAll(".hslide video").forEach(function (o) {
+                if (o !== v) o.muted = true;
+              });
+              var q = v.play();
+              if (q && q.catch) q.catch(function () {});
+            }
+            document.querySelectorAll(".sndb").forEach(function (x) {
+              var xv = x.parentNode.querySelector("video");
+              x.textContent = xv && !xv.muted ? "\uD83D\uDD0A" : "\uD83D\uDD07";
+            });
+          });
+        });
+      })();
+    </script>
   </body>
 </html>
