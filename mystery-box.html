@@ -4369,6 +4369,7 @@
           }
         }
         #shop .scard {
+          position: relative;
           background: #fff;
           border: 1px solid rgba(11, 36, 71, 0.1);
           border-radius: 22px;
@@ -4387,45 +4388,89 @@
           box-shadow: 0 26px 60px rgba(11, 36, 71, 0.13);
         }
         #shop .scard.pop {
-          outline: 3px solid var(--orange);
-          outline-offset: 2px;
+          border: 2.5px solid var(--orange);
+          transform: scale(1.04);
+          z-index: 1;
+        }
+        #shop .ssell {
+          max-width: 640px;
+          margin: 14px auto 0;
+          font-size: clamp(15px, 1.7vw, 18px);
+          line-height: 1.55;
+          color: #4a5a75;
         }
         #shop .stier {
-          font-family: "Space Mono", monospace;
-          font-size: 12px;
-          letter-spacing: 0.22em;
-          text-transform: uppercase;
-          color: var(--muted);
+          font-family: "Bricolage Grotesque", sans-serif;
+          font-weight: 800;
+          font-size: clamp(20px, 2.2vw, 26px);
+          letter-spacing: -0.01em;
+          color: #0b2447;
         }
         #shop .sprice {
           font-family: "Bricolage Grotesque", sans-serif;
           font-weight: 800;
-          font-size: clamp(38px, 5vw, 54px);
+          font-size: clamp(52px, 6.5vw, 78px);
           color: #0b2447;
-          line-height: 1;
+          line-height: 0.95;
         }
-        #shop .sfinds {
-          font-weight: 700;
+        #shop .sprice sup {
+          font-size: 0.45em;
+          vertical-align: super;
           color: var(--orange);
         }
-        #shop .sdesc {
-          font-size: 14px;
-          color: var(--muted);
-          line-height: 1.5;
-          min-height: 42px;
+        #shop .sfeat {
+          list-style: none;
+          margin: 6px 0 0;
+          padding: 0;
+          display: grid;
+          gap: 7px;
+          font-size: 15px;
+          color: #35486b;
+        }
+        #shop .sfeat li::before {
+          content: "\2713\00a0\00a0";
+          color: #2e9e4f;
+          font-weight: 800;
+        }
+        #shop .sfeat b {
+          color: #0b2447;
+        }
+        #shop .popbadge {
+          position: absolute;
+          top: -15px;
+          left: 50%;
+          transform: translateX(-50%);
+          background: var(--orange);
+          color: #fff;
+          font:
+            800 12px "Hanken Grotesk",
+            sans-serif;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          padding: 6px 16px;
+          border-radius: 999px;
+          box-shadow: 0 6px 16px rgba(248, 155, 28, 0.4);
+          white-space: nowrap;
         }
         #shop .sbtn {
-          margin-top: 10px;
+          margin-top: 14px;
+          width: 100%;
           border: 0;
           cursor: pointer;
           font:
-            700 15px "Hanken Grotesk",
+            800 16px "Hanken Grotesk",
             sans-serif;
           color: #fff;
           background: #0b2447;
-          padding: 13px 26px;
+          padding: 15px 26px;
           border-radius: 999px;
-          transition: background 0.2s;
+          transition:
+            background 0.2s,
+            transform 0.15s;
+        }
+        #shop .sbtn.hot {
+          background: linear-gradient(135deg, #f89b1c, #ff8f52);
+          box-shadow: 0 10px 26px rgba(248, 155, 28, 0.35);
         }
         #shop .sbtn:hover {
           background: var(--orange);
@@ -4559,29 +4604,41 @@
         }
       </style>
       <h2>Pick your <span class="o">mystery box.</span></h2>
+      <p class="ssell">
+        Every box is hand-packed from this week&rsquo;s bins &mdash; the same Nike, LEGO and JBL
+        pulls you see in the reels above, shipped to your door.
+      </p>
       <div class="sgrid">
         <div class="scard" data-tier="taster">
           <div class="stier">Taster</div>
-          <div class="sprice">$25</div>
-          <div class="sfinds">3&ndash;4 finds</div>
-          <div class="sdesc">
-            A first taste of the bins &mdash; hand-packed from the floor. Contents vary.
-          </div>
-          <button class="sbtn" data-add="taster">Add to cart</button>
+          <div class="sprice"><sup>$</sup>25</div>
+          <ul class="sfeat">
+            <li><b>3&ndash;4</b> brand-new finds</li>
+            <li>Hand-packed from the bins</li>
+            <li>Ships in 1&ndash;2 business days</li>
+          </ul>
+          <button class="sbtn" data-add="taster">Add to cart &middot; $25</button>
         </div>
         <div class="scard pop" data-tier="classic">
-          <div class="stier">Classic &middot; most popular</div>
-          <div class="sprice">$50</div>
-          <div class="sfinds">6&ndash;8 finds</div>
-          <div class="sdesc">The whole treasure hunt, shipped straight to your door.</div>
-          <button class="sbtn" data-add="classic">Add to cart</button>
+          <div class="popbadge">&#9733; Most popular</div>
+          <div class="stier">Classic</div>
+          <div class="sprice"><sup>$</sup>50</div>
+          <ul class="sfeat">
+            <li><b>6&ndash;8</b> brand-new finds</li>
+            <li>Best value per find</li>
+            <li>Free shipping included</li>
+          </ul>
+          <button class="sbtn hot" data-add="classic">Add to cart &middot; $50</button>
         </div>
         <div class="scard" data-tier="loaded">
           <div class="stier">Loaded</div>
-          <div class="sprice">$100</div>
-          <div class="sfinds">12&ndash;15 finds</div>
-          <div class="sdesc">Our biggest box &mdash; a whole haul in one delivery.</div>
-          <button class="sbtn" data-add="loaded">Add to cart</button>
+          <div class="sprice"><sup>$</sup>100</div>
+          <ul class="sfeat">
+            <li><b>12&ndash;15</b> brand-new finds</li>
+            <li>A whole haul in one delivery</li>
+            <li>Free shipping included</li>
+          </ul>
+          <button class="sbtn" data-add="loaded">Add to cart &middot; $100</button>
         </div>
       </div>
       <div class="snote">
