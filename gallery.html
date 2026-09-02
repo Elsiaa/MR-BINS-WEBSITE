@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Gallery · Mr. Bins</title>
+    <script src="reviews.js"></script>
     <meta
       name="description"
       content="Mr. Bins: dig through bins of brand-new Amazon returns across 4 Northeast PA stores. One price for everything, dropping $14 to $9 through the week, or get a hand-packed mystery box shipped to your door."
@@ -2913,6 +2914,8 @@
         mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
       }
       .mtrack {
+        will-change: transform;
+        animation-delay: 0s;
         display: flex;
         gap: 18px;
         width: max-content;
@@ -3682,6 +3685,56 @@
           background: rgba(255, 255, 255, 0.09);
         }
       }
+      /* Google-style review cards */
+      #mtrack .rcard.gstyle {
+        font-family: Roboto, Arial, "Helvetica Neue", sans-serif;
+        background: #fff;
+        border: 1px solid #dadce0;
+        border-radius: 12px;
+        box-shadow: 0 1px 4px rgba(60, 64, 67, 0.18);
+        padding: 18px 20px;
+      }
+      #mtrack .gstyle .rf {
+        margin-top: 0;
+        margin-bottom: 8px;
+      }
+      #mtrack .gstyle .rwho {
+        flex: 1;
+        min-width: 0;
+      }
+      #mtrack .gstyle .av {
+        font-family: Roboto, Arial, sans-serif;
+        font-weight: 500;
+        font-size: 17px;
+      }
+      #mtrack .gstyle .rn {
+        font-family: Roboto, Arial, sans-serif;
+        font-weight: 500;
+        font-size: 14px;
+        color: #202124;
+      }
+      #mtrack .gstyle .rv {
+        font-family: Roboto, Arial, sans-serif;
+        font-size: 12px;
+        color: #70757a;
+        margin-top: 1px;
+      }
+      #mtrack .gstyle .rstars {
+        color: #fbbc04;
+        font-size: 14px;
+        letter-spacing: 1px;
+      }
+      #mtrack .gstyle .rt {
+        font-family: Roboto, Arial, sans-serif;
+        font-size: 14px;
+        line-height: 1.57;
+        color: #4d5156;
+        margin-top: 6px;
+      }
+      #mtrack .gstyle .gicon {
+        flex: none;
+        margin-left: auto;
+      }
     </style>
     <style id="elsiaa-hardening">
       /* ELSIAA display hardening, no horizontal overflow, media always contained */
@@ -4132,7 +4185,7 @@
       <div style="max-width: 1180px; margin: 0 auto; padding: 0 22px">
         <h2 style="text-align: center; color: #0b2447">Inside the <span class="o">stores</span></h2>
         <p class="sub" style="text-align: center; color: #4a5a75">
-          A look inside our five Northeast PA locations.
+          Real photos from our shoppers on Google.
         </p>
         <div
           style="
@@ -4142,15 +4195,47 @@
             margin-top: 34px;
           "
         >
-          <div class="gph" data-label="Wilkes-Barre"></div>
-          <div class="gph" data-label="Bethlehem"></div>
-          <div class="gph" data-label="Allentown"></div>
-          <div class="gph" data-label="Hazleton"></div>
-          <div class="gph" data-label="Scranton"></div>
-          <div class="gph" data-label="Drop day"></div>
+          <img class="gimg" src="mrbins-gal-1.jpg" alt="Inside Mr. Bins" loading="lazy" />
+          <img class="gimg" src="mrbins-gal-2.jpg" alt="Inside Mr. Bins" loading="lazy" />
+          <img class="gimg" src="mrbins-gal-3.jpg" alt="Inside Mr. Bins" loading="lazy" />
+          <img class="gimg" src="mrbins-gal-4.jpg" alt="Inside Mr. Bins" loading="lazy" />
+          <img class="gimg" src="mrbins-gal-5.jpg" alt="Inside Mr. Bins" loading="lazy" />
+          <img class="gimg" src="mrbins-gal-6.jpg" alt="Inside Mr. Bins" loading="lazy" />
+          <img class="gimg" src="mrbins-gal-7.jpg" alt="Inside Mr. Bins" loading="lazy" />
+          <img class="gimg" src="mrbins-gal-8.jpg" alt="Inside Mr. Bins" loading="lazy" />
+          <img class="gimg" src="mrbins-gal-9.jpg" alt="Inside Mr. Bins" loading="lazy" />
+          <img class="gimg" src="mrbins-gal-10.jpg" alt="Inside Mr. Bins" loading="lazy" />
+          <img class="gimg" src="mrbins-gal-11.jpg" alt="Inside Mr. Bins" loading="lazy" />
+          <img class="gimg" src="mrbins-gal-12.jpg" alt="Inside Mr. Bins" loading="lazy" />
+          <img class="gimg" src="mrbins-gal-13.jpg" alt="Inside Mr. Bins" loading="lazy" />
+          <img class="gimg" src="mrbins-gal-14.jpg" alt="Inside Mr. Bins" loading="lazy" />
+          <img class="gimg" src="mrbins-gal-15.jpg" alt="Inside Mr. Bins" loading="lazy" />
+          <img class="gimg" src="mrbins-gal-16.jpg" alt="Inside Mr. Bins" loading="lazy" />
+          <img class="gimg" src="mrbins-gal-17.jpg" alt="Inside Mr. Bins" loading="lazy" />
+          <img class="gimg" src="mrbins-gal-18.jpg" alt="Inside Mr. Bins" loading="lazy" />
+          <img class="gimg" src="mrbins-gal-19.jpg" alt="Inside Mr. Bins" loading="lazy" />
+          <img class="gimg" src="mrbins-gal-20.jpg" alt="Inside Mr. Bins" loading="lazy" />
+          <img class="gimg" src="mrbins-gal-21.jpg" alt="Inside Mr. Bins" loading="lazy" />
+          <img class="gimg" src="mrbins-gal-22.jpg" alt="Inside Mr. Bins" loading="lazy" />
+          <img class="gimg" src="mrbins-gal-23.jpg" alt="Inside Mr. Bins" loading="lazy" />
+          <img class="gimg" src="mrbins-gal-24.jpg" alt="Inside Mr. Bins" loading="lazy" />
+          <img class="gimg" src="mrbins-gal-25.jpg" alt="Inside Mr. Bins" loading="lazy" />
+          <img class="gimg" src="mrbins-gal-26.jpg" alt="Inside Mr. Bins" loading="lazy" />
+          <img class="gimg" src="mrbins-gal-27.jpg" alt="Inside Mr. Bins" loading="lazy" />
+          <img class="gimg" src="mrbins-gal-28.jpg" alt="Inside Mr. Bins" loading="lazy" />
+          <img class="gimg" src="mrbins-gal-29.jpg" alt="Inside Mr. Bins" loading="lazy" />
+          <img class="gimg" src="mrbins-gal-30.jpg" alt="Inside Mr. Bins" loading="lazy" />
         </div>
       </div>
       <style>
+        #galphotos .gimg {
+          width: 100%;
+          aspect-ratio: 4 / 3;
+          object-fit: cover;
+          border-radius: 18px;
+          box-shadow: 0 10px 28px rgba(11, 36, 71, 0.14);
+          display: block;
+        }
         #galphotos .gph {
           aspect-ratio: 4 / 3;
           border-radius: 18px;
@@ -5236,44 +5321,7 @@
 
       /* ---- reviews marquee ---- */
       (function () {
-        var R = [
-          [
-            "Jenna R.",
-            "TikTok",
-            "Ordered on a whim from their TikTok. Got a Ninja blender, Nikes and wireless buds for $50. Hooked.",
-          ],
-          [
-            "Marcus T.",
-            "Google",
-            "Was skeptical. It is legit, everything sealed, everything brand new. Already ordered again.",
-          ],
-          [
-            "Priya K.",
-            "Instagram",
-            "The in-store hunt, but at my door. My kids fight over who gets to open the box.",
-          ],
-          ["Dev S.", "Google", "Insane value. My $25 box paid for itself twice over."],
-          [
-            "Sam L.",
-            "Facebook",
-            "Left an honest review and they actually posted it. No cherry-picking.",
-          ],
-          [
-            "Alyssa M.",
-            "TikTok",
-            "Better than any mystery box I have tried, because it is just the real store.",
-          ],
-          [
-            "Ronen B.",
-            "Google",
-            "Fast shipping, sealed products, real brands. This is the real deal.",
-          ],
-          [
-            "Casey W.",
-            "Instagram",
-            "Came for one box, now it is a monthly thing. The rewards are wild.",
-          ],
-        ];
+        var R = window.MRB_REVIEWS;
         var grad = [
           "linear-gradient(135deg,#1455D6,#0E3FA6)",
           "linear-gradient(135deg,#15A34A,#0d7a37)",
@@ -5290,21 +5338,23 @@
         for (var i = 0; i < R.length; i++) {
           var r = R[i];
           h +=
-            '<div class="rcard"><div class="rstars">★★★★★</div><div class="rt">“' +
-            r[2] +
-            "”</div>" +
+            '<div class="rcard gstyle">' +
             '<div class="rf"><div class="av" style="background:' +
             grad[i % grad.length] +
             '">' +
             r[0].charAt(0) +
             "</div>" +
-            '<div><div class="rn">' +
+            '<div class="rwho"><div class="rn">' +
             r[0] +
-            '</div><div class="rv"><b>✓ Verified buyer</b> · via ' +
-            r[1] +
-            "</div></div></div></div>";
+            '</div><div class="rv">Google review</div></div>' +
+            '<svg class="gicon" width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path></svg>' +
+            "</div>" +
+            '<div class="rstars">★★★★★</div><div class="rt">' +
+            r[2] +
+            "</div></div>";
         }
         t.innerHTML = h + h;
+        t.style.animationDuration = R.length * 4 + "s";
       })();
 
       /* ---- brand ticker (over live store-video band) ---- */
