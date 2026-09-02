@@ -4190,6 +4190,23 @@
           <div class="carousel" id="carousel"><div class="track" id="track"></div></div>
           <button class="cnav next" id="cnext" aria-label="Scroll right">&rsaquo;</button>
         </div>
+        <style>
+          /* this week's bins: open up the vertical rhythm on desktop */
+          @media (min-width: 1100px) {
+            #discover .dhead {
+              margin-bottom: 44px;
+            }
+            #discover .dstrip {
+              margin-top: 48px;
+            }
+            #discover .dstrip .blogo img {
+              height: clamp(26px, 3.8vh, 36px);
+            }
+            #discover .dhead h2 {
+              margin-bottom: 12px;
+            }
+          }
+        </style>
         <div class="dstrip">
           <style>
             .dstrip {
