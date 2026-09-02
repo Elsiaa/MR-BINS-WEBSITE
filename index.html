@@ -1885,6 +1885,7 @@
         align-items: end;
       }
       .day {
+        position: relative;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -1915,6 +1916,13 @@
         color: var(--muted);
       }
       .day .lbest {
+        /* overlay on the bar so the badge never adds height to the column
+           (it was pushing Friday's bar above Thursday's) */
+        position: absolute;
+        bottom: 88px;
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
         font:
           800 10px "Hanken Grotesk",
           sans-serif;
@@ -1924,6 +1932,7 @@
         background: var(--orange);
         border-radius: 999px;
         padding: 4px 10px;
+        box-shadow: 0 4px 12px rgba(11, 36, 71, 0.25);
       }
       .day .lbest.closedtag {
         background: none;
@@ -3034,9 +3043,9 @@
       }
       .bmarq {
         display: flex;
-        gap: clamp(34px, 4vw, 64px);
+        gap: clamp(14px, 1.6vw, 22px);
         width: max-content;
-        animation: bscroll 26s linear infinite;
+        animation: bscroll 90s linear infinite;
         align-items: center;
       }
       #brands:hover .bmarq {
@@ -3053,23 +3062,41 @@
       .blogo {
         display: flex;
         align-items: center;
-        height: clamp(24px, 3vh, 34px);
-      }
-      .blogo img {
-        height: 100%;
-        width: auto;
-        object-fit: contain;
-        filter: brightness(0) invert(1);
-        opacity: 0.94;
+        justify-content: center;
+        height: clamp(48px, 6vh, 60px);
+        min-width: clamp(140px, 15vw, 190px);
+        padding: 0 26px;
+        background: #fff;
+        border-radius: 999px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+        flex: none;
       }
       .bword {
-        font-family: "Bricolage Grotesque";
+        font-family: "Bricolage Grotesque", sans-serif;
         font-weight: 800;
-        font-size: clamp(16px, 2vw, 24px);
-        color: #fff;
+        font-size: clamp(17px, 1.9vw, 23px);
         white-space: nowrap;
         letter-spacing: 0.01em;
-        text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55);
+        line-height: 1;
+      }
+      .bword.up {
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-size: clamp(15px, 1.7vw, 20px);
+      }
+      .bword.low {
+        text-transform: lowercase;
+      }
+      .bword.it {
+        font-style: italic;
+      }
+      .bword.arc {
+        font-family: "Archivo", sans-serif;
+        font-weight: 900;
+      }
+      .bword.mono {
+        font-family: "Space Mono", monospace;
+        font-weight: 700;
       }
 
       /* careers */
@@ -4579,6 +4606,20 @@
           You&rsquo;ve seen the bins&hellip; now see how
           <span class="g">ridiculously cheap</span> they are.
         </h2>
+        <div
+          id="pnow"
+          style="
+            grid-column: 1 / -1;
+            justify-self: center;
+            text-align: center;
+            margin-top: 14px;
+            font-family: &quot;Bricolage Grotesque&quot;, sans-serif;
+            font-weight: 800;
+            font-size: clamp(34px, 5vw, 56px);
+            color: #2e9e4f;
+            line-height: 1;
+          "
+        ></div>
         <p class="sub">
           Every item shares the same price &mdash; and it falls every day, Sunday to Friday. Come
           early for the pick, come Friday for the price.
@@ -5157,12 +5198,6 @@
           Fast-paced, friendly, and never boring &mdash; help unload the truckloads, stock the bins,
           and make people&rsquo;s day across our four Northeast PA stores.
         </p>
-        <div class="cperks">
-          <div class="cperk">Flexible shifts<span>full &amp; part-time</span></div>
-          <div class="cperk">Team discount<span>on everything</span></div>
-          <div class="cperk">Room to grow<span>we promote from within</span></div>
-          <div class="cperk">Good people<span>a crew that has fun</span></div>
-        </div>
         <a class="ccta" href="mailto:careers@primebins.com?subject=Careers%20at%20Mr.%20Bins"
           >See open roles &rarr;</a
         >
@@ -6030,6 +6065,30 @@
             "</div>";
         }
         el.innerHTML = h;
+        var pn = document.getElementById("pnow");
+        if (pn) {
+          var tv = LADDER[day];
+          pn.innerHTML =
+            tv === null
+              ? "Closed today &mdash; back Sunday at $" + LADDER[0]
+              : "$" +
+                tv +
+                ' <span style="font-size:0.42em;color:#4a5a75;font-weight:700">today</span>';
+        }
+        /* anchor each badge just above its own column's price so it never
+           overlaps neighbors at any viewport size */
+        function placeBadges() {
+          el.querySelectorAll(".day").forEach(function (dEl) {
+            var b = dEl.querySelector(".lbest");
+            if (!b) return;
+            var bar = dEl.querySelector(".lbar"),
+              dn = dEl.querySelector(".dn"),
+              dp = dEl.querySelector(".dp");
+            b.style.bottom = bar.offsetHeight + dn.offsetHeight + dp.offsetHeight + 24 + "px";
+          });
+        }
+        placeBadges();
+        window.addEventListener("resize", placeBadges);
       })();
 
       /* ---- discover carousel ---- */
@@ -6293,104 +6352,85 @@
         t.innerHTML = h + h;
       })();
 
-      /* ---- brand ticker (over live store-video band) ---- */
+      /* ---- brand ticker: from-scratch wordmark tiles, uniform white pills, true brand colors ---- */
       (function () {
         var t = document.getElementById("bmarq");
         if (!t) return;
-        /* [display name, logo slug]. Tries logos/<slug>.svg first (drop official files there),
-    then Simple Icons CDN, then a clean wordmark. All normalized to white via CSS filter. */
-        var BCOLORS = {
-          nike: "#111111",
-          adidas: "#000000",
-          apple: "#555555",
-          samsung: "#1428a0",
-          sony: "#000000",
-          lego: "#d01012",
-          nintendo: "#e60012",
-          bose: "#000000",
-          dyson: "#333333",
-          nespresso: "#000000",
-          fitbit: "#00b0b9",
-          crocs: "#6bc04e",
-          underarmour: "#000000",
-          puma: "#000000",
-          levis: "#c41230",
-          carhartt: "#ee7623",
-          thenorthface: "#000000",
-          yeti: "#00263a",
-          birkenstock: "#1a4a8b",
-          amazon: "#ff9900",
-          jbl: "#ff3300",
-          keurig: "#3d2b1f",
-          ninja: "#111111",
-          kitchenaid: "#c41230",
-          blackdecker: "#e65300",
-          stanley: "#1a1a1a",
-          reebok: "#e41b23",
-          newbalance: "#cf0a2c",
-          skechers: "#0033a0",
-          columbia: "#0071ce",
-        };
         var B = [
-          ["Nike", "nike"],
-          ["Adidas", "adidas"],
-          ["Apple", "apple"],
-          ["Samsung", "samsung"],
-          ["Sony", "sony"],
-          ["LEGO", "lego"],
-          ["Nintendo", "nintendo"],
-          ["Bose", "bose"],
-          ["Dyson", "dyson"],
-          ["Nespresso", "nespresso"],
-          ["Fitbit", "fitbit"],
-          ["Crocs", "crocs"],
-          ["Under Armour", "underarmour"],
-          ["Puma", "puma"],
-          ["Levi’s", "levis"],
-          ["Carhartt", "carhartt"],
-          ["The North Face", "thenorthface"],
-          ["Yeti", "yeti"],
-          ["Birkenstock", "birkenstock"],
-          ["Amazon", "amazon"],
-          ["JBL", "jbl"],
-          ["Keurig", "keurig"],
-          ["Ninja", "ninja"],
-          ["KitchenAid", "kitchenaid"],
-          ["Black+Decker", "blackdecker"],
-          ["Stanley", "stanley"],
-          ["Reebok", "reebok"],
-          ["New Balance", "newbalance"],
-          ["Skechers", "skechers"],
-          ["Columbia", "columbia"],
+          ["NIKE", "#111111", "up arc"],
+          ["adidas", "#000000", "low"],
+          ["SONY", "#000000", "up arc"],
+          ["SAMSUNG", "#1428a0", "up"],
+          ["LEGO", "#d01012", "up arc"],
+          ["Nintendo", "#e60012", "arc"],
+          ["BOSE", "#000000", "up arc"],
+          ["dyson", "#333333", "low mono"],
+          ["JBL", "#ff3300", "up arc"],
+          ["Beats", "#e01f3d", "it"],
+          ["Anker", "#00a7e1", ""],
+          ["Logitech", "#00b8fc", ""],
+          ["PHILIPS", "#0b5ed7", "up"],
+          ["Sharpie", "#111111", "it"],
+          ["Crayola", "#ffb114", "arc"],
+          ["Fisher-Price", "#e31837", ""],
+          ["Hasbro", "#0057b8", "arc"],
+          ["Mattel", "#e4002b", "arc"],
+          ["Barbie", "#e0218a", "it"],
+          ["HOT WHEELS", "#0a4eb0", "up it arc"],
+          ["NERF", "#f26522", "up it arc"],
+          ["Levi's", "#c41230", "arc"],
+          ["Carhartt", "#ee7623", ""],
+          ["THE NORTH FACE", "#000000", "up"],
+          ["Columbia", "#0071ce", ""],
+          ["UNDER ARMOUR", "#000000", "up"],
+          ["PUMA", "#000000", "up arc"],
+          ["Reebok", "#e41b23", "it arc"],
+          ["new balance", "#cf0a2c", "low it"],
+          ["SKECHERS", "#0033a0", "up it arc"],
+          ["crocs", "#6bc04e", "low arc"],
+          ["VANS", "#c8102e", "up arc"],
+          ["CONVERSE", "#111111", "up"],
+          ["Champion", "#1f2f6b", "it"],
+          ["Hanes", "#c8102e", ""],
+          ["YETI", "#00263a", "up arc"],
+          ["STANLEY", "#1a1a1a", "up arc"],
+          ["Contigo", "#0072ce", ""],
+          ["KitchenAid", "#c41230", ""],
+          ["Cuisinart", "#b31942", "it"],
+          ["NINJA", "#111111", "up arc"],
+          ["Keurig", "#3d2b1f", "arc"],
+          ["Nespresso", "#000000", ""],
+          ["Instant Pot", "#c8102e", "arc"],
+          ["BLACK+DECKER", "#e65300", "up arc"],
+          ["DEWALT", "#febd17", "up arc"],
+          ["RYOBI", "#8dc63f", "up it arc"],
+          ["OXO", "#111111", "up arc"],
+          ["Pyrex", "#d31245", "arc"],
+          ["Rubbermaid", "#c8102e", ""],
+          ["AmazonBasics", "#ff9900", ""],
+          ["fitbit", "#00b0b9", "low mono"],
+          ["GARMIN", "#000000", "up"],
+          ["GoPro", "#0085c9", "arc"],
+          ["Ray-Ban", "#c8102e", "it"],
+          ["OAKLEY", "#111111", "up arc"],
+          ["Timberland", "#5c4033", ""],
+          ["Dickies", "#1e3f7a", "arc"],
+          ["Apple", "#555555", ""],
         ];
-        function make(name, slug) {
-          var w = document.createElement("span");
-          w.className = "blogo";
-          var img = document.createElement("img");
-          img.alt = name;
-          img.loading = "lazy";
-          img.setAttribute("data-step", "0");
-          img.src = "logos/" + slug + ".svg";
-          img.onerror = function () {
-            if (this.getAttribute("data-step") === "0") {
-              this.setAttribute("data-step", "1");
-              this.src = "https://cdn.simpleicons.org/" + slug;
-              return;
-            }
+        function fill() {
+          for (var i = 0; i < B.length; i++) {
+            var w = document.createElement("span");
+            w.className = "blogo";
             var sp = document.createElement("span");
-            sp.className = "bword";
-            sp.textContent = name;
-            if (BCOLORS[slug]) sp.style.color = BCOLORS[slug];
-            if (this.parentNode) this.parentNode.replaceChild(sp, this);
-          };
-          w.appendChild(img);
-          return w;
+            sp.className = "bword" + (B[i][2] ? " " + B[i][2] : "");
+            sp.textContent = B[i][0];
+            sp.style.color = B[i][1];
+            w.appendChild(sp);
+            t.appendChild(w);
+          }
         }
-        function fill(host) {
-          for (var i = 0; i < B.length; i++) host.appendChild(make(B[i][0], B[i][1]));
-        }
-        fill(t);
-        fill(t); /* duplicate for seamless loop */
+        fill();
+        fill(); /* duplicate for seamless loop */
       })();
 
       /* ---- video loops ---- */
