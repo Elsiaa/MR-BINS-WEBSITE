@@ -5176,7 +5176,7 @@
           wrap.addEventListener(
             ev,
             function () {
-              hold = Date.now() + 2500;
+              hold = Date.now() + 1500;
             },
             { passive: true },
           );
@@ -5184,7 +5184,7 @@
         (function drift() {
           var half = t.scrollWidth / 2;
           if (half > 0) {
-            if (Date.now() > hold) wrap.scrollLeft += 0.6;
+            if (Date.now() > hold) wrap.scrollLeft += 1.6;
             if (wrap.scrollLeft >= half) wrap.scrollLeft -= half;
             else if (wrap.scrollLeft <= 0 && hold > Date.now()) wrap.scrollLeft += half;
           }
