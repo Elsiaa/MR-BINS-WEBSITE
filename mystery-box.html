@@ -3952,11 +3952,17 @@
         transform: translateY(-1px);
       }
     </style>
-      <style id="mbxfit">
+    <style id="mbxfit">
       /* desktop rhythm: consistent one-screen sections */
       @media (min-width: 1100px) {
-        #hauls { padding-top: 56px !important; padding-bottom: 64px !important; }
-        #reviews { padding-top: 72px !important; padding-bottom: 72px !important; }
+        #hauls {
+          padding-top: 56px !important;
+          padding-bottom: 64px !important;
+        }
+        #reviews {
+          padding-top: 72px !important;
+          padding-bottom: 72px !important;
+        }
       }
     </style>
     <style id="mbxbtns">
@@ -3975,28 +3981,38 @@
         gap: 3px !important;
       }
       .mbuy .tn {
-        font: 700 11px "Archivo", sans-serif !important;
+        font:
+          700 11px "Archivo",
+          sans-serif !important;
         letter-spacing: 0.22em !important;
         text-transform: uppercase !important;
         color: var(--muted) !important;
       }
       .mbuy .tp {
-        font: 900 clamp(26px, 2.4vw, 34px) "Archivo", sans-serif !important;
+        font:
+          900 clamp(26px, 2.4vw, 34px) "Archivo",
+          sans-serif !important;
         color: #0b2447 !important;
         line-height: 1.05 !important;
       }
       .mbuy .td {
-        font: 600 13px "Archivo", sans-serif !important;
+        font:
+          600 13px "Archivo",
+          sans-serif !important;
         color: var(--orange) !important;
       }
       .mbuy .tgo {
         margin-top: 8px !important;
-        font: 700 12px "Archivo", sans-serif !important;
+        font:
+          700 12px "Archivo",
+          sans-serif !important;
         color: #0b2447 !important;
         background: rgba(11, 36, 71, 0.06);
         padding: 7px 16px;
         border-radius: 999px;
-        transition: background 0.2s, color 0.2s;
+        transition:
+          background 0.2s,
+          color 0.2s;
       }
       .mbuy:hover {
         border-color: var(--orange) !important;
@@ -4635,9 +4651,7 @@
           <button class="sbtn" data-add="loaded">Add to cart</button>
         </div>
       </div>
-      <div class="snote">
-        Ships in 1&ndash;2 days. Free shipping over $50.
-      </div>
+      <div class="snote">Ships in 1&ndash;2 days. Free shipping over $50.</div>
     </section>
     <button id="mbfab">Cart &middot; <span id="mbfabn">0</span></button>
     <aside id="mbcart" aria-label="Cart">
