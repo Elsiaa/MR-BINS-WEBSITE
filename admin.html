@@ -141,6 +141,15 @@
         gap: 12px;
         flex-wrap: wrap;
       }
+      @media (max-width: 640px) {
+        .itrow {
+          grid-template-columns: 64px 1fr auto !important;
+        }
+        .itrow .i-cat,
+        .itrow .i-retail {
+          grid-column: 2 / 4;
+        }
+      }
       a.back {
         color: #1f66c8;
         font-weight: 700;
