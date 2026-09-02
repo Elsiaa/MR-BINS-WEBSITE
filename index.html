@@ -4008,7 +4008,7 @@
         <nav class="tabs">
           <a href="locations.html">Locations</a>
           <a href="deals.html">Pricing</a>
-          <a href="#loyalty">Loyalty</a>
+          <a href="loyalty.html">Loyalty</a>
           <a href="mystery-box.html">Mystery Box</a>
           <a href="careers.html">Careers</a>
         </nav>
@@ -4033,7 +4033,7 @@
     <nav class="mnav" id="mnav" aria-label="Mobile menu">
       <a href="#discover">This Week&rsquo;s Bins</a>
       <a href="deals.html">Daily Deals</a>
-      <a href="#loyalty">Loyalty Rewards</a>
+      <a href="loyalty.html">Loyalty Rewards</a>
       <a href="mystery-box.html">Mystery Box</a>
       <a href="careers.html">Careers</a>
       <a href="#footer">Locations &amp; Hours</a>
@@ -4689,143 +4689,6 @@
     </section>
 
     <!-- DEALS, per-department weekly price calendars (from the price-schedule flyer) -->
-    <section id="loyalty">
-      <div class="lywrap">
-        <div class="lyintro">
-          <div class="lytext">
-            <h2>Never miss a <span class="o">drop day.</span></h2>
-            <p class="sub">
-              Loyalty members get the best of every drop day, every week &mdash; free to join.
-            </p>
-            <form
-              id="lyjoin"
-              style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; max-width: 560px"
-            >
-              <input
-                type="text"
-                name="first"
-                required
-                placeholder="First name"
-                autocomplete="given-name"
-                style="
-                  font:
-                    600 15px &quot;Hanken Grotesk&quot;,
-                    sans-serif;
-                  padding: 12px 16px;
-                  border-radius: 999px;
-                  border: 1.5px solid rgba(11, 36, 71, 0.25);
-                  flex: 1 1 130px;
-                  min-width: 0;
-                  outline-color: var(--orange);
-                "
-              />
-              <input
-                type="text"
-                name="last"
-                required
-                placeholder="Last name"
-                autocomplete="family-name"
-                style="
-                  font:
-                    600 15px &quot;Hanken Grotesk&quot;,
-                    sans-serif;
-                  padding: 12px 16px;
-                  border-radius: 999px;
-                  border: 1.5px solid rgba(11, 36, 71, 0.25);
-                  flex: 1 1 130px;
-                  min-width: 0;
-                  outline-color: var(--orange);
-                "
-              />
-              <input
-                type="tel"
-                name="phone"
-                required
-                placeholder="Phone number"
-                autocomplete="tel"
-                style="
-                  font:
-                    600 15px &quot;Hanken Grotesk&quot;,
-                    sans-serif;
-                  padding: 12px 16px;
-                  border-radius: 999px;
-                  border: 1.5px solid rgba(11, 36, 71, 0.25);
-                  flex: 1 1 170px;
-                  min-width: 0;
-                  outline-color: var(--orange);
-                "
-              />
-              <button class="dbtn gold" type="submit" style="cursor: pointer; border: 0">
-                Get alerts
-              </button>
-            </form>
-            <script>
-              document.getElementById("lyjoin").addEventListener("submit", function (e) {
-                e.preventDefault();
-                var n = this.first.value.trim();
-                this.innerHTML =
-                  "<div style=\"font:700 17px 'Hanken Grotesk',sans-serif;color:var(--orange);padding:10px 0\">" +
-                  "You&rsquo;re in" +
-                  (n ? ", " + n.replace(/[<>&]/g, "") : "") +
-                  "! Watch your texts for the next drop day. &#128230;</div>";
-              });
-            </script>
-          </div>
-          <img
-            class="lyhero"
-            src="mrbins-loyal-hero.png"
-            alt="A loyalty member pushing a shopping cart piled high with brand-new finds"
-            loading="lazy"
-          />
-        </div>
-        <div class="lygrid">
-          <div class="lycard">
-            <div class="limg"><img src="mrbins-loyal-drop.jpg" alt="" loading="lazy" /></div>
-            <h3>Drop-day head start</h3>
-            <p>
-              Members get first crack at the bins when fresh pallets land &mdash; before the crowds
-              dig in.
-            </p>
-          </div>
-          <div class="lycard">
-            <div class="limg">
-              <img
-                src="mrbins-loyal-alerts.jpg"
-                alt=""
-                loading="lazy"
-                style="object-fit: contain; padding: 6px"
-              />
-            </div>
-            <h3>Price-drop alerts</h3>
-            <p>
-              A text the moment your department hits the price you&rsquo;re waiting for. Nothing
-              else, ever.
-            </p>
-          </div>
-          <div class="lycard">
-            <div class="limg"><img src="mrbins-loyal-card.jpg" alt="" loading="lazy" /></div>
-            <h3>Members-only deals</h3>
-            <p>Special member prices and bonus deal days all year long, in every department.</p>
-          </div>
-          <div class="lycard">
-            <div class="limg">
-              <img
-                src="mrbins-mystery-closed.png"
-                alt=""
-                loading="lazy"
-                style="object-fit: contain; padding: 8px"
-              />
-            </div>
-            <h3>Mystery box perks</h3>
-            <p>
-              Member pricing on every mystery box we pack &mdash; always worth more than you pay.
-            </p>
-          </div>
-        </div>
-
-        <div class="lycta"></div>
-      </div>
-    </section>
 
     <!-- MYSTERY BOX STORE PROMO -->
     <section id="mbpromo">
@@ -5375,7 +5238,7 @@
           </div>
           <nav class="fnav" aria-label="Footer">
             <a href="deals.html">Daily Deals</a>
-            <a href="#loyalty">Loyalty Rewards</a>
+            <a href="loyalty.html">Loyalty Rewards</a>
             <a href="mystery-box.html">Mystery Box</a>
             <a href="careers.html">Careers</a>
           </nav>

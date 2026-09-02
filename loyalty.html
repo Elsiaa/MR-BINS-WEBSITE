@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Deals · Mr. Bins</title>
+    <title>Loyalty · Mr. Bins</title>
     <meta
       name="description"
       content="Mr. Bins: dig through bins of brand-new Amazon returns across 4 Northeast PA stores. One price for everything, dropping $14 to $9 through the week, or get a hand-packed mystery box shipped to your door."
@@ -21,6 +21,7 @@
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230B2447'/%3E%3Cpath d='M6 13h14.5l5.5 5-5.5 5H6z' fill='%23FF8F52'/%3E%3Ccircle cx='10' cy='18' r='1.8' fill='%23fff'/%3E%3C/svg%3E"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preload" as="image" href="mrbins-walk-poster.jpg" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://cdn.simpleicons.org" />
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
@@ -3420,6 +3421,17 @@
           gap: 8px;
         }
       }
+      /* desktop fit: one screen per section */
+      @media (min-width: 1100px) {
+        #hauls {
+          padding-top: 56px !important;
+          padding-bottom: 64px !important;
+        }
+        #price {
+          padding-top: 56px !important;
+          padding-bottom: 56px !important;
+        }
+      }
       /* ============ MOBILE HERO REBUILD (<768px) ============
    The walk-in hero, redesigned for phones: captions anchored to the
    lower third (clear of the in-video signage), phone-scale type, a
@@ -3995,7 +4007,7 @@
         </a>
         <nav class="tabs">
           <a href="locations.html">Locations</a>
-          <a href="#deals">Pricing</a>
+          <a href="deals.html">Pricing</a>
           <a href="loyalty.html">Loyalty</a>
           <a href="mystery-box.html">Mystery Box</a>
           <a href="careers.html">Careers</a>
@@ -4020,7 +4032,7 @@
     </header>
     <nav class="mnav" id="mnav" aria-label="Mobile menu">
       <a href="index.html#discover">This Week&rsquo;s Bins</a>
-      <a href="#deals">Daily Deals</a>
+      <a href="deals.html">Daily Deals</a>
       <a href="loyalty.html">Loyalty Rewards</a>
       <a href="mystery-box.html">Mystery Box</a>
       <a href="careers.html">Careers</a>
@@ -4032,142 +4044,136 @@
      scroll-scrubbed walk-in as desktop (#walk, mobile rendition), then each of
      these pinned stages scrubs its animation with the scroll, bin, clothing,
      shoes, so you go through them in order before the rest of the site. -->
-    <section id="deals">
-      <style>
-        .dealrow {
-          display: grid;
-          grid-template-columns: 150px 1fr 2fr;
-          align-items: center;
-          gap: clamp(18px, 2.5vw, 36px);
-          margin-bottom: clamp(22px, 3vw, 36px);
-          padding: clamp(18px, 2.4vw, 30px);
-          border-radius: 22px;
-          background: #fff;
-          border: 1px solid rgba(11, 36, 71, 0.08);
-          box-shadow: 0 16px 40px rgba(11, 36, 71, 0.08);
-        }
-        .dimg {
-          width: 150px;
-          height: 110px;
-          border-radius: 16px;
-          overflow: hidden;
-          background: #f4f7fb;
-        }
-        .dimg img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          display: block;
-        }
-        @media (max-width: 900px) {
-          .dealrow {
-            grid-template-columns: 1fr;
-            text-align: center;
-          }
-          .dimg {
-            margin: 0 auto;
-            width: 100%;
-            max-width: 320px;
-            height: 140px;
-          }
-        }
-      </style>
-      <div class="dzwrap">
-        <div class="dzhead">
-          <h2>Even <span class="o">better deals.</span></h2>
-          <p class="sub">
-            Every department runs its own weekly price ladder &mdash; one price for everything in
-            that section, changing daily. Time it right and steal the deal.
-          </p>
+    <section id="loyalty">
+      <div class="lywrap">
+        <div class="lyintro">
+          <div class="lytext">
+            <h2>Never miss a <span class="o">drop day.</span></h2>
+            <p class="sub">
+              Earn points on every visit and turn them into cash for the bins &mdash; free to join,
+              50 points on the spot.
+            </p>
+            <form
+              id="lyjoin"
+              style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; max-width: 560px"
+            >
+              <input
+                type="text"
+                name="first"
+                required
+                placeholder="First name"
+                autocomplete="given-name"
+                style="
+                  font:
+                    600 15px &quot;Hanken Grotesk&quot;,
+                    sans-serif;
+                  padding: 12px 16px;
+                  border-radius: 999px;
+                  border: 1.5px solid rgba(11, 36, 71, 0.25);
+                  flex: 1 1 130px;
+                  min-width: 0;
+                  outline-color: var(--orange);
+                "
+              />
+              <input
+                type="text"
+                name="last"
+                required
+                placeholder="Last name"
+                autocomplete="family-name"
+                style="
+                  font:
+                    600 15px &quot;Hanken Grotesk&quot;,
+                    sans-serif;
+                  padding: 12px 16px;
+                  border-radius: 999px;
+                  border: 1.5px solid rgba(11, 36, 71, 0.25);
+                  flex: 1 1 130px;
+                  min-width: 0;
+                  outline-color: var(--orange);
+                "
+              />
+              <input
+                type="tel"
+                name="phone"
+                required
+                placeholder="Phone number"
+                autocomplete="tel"
+                style="
+                  font:
+                    600 15px &quot;Hanken Grotesk&quot;,
+                    sans-serif;
+                  padding: 12px 16px;
+                  border-radius: 999px;
+                  border: 1.5px solid rgba(11, 36, 71, 0.25);
+                  flex: 1 1 170px;
+                  min-width: 0;
+                  outline-color: var(--orange);
+                "
+              />
+              <button class="dbtn gold" type="submit" style="cursor: pointer; border: 0">
+                Get alerts
+              </button>
+            </form>
+            <script>
+              document.getElementById("lyjoin").addEventListener("submit", function (e) {
+                e.preventDefault();
+                var n = this.first.value.trim();
+                this.innerHTML =
+                  "<div style=\"font:700 17px 'Hanken Grotesk',sans-serif;color:var(--orange);padding:10px 0\">" +
+                  "You&rsquo;re in" +
+                  (n ? ", " + n.replace(/[<>&]/g, "") : "") +
+                  "! Watch your texts for the next drop day. &#128230;</div>";
+              });
+            </script>
+          </div>
+          <img
+            class="lyhero"
+            src="mrbins-loyal-hero.png"
+            alt="A loyalty member pushing a shopping cart piled high with brand-new finds"
+            loading="lazy"
+          />
         </div>
-        <div class="dealrow dz-blue">
-          <div class="dimg">
-            <img src="mrbins-cart-poster.jpg" alt="General Bin Items" loading="lazy" />
+        <div class="lygrid">
+          <div class="lycard">
+            <div class="limg"><img src="mrbins-loyal-drop.jpg" alt="" loading="lazy" /></div>
+            <h3>50 points just for joining</h3>
+            <p>Sign up free and 50 loyalty points land in your account instantly.</p>
           </div>
-          <div class="dlabel">
-            <h3>General Bin Items</h3>
-            <div class="restock">New stock every Friday!</div>
-            <div class="dtag">&#9733; New stock. Best selection. Unbeatable prices.</div>
-          </div>
-          <div class="dweek">
-            <div class="dday"><span class="dn">Sun</span><span class="dp">$7</span></div>
-            <div class="dday"><span class="dn">Mon</span><span class="dp">$5</span></div>
-            <div class="dday"><span class="dn">Tue</span><span class="dp">$3</span></div>
-            <div class="dday"><span class="dn">Wed</span><span class="dp">$2</span></div>
-            <div class="dday"><span class="dn">Thu</span><span class="dp">$1</span></div>
-            <div class="dday drop">
-              <span class="dn">Fri</span><span class="badge">Drop day!</span
-              ><span class="dp">$9</span>
+          <div class="lycard">
+            <div class="limg">
+              <img
+                src="mrbins-loyal-alerts.jpg"
+                alt=""
+                loading="lazy"
+                style="object-fit: contain; padding: 6px"
+              />
             </div>
-            <div class="dday closed"><span class="dn">Sat</span><span class="dp">Closed</span></div>
+            <h3>1 point per $1 spent</h3>
+            <p>Every dollar you spend at any Mr. Bins store racks up a point.</p>
           </div>
-        </div>
-        <div class="dealrow dz-green">
-          <div class="dimg"><img src="mrbins-shoes-poster.jpg" alt="Shoes" loading="lazy" /></div>
-          <div class="dlabel">
-            <h3>Shoes</h3>
-            <div class="restock">New stock every Friday!</div>
-            <div class="dtag">&#9733; Top brands. Great prices.</div>
+          <div class="lycard">
+            <div class="limg"><img src="mrbins-loyal-card.jpg" alt="" loading="lazy" /></div>
+            <h3>$3 credit per 100 points</h3>
+            <p>Hit 100 points and $3 of credit is yours to spend on anything in the bins.</p>
           </div>
-          <div class="dweek">
-            <div class="dday"><span class="dn">Sun</span><span class="dp">$10</span></div>
-            <div class="dday"><span class="dn">Mon</span><span class="dp">$6</span></div>
-            <div class="dday"><span class="dn">Tue</span><span class="dp">$6</span></div>
-            <div class="dday"><span class="dn">Wed</span><span class="dp">$3</span></div>
-            <div class="dday"><span class="dn">Thu</span><span class="dp">$3</span></div>
-            <div class="dday drop">
-              <span class="dn">Fri</span><span class="badge">Drop day!</span
-              ><span class="dp">$10</span>
+          <div class="lycard">
+            <div class="limg">
+              <img
+                src="mrbins-mystery-closed.png"
+                alt=""
+                loading="lazy"
+                style="object-fit: contain; padding: 8px"
+              />
             </div>
-            <div class="dday closed"><span class="dn">Sat</span><span class="dp">Closed</span></div>
+            <h3>Member-only bonus points</h3>
+            <p>Members-only point promotions all year — and top earners unlock extra perks.</p>
           </div>
         </div>
-        <div class="dealrow dz-purple">
-          <div class="dimg">
-            <img src="mrbins-clothes-poster.jpg" alt="Clothing" loading="lazy" />
-          </div>
-          <div class="dlabel">
-            <h3>Clothing</h3>
-            <div class="restock">New stock every Sunday!</div>
-            <div class="dtag">&#9733; All clothing. All week.</div>
-          </div>
-          <div class="dweek">
-            <div class="dday drop">
-              <span class="dn">Sun</span><span class="badge">Drop day!</span
-              ><span class="dp">$6</span>
-            </div>
-            <div class="dday"><span class="dn">Mon</span><span class="dp">$6</span></div>
-            <div class="dday"><span class="dn">Tue</span><span class="dp">$6</span></div>
-            <div class="dday"><span class="dn">Wed</span><span class="dp">$6</span></div>
-            <div class="dday"><span class="dn">Thu</span><span class="dp">$6</span></div>
-            <div class="dday"><span class="dn">Fri</span><span class="dp">$4</span></div>
-            <div class="dday closed"><span class="dn">Sat</span><span class="dp">Closed</span></div>
-          </div>
-        </div>
-        <div class="dealrow dz-orange">
-          <div class="dimg"><img src="mrbins-dept-food.jpg" alt="Food" /></div>
-          <div class="dlabel">
-            <h3>Food</h3>
-            <div class="restock">New stock every Wednesday!</div>
-            <div class="dtag">&#9733; Fresh stock. Great savings.</div>
-          </div>
-          <div class="dweek">
-            <div class="dday"><span class="dn">Sun</span><span class="dp">$3</span></div>
-            <div class="dday"><span class="dn">Mon</span><span class="dp">$2</span></div>
-            <div class="dday"><span class="dn">Tue</span><span class="dp">$1</span></div>
-            <div class="dday drop">
-              <span class="dn">Wed</span><span class="badge">Drop day!</span
-              ><span class="dp">$7</span>
-            </div>
-            <div class="dday"><span class="dn">Thu</span><span class="dp">$5</span></div>
-            <div class="dday"><span class="dn">Fri</span><span class="dp">$4</span></div>
-            <div class="dday closed"><span class="dn">Sat</span><span class="dp">Closed</span></div>
-          </div>
-        </div>
+
+        <div class="lycta"></div>
       </div>
     </section>
-
-    <!-- LOYALTY, member reward program -->
     <footer id="footer">
       <div class="fwrap">
         <div class="frow">
@@ -4176,7 +4182,7 @@
             <b>Sat closed</b> (restock)
           </div>
           <nav class="fnav" aria-label="Footer">
-            <a href="#deals">Daily Deals</a>
+            <a href="deals.html">Daily Deals</a>
             <a href="loyalty.html">Loyalty Rewards</a>
             <a href="mystery-box.html">Mystery Box</a>
             <a href="careers.html">Careers</a>
@@ -4223,15 +4229,74 @@
           />Brand new. Nearly free. &middot; &copy; Mr. Bins / Prime Bins
         </div>
       </div>
-      <div class="builtby" style="text-align: center; padding: 26px 20px 30px; border-top: 1px solid rgba(255, 255, 255, 0.1)">
-        <a href="https://elsiaa.com/design" target="_blank" rel="noopener"
-          style="display: inline-flex; align-items: center; gap: 10px; text-decoration: none; background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 999px; padding: 11px 22px">
-          <span style="font: 600 13px 'Hanken Grotesk', sans-serif; color: rgba(255, 255, 255, 0.65)">Designed &amp; built by</span>
-          <span style="font: 800 15px 'Hanken Grotesk', sans-serif; color: #fff; letter-spacing: 0.14em">ELSIAA</span>
+      <div
+        class="builtby"
+        style="
+          text-align: center;
+          padding: 26px 20px 30px;
+          border-top: 1px solid rgba(255, 255, 255, 0.1);
+        "
+      >
+        <a
+          href="https://elsiaa.com/design"
+          target="_blank"
+          rel="noopener"
+          style="
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 999px;
+            padding: 11px 22px;
+          "
+        >
+          <span
+            style="
+              font:
+                600 13px &quot;Hanken Grotesk&quot;,
+                sans-serif;
+              color: rgba(255, 255, 255, 0.65);
+            "
+            >Designed &amp; built by</span
+          >
+          <span
+            style="
+              font:
+                800 15px &quot;Hanken Grotesk&quot;,
+                sans-serif;
+              color: #fff;
+              letter-spacing: 0.14em;
+            "
+            >ELSIAA</span
+          >
           <span style="color: #2e9e58; font-weight: 800">&rarr;</span>
         </a>
       </div>
     </footer>
+
+    <section
+      id="brandsign"
+      style="
+        background: #fff;
+        padding: clamp(28px, 6vh, 64px) 0;
+        display: flex;
+        justify-content: center;
+      "
+    >
+      <video
+        autoplay
+        muted
+        loop
+        playsinline
+        style="width: min(680px, 86vw); height: auto; display: block"
+        poster="mrbins-logo.png"
+        aria-label="Mr. Bins"
+      >
+        <source data-desk="mrbins-logo-live.mp4" type="video/mp4" />
+      </video>
+    </section>
 
     <script>
       var LADDER = { 0: 14, 1: 13, 2: 12, 3: 11, 4: 10, 5: 9, 6: null };
