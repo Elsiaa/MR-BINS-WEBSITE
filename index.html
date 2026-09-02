@@ -4667,55 +4667,118 @@
       }
     </style>
     <section id="price">
+      <style>
+        #price .pgrid {
+          display: grid;
+          grid-template-columns: 1.5fr 1fr;
+          gap: clamp(18px, 2.4vw, 30px);
+          max-width: 1120px;
+          margin: clamp(28px, 4vw, 46px) auto 0;
+          align-items: stretch;
+          text-align: left;
+        }
+        @media (max-width: 900px) {
+          #price .pgrid {
+            grid-template-columns: 1fr;
+          }
+        }
+        #price .pcard {
+          background: #fff;
+          border: 1px solid rgba(11, 36, 71, 0.08);
+          border-radius: 26px;
+          padding: clamp(26px, 3vw, 40px);
+          box-shadow: 0 18px 48px rgba(11, 36, 71, 0.08);
+          display: flex;
+          flex-direction: column;
+        }
+        #price .pcard .ladder {
+          margin: auto 0;
+          max-width: none;
+        }
+        #price .lycard {
+          background: linear-gradient(160deg, #0b2447, #14386e);
+          color: #fff;
+          border: 0;
+          align-items: center;
+          text-align: center;
+          justify-content: center;
+          gap: 6px;
+        }
+        #price .lycard h3 {
+          font-family: "Bricolage Grotesque", sans-serif;
+          font-weight: 800;
+          font-size: clamp(22px, 2.4vw, 30px);
+          line-height: 1.15;
+          margin: 4px 0 2px;
+        }
+        #price .lycard p {
+          color: rgba(255, 255, 255, 0.78);
+          font-size: 15px;
+          line-height: 1.55;
+          max-width: 300px;
+        }
+        #price .pcard .rowtop {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 14px;
+          flex-wrap: wrap;
+          margin-bottom: 6px;
+        }
+        #price .pcard .psub {
+          color: #4a5a75;
+          font-size: 14.5px;
+          line-height: 1.5;
+          margin: 6px 0 18px;
+        }
+        #price .pcard .pfoot {
+          margin-top: 18px;
+        }
+      </style>
       <div class="pwrap">
         <h2>
           You&rsquo;ve seen the bins&hellip; now see how
           <span class="g">ridiculously cheap</span> they are.
         </h2>
-        <div
-          id="pnow"
-          style="
-            grid-column: 1 / -1;
-            justify-self: center;
-            display: inline-flex;
-            align-items: baseline;
-            gap: 10px;
-            margin-top: 4px;
-            padding: 10px 26px;
-            border-radius: 999px;
-            background: #e8f7ee;
-            border: 1.5px solid rgba(46, 158, 79, 0.35);
-            font-family: &quot;Bricolage Grotesque&quot;, sans-serif;
-            font-weight: 800;
-            font-size: clamp(22px, 2.6vw, 30px);
-            color: #2e9e4f;
-            line-height: 1;
-          "
-        ></div>
-        <p class="sub">
-          Every item shares the same price &mdash; and it falls every day, Sunday to Friday. Come
-          early for the pick, come Friday for the price.
-        </p>
-        <div class="ladder" id="ladderEl"></div>
-        <div style="grid-column: 1 / -1; justify-self: center; text-align: center; margin-top: 8px">
-          <a class="dbtn gold" href="deals.html">See pricing &rarr;</a>
-        </div>
-
-        <div class="alertcard" id="alertcard">
-          <img
-            src="mrbins-ly-cash.png"
-            alt=""
-            style="
-              width: min(150px, 40vw);
-              height: auto;
-              display: block;
-              margin: 0 auto 12px;
-              mix-blend-mode: multiply;
-            "
-          />
-          <h3>Loyalty members save even more!</h3>
-          <div style="margin-top: 16px; text-align: center">
-            <a class="dbtn gold" href="loyalty.html">Join the loyalty club &rarr;</a>
+        <div class="pgrid" style="grid-column: 1 / -1">
+          <div class="pcard">
+            <div class="rowtop">
+              <div
+                id="pnow"
+                style="
+                  display: inline-flex;
+                  align-items: baseline;
+                  gap: 10px;
+                  padding: 10px 22px;
+                  border-radius: 999px;
+                  background: #e8f7ee;
+                  border: 1.5px solid rgba(46, 158, 79, 0.35);
+                  font-family: &quot;Bricolage Grotesque&quot;, sans-serif;
+                  font-weight: 800;
+                  font-size: clamp(20px, 2.2vw, 27px);
+                  color: #2e9e4f;
+                  line-height: 1;
+                "
+              ></div>
+              <a class="dbtn gold" href="deals.html">See pricing &rarr;</a>
+            </div>
+            <p class="psub">
+              Every item shares the same price &mdash; and it falls a dollar a day, Sunday to
+              Friday. Come early for the pick, come Friday for the price.
+            </p>
+            <div class="ladder" id="ladderEl"></div>
+          </div>
+          <div class="pcard lycard" id="alertcard">
+            <img
+              src="mrbins-ly-cash.png"
+              alt=""
+              style="width: min(170px, 44vw); height: auto; display: block"
+            />
+            <h3>Loyalty members save even more</h3>
+            <p>50 points just for joining, a point for every dollar, $3 back every 100 points.</p>
+            <div class="pfoot">
+              <a class="dbtn gold" href="loyalty.html">Join the loyalty club &rarr;</a>
+            </div>
           </div>
         </div>
       </div>
