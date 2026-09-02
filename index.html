@@ -4190,6 +4190,38 @@
           <div class="carousel" id="carousel"><div class="track" id="track"></div></div>
           <button class="cnav next" id="cnext" aria-label="Scroll right">&rsaquo;</button>
         </div>
+        <div class="dstrip">
+          <style>
+            .dstrip {
+              margin-top: clamp(10px, 1.6vh, 22px);
+              overflow: hidden;
+            }
+            .dstrip .strack {
+              display: flex;
+              gap: 12px;
+              align-items: center;
+              width: max-content;
+              animation: dslide 36s linear infinite;
+            }
+            .dstrip .strack img {
+              height: clamp(56px, 8.5vh, 84px);
+              width: auto;
+              border-radius: 12px;
+              background: #fff;
+              border: 1px solid rgba(11, 36, 71, 0.08);
+              box-shadow: 0 8px 20px rgba(11, 36, 71, 0.08);
+            }
+            @keyframes dslide {
+              from {
+                transform: translateX(0);
+              }
+              to {
+                transform: translateX(-50%);
+              }
+            }
+          </style>
+          <div class="strack" id="strackTop"></div>
+        </div>
         <div class="dbtns">
           <a class="dbtn primary" href="https://primebins.com" target="_blank" rel="noopener"
             >See all of this week&rsquo;s bins &rarr;</a
@@ -5348,11 +5380,27 @@
           />Brand new. Nearly free. &middot; &copy; Mr. Bins / Prime Bins
         </div>
       </div>
-          <div class="builtby" style="text-align:center;padding:18px 20px;font:600 12.5px 'Hanken Grotesk',sans-serif;color:rgba(255,255,255,0.55)">
+      <div
+        class="builtby"
+        style="
+          text-align: center;
+          padding: 18px 20px;
+          font:
+            600 12.5px &quot;Hanken Grotesk&quot;,
+            sans-serif;
+          color: rgba(255, 255, 255, 0.55);
+        "
+      >
         Built by
-        <a href="https://elsiaa.com/design" target="_blank" rel="noopener" style="color:#fff;font-weight:800;text-decoration:none;letter-spacing:0.04em">ELSIAA</a>
+        <a
+          href="https://elsiaa.com/design"
+          target="_blank"
+          rel="noopener"
+          style="color: #fff; font-weight: 800; text-decoration: none; letter-spacing: 0.04em"
+          >ELSIAA</a
+        >
       </div>
-</footer>
+    </footer>
 
     <section
       id="brandsign"
