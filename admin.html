@@ -235,6 +235,10 @@
             />
             Mystery box program is ON
           </label>
+          <p class="note" style="margin-top: 8px; margin-bottom: 0">
+            Flipping this alone does nothing yet: press <b>Preview</b> to see it on this device, or
+            <b>Publish to live site</b> to change it for everyone.
+          </p>
         </div>
 
         <div class="card">
@@ -270,7 +274,18 @@
           gate.style.display = "none";
           panel.style.display = "block";
           logout.style.display = "inline-block";
-          build();
+          /* always edit the latest published config, never a cached copy */
+          fetch("pricing.js?fresh=" + Date.now())
+            .then(function (r) {
+              return r.text();
+            })
+            .then(function (src) {
+              try {
+                new Function(src)();
+              } catch (e) {}
+              build();
+            })
+            .catch(build);
         }
         document.getElementById("login").addEventListener("click", function () {
           if (
@@ -653,7 +668,8 @@
             if (!put.ok) throw new Error("GitHub says " + put.status + " writing pricing.js");
             localStorage.removeItem("mrb-pricing-override");
             msg.className = "msg ok";
-            msg.textContent = "Published! The live site updates in about a minute.";
+            msg.textContent =
+              "Published! Live in 1-2 minutes. If a page still looks old, hard-refresh; caches can take up to 10 minutes.";
           } catch (e) {
             msg.className = "msg err";
             msg.textContent = String(e.message || e);
