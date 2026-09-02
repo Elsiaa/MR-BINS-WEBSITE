@@ -3892,10 +3892,21 @@
         max-width: 100%;
       }
     </style>
-      <style id="btnpolish">
+    <style id="btnpolish">
       /* unified button feel, every button on the site */
-      .dbtn, .sbtn, .paybtn, .cbtn, .mcta, .ccta, .mbuy, .locbtns a,
-      #lyjoin button, .hnav, .cnav, .cartbtn, .menubtn {
+      .dbtn,
+      .sbtn,
+      .paybtn,
+      .cbtn,
+      .mcta,
+      .ccta,
+      .mbuy,
+      .locbtns a,
+      #lyjoin button,
+      .hnav,
+      .cnav,
+      .cartbtn,
+      .menubtn {
         transition:
           transform 0.18s cubic-bezier(0.2, 0.8, 0.2, 1),
           box-shadow 0.18s ease,
@@ -3903,25 +3914,130 @@
           border-color 0.18s ease,
           color 0.18s ease !important;
       }
-      .dbtn:hover, .sbtn:hover, .paybtn:not([disabled]):hover, .cbtn:hover,
-      .mcta:hover, .ccta:hover, #lyjoin button:hover {
+      .dbtn:hover,
+      .sbtn:hover,
+      .paybtn:not([disabled]):hover,
+      .cbtn:hover,
+      .mcta:hover,
+      .ccta:hover,
+      #lyjoin button:hover {
         transform: translateY(-2px);
         box-shadow: 0 14px 30px rgba(11, 36, 71, 0.22);
       }
-      .dbtn:active, .sbtn:active, .paybtn:not([disabled]):active, .cbtn:active,
-      .mcta:active, .ccta:active, .mbuy:active, #lyjoin button:active {
+      .dbtn:active,
+      .sbtn:active,
+      .paybtn:not([disabled]):active,
+      .cbtn:active,
+      .mcta:active,
+      .ccta:active,
+      .mbuy:active,
+      #lyjoin button:active {
         transform: translateY(0) scale(0.98);
       }
-      .dbtn:focus-visible, .sbtn:focus-visible, .paybtn:focus-visible, .cbtn:focus-visible,
-      .mbuy:focus-visible, .locbtns a:focus-visible, #lyjoin button:focus-visible {
+      .dbtn:focus-visible,
+      .sbtn:focus-visible,
+      .paybtn:focus-visible,
+      .cbtn:focus-visible,
+      .mbuy:focus-visible,
+      .locbtns a:focus-visible,
+      #lyjoin button:focus-visible {
         outline: 3px solid var(--orange);
         outline-offset: 2px;
       }
-      .hnav:hover, .cnav:hover {
+      .hnav:hover,
+      .cnav:hover {
         transform: scale(1.08);
       }
       .locbtns a:hover {
         transform: translateY(-1px);
+      }
+    </style>
+      <style id="mbxbtns">
+      /* premium button pass — mystery box page */
+      .mbuy {
+        border: 1.5px solid rgba(11, 36, 71, 0.1) !important;
+        border-radius: 20px !important;
+        padding: 16px 26px 14px !important;
+        background: linear-gradient(180deg, #ffffff, #f7f9fd) !important;
+        box-shadow: 0 12px 30px rgba(11, 36, 71, 0.1) !important;
+        gap: 3px !important;
+      }
+      .mbuy .tn {
+        font: 700 11px "Space Mono", monospace !important;
+        letter-spacing: 0.22em !important;
+        text-transform: uppercase !important;
+        color: var(--muted) !important;
+      }
+      .mbuy .tp {
+        font: 800 clamp(26px, 2.4vw, 34px) "Bricolage Grotesque", sans-serif !important;
+        color: #0b2447 !important;
+        line-height: 1.05 !important;
+      }
+      .mbuy .td {
+        font: 700 13px "Hanken Grotesk", sans-serif !important;
+        color: var(--orange) !important;
+      }
+      .mbuy .tgo {
+        margin-top: 8px !important;
+        font: 800 12px "Hanken Grotesk", sans-serif !important;
+        color: #0b2447 !important;
+        background: rgba(11, 36, 71, 0.06);
+        padding: 7px 16px;
+        border-radius: 999px;
+        transition: background 0.2s, color 0.2s;
+      }
+      .mbuy:hover {
+        border-color: var(--orange) !important;
+        box-shadow: 0 22px 48px rgba(11, 36, 71, 0.18) !important;
+      }
+      .mbuy:hover .tgo {
+        background: var(--orange);
+        color: #fff;
+      }
+      #shop .sbtn {
+        letter-spacing: 0.01em;
+        padding: 14px 30px;
+        box-shadow: 0 12px 28px rgba(11, 36, 71, 0.22);
+      }
+      #mbcart .paybtn {
+        background: #0b2447 !important;
+        border-radius: 999px !important;
+        letter-spacing: 0.01em;
+        box-shadow: 0 12px 28px rgba(11, 36, 71, 0.3);
+      }
+      #mbcart .paybtn:not([disabled]):hover {
+        background: var(--orange) !important;
+      }
+      #mbcart .paybtn[disabled] {
+        box-shadow: none;
+      }
+      #mbfab {
+        background: var(--orange) !important;
+        color: #0b2447 !important;
+        box-shadow: 0 14px 34px rgba(255, 143, 82, 0.5) !important;
+      }
+      #mbcart .cq button {
+        width: 30px !important;
+        height: 30px !important;
+        border: 1.5px solid rgba(11, 36, 71, 0.16) !important;
+        font-size: 15px;
+        transition: all 0.18s;
+      }
+      #mbcart .cq button:hover {
+        background: #0b2447;
+        color: #fff;
+        border-color: #0b2447;
+      }
+      .hnav {
+        background: rgba(255, 255, 255, 0.92) !important;
+        border: 1.5px solid rgba(11, 36, 71, 0.12) !important;
+        box-shadow: 0 10px 26px rgba(11, 36, 71, 0.14) !important;
+        color: #0b2447 !important;
+      }
+      .hnav:hover {
+        background: var(--orange) !important;
+        border-color: var(--orange) !important;
+        color: #fff !important;
       }
     </style>
   </head>
@@ -3975,34 +4091,33 @@
       <style>
         /* the opener fits one screen neatly at any desktop height */
         @media (min-width: 768px) {
-          /* no pinned travel: boxes + items carousel share one screen */
+          /* pinned opener: boxes + items strip on one screen, boxes fill
+             with items as you scroll through the pin */
           #online {
-            height: auto !important;
+            height: 185svh !important;
           }
           #online .mstage {
-            position: static;
-            height: auto;
-            min-height: 0;
-            padding-top: 92px;
-            padding-bottom: 10px;
+            position: sticky;
+            top: 0;
+            height: 100svh;
+            padding-top: 88px;
+            padding-bottom: 12px;
             justify-content: center;
-            gap: clamp(8px, 1.6svh, 22px);
+            gap: clamp(6px, 1.4svh, 18px);
           }
           #online .mbox video {
-            max-height: min(33svh, 330px);
+            max-height: min(30svh, 300px);
             width: auto;
             max-width: 100%;
           }
-          #boxitems {
-            padding-top: 0 !important;
-            padding-bottom: 28px !important;
+          #online .ucar {
+            margin-top: clamp(6px, 1.4svh, 16px);
           }
-          #boxitems .ucar-h {
-            margin-top: 0;
-            margin-bottom: 10px;
+          #online .ucar-h {
+            margin: 0 0 8px;
           }
-          #online .mstage {
-            padding-top: 84px;
+          #online .ustrip img {
+            max-height: min(13svh, 120px);
           }
           #online .mboxes {
             align-items: flex-end;
@@ -4104,16 +4219,14 @@
           data-buy="Mystery Box"
           >Buy a mystery box today<span>Arrives in 1&ndash;2 business days typically</span></a
         >
+        <div class="ucar">
+          <h3 class="ucar-h">Real brands. Real finds. Every single box.</h3>
+          <div class="ustrip"><div class="strack" id="strackBot"></div></div>
+        </div>
       </div>
     </section>
 
     <!-- MYSTERY BOX SHOP :: what could be inside -->
-    <section id="boxitems">
-      <div class="ucar">
-        <h3 class="ucar-h">Real brands. Real finds. Every single box.</h3>
-        <div class="ustrip"><div class="strack" id="strackBot"></div></div>
-      </div>
-    </section>
 
     <!-- REAL HAULS: real phone footage from the floor -->
     <section id="hauls">
@@ -5305,15 +5418,17 @@
         });
         function seek() {
           ticking = false;
-          var total = sec.offsetHeight - window.innerHeight;
-          if (total <= 0) {
-            vids.forEach(function (v, i) {
-              if (durs[i]) seekTo(v, durs[i] - 0.05);
-            });
-            return;
+          var r = sec.getBoundingClientRect(),
+            vh = window.innerHeight,
+            total = sec.offsetHeight - vh,
+            p;
+          if (total > 40) {
+            p = clampN(-r.top / total); /* pinned stage: fill across the travel */
+          } else {
+            /* unpinned: boxes fill as the section scrolls up into place */
+            p = clampN((vh * 0.9 - r.top) / (vh * 0.55));
           }
-          var p = clampN(-sec.getBoundingClientRect().top / total),
-            pp = Math.min(1, p / 0.82);
+          var pp = Math.min(1, p / 0.82);
           vids.forEach(function (v, i) {
             if (durs[i]) seekTo(v, pp * (durs[i] - 0.05));
           });
