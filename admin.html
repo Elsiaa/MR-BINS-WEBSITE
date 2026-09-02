@@ -199,6 +199,16 @@
         </div>
 
         <div class="card">
+          <h2>Locations</h2>
+          <p class="note">
+            The store cards on the Locations page. Add a store with the button; new photos upload
+            when you publish.
+          </p>
+          <div id="locRows"></div>
+          <button class="btn" id="addLoc" style="margin-top: 10px">+ Add location</button>
+        </div>
+
+        <div class="card">
           <h2>Mystery box program</h2>
           <p class="note">
             Off hides mystery boxes everywhere: the store page, the home promo, the nav links and
@@ -339,7 +349,78 @@
           return d;
         }
 
+        function locRow(l) {
+          var d = document.createElement("div");
+          d.className = "locrow";
+          d.style.cssText =
+            "border:1px solid rgba(11,36,71,.12);border-radius:12px;padding:12px;margin-top:10px;display:grid;grid-template-columns:64px 1fr 1fr;gap:10px;align-items:start";
+          d.dataset.img = l.img || "";
+          d.innerHTML =
+            '<div><img class="l-thumb" src="' +
+            (l.img || "") +
+            '" alt="" style="width:64px;height:48px;object-fit:cover;background:#f4f6fb;border-radius:8px" />' +
+            '<button type="button" class="btn l-pick" style="padding:5px 8px;font-size:10px;margin-top:6px">Photo</button></div>' +
+            '<div style="display:grid;gap:8px">' +
+            '<input class="l-name" placeholder="Store name" value="' +
+            String(l.name || "").replace(/"/g, "&quot;") +
+            '" />' +
+            '<input class="l-addr" placeholder="Address" value="' +
+            String(l.addr || "").replace(/"/g, "&quot;") +
+            '" />' +
+            '<input class="l-dir" placeholder="Google Maps directions link" value="' +
+            String(l.dir || "").replace(/"/g, "&quot;") +
+            '" />' +
+            "</div>" +
+            '<div style="display:grid;gap:8px">' +
+            '<input class="l-tel" placeholder="Phone digits e.g. 5705002637" value="' +
+            String(l.tel || "").replace(/"/g, "&quot;") +
+            '" />' +
+            '<input class="l-tellabel" placeholder="Phone label e.g. 570-500-2637" value="' +
+            String(l.telLabel || "").replace(/"/g, "&quot;") +
+            '" />' +
+            '<input class="l-fb" placeholder="Facebook link (optional)" value="' +
+            String(l.fb || "").replace(/"/g, "&quot;") +
+            '" />' +
+            '<div style="display:flex;justify-content:space-between;align-items:center">' +
+            '<label style="display:flex;align-items:center;gap:6px;margin:0;text-transform:none;letter-spacing:0;font:700 12px &quot;Hanken Grotesk&quot;,sans-serif;color:#0b2447">' +
+            '<input type="checkbox" class="l-flag" style="width:16px;height:16px"' +
+            (l.flag ? " checked" : "") +
+            " /> Flagship</label>" +
+            '<button type="button" class="btn l-del" style="padding:6px 12px;font-size:12px;background:#c8102e">&times;</button>' +
+            "</div></div>";
+          var file = document.createElement("input");
+          file.type = "file";
+          file.accept = "image/*";
+          file.style.display = "none";
+          d.appendChild(file);
+          d.querySelector(".l-pick").addEventListener("click", function () {
+            file.click();
+          });
+          file.addEventListener("change", function () {
+            var ff = file.files[0];
+            if (!ff) return;
+            var rd = new FileReader();
+            rd.onload = function () {
+              d.dataset.img = rd.result;
+              d.querySelector(".l-thumb").src = rd.result;
+            };
+            rd.readAsDataURL(ff);
+          });
+          d.querySelector(".l-del").addEventListener("click", function () {
+            d.remove();
+          });
+          return d;
+        }
+
         function build() {
+          var lh = document.getElementById("locRows");
+          lh.innerHTML = "";
+          (window.MRB_LOCATIONS || []).forEach(function (l) {
+            lh.appendChild(locRow(l));
+          });
+          document.getElementById("addLoc").onclick = function () {
+            lh.appendChild(locRow({ img: "mrbins-loc-wilkesbarre.jpg" }));
+          };
           var fl = document.getElementById("mbflag");
           if (fl) fl.checked = !(window.MRB_FLAGS && window.MRB_FLAGS.mysteryBox === false);
           var ih = document.getElementById("itemRows");
@@ -421,10 +502,24 @@
               d.dataset.img,
             ]);
           });
+          var locations = [];
+          document.querySelectorAll("#locRows .locrow").forEach(function (d) {
+            locations.push({
+              name: d.querySelector(".l-name").value,
+              addr: d.querySelector(".l-addr").value,
+              img: d.dataset.img,
+              flag: d.querySelector(".l-flag").checked,
+              dir: d.querySelector(".l-dir").value,
+              tel: d.querySelector(".l-tel").value.replace(/[^0-9]/g, ""),
+              telLabel: d.querySelector(".l-tellabel").value,
+              fb: d.querySelector(".l-fb").value,
+            });
+          });
           return {
             ladder: ladder,
             depts: depts,
             items: items,
+            locations: locations,
             flags: { mysteryBox: document.getElementById("mbflag").checked },
           };
         }
@@ -443,6 +538,9 @@
             ";\n" +
             "window.MRB_FLAGS = " +
             JSON.stringify(cfg.flags) +
+            ";\n" +
+            "window.MRB_LOCATIONS = " +
+            JSON.stringify(cfg.locations, null, 2) +
             ";\n" +
             'try {\n  var _ov = JSON.parse(localStorage.getItem("mrb-pricing-override") || "null");\n' +
             "  if (_ov && _ov.ladder) window.PRICE_CONFIG.ladder = _ov.ladder;\n" +
@@ -507,6 +605,30 @@
                 if (!up.ok)
                   throw new Error("GitHub says " + up.status + " uploading photo " + (ii + 1));
                 cfg.items[ii][3] = fname;
+              }
+            }
+            for (var li = 0; li < cfg.locations.length; li++) {
+              var limg = cfg.locations[li].img;
+              if (limg && limg.indexOf("data:") === 0) {
+                var lext = limg.indexOf("image/png") > -1 ? "png" : "jpg";
+                var lname = "mrbins-loc-" + Date.now() + "-" + li + "." + lext;
+                msg.textContent = "Uploading store photo " + (li + 1) + "…";
+                var lup = await fetch(
+                  "https://api.github.com/repos/Elsiaa/MR-BINS-WEBSITE/contents/" + lname,
+                  {
+                    method: "PUT",
+                    headers: head0,
+                    body: JSON.stringify({
+                      message: "Upload store photo via admin",
+                      content: limg.split(",")[1],
+                    }),
+                  },
+                );
+                if (!lup.ok)
+                  throw new Error(
+                    "GitHub says " + lup.status + " uploading store photo " + (li + 1),
+                  );
+                cfg.locations[li].img = lname;
               }
             }
             var body = pricingSource(cfg);

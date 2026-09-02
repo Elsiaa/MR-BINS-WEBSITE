@@ -35,6 +35,58 @@ window.MRB_DEPTS = {
   },
 };
 window.MRB_FLAGS = { mysteryBox: true };
+window.MRB_LOCATIONS = [
+  {
+    name: "Wilkes-Barre",
+    addr: "400 S Main Street, Wilkes-Barre, PA 18701",
+    img: "mrbins-loc-wilkesbarre.jpg",
+    flag: true,
+    dir: "https://www.google.com/maps/dir//400%20S.%20Main%20St.%20Wilkes-Barre,%20PA%2018701",
+    tel: "5705002637",
+    telLabel: "570-500-2637",
+    fb: "https://www.facebook.com/MrBinsWilkes/",
+  },
+  {
+    name: "Bethlehem",
+    addr: "104 E 3rd St, Bethlehem, PA 18015",
+    img: "mrbins-loc-bethlehem.jpg",
+    flag: false,
+    dir: "https://maps.app.goo.gl/a7dCWwpr3Hwb5f9k7",
+    tel: "5705002637",
+    telLabel: "Call flagship",
+    fb: "https://www.facebook.com/profile.php?id=61591918074337",
+  },
+  {
+    name: "Allentown",
+    addr: "2300 Lehigh St, Allentown, PA 18103",
+    img: "mrbins-loc-allentown.jpg",
+    flag: false,
+    dir: "https://maps.app.goo.gl/EPof4gvC6XoFjNft5",
+    tel: "5707635862",
+    telLabel: "570-763-5862",
+    fb: "https://www.facebook.com/profile.php?id=61588881423852",
+  },
+  {
+    name: "Hazleton",
+    addr: "1099 N Church St, Hazle Township, PA 18202",
+    img: "mrbins-loc-hazleton.jpg",
+    flag: false,
+    dir: "https://www.google.com/maps/dir//Church+Hill+Mall,+North+Church+Street,+Hazleton,+PA",
+    tel: "2722237093",
+    telLabel: "272-223-7093",
+    fb: "https://www.facebook.com/profile.php?id=61567723192235",
+  },
+  {
+    name: "Scranton",
+    addr: "1790 N Keyser Ave, Scranton, PA 18508",
+    img: "mrbins-loc-scranton.jpg",
+    flag: false,
+    dir: "https://www.google.com/maps/place/Keyser+Oak+Shopping+Center",
+    tel: "2722281375",
+    telLabel: "272-228-1375",
+    fb: "https://www.facebook.com/profile.php?id=61583223531760",
+  },
+];
 window.MRB_ITEMS = [
   ["Audio", "Sony Wireless Headphones", "$98", "mrbins-prod-head.jpg"],
   ["Footwear", "Nike Running Sneakers", "$110", "mrbins-prod-shoe.jpg"],
@@ -49,6 +101,7 @@ try {
   if (_ov && _ov.depts) window.MRB_DEPTS = _ov.depts;
   if (_ov && _ov.items) window.MRB_ITEMS = _ov.items;
   if (_ov && _ov.flags) window.MRB_FLAGS = _ov.flags;
+  if (_ov && _ov.locations) window.MRB_LOCATIONS = _ov.locations;
 } catch (e) {}
 window.MRB_LADDER = window.PRICE_CONFIG.ladder;
 window.MRB_DAY = function () {
