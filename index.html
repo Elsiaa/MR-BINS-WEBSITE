@@ -3557,6 +3557,7 @@
         }
         .dstrip .blogo img {
           height: 20px;
+          mix-blend-mode: multiply;
         }
         /* featured: tight 2x2 on phones — titles carry it, prose hides */
         #featured .fgrid {
@@ -3908,13 +3909,28 @@
               margin-bottom: 12px;
             }
             #discover .dstrip {
-              margin-top: 36px !important;
+              margin-top: 14px !important;
             }
             #discover .dbtns {
               margin-top: 34px !important;
             }
           }
         </style>
+        <div
+          class="dstripcap"
+          style="
+            text-align: center;
+            margin-top: 34px;
+            font:
+              700 12px &quot;Space Mono&quot;,
+              monospace;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            color: var(--muted);
+          "
+        >
+          Top brands in the bins
+        </div>
         <div class="dstrip">
           <style>
             .dstrip {
@@ -3926,7 +3942,7 @@
               gap: clamp(28px, 3.4vw, 52px);
               align-items: center;
               width: max-content;
-              animation: dslide 40s linear infinite;
+              animation: dslide 24s linear infinite;
             }
             .dstrip .blogo img {
               height: clamp(22px, 3.4vh, 32px);
@@ -4313,6 +4329,70 @@
               </div>
               <figcaption class="hinfo">
                 <b>Another day, another haul</b><span>From the floor</span>
+              </figcaption>
+            </figure>
+            <figure class="hslide">
+              <div class="hmedia">
+                <video
+                  class="haulvid"
+                  src="mrbins-haul-12.mp4"
+                  muted
+                  playsinline
+                  webkit-playsinline
+                  loop
+                  preload="metadata"
+                ></video>
+              </div>
+              <figcaption class="hinfo">
+                <b>Straight into the pile</b><span>Shot in store</span>
+              </figcaption>
+            </figure>
+            <figure class="hslide">
+              <div class="hmedia">
+                <video
+                  class="haulvid"
+                  src="mrbins-haul-13.mp4"
+                  muted
+                  playsinline
+                  webkit-playsinline
+                  loop
+                  preload="metadata"
+                ></video>
+              </div>
+              <figcaption class="hinfo">
+                <b>First dig of the day</b><span>Fresh pallets</span>
+              </figcaption>
+            </figure>
+            <figure class="hslide">
+              <div class="hmedia">
+                <video
+                  class="haulvid"
+                  src="mrbins-haul-14.mp4"
+                  muted
+                  playsinline
+                  webkit-playsinline
+                  loop
+                  preload="metadata"
+                ></video>
+              </div>
+              <figcaption class="hinfo">
+                <b>The good stuff surfaces</b><span>Real finds</span>
+              </figcaption>
+            </figure>
+            <figure class="hslide">
+              <div class="hmedia">
+                <video
+                  class="haulvid"
+                  src="mrbins-haul-15.mp4"
+                  muted
+                  playsinline
+                  webkit-playsinline
+                  loop
+                  preload="metadata"
+                ></video>
+              </div>
+              <figcaption class="hinfo">
+                <b>The whole run</b><span>Bins to checkout</span>
               </figcaption>
             </figure>
           </div>

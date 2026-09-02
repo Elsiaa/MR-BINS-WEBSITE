@@ -202,6 +202,7 @@
       "Regístrate gratis y 50 puntos caen a tu cuenta al instante.",
     "Simple:": "Simple:",
     "Solid pay that lands every single week.": "Buen pago que llega cada semana.",
+    "Top brands in the bins": "Las mejores marcas en los bins",
     "Featured items in": "Artículos destacados en",
     "this week’s bins.": "los bins de esta semana.",
     "Every one of these costs today’s bin price — dig and you’ll find them.":
