@@ -4,6 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Shop · Mr. Bins</title>
+    <link rel="canonical" href="https://elsiaa.github.io/MR-BINS-WEBSITE/shop.html" />
+    <script src="pricing.js"></script>
     <script src="reviews.js"></script>
     <meta
       name="description"
@@ -16,7 +18,10 @@
       content="Dig. Discover. Dreams. One price for the whole store, dropping a dollar a day, plus mystery boxes shipped to your door."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="mrbins-walk-poster.jpg" />
+    <meta
+      property="og:image"
+      content="https://elsiaa.github.io/MR-BINS-WEBSITE/mrbins-walk-poster.jpg"
+    />
     <link
       rel="icon"
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230B2447'/%3E%3Cpath d='M6 13h14.5l5.5 5-5.5 5H6z' fill='%23FF8F52'/%3E%3Ccircle cx='10' cy='18' r='1.8' fill='%23fff'/%3E%3C/svg%3E"
@@ -3777,6 +3782,7 @@
           <a href="loyalty.html">Loyalty</a>
           <a href="mystery-box.html">Mystery Box</a>
           <a href="careers.html">Careers</a>
+          <a href="gallery.html">Gallery</a>
         </nav>
         <div class="hright">
           <div class="clock"><span class="dot"></span><span class="p" id="clk">&mdash;</span></div>
@@ -3802,6 +3808,7 @@
       <a href="loyalty.html">Loyalty Rewards</a>
       <a href="mystery-box.html">Mystery Box</a>
       <a href="careers.html">Careers</a>
+      <a href="gallery.html">Gallery</a>
       <a href="index.html#footer">Locations &amp; Hours</a>
     </nav>
     <div class="toast" id="toast"></div>
@@ -4373,8 +4380,8 @@
         <div class="mband">
           <h2>Can&rsquo;t make it in? <span class="o">Mystery boxes.</span></h2>
           <p class="ssub">
-            Hand-packed from these same bins &mdash; always worth more than you paid. Ships in
-            1&ndash;2 days.
+            Hand-packed from these same bins &mdash; contents vary, value not guaranteed. Typically
+            ships in 1&ndash;2 days.
           </p>
           <div class="mtiers">
             <a class="mtier" href="mystery-box.html#shop"
@@ -4407,7 +4414,7 @@
         (function () {
           var names = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
           var lad = [12, 11, 10, 9, 8, 9, null],
-            today = new Date().getDay(),
+            today = window.MRB_DAY,
             price = "$12";
           try {
             if (typeof LADDER !== "undefined") lad = LADDER;
@@ -4537,6 +4544,7 @@
             <a href="loyalty.html">Loyalty Rewards</a>
             <a href="mystery-box.html">Mystery Box</a>
             <a href="careers.html">Careers</a>
+            <a href="gallery.html">Gallery</a>
           </nav>
           <div class="social">
             <a
@@ -4650,7 +4658,7 @@
     </section>
 
     <script>
-      var LADDER = { 0: 14, 1: 13, 2: 12, 3: 11, 4: 10, 5: 9, 6: null };
+      var LADDER = window.MRB_LADDER;
       /* shared mobile flag, same breakpoint as the walk-mobile video swap */
       var MRB_MOB =
         window.matchMedia("(max-width:940px)").matches ||
@@ -4706,7 +4714,7 @@
         }
       })();
 
-      var day = new Date().getDay(),
+      var day = window.MRB_DAY,
         tp = LADDER[day],
         FRI = 9;
       document.getElementById("clk").textContent =

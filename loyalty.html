@@ -4,6 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Loyalty · Mr. Bins</title>
+    <link rel="canonical" href="https://elsiaa.github.io/MR-BINS-WEBSITE/loyalty.html" />
+    <script src="pricing.js"></script>
     <script src="reviews.js"></script>
     <meta
       name="description"
@@ -16,7 +18,10 @@
       content="Dig. Discover. Dreams. One price for the whole store, dropping a dollar a day, plus mystery boxes shipped to your door."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="mrbins-walk-poster.jpg" />
+    <meta
+      property="og:image"
+      content="https://elsiaa.github.io/MR-BINS-WEBSITE/mrbins-walk-poster.jpg"
+    />
     <link
       rel="icon"
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230B2447'/%3E%3Cpath d='M6 13h14.5l5.5 5-5.5 5H6z' fill='%23FF8F52'/%3E%3Ccircle cx='10' cy='18' r='1.8' fill='%23fff'/%3E%3C/svg%3E"
@@ -3669,6 +3674,7 @@
           <a href="loyalty.html">Loyalty</a>
           <a href="mystery-box.html">Mystery Box</a>
           <a href="careers.html">Careers</a>
+          <a href="gallery.html">Gallery</a>
         </nav>
         <div class="hright">
           <div class="clock"><span class="dot"></span><span class="p" id="clk">&mdash;</span></div>
@@ -3694,6 +3700,7 @@
       <a href="loyalty.html">Loyalty Rewards</a>
       <a href="mystery-box.html">Mystery Box</a>
       <a href="careers.html">Careers</a>
+      <a href="gallery.html">Gallery</a>
       <a href="index.html#footer">Locations &amp; Hours</a>
     </nav>
     <div class="toast" id="toast"></div>
@@ -3852,6 +3859,7 @@
             <a href="loyalty.html">Loyalty Rewards</a>
             <a href="mystery-box.html">Mystery Box</a>
             <a href="careers.html">Careers</a>
+            <a href="gallery.html">Gallery</a>
           </nav>
           <div class="social">
             <a
@@ -3965,7 +3973,7 @@
     </section>
 
     <script>
-      var LADDER = { 0: 14, 1: 13, 2: 12, 3: 11, 4: 10, 5: 9, 6: null };
+      var LADDER = window.MRB_LADDER;
       /* shared mobile flag, same breakpoint as the walk-mobile video swap */
       var MRB_MOB =
         window.matchMedia("(max-width:940px)").matches ||
@@ -4021,7 +4029,7 @@
         }
       })();
 
-      var day = new Date().getDay(),
+      var day = window.MRB_DAY,
         tp = LADDER[day],
         FRI = 9;
       document.getElementById("clk").textContent =

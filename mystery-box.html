@@ -4,6 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Mystery Box · Mr. Bins</title>
+    <link rel="canonical" href="https://elsiaa.github.io/MR-BINS-WEBSITE/mystery-box.html" />
+    <script src="pricing.js"></script>
     <script src="reviews.js"></script>
     <meta
       name="description"
@@ -16,7 +18,10 @@
       content="Dig. Discover. Dreams. One price for the whole store, dropping a dollar a day, plus mystery boxes shipped to your door."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="mrbins-walk-poster.jpg" />
+    <meta
+      property="og:image"
+      content="https://elsiaa.github.io/MR-BINS-WEBSITE/mrbins-walk-poster.jpg"
+    />
     <link
       rel="icon"
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230B2447'/%3E%3Cpath d='M6 13h14.5l5.5 5-5.5 5H6z' fill='%23FF8F52'/%3E%3Ccircle cx='10' cy='18' r='1.8' fill='%23fff'/%3E%3C/svg%3E"
@@ -3769,6 +3774,7 @@
           <a href="loyalty.html">Loyalty</a>
           <a href="#online">Mystery Box</a>
           <a href="careers.html">Careers</a>
+          <a href="gallery.html">Gallery</a>
         </nav>
         <div class="hright">
           <div class="clock"><span class="dot"></span><span class="p" id="clk">&mdash;</span></div>
@@ -3794,6 +3800,7 @@
       <a href="loyalty.html">Loyalty Rewards</a>
       <a href="#online">Mystery Box</a>
       <a href="careers.html">Careers</a>
+      <a href="gallery.html">Gallery</a>
       <a href="index.html#footer">Locations &amp; Hours</a>
     </nav>
     <div class="toast" id="toast"></div>
@@ -3923,7 +3930,9 @@
           </div>
         </div>
         <a class="mcta big" href="#shop" data-buy="Mystery Box"
-          >Buy a mystery box today<span>Ships in 1&ndash;2 days</span></a
+          >Buy a mystery box today<span
+            >Typically ships 1&ndash;2 business days after packing</span
+          ></a
         >
         <div class="ucar" style="margin-top: clamp(56px, 9vw, 110px)">
           <h3 class="ucar-h">Real brands. Real finds. Every single box.</h3>
@@ -4480,7 +4489,7 @@
           <div class="sprice">$25</div>
           <div class="sfinds">3&ndash;4 finds</div>
           <div class="sdesc">
-            A first taste of the bins &mdash; hand-packed, always worth more than you paid.
+            A first taste of the bins &mdash; hand-packed from the floor. Contents vary.
           </div>
           <button class="sbtn" data-add="taster">Add to cart</button>
         </div>
@@ -4499,7 +4508,9 @@
           <button class="sbtn" data-add="loaded">Add to cart</button>
         </div>
       </div>
-      <div class="snote">Ships in 1&ndash;2 days. Free shipping over $50.</div>
+      <div class="snote">
+        Typically ships 1&ndash;2 business days after packing. Free shipping over $50.
+      </div>
     </section>
     <button id="mbfab">Cart &middot; <span id="mbfabn">0</span></button>
     <aside id="mbcart" aria-label="Cart">
@@ -4522,10 +4533,7 @@
               sans-serif;
             color: var(--muted);
           "
-        >
-          <span>&#63743;&nbsp;Pay</span><span>&middot;</span><span>G&nbsp;Pay</span
-          ><span>&middot;</span><span>Visa</span><span>&middot;</span><span>Mastercard</span>
-        </div>
+        ></div>
         <div class="paynote" id="mbpaynote"></div>
       </div>
     </aside>
@@ -4600,12 +4608,13 @@
             tiersInCart.every(function (k) {
               return STRIPE_PAYMENT_LINKS[k];
             });
-          pay.disabled = !linked;
+          pay.disabled = !tiersInCart.length;
+          pay.innerHTML = linked ? "Checkout &rarr;" : "Reserve by email &rarr;";
           note.innerHTML = !tiersInCart.length
             ? ""
             : linked
-              ? "Secure checkout by Stripe &mdash; Apple&nbsp;Pay, Google&nbsp;Pay and all major cards."
-              : "Almost live: paste your Stripe Payment Link for each box in STRIPE_PAYMENT_LINKS (see the comment in this page&rsquo;s source) and this button lights up.";
+              ? "Secure checkout by Stripe."
+              : "Online checkout isn&rsquo;t live yet &mdash; this sends us an email and we&rsquo;ll confirm your box and payment in store or by reply. No payment is processed online.";
           save();
         }
         document.addEventListener("click", function (e) {
@@ -4636,8 +4645,24 @@
             return cart[k] > 0;
           });
           if (!ks.length) return;
-          /* one tier: jump straight to its Payment Link with quantity */
-          window.open(STRIPE_PAYMENT_LINKS[ks[0]], "_blank", "noopener");
+          if (STRIPE_PAYMENT_LINKS[ks[0]]) {
+            /* one tier: jump straight to its Payment Link with quantity */
+            window.open(STRIPE_PAYMENT_LINKS[ks[0]], "_blank", "noopener");
+            return;
+          }
+          /* no live checkout yet: reserve by email, nothing is charged */
+          var lines = ks.map(function (k) {
+            return TIERS[k].name + " x" + cart[k] + " ($" + TIERS[k].price * cart[k] + ")";
+          });
+          location.href =
+            "mailto:loyalty@primebins.com?subject=" +
+            encodeURIComponent("Mystery box reservation") +
+            "&body=" +
+            encodeURIComponent(
+              "Hi Mr. Bins,\n\nI'd like to reserve:\n" +
+                lines.join("\n") +
+                "\n\nName:\nPhone:\nPickup store or shipping address:\n",
+            );
         });
         render();
       })();
@@ -4654,6 +4679,7 @@
             <a href="loyalty.html">Loyalty Rewards</a>
             <a href="#online">Mystery Box</a>
             <a href="careers.html">Careers</a>
+            <a href="gallery.html">Gallery</a>
           </nav>
           <div class="social">
             <a
@@ -4756,7 +4782,7 @@
     </footer>
 
     <script>
-      var LADDER = { 0: 14, 1: 13, 2: 12, 3: 11, 4: 10, 5: 9, 6: null };
+      var LADDER = window.MRB_LADDER;
       /* shared mobile flag, same breakpoint as the walk-mobile video swap */
       var MRB_MOB =
         window.matchMedia("(max-width:940px)").matches ||
@@ -4812,7 +4838,7 @@
         }
       })();
 
-      var day = new Date().getDay(),
+      var day = window.MRB_DAY,
         tp = LADDER[day],
         FRI = 9;
       document.getElementById("clk").textContent =
