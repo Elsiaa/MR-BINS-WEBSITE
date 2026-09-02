@@ -4195,7 +4195,12 @@
             margin-top: 34px;
           "
         >
-          <img class="gimg" src="mrbins-gal-0.jpg" alt="Inside Mr. Bins" loading="lazy" />
+          <img
+            class="gimg wide"
+            src="mrbins-gal-0.jpg"
+            alt="Bird's-eye view of the Mr. Bins floor"
+            loading="lazy"
+          />
           <img class="gimg" src="mrbins-gal-1.jpg" alt="Inside Mr. Bins" loading="lazy" />
           <img class="gimg" src="mrbins-gal-2.jpg" alt="Inside Mr. Bins" loading="lazy" />
           <img class="gimg" src="mrbins-gal-3.jpg" alt="Inside Mr. Bins" loading="lazy" />
@@ -4229,6 +4234,10 @@
         </div>
       </div>
       <style>
+        #galphotos .gimg.wide {
+          grid-column: 1 / -1;
+          aspect-ratio: 21 / 9;
+        }
         #galphotos .gimg {
           width: 100%;
           aspect-ratio: 4 / 3;
