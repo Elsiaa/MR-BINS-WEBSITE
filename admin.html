@@ -199,6 +199,35 @@
         </div>
 
         <div class="card">
+          <h2>Mystery box program</h2>
+          <p class="note">
+            Off hides mystery boxes everywhere: the store page, the home promo, the nav links and
+            the cart. Turn it back on any time.
+          </p>
+          <label
+            style="
+              display: flex;
+              align-items: center;
+              gap: 10px;
+              cursor: pointer;
+              text-transform: none;
+              letter-spacing: 0;
+              font:
+                700 15px &quot;Hanken Grotesk&quot;,
+                sans-serif;
+              color: var(--navy);
+            "
+          >
+            <input
+              type="checkbox"
+              id="mbflag"
+              style="width: 20px; height: 20px; accent-color: #f89b1c"
+            />
+            Mystery box program is ON
+          </label>
+        </div>
+
+        <div class="card">
           <h2>Publish</h2>
           <p class="note">
             <b>Preview on this device</b> saves instantly in this browser only, so you can check
@@ -311,6 +340,8 @@
         }
 
         function build() {
+          var fl = document.getElementById("mbflag");
+          if (fl) fl.checked = !(window.MRB_FLAGS && window.MRB_FLAGS.mysteryBox === false);
           var ih = document.getElementById("itemRows");
           ih.innerHTML = "";
           (window.MRB_ITEMS || []).forEach(function (it) {
@@ -390,7 +421,12 @@
               d.dataset.img,
             ]);
           });
-          return { ladder: ladder, depts: depts, items: items };
+          return {
+            ladder: ladder,
+            depts: depts,
+            items: items,
+            flags: { mysteryBox: document.getElementById("mbflag").checked },
+          };
         }
 
         function pricingSource(cfg) {
@@ -404,6 +440,9 @@
             ";\n" +
             "window.MRB_ITEMS = " +
             JSON.stringify(cfg.items, null, 2) +
+            ";\n" +
+            "window.MRB_FLAGS = " +
+            JSON.stringify(cfg.flags) +
             ";\n" +
             'try {\n  var _ov = JSON.parse(localStorage.getItem("mrb-pricing-override") || "null");\n' +
             "  if (_ov && _ov.ladder) window.PRICE_CONFIG.ladder = _ov.ladder;\n" +

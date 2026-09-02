@@ -34,6 +34,7 @@ window.MRB_DEPTS = {
     prices: [3, 2, 2, 1, 1, 1, null],
   },
 };
+window.MRB_FLAGS = { mysteryBox: true };
 window.MRB_ITEMS = [
   ["Audio", "Sony Wireless Headphones", "$98", "mrbins-prod-head.jpg"],
   ["Footwear", "Nike Running Sneakers", "$110", "mrbins-prod-shoe.jpg"],
@@ -47,6 +48,7 @@ try {
   if (_ov && _ov.ladder) window.PRICE_CONFIG.ladder = _ov.ladder;
   if (_ov && _ov.depts) window.MRB_DEPTS = _ov.depts;
   if (_ov && _ov.items) window.MRB_ITEMS = _ov.items;
+  if (_ov && _ov.flags) window.MRB_FLAGS = _ov.flags;
 } catch (e) {}
 window.MRB_LADDER = window.PRICE_CONFIG.ladder;
 window.MRB_DAY = function () {
