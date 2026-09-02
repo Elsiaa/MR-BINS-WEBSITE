@@ -3432,462 +3432,67 @@
           padding-bottom: 56px !important;
         }
       }
-      /* ============ MOBILE HERO REBUILD (<768px) ============
-   The walk-in hero, redesigned for phones: captions anchored to the
-   lower third (clear of the in-video signage), phone-scale type, a
-   heavier legibility scrim, and a compact non-overlapping header.
-   Desktop (>=768px) is untouched. */
+      /* ============ MOBILE (<=767px): the desktop experience, scaled ============
+   Same sections, same order, same animations as desktop — nothing swapped out. */
       @media (max-width: 767px) {
-        /* header: compact, no logo/clock collision */
         .row {
           gap: 10px;
         }
         .brand {
           min-width: 0;
-          flex: 0 1 auto;
           gap: 7px;
-        }
-        .brand .brandlive {
-          height: 40px;
-          flex: none;
         }
         .brand .brandlogo {
           height: 17px;
-          max-width: 34vw;
+          max-width: 40vw;
           object-fit: contain;
           object-position: left center;
         }
         .hright {
           flex: none;
         }
-
-        /* phones skip the walkthrough entirely and open on the spinning bin */
-        #walk {
-          display: none !important;
+        .wcap h1,
+        .wcap h2 {
+          font-size: clamp(34px, 10.5vw, 48px);
         }
-        #wm1 .wmcap {
-          left: 0;
-          right: 0;
-          text-align: center;
-          width: auto;
+        .wcap h2.h2m {
+          font-size: clamp(26px, 8vw, 36px);
         }
-        #wm1 .wmwelc {
-          font-family: "Space Mono", monospace;
-          font-size: 13px;
-          font-weight: 700;
-          letter-spacing: 0.24em;
-          text-transform: uppercase;
-          color: var(--muted, #5b6b83);
-          margin-bottom: 10px;
+        .wcap .sub {
+          font-size: 14px;
+          max-width: 34ch;
         }
-        #wm1 .wmlogo {
-          width: min(62vw, 240px);
-          height: auto;
-          margin: 0 auto 14px;
-          display: block;
+        .wcap {
+          padding-top: clamp(96px, 13vh, 130px);
         }
-        #wm1 .wmcap h3 {
-          margin: 0 auto;
-        }
-        /* phone flow: bin opener, then discover, price, deals */
-        #deals {
-          display: block !important;
-        }
-        #walk .stage {
-          height: 100svh;
-        }
-        #walk .tint {
-          background: linear-gradient(
-            180deg,
-            rgba(4, 10, 22, 0.62),
-            rgba(4, 10, 22, 0.18) 34%,
-            rgba(4, 10, 22, 0.12) 52%,
-            rgba(4, 10, 22, 0.62) 78%,
-            rgba(4, 10, 22, 0.82)
-          );
-        }
-        #walk .wcaps::before {
-          display: none;
-        }
-
-        /* captions: pinned to the lower third, sized for a phone screen */
-        #walk .wcap {
-          height: auto;
-          top: auto;
-          bottom: 0;
-          padding: 0 22px calc(11svh + env(safe-area-inset-bottom, 0px));
-          justify-content: flex-end;
-        }
-        #walk .wcap .k {
-          font-size: 11px;
-          letter-spacing: 0.18em;
-          padding: 0.55em 1em;
-          margin-bottom: 12px;
-        }
-        #walk .wcap h1,
-        #walk .wcap h2 {
-          font-size: clamp(40px, 11.5vw, 52px);
-          line-height: 0.94;
-          letter-spacing: -0.03em;
-        }
-        #walk .wcap h2.h2m {
-          font-size: clamp(30px, 9vw, 40px);
-        }
-        #walk .wcap img {
-          width: min(300px, 74vw) !important;
-        }
-        #walk .wcap .sub {
-          font-size: 14.5px;
-          line-height: 1.45;
-          max-width: 32ch;
-          margin-top: 12px;
-        }
-
-        /* scroll cue sits above the home-indicator area */
-        #walk .hcue {
-          bottom: calc(16px + env(safe-area-inset-bottom, 0px));
-          font-size: 11px;
-        }
-      }
-
-      /* ============ PHONE BUILD (<768px) ============
-   Dedicated mobile flow: static hero walkthrough, native scrolling only,
-   condensed section order. Desktop (≥768px) is untouched. */
-      #wm1,
-      #wm2,
-      #wm3,
-      #wmnav,
-      #locm {
-        display: none;
-      }
-      @media (max-width: 767px) {
-        body {
-          display: flex;
+        .mboxes {
           flex-direction: column;
+          align-items: center;
+          gap: 22px;
         }
-        /* hide the desktop theatre + cut sections (the walk-in #walk stays, it opens the phone site too) */
-        #cart,
-        #featured,
-        #deals,
-        #hauls,
-        #reviews,
-        #careers,
-        #brandsign,
-        #boxitems {
-          display: none !important;
+        .mbox {
+          width: min(78vw, 340px);
         }
-        footer .locs,
-        footer .fcta {
-          display: none;
+        .lyintro {
+          flex-direction: column;
+          text-align: center;
         }
-        /* discover: keep the bins carousel, drop the lamp/switch gimmick */
-        .dnite,
-        .sw-lamp,
-        .sw-glow,
-        .sw-btn,
-        .sw-hint,
-        .sw-mode,
-        .lamp,
-        .beam,
-        .dnight,
-        .ministore {
-          display: none !important;
-        }
-        #discover .dstage {
-          padding: 40px 0 32px !important;
-        }
-        /* discover carousel: compact cards, 3 visible per row, native swipe */
-        .carousel {
-          -webkit-overflow-scrolling: touch;
-        }
-        .track {
-          gap: 9px;
-          padding: 6px 14px 12px;
-        }
-        .pcard {
-          flex: 0 0 30vw;
-          min-width: 110px;
-          border-radius: 12px;
-        }
-        .pcard .top {
-          height: 82px;
-          padding: 8px;
-        }
-        .pcard .cat {
-          font-size: 7.5px;
-          padding: 2px 5px;
-          top: 6px;
-          left: 6px;
-        }
-        .pcard .bd {
-          padding: 8px 9px 11px;
-        }
-        .pcard .nm {
-          font-size: 12px;
-          line-height: 1.12;
-        }
-        .pcard .rt {
-          font-size: 10px;
-          margin-top: 3px;
-        }
-        .pcard .pr {
-          margin-top: 7px;
-          gap: 4px;
-          flex-wrap: wrap;
-        }
-        .pcard .tp {
-          font-size: 16px;
-        }
-        .pcard .fr {
-          font-size: 7.5px;
-          padding: 2.5px 5px;
+        .lyintro .lyhero {
+          max-width: min(78vw, 360px);
+          margin: 18px auto 0;
         }
         .dhead h2 {
-          font-size: 25px;
+          font-size: clamp(26px, 8vw, 34px);
         }
-        .dhead .k {
-          font-size: 10.5px;
+        .dstrip .blogo img {
+          height: 20px;
         }
-        .dhead .today {
-          font-size: 13px;
-          margin-top: 8px;
-        }
-        .dbtns {
-          gap: 8px;
-          margin-top: 14px;
-        }
-        .dbtns .dbtn {
-          font-size: 13.5px;
-          padding: 11px 18px;
-        }
-        /* condensed mobile order: walk-in → bin → clothing → shoes → the rest */
-        #walk {
-          order: 1;
-        }
-        #wm1 {
-          display: block;
-          order: 2;
-        }
-        #wm2 {
-          display: block;
-          order: 3;
-        }
-        #wm3 {
-          display: block;
-          order: 4;
-        }
-        #wmnav {
-          display: block;
-          order: 5;
-        }
-        #discover {
-          order: 6;
-        }
-        #price {
-          order: 7;
-        }
-        #locm {
-          display: block;
-          order: 8;
-        }
-        #unbox {
-          order: 9;
-        }
-        #online {
-          order: 10;
-        }
-        #loyalty {
-          order: 11;
-        }
-        #faq {
-          order: 12;
-        }
-        footer {
-          order: 13;
-        }
-        #wm1,
-        #discover,
-        #price,
-        #locm,
-        #unbox,
-        #online,
-        #loyalty,
-        #faq {
-          scroll-margin-top: 86px;
-        }
-        /* trim the FAQ on phones */
-        #faq details.mtrim {
-          display: none;
-        }
-        /* mobile scroll stages, pinned, scrubbed by scroll like the desktop show */
-        #wm1,
-        #wm2,
-        #wm3 {
-          position: relative;
-          height: 190vh;
-          background: #fff;
-        }
-        .wmstage {
-          position: sticky;
-          top: 0;
-          height: 100vh;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          overflow: hidden;
-          background: #fff;
-        }
-        @supports (height: 100svh) {
-          .wmstage {
-            height: 100svh;
-          }
-        }
-        .wmstage video {
-          width: min(96vw, 560px);
-          height: auto;
-          display: block;
-          background: #fff;
-        }
-        .wmcap {
-          position: absolute;
-          left: 18px;
-          top: 96px;
-          z-index: 2;
-          text-align: left;
-          opacity: 0;
-          transform: translateY(10px);
-          transition:
-            opacity 0.5s ease,
-            transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-        .wmcap.on {
-          opacity: 1;
-          transform: none;
-        }
-        .wmcap .wk {
-          font-family: "Space Mono", monospace;
-          font-size: 10px;
-          letter-spacing: 0.22em;
-          text-transform: uppercase;
-          color: var(--blue);
-        }
-        .wmcap h3 {
-          font-family: "Bricolage Grotesque", sans-serif;
-          font-weight: 800;
-          font-size: 26px;
-          line-height: 1.02;
-          letter-spacing: -0.02em;
-          color: var(--navy);
-          margin-top: 6px;
-        }
-        .wmcap .wprice {
-          font-family: "Bricolage Grotesque", sans-serif;
-          font-weight: 800;
-          font-size: 38px;
-          line-height: 1;
-          color: var(--green);
-          margin-top: 10px;
-        }
-        .wmcap .wsub {
-          font-family: "Space Mono", monospace;
-          font-size: 9.5px;
-          letter-spacing: 0.16em;
-          text-transform: uppercase;
-          color: var(--muted);
-          margin-top: 6px;
-          max-width: 16ch;
-        }
-        #wmnav {
-          background: #fff;
-          padding: 6px 18px 36px;
-        }
-        .wm-btns {
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
-          margin: 0 auto;
-          max-width: 400px;
-          text-align: left;
-        }
-        .wmb {
-          display: block;
-          text-decoration: none;
-          font-family: "Bricolage Grotesque", sans-serif;
-          font-weight: 800;
-          font-size: 17px;
-          color: #fff;
-          padding: 14px 20px;
-          border-radius: 14px;
-          box-shadow: 0 10px 24px rgba(11, 36, 71, 0.16);
-        }
-        .wmb span {
-          display: block;
-          font-family: "Hanken Grotesk", system-ui, sans-serif;
-          font-weight: 600;
-          font-size: 12.5px;
-          margin-top: 3px;
-        }
-        .wmb.b1 {
-          background: #1455d6;
-        }
-        .wmb.b1 span {
-          color: #ffd9bd;
-        }
-        .wmb.b2 {
-          background: #0e3fa6;
-        }
-        .wmb.b2 span {
-          color: #9fe8bc;
-        }
-        .wmb.b3 {
-          background: #3e7be8;
-        }
-        .wmb.b3 span {
-          color: #fff3b0;
-        }
-        /* mobile locations */
-        #locm {
-          background: var(--paper);
-          color: var(--navy);
-          padding: 54px 20px 60px;
-        }
-        .lmwrap {
-          max-width: 560px;
-          margin: 0 auto;
-          text-align: center;
-        }
-        .lmwrap .k {
-          font-family: "Space Mono", monospace;
-          font-size: 12px;
-          letter-spacing: 0.24em;
-          text-transform: uppercase;
-          color: var(--blue);
-        }
-        .lmwrap h2 {
-          font-size: clamp(30px, 8vw, 40px);
-          font-weight: 800;
-          margin-top: 8px;
-        }
-        .lmwrap h2 .b {
-          color: var(--blue);
-        }
-        .lmlist {
-          display: grid;
+        #featured .fgrid {
           grid-template-columns: 1fr;
-          gap: 12px;
-          margin-top: 24px;
-          text-align: left;
+          max-width: 420px;
         }
-        #locm .loc {
-          background: #fff;
-        }
-        .lmhours {
-          margin-top: 18px;
-          font-size: 13.5px;
-          color: var(--muted);
-        }
-        .lmhours b {
-          color: var(--navy);
+        .locgrid {
+          grid-template-columns: 1fr;
         }
       }
 
@@ -4039,65 +3644,6 @@
       <a href="#footer">Locations &amp; Hours</a>
     </nav>
     <div class="toast" id="toast"></div>
-
-    <!-- MOBILE SCROLL STAGES (phones <768px only). The page opens with the same
-     scroll-scrubbed walk-in as desktop (#walk, mobile rendition), then each of
-     these pinned stages scrubs its animation with the scroll, bin, clothing,
-     shoes, so you go through them in order before the rest of the site. -->
-    <section id="wm1" aria-label="One bin, one price">
-      <div class="wmstage">
-        <video id="wm1v" muted playsinline preload="metadata" poster="mrbins-cart-poster.jpg">
-          <source data-mob="mrbins-cart.mp4" type="video/mp4" />
-        </video>
-        <div class="wmcap">
-          <div class="wmwelc">Welcome to</div>
-          <img class="wmlogo" src="mrbins-logo.png" alt="Mr. Bins" />
-          <h3>One bin.<br />One price.</h3>
-          <div class="wprice" id="wmP1">$&mdash;</div>
-        </div>
-      </div>
-    </section>
-    <section id="wm2" aria-label="Clothing">
-      <div class="wmstage">
-        <video id="wm2v" muted playsinline preload="metadata" poster="mrbins-clothes-poster.jpg">
-          <source data-mob="mrbins-clothes.mp4" type="video/mp4" />
-        </video>
-        <div class="wmcap">
-          <div class="wk" style="font-size: 1.5em">Restocked daily</div>
-          <h3>We sell<br />clothing.</h3>
-          <div class="wprice" id="wmP2">$&mdash;</div>
-          <div class="wsub">all clothing today</div>
-        </div>
-      </div>
-    </section>
-    <section id="wm3" aria-label="Shoes">
-      <div class="wmstage">
-        <video id="wm3v" muted playsinline preload="metadata" poster="mrbins-shoes-poster.jpg">
-          <source data-mob="mrbins-shoes.mp4" type="video/mp4" />
-        </video>
-        <div class="wmcap">
-          <div class="wk">Name brands</div>
-          <h3>We sell<br />shoes.</h3>
-          <div class="wprice" id="wmP3">$&mdash;</div>
-          <div class="wsub">all shoes today</div>
-        </div>
-      </div>
-    </section>
-    <section id="wmnav" aria-label="Quick links">
-      <div class="wm-btns">
-        <a class="wmb b1" href="#locm"
-          >Directions &rarr;<span>Four stores across Northeast PA &mdash; find yours</span></a
-        >
-        <a class="wmb b2" href="#discover"
-          >Discover &rarr;<span>See what&rsquo;s in the bins this week</span></a
-        >
-        <a class="wmb b3" href="#price"
-          >Deals &rarr;<span>One price for everything &mdash; it drops a dollar a day</span></a
-        >
-      </div>
-    </section>
-
-    <!-- WALKTHROUGH, the opening: video plays, captions swap on scroll -->
     <section id="walk">
       <div class="stage">
         <video
@@ -5360,7 +4906,7 @@
         window.matchMedia("(max-width:940px)").matches ||
         /iPhone|iPad|iPod/.test(navigator.userAgent);
       /* phone flag, the dedicated <768px mobile build (tablets 768-940 keep the desktop layout) */
-      var MRB_PHONE = window.matchMedia("(max-width:767px)").matches;
+      var MRB_PHONE = false; /* one experience: desktop, scaled responsively */
 
       /* ---- VIDEO SOURCE HYDRATION ----
    Desktop-only clips ship with data-desk instead of src, so phones never download
@@ -5410,63 +4956,6 @@
         }
       })();
 
-      /* ---- MOBILE SCROLL STAGES: bin / clothing / shoes, each pinned and scrubbed
-        by scroll exactly like the desktop show, you go through them in order ---- */
-      (function () {
-        if (!window.matchMedia("(max-width:767px)").matches) return;
-        [
-          ["wm1", "wm1v"],
-          ["wm2", "wm2v"],
-          ["wm3", "wm3v"],
-        ].forEach(function (p) {
-          var sec = document.getElementById(p[0]),
-            v = document.getElementById(p[1]);
-          if (!sec || !v) return;
-          var dur = 0,
-            ticking = false;
-          v.addEventListener("loadedmetadata", function () {
-            dur = v.duration || 4;
-            paint();
-          });
-          function paint() {
-            ticking = false;
-            var total = sec.offsetHeight - window.innerHeight;
-            if (total <= 0) return;
-            var pr = Math.max(0, Math.min(1, -sec.getBoundingClientRect().top / total));
-            if (dur) seekTo(v, Math.min(pr / 0.82, 1) * (dur - 0.05));
-            var cap = sec.querySelector(".wmcap");
-            if (cap) cap.classList.toggle("on", pr > 0.5);
-          }
-          function onS() {
-            if (!ticking) {
-              requestAnimationFrame(paint);
-              ticking = true;
-            }
-          }
-          window.addEventListener("scroll", onS, { passive: true });
-          window.addEventListener("resize", onS);
-          paint();
-        });
-        /* iOS: prime the stage decoders on the first touch so scrubbing paints frames */
-        ["touchstart", "pointerdown"].forEach(function (ev) {
-          window.addEventListener(
-            ev,
-            function h() {
-              window.removeEventListener(ev, h, true);
-              [].forEach.call(document.querySelectorAll("#wm1v,#wm2v,#wm3v"), function (x) {
-                try {
-                  var q = x.play();
-                  if (q && q.then)
-                    q.then(function () {
-                      x.pause();
-                    }).catch(function () {});
-                } catch (e) {}
-              });
-            },
-            { passive: true, capture: true, once: true },
-          );
-        });
-      })();
       var day = new Date().getDay(),
         tp = LADDER[day],
         FRI = 9;
@@ -5625,19 +5114,6 @@
           v.currentTime = t;
         } catch (e) {}
       }
-
-      /* phone: reorder flow to bin opener -> discover -> price -> deals */
-      (function () {
-        if (!window.matchMedia("(max-width:767px)").matches) return;
-        var wm1 = document.getElementById("wm1"),
-          disc = document.getElementById("discover"),
-          price = document.getElementById("price"),
-          deals = document.getElementById("deals");
-        if (!wm1 || !disc || !price || !deals) return;
-        wm1.after(disc);
-        disc.after(price);
-        price.after(deals);
-      })();
 
       /* ---- FEATURED: cards scrub their clips with scroll (inertia-smoothed) ---- */
       (function () {
