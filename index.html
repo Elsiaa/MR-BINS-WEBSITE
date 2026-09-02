@@ -4514,6 +4514,62 @@
       </div>
     </section>
 
+    <style>
+      /* price section layout: ladder + loyalty card side by side on desktop */
+      @media (min-width: 1000px) {
+        #price .pwrap {
+          display: grid;
+          grid-template-columns: 1.35fr 1fr;
+          gap: clamp(28px, 3.5vw, 56px);
+          align-items: center;
+          text-align: left;
+        }
+        #price .pwrap > h2,
+        #price .pwrap > .sub {
+          grid-column: 1 / -1;
+          text-align: center;
+          justify-self: center;
+        }
+        #price .ladder {
+          margin-top: 10px;
+          max-width: none;
+        }
+        #price .alertcard {
+          margin-top: 10px;
+          width: 100%;
+          max-width: none;
+        }
+      }
+      /* phone: compact staircase that fits 7 across cleanly */
+      @media (max-width: 767px) {
+        #price .ladder {
+          grid-template-columns: repeat(7, 1fr) !important;
+          gap: 5px;
+          margin-top: 22px;
+        }
+        #price .day .dp {
+          font-size: 13px;
+        }
+        #price .day.today .dp {
+          font-size: 15px;
+        }
+        #price .day .lbar {
+          max-width: 30px;
+          border-radius: 6px 6px 3px 3px;
+        }
+        #price .day .dn {
+          font-size: 8.5px;
+          letter-spacing: 0.06em;
+        }
+        #price .day .lbest {
+          font-size: 8px;
+          padding: 3px 7px;
+        }
+        #price .alertcard {
+          margin-top: 26px;
+        }
+      }
+    </style>
     <section id="price">
       <div class="pwrap">
         <h2>
