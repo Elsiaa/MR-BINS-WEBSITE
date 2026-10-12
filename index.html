@@ -3851,6 +3851,79 @@
         transform: translateY(-1px);
       }
     </style>
+    <script>
+      /* Framed on a touch device (the live preview on elsiaa.com/designs):
+         every <video> that has shown a frame holds a hardware decoder, and
+         after one scroll this page keeps ~11 of them — on a phone, inside
+         another page, iOS kills the tab. Here each video is unloaded as it
+         leaves the screen and restored (and resumed) as it comes back, so
+         everything still plays where it is seen. Direct visits and desktop
+         frames are untouched. */
+      (function () {
+        var framed;
+        try {
+          framed = window.self !== window.top;
+        } catch (e) {
+          framed = true;
+        }
+        if (!framed || !window.matchMedia("(pointer: coarse)").matches) return;
+        if (!("IntersectionObserver" in window)) return;
+        function srcs(v) {
+          return [v].concat([].slice.call(v.querySelectorAll("source")));
+        }
+        function park(v) {
+          if (v.__parked) return;
+          var kept = [];
+          srcs(v).forEach(function (el) {
+            var s = el.getAttribute("src");
+            if (s) {
+              kept.push([el, s]);
+              el.removeAttribute("src");
+            }
+          });
+          if (!kept.length) return;
+          v.__parked = kept;
+          v.__wasPlaying = !v.paused;
+          v.pause();
+          v.load();
+        }
+        function wake(v) {
+          var kept = v.__parked;
+          if (!kept) return;
+          v.__parked = null;
+          kept.forEach(function (p) {
+            if (!p[0].getAttribute("src")) p[0].setAttribute("src", p[1]);
+          });
+          v.load();
+          if (v.__wasPlaying || v.autoplay || (v.loop && v.muted)) {
+            var q = v.play();
+            if (q && q.catch) q.catch(function () {});
+          }
+        }
+        var io = new IntersectionObserver(
+          function (es) {
+            es.forEach(function (e) {
+              if (e.isIntersecting) wake(e.target);
+              else park(e.target);
+            });
+          },
+          { rootMargin: "200px" },
+        );
+        function watch(root) {
+          [].forEach.call(root.querySelectorAll("video"), function (v) {
+            if (v.__watched) return;
+            v.__watched = true;
+            io.observe(v);
+          });
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+          watch(document);
+          new MutationObserver(function () {
+            watch(document);
+          }).observe(document.body, { childList: true, subtree: true });
+        });
+      })();
+    </script>
   </head>
   <body>
     <header class="bar">
