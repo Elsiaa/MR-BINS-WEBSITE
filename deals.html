@@ -3678,6 +3678,39 @@
         .clock { padding: 0 9px !important; font-size: 11px !important; height: 38px !important; }
         .hright, .bar .right, .bar .actions { gap: 5px !important; }
       }
+      /* Phone readability: no text under ~11px, roomier paragraph lines,
+         and darker/brighter small text where it was faint on its background. */
+      @media (max-width: 760px) {
+        /* small mono labels */
+        .pcard .cat { font-size: 11px; }
+        .wd .n { font-size: 10.5px; }
+        .wd .td { font-size: 11px; }
+        .reel .live { font-size: 11px; }
+        .reel .hh { font-size: 12px; }
+        .dday .dn { font-size: 10.5px; }
+        .dday .badge { font-size: 9.5px; white-space: normal; line-height: 1.1; text-align: center; padding: 2px 5px; border-radius: 8px; }
+        .bcat { font-size: 11px !important; }
+        #shopall .bcat { font-size: 11px !important; }
+        .day .dn { font-size: 11px; }
+        .mcta.big span { font-size: 11.5px !important; opacity: 0.9; }
+        .fine { font-size: 12.5px !important; }
+        #careers .role p { font-size: 14px; }
+        /* video captions in the gallery / mystery box carousels */
+        .hslide .hinfo b { font-size: 15px; }
+        .hslide .hinfo span { font-size: 12.5px; line-height: 1.45; letter-spacing: 0.02em; color: rgba(255, 255, 255, 0.92); }
+        /* paragraphs that were set at ~1.2 line spacing */
+        .sub, .ssub, .ssell, .psub, .restock, .snote, .fine { line-height: 1.5 !important; }
+        .pcard .nm { line-height: 1.25; }
+        .bname { line-height: 1.3 !important; }
+        /* faint small text */
+        .mtag .td { color: #c2410c !important; }
+        .pcard .fr { color: #c2410c; }
+        #mbpromo .eyebrow { color: #c2410c; }
+        .copyright { color: #5b6b82 !important; }
+        #hauls .sub { color: #fff !important; font-weight: 600; }
+      }
+      /* phones: less empty space between the last section and the footer */
+      @media (max-width: 760px) { #deals { padding-bottom: 28px !important; } }
     </style>
   </head>
   <body>
