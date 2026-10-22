@@ -587,6 +587,9 @@
         .clock { padding: 0 9px !important; font-size: 11px !important; height: 38px !important; }
         .hright, .bar .right, .bar .actions { gap: 5px !important; }
       }
+      /* never let wide text (e.g. before the web fonts load) make the page scroll sideways;
+         "clip" (unlike "hidden") keeps the sticky scroll scenes working */
+      html, body { overflow-x: clip; }
       /* home header: keep the logo's proportions and let it scale down instead of squashing */
       @media (max-width: 520px) {
         .bar .row { gap: 10px; }
@@ -920,7 +923,7 @@
         /* Every frame is downloaded once as a small compressed file, but only the frames
            near the playhead are kept decoded (a decoded frame is 2-11MB). Keeping all of
            them decoded used ~3GB, which made phones kill and reload the tab. */
-        var LOWMEM = MOBILE || navigator.maxTouchPoints > 1 || (navigator.deviceMemory && navigator.deviceMemory <= 4);
+        var LOWMEM = MOBILE || navigator.maxTouchPoints > 0 || W.matchMedia("(pointer: coarse)").matches || (navigator.deviceMemory && navigator.deviceMemory <= 4);
         var SEQ_R = LOWMEM ? 8 : 18, SEQ_KEY = LOWMEM ? 24 : 12, SEQ_DEC = LOWMEM ? 2 : 4;
         function freeFrame(im) {
           if (!im) return;
@@ -1285,6 +1288,11 @@
             if (v.paused) { var q = v.play(); if (q && q.catch) q.catch(function () {}); }
           } else if (!v.paused) v.pause();
         }
+        /* fully release a video (paused videos still hold memory on iPhone) */
+        function dropVid(v) {
+          if (!v.getAttribute("src") || v.__parked) return;
+          v.pause(); v.removeAttribute("src"); v.load();
+        }
         scene(hauls, function (p, r) {
           var tx = -p * hTravel;
           rtrack.style.transform = "translate3d(" + tx.toFixed(1) + "px,0,0)";
@@ -1296,6 +1304,11 @@
             setVid(el.firstChild, live && b.right > -40 && b.left < vw + 40);
           });
         });
+        /* once the reels section is off screen, release every reel video */
+        if ("IntersectionObserver" in W)
+          new IntersectionObserver(function (e) {
+            if (!e[0].isIntersecting) reels.forEach(function (el) { dropVid(el.firstChild); });
+          }, { rootMargin: "50% 0px" }).observe(hauls);
 
         /* ---------- 7. mystery box reveal ---------- */
         var mbSeq = new Seq(MOBILE ? "seq/revealm" : "seq/reveal", 121), mbCv = $("mbCv"), mbBurst = $("mbBurst");
@@ -1483,5 +1496,6 @@
       })();
     </script>
     <script src="i18n.js"></script>
+    <script src="cart.js"></script>
   </body>
 </html>
