@@ -156,6 +156,26 @@
         text-decoration: none;
       }
     </style>
+    <style id="mobile-fixes">
+      /* Phone fixes: iOS zooms the page when a form field's text is under 16px,
+         footer links need a finger-sized tap area, and a few labels were too small to read. */
+      @media (max-width: 760px) {
+        input:not([type="checkbox"]):not([type="radio"]), select, textarea { font-size: 16px !important; }
+        .fnav { row-gap: 0 !important; }
+        .fnav a { display: inline-block; padding: 9px 0; }
+        .hslide .hinfo span { font-size: 11.5px; }
+        .dday .dn { font-size: 10px; }
+        .dday .badge { font-size: 8px; letter-spacing: 0; padding: 2px 4px; }
+        .wd .n { font-size: 10px; }
+        .pcard .cat { font-size: 10.5px; }
+      }
+      @media (max-width: 380px) {
+        .brand { flex-shrink: 0; }
+        #langBtn, .cartbtn, .menubtn { width: 38px !important; height: 38px !important; min-width: 0 !important; }
+        .clock { padding: 0 9px !important; font-size: 11px !important; height: 38px !important; }
+        .hright, .bar .right, .bar .actions { gap: 5px !important; }
+      }
+    </style>
   </head>
   <body>
     <div class="wrap">

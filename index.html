@@ -568,6 +568,33 @@
         });
       })();
     </script>
+    <style id="mobile-fixes">
+      /* Phone fixes: iOS zooms the page when a form field's text is under 16px,
+         footer links need a finger-sized tap area, and a few labels were too small to read. */
+      @media (max-width: 760px) {
+        input:not([type="checkbox"]):not([type="radio"]), select, textarea { font-size: 16px !important; }
+        .fnav { row-gap: 0 !important; }
+        .fnav a { display: inline-block; padding: 9px 0; }
+        .hslide .hinfo span { font-size: 11.5px; }
+        .dday .dn { font-size: 10px; }
+        .dday .badge { font-size: 8px; letter-spacing: 0; padding: 2px 4px; }
+        .wd .n { font-size: 10px; }
+        .pcard .cat { font-size: 10.5px; }
+      }
+      @media (max-width: 380px) {
+        .brand { flex-shrink: 0; }
+        #langBtn, .cartbtn, .menubtn { width: 38px !important; height: 38px !important; min-width: 0 !important; }
+        .clock { padding: 0 9px !important; font-size: 11px !important; height: 38px !important; }
+        .hright, .bar .right, .bar .actions { gap: 5px !important; }
+      }
+      /* home header: keep the logo's proportions and let it scale down instead of squashing */
+      @media (max-width: 520px) {
+        .bar .row { gap: 10px; }
+        .bar .brand { flex: 0 1 auto; flex-shrink: 1; min-width: 0; }
+        .brandlogo { display: block; height: auto; width: 100%; max-width: 134px; max-height: 27px; object-fit: contain; object-position: left center; }
+      }
+      @media (max-width: 350px) { .clock .dot { display: none; } }
+    </style>
   </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
@@ -890,8 +917,19 @@
         else clk.textContent = "$" + TP + " today";
 
         /* ---------- image sequence player ---------- */
+        /* Every frame is downloaded once as a small compressed file, but only the frames
+           near the playhead are kept decoded (a decoded frame is 2-11MB). Keeping all of
+           them decoded used ~3GB, which made phones kill and reload the tab. */
+        var LOWMEM = MOBILE || navigator.maxTouchPoints > 1 || (navigator.deviceMemory && navigator.deviceMemory <= 4);
+        var SEQ_R = LOWMEM ? 8 : 18, SEQ_KEY = LOWMEM ? 24 : 12, SEQ_DEC = LOWMEM ? 2 : 4;
+        function freeFrame(im) {
+          if (!im) return;
+          if (im.close) im.close();
+          else if (im.__url) { URL.revokeObjectURL(im.__url); im.src = ""; }
+        }
         function Seq(dir, n) {
-          this.dir = dir; this.n = n; this.img = new Array(n); this.ok = new Array(n); this.started = false; this.onload = null;
+          this.dir = dir; this.n = n; this.raw = new Array(n); this.img = new Array(n); this.ok = new Array(n);
+          this.pend = {}; this.dec = 0; this.at = 0; this.awake = false; this.started = false; this.onload = null;
         }
         Seq.prototype.src = function (i) { return this.dir + "/" + String(i + 1).padStart(3, "0") + ".webp"; };
         Seq.prototype.start = function () {
@@ -901,25 +939,66 @@
             for (var i = 0; i < self.n; i += step) if (!seen[i]) { seen[i] = 1; order.push(i); }
           });
           if (!seen[self.n - 1]) order.push(self.n - 1);
-          var k = 0, active = 0, MAX = 8;
-          function done(i, frame) { self.img[i] = frame; self.ok[i] = 1; active--; if (self.onload) self.onload(i); next(); }
+          var k = 0, active = 0, MAX = 6;
           function next() {
             while (active < MAX && k < order.length) {
               (function (i) {
                 active++;
-                var im = new Image(); im.decoding = "async";
-                im.onload = function () {
-                  /* decode off the main thread now, so scrolling never waits on a decode */
-                  if (W.createImageBitmap) W.createImageBitmap(im).then(function (b) { done(i, b); }, function () { done(i, im); });
-                  else if (im.decode) im.decode().then(function () { done(i, im); }, function () { done(i, im); });
-                  else done(i, im);
-                };
-                im.onerror = function () { active--; next(); };
-                im.src = self.src(i);
+                fetch(self.src(i)).then(function (r) { if (!r.ok) throw r.status; return r.blob(); }).then(
+                  function (b) { self.raw[i] = b; active--; self.pump(); next(); },
+                  function () { active--; next(); }
+                );
               })(order[k++]);
             }
           }
           next();
+        };
+        /* frames that stay decoded: a window around the playhead plus sparse keyframes
+           (so fast scrolling always has something close to show); when the scene is
+           off screen, only the current frame */
+        Seq.prototype.keep = function (i) {
+          var d = Math.abs(i - this.at);
+          return this.awake ? d <= SEQ_R || i % SEQ_KEY === 0 || i === this.n - 1 : d <= 1;
+        };
+        Seq.prototype.focus = function (f, awake) {
+          var at = clamp(Math.round(f), 0, this.n - 1);
+          awake = !!awake;
+          if (at === this.at && awake === this.awake) return;
+          this.at = at; this.awake = awake;
+          for (var i = 0; i < this.n; i++) if (this.ok[i] && !this.keep(i)) { freeFrame(this.img[i]); this.img[i] = null; this.ok[i] = 0; }
+          this.pump();
+        };
+        Seq.prototype.pump = function () {
+          while (this.dec < SEQ_DEC) {
+            var best = -1, bd = 1e9;
+            for (var i = 0; i < this.n; i++) {
+              if (this.ok[i] || this.pend[i] || !this.raw[i] || !this.keep(i)) continue;
+              var d = Math.abs(i - this.at);
+              if (d < bd) { bd = d; best = i; }
+            }
+            if (best < 0) return;
+            this.decode(best);
+          }
+        };
+        Seq.prototype.decode = function (i) {
+          var self = this;
+          this.pend[i] = 1; this.dec++;
+          function done(im) {
+            self.dec--; delete self.pend[i];
+            if (im && self.keep(i)) { self.img[i] = im; self.ok[i] = 1; if (self.onload) self.onload(i); }
+            else freeFrame(im);
+            self.pump();
+          }
+          function viaImg() {
+            var im = new Image(), u = URL.createObjectURL(self.raw[i]);
+            im.__url = u;
+            im.onload = function () { if (im.decode) im.decode().then(function () { done(im); }, function () { done(im); }); else done(im); };
+            im.onerror = function () { URL.revokeObjectURL(u); done(null); };
+            im.src = u;
+          }
+          /* decode off the main thread, so scrolling never waits on a decode */
+          if (W.createImageBitmap) W.createImageBitmap(this.raw[i]).then(done, viaImg);
+          else viaImg();
         };
         Seq.prototype.get = function (i) {
           i = clamp(Math.round(i), 0, this.n - 1);
@@ -959,6 +1038,8 @@
         Player.prototype.tick = function () {
           var d = this.target - this.cur;
           this.cur = Math.abs(d) < 0.01 ? this.target : this.cur + d * this.ease;
+          var vh = W.innerHeight, rc = this.cv.getBoundingClientRect();
+          this.seq.focus(this.target, rc.bottom > -vh && rc.top < vh * 2);
           var resized = fitCanvas(this.cv), f = this.cur, n = this.seq.n;
           var key = f.toFixed(2) + "|" + this.cv.width;
           if (!resized && key === this.key) return;
@@ -1109,7 +1190,7 @@
           DEPTS.forEach(function (d) { if (d.seq) { d.seq.start(); d.seq.onload = function () { dKey = ""; dirty = true; }; } });
           if (!bikeImg.src) { bikeImg.onload = function () { bikeOk = true; dKey = ""; dirty = true; }; bikeImg.src = "mrbins-feat-bike.jpg"; }
         }, { rootMargin: "120% 0px" }).observe($("depts"));
-        scene($("depts"), function (p) {
+        scene($("depts"), function (p, r) {
           var n = DEPTS.length, x = p * n, i = clamp(Math.floor(x), 0, n - 1), lp = clamp(x - i, 0, 1);
           if (i !== dActive) {
             dTitles.forEach(function (t, k) { t.classList.toggle("on", k === i); t.classList.toggle("out", k < i); });
@@ -1123,8 +1204,11 @@
           var out = smooth(band(lp, 0.86, 1)), inn = smooth(band(lp, 0, 0.12));
           var sc = (0.86 + 0.14 * inn) * (1 - 0.15 * out);
           deptCv.style.opacity = (i === 0 ? 1 : inn) * (i === n - 1 ? 1 : 1 - out);
+          var near = r.bottom > -W.innerHeight && r.top < W.innerHeight * 2;
+          DEPTS.forEach(function (o, k) { if (o.seq && k !== i) o.seq.focus(k < i ? o.seq.n - 1 : 0, false); });
           if (d.seq) {
             var f = Math.round(band(lp, 0.05, 0.78) * 60);
+            d.seq.focus(f, near);
             key = i + ":" + f;
             if (key !== dKey || resized) { var im = d.seq.get(f); if (im) { drawImg(deptCv, im, "contain", 0, sc); dKey = d.seq.ok[f] ? key : ""; } }
           } else if (bikeOk) {
@@ -1214,7 +1298,7 @@
         });
 
         /* ---------- 7. mystery box reveal ---------- */
-        var mbSeq = new Seq("seq/reveal", 121), mbCv = $("mbCv"), mbBurst = $("mbBurst");
+        var mbSeq = new Seq(MOBILE ? "seq/revealm" : "seq/reveal", 121), mbCv = $("mbCv"), mbBurst = $("mbBurst");
         if (MB_ON) {
           new IntersectionObserver(function (e) { if (e[0].isIntersecting) mbSeq.start(); }, { rootMargin: "120% 0px" }).observe($("mbPin"));
           var mbPlay = new Player(mbSeq, mbCv, "contain", 0.25);
