@@ -1,35 +1,35 @@
 /* Single source of truth for all pricing. The admin portal (admin.html) edits and
    republishes this file; a local override in this browser (admin preview) wins if present. */
 window.PRICE_CONFIG = {
-  ladder: { 0: 14, 1: 13, 2: 12, 3: 11, 4: 10, 5: 9, 6: null }, // Sun..Sat, null = closed
-  closedLabel: "Closed · restock",
+  ladder: { 0: 7, 1: 5, 2: 3, 3: 2, 4: 1, 5: 9, 6: null }, // Sun..Sat, null = closed
+  closedLabel: "Closed",
 };
 window.MRB_DEPTS = {
   general: {
     name: "General Bin Items",
     restock: "New stock every Friday!",
-    tag: "★ New stock. Best selection. Unbeatable prices.",
+    tag: "★ Cheapest Thursday, freshest Friday.",
     drop: 5,
     prices: [7, 5, 3, 2, 1, 9, null],
   },
   shoes: {
     name: "Shoes",
     restock: "New stock every Friday!",
-    tag: "★ Top brands. Great prices.",
+    tag: "★ Half price or better by Wednesday.",
     drop: 5,
     prices: [10, 6, 6, 3, 3, 10, null],
   },
   clothing: {
     name: "Clothing",
     restock: "New stock every Sunday!",
-    tag: "★ All clothing. All week.",
+    tag: "★ Same price all week, less on Friday.",
     drop: 0,
     prices: [6, 6, 6, 6, 6, 4, null],
   },
   food: {
     name: "Food",
     restock: "New stock every Wednesday!",
-    tag: "★ Fresh stock. Great savings.",
+    tag: "★ Name-brand groceries and snacks.",
     drop: 3,
     prices: [3, 2, 2, 1, 1, 1, null],
   },

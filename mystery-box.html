@@ -6,17 +6,18 @@
     <title>Mystery Box · Mr. Bins</title>
     <link rel="canonical" href="https://elsiaa.github.io/MR-BINS-WEBSITE/mystery-box.html" />
     <script src="pricing.js"></script>
+    <script src="pricetalk.js"></script>
     <script src="flags.js"></script>
     <script src="reviews.js"></script>
     <meta
       name="description"
-      content="Mr. Bins: dig through bins of brand-new Amazon returns across 4 Northeast PA stores. One price for everything, dropping $14 to $9 through the week, or get a hand-packed mystery box shipped to your door."
+      content="Mr. Bins: dig through bins of brand-new Amazon returns at 5 Northeast PA stores. Every bin item is one price that day: $9 on Friday restock day, down to $1 by Thursday. Or get a hand-packed mystery box shipped to your door."
     />
     <meta name="theme-color" content="#0B2447" />
     <meta property="og:title" content="Mr. Bins · Where your returns go" />
     <meta
       property="og:description"
-      content="Dig. Discover. Dreams. One price for the whole store, dropping a dollar a day, plus mystery boxes shipped to your door."
+      content="One price for every bin item that day, lower every day after Friday’s restock. Plus mystery boxes shipped to your door."
     />
     <meta property="og:type" content="website" />
     <meta
@@ -32,7 +33,7 @@
     <link rel="preconnect" href="https://cdn.simpleicons.org" />
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;900&family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap"
       rel="stylesheet"
     />
     <style>
@@ -72,12 +73,20 @@
       a {
         color: inherit;
       }
+      /* Type system (matches the homepage): Anton caps for page and section
+         titles, Hanken Grotesk for everything else. */
       h1,
-      h2,
+      h2 {
+        font-family: "Anton", "Impact", "Arial Narrow", sans-serif;
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: 0.005em;
+        line-height: 0.98;
+      }
       h3 {
-        font-family: "Bricolage Grotesque", system-ui, sans-serif;
-        letter-spacing: -0.02em;
-        line-height: 1.02;
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
+        letter-spacing: -0.01em;
+        line-height: 1.1;
       }
 
       /* header */
@@ -107,7 +116,7 @@
         height: 118px;
         width: auto;
         object-fit: cover;
-        border-radius: 12px;
+        border-radius: 6px;
         display: block;
         background: #48a0c0;
         margin: 2px 0;
@@ -160,7 +169,7 @@
       }
       .tabs a {
         color: rgba(255, 255, 255, 0.85);
-        font-family: "Bricolage Grotesque";
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
         font-weight: 700;
         font-size: 14.5px;
         letter-spacing: -0.01em;
@@ -235,7 +244,7 @@
         border-bottom: 1px solid rgba(255, 255, 255, 0.12);
         padding: 76px 22px 20px;
         display: none;
-        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+        box-shadow: none;
       }
       .mnav.open {
         display: block;
@@ -243,7 +252,7 @@
       .mnav a {
         display: block;
         padding: 15px 4px;
-        font-family: "Bricolage Grotesque";
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
         font-weight: 800;
         font-size: 19px;
         color: #fff;
@@ -318,7 +327,7 @@
         justify-content: center;
         transform: scale(0);
         transition: transform 0.25s cubic-bezier(0.2, 1.5, 0.4, 1);
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+        box-shadow: none;
       }
       .cartbadge.show {
         transform: scale(1);
@@ -346,8 +355,8 @@
         color: #fff;
         border: 1px solid rgba(255, 255, 255, 0.14);
         padding: 12px 18px;
-        border-radius: 12px;
-        font-family: "Bricolage Grotesque";
+        border-radius: 6px;
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
         font-weight: 700;
         font-size: 14px;
         z-index: 200;
@@ -356,7 +365,7 @@
         transition:
           opacity 0.25s,
           transform 0.25s;
-        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+        box-shadow: none;
       }
       .toast.show {
         opacity: 1;
@@ -454,22 +463,22 @@
       }
       .wcap .k {
         display: inline-block;
-        font-family: "Space Mono", monospace;
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
         font-weight: 700;
         font-size: clamp(15px, 2vw, 24px);
-        letter-spacing: 0.22em;
-        text-transform: uppercase;
+        letter-spacing: 0;
+        text-transform: none;
         color: #fff;
         background: rgba(14, 63, 166, 0.92);
         border: 1px solid rgba(255, 255, 255, 0.22);
         padding: 0.55em 1.05em;
         border-radius: 999px;
         margin-bottom: clamp(14px, 1.6vw, 22px);
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+        box-shadow: none;
       }
       .wcap h1,
       .wcap h2 {
-        font-weight: 800;
+        font-weight: 400;
         font-size: clamp(52px, 9.4vw, 150px);
         line-height: 0.9;
         letter-spacing: -0.035em;
@@ -502,7 +511,7 @@
         border-radius: 0.12em;
         transform: rotate(-1.5deg);
         text-shadow: none;
-        box-shadow: 0 10px 34px rgba(0, 0, 0, 0.35);
+        box-shadow: none;
       }
       .wcap .sub {
         font-family: "Hanken Grotesk", system-ui, sans-serif;
@@ -527,10 +536,10 @@
         right: 0;
         text-align: center;
         z-index: 3;
-        font-family: "Space Mono", monospace;
-        font-size: 12px;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
+        font-size: 15px;
+        letter-spacing: 0;
+        text-transform: none;
         color: rgba(255, 255, 255, 0.65);
         transition: opacity 0.3s;
       }
@@ -641,7 +650,7 @@
         left: 50%;
         bottom: clamp(10px, 2.2vh, 24px);
         z-index: 2;
-        font-family: "Bricolage Grotesque", sans-serif;
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
         font-size: clamp(14px, 1.5vw, 19px);
         font-weight: 800;
         letter-spacing: -0.01em;
@@ -649,7 +658,7 @@
         padding: 10px 22px;
         border-radius: 999px;
         white-space: nowrap;
-        box-shadow: 0 10px 24px rgba(11, 36, 71, 0.22);
+        box-shadow: 0 0 0 1px rgba(11, 36, 71, 0.12);
         transform: translateX(-50%) translateY(14px) scale(0.7);
         opacity: 0;
         transition:
@@ -678,7 +687,7 @@
         --bobdelay: 0.9s;
       }
       .tcta {
-        font-family: "Bricolage Grotesque", sans-serif;
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
         font-size: clamp(13px, 1.2vw, 16px);
         font-weight: 800;
         letter-spacing: -0.01em;
@@ -689,7 +698,7 @@
         border-radius: 999px;
         text-decoration: none;
         white-space: nowrap;
-        box-shadow: 0 12px 28px rgba(11, 36, 71, 0.2);
+        box-shadow: 0 0 0 1px rgba(11, 36, 71, 0.12);
         opacity: 0;
         transform: translateY(12px);
         transition:
@@ -711,12 +720,10 @@
       @keyframes ctapulse {
         0%,
         100% {
-          box-shadow: 0 12px 28px rgba(11, 36, 71, 0.2);
+          box-shadow: 0 0 0 1px rgba(11, 36, 71, 0.12);
         }
         50% {
-          box-shadow:
-            0 12px 34px rgba(46, 158, 88, 0.5),
-            0 0 0 8px rgba(46, 158, 88, 0.12);
+          box-shadow: 0 0 0 8px rgba(46, 158, 88, 0.12);
         }
       }
       @keyframes chipbob {
@@ -745,14 +752,14 @@
         padding: clamp(150px, 18vh, 190px) 24px 0;
       }
       .cartcap .k {
-        font-family: "Space Mono", monospace;
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
         font-size: clamp(12px, 1.4vw, 15px);
-        letter-spacing: 0.26em;
-        text-transform: uppercase;
+        letter-spacing: 0;
+        text-transform: none;
         color: var(--blue);
       }
       .cartcap h2 {
-        font-weight: 800;
+        font-weight: 400;
         font-size: clamp(30px, 4.8vw, 62px);
         margin-top: 8px;
         color: var(--navy);
@@ -915,7 +922,7 @@
             opacity 0.5s ease 0.55s,
             transform 0.55s cubic-bezier(0.2, 1.8, 0.4, 1) 0.55s;
           white-space: nowrap;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+          box-shadow: none;
         }
         .sw-mode .dot {
           width: 7px;
@@ -946,15 +953,15 @@
         text-align: center;
       }
       .dhead .k {
-        font-family: "Space Mono", monospace;
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
         font-size: clamp(12px, 1.4vw, 14px);
-        letter-spacing: 0.28em;
-        text-transform: uppercase;
+        letter-spacing: 0;
+        text-transform: none;
         color: var(--blue);
       }
       .dhead h2 {
         font-size: clamp(30px, 5vw, 58px);
-        font-weight: 800;
+        font-weight: 400;
         margin-top: 10px;
         color: var(--navy);
         letter-spacing: -0.02em;
@@ -1082,7 +1089,7 @@
         height: clamp(48px, 5.6vw, 82px);
         background: linear-gradient(180deg, #2360cf, #0e3fa6);
         border-radius: 5px 5px 3px 3px;
-        box-shadow: 0 16px 26px rgba(11, 36, 71, 0.2);
+        box-shadow: 0 0 0 1px rgba(11, 36, 71, 0.12);
       }
       .ministore .mbin.l {
         left: 2.5%;
@@ -1098,7 +1105,7 @@
         align-items: center;
         justify-content: center;
         color: rgba(255, 255, 255, 0.72);
-        font-family: "Bricolage Grotesque";
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
         font-weight: 800;
         font-size: clamp(9px, 1vw, 12px);
         letter-spacing: -0.02em;
@@ -1138,22 +1145,23 @@
         border: 1px solid var(--grey);
         background: #fff;
         color: var(--navy);
-        font-family: "Bricolage Grotesque";
+        font-family: "Anton", "Impact", "Arial Narrow", sans-serif;
+        text-transform: uppercase;
         font-size: 26px;
-        font-weight: 800;
+        font-weight: 400;
         line-height: 1;
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
-        box-shadow: 0 10px 26px rgba(11, 36, 71, 0.16);
+        box-shadow: 0 0 0 1px rgba(11, 36, 71, 0.12);
         transition:
           transform 0.18s,
           box-shadow 0.18s;
       }
       .cnav:hover {
         transform: translateY(-50%) scale(1.08);
-        box-shadow: 0 14px 30px rgba(11, 36, 71, 0.24);
+        box-shadow: 0 0 0 1px rgba(11, 36, 71, 0.12);
       }
       .cnav.prev {
         left: -8px;
@@ -1171,16 +1179,16 @@
         background: #fff;
         color: var(--navy);
         border: 1px solid var(--grey);
-        border-radius: 18px;
+        border-radius: 6px;
         overflow: hidden;
-        box-shadow: 0 14px 30px rgba(11, 36, 71, 0.1);
+        box-shadow: 0 0 0 1px rgba(11, 36, 71, 0.12);
         transition:
           transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
           box-shadow 0.28s;
       }
       .pcard:hover {
         transform: translateY(-8px);
-        box-shadow: 0 26px 50px rgba(11, 36, 71, 0.18);
+        box-shadow: 0 0 0 1px rgba(11, 36, 71, 0.12);
       }
       .pcard .top {
         height: 146px;
@@ -1199,6 +1207,7 @@
       }
       .pcard .cat {
         position: absolute;
+        z-index: 2;
         top: 10px;
         left: 11px;
         font-family: "Space Mono", monospace;
@@ -1214,7 +1223,7 @@
         padding: 14px 16px 17px;
       }
       .pcard .nm {
-        font-family: "Bricolage Grotesque";
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
         font-weight: 800;
         font-size: 17px;
         letter-spacing: -0.02em;
@@ -1233,8 +1242,9 @@
         margin-top: 12px;
       }
       .pcard .tp {
-        font-family: "Bricolage Grotesque";
-        font-weight: 800;
+        font-family: "Anton", "Impact", "Arial Narrow", sans-serif;
+        text-transform: uppercase;
+        font-weight: 400;
         font-size: 26px;
         color: var(--green);
       }
@@ -1259,7 +1269,7 @@
         justify-content: center;
       }
       .dbtn {
-        font-family: "Bricolage Grotesque";
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
         font-weight: 800;
         font-size: 16px;
         padding: 15px 26px;
@@ -1282,7 +1292,7 @@
       .dbtn.gold {
         background: var(--orange);
         color: #0b2447;
-        box-shadow: 0 10px 26px rgba(240, 120, 40, 0.32);
+        box-shadow: none;
       }
 
       /* DEALS, per-department weekly price calendars */
@@ -1300,19 +1310,19 @@
         margin: 0 auto;
       }
       .dzhead {
-        text-align: center;
+        text-align: left;
         margin-bottom: clamp(24px, 3vw, 40px);
       }
       .dzhead .k {
-        font-family: "Space Mono", monospace;
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
         font-size: clamp(12px, 1.4vw, 14px);
-        letter-spacing: 0.28em;
-        text-transform: uppercase;
+        letter-spacing: 0;
+        text-transform: none;
         color: var(--blue);
       }
       .dzhead h2 {
         font-size: clamp(30px, 5vw, 58px);
-        font-weight: 800;
+        font-weight: 400;
         margin-top: 10px;
         letter-spacing: -0.02em;
       }
@@ -1322,16 +1332,16 @@
       .dzhead .sub {
         color: var(--muted);
         font-size: clamp(14.5px, 1.7vw, 18px);
-        margin: 12px auto 0;
+        margin: 12px 0 0;
         max-width: 640px;
       }
       .dealrow {
         display: grid;
         grid-template-columns: minmax(185px, 250px) 1fr;
-        border-radius: 18px;
+        border-radius: 6px;
         overflow: hidden;
         border: 1px solid var(--grey);
-        box-shadow: 0 14px 34px rgba(11, 36, 71, 0.1);
+        box-shadow: 0 0 0 1px rgba(11, 36, 71, 0.12);
         margin-top: 18px;
         background: #fff;
       }
@@ -1344,19 +1354,20 @@
         gap: 7px;
       }
       .dlabel h3 {
-        font-family: "Bricolage Grotesque";
-        font-weight: 800;
+        font-family: "Anton", "Impact", "Arial Narrow", sans-serif;
+        text-transform: uppercase;
+        font-weight: 400;
         font-size: clamp(21px, 2.2vw, 29px);
         line-height: 1;
-        letter-spacing: -0.02em;
+        letter-spacing: 0.005em;
         text-transform: uppercase;
       }
       .dlabel .restock {
-        font-family: "Space Mono", monospace;
-        font-size: 10.5px;
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
+        font-size: 13.5px;
         font-weight: 700;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
+        letter-spacing: 0;
+        text-transform: none;
         color: rgba(255, 255, 255, 0.92);
       }
       .dlabel .dtag {
@@ -1388,8 +1399,9 @@
         color: var(--muted);
       }
       .dday .dp {
-        font-family: "Bricolage Grotesque";
-        font-weight: 800;
+        font-family: "Anton", "Impact", "Arial Narrow", sans-serif;
+        text-transform: uppercase;
+        font-weight: 400;
         font-size: clamp(18px, 2.3vw, 30px);
         line-height: 1;
       }
@@ -1415,7 +1427,7 @@
         white-space: nowrap;
       }
       .dz-blue .dlabel {
-        background: linear-gradient(135deg, #1455d6, #0e3fa6);
+        background: #1455d6;
       }
       .dz-blue .dp {
         color: #0e3fa6;
@@ -1427,7 +1439,7 @@
         background: rgba(20, 85, 214, 0.09);
       }
       .dz-green .dlabel {
-        background: linear-gradient(135deg, #3c8f3f, #2a6e2d);
+        background: #2f7d32;
       }
       .dz-green .dp {
         color: #2a6e2d;
@@ -1438,20 +1450,20 @@
       .dz-green .dday.drop {
         background: rgba(47, 129, 50, 0.1);
       }
-      .dz-purple .dlabel {
-        background: linear-gradient(135deg, #7a35a8, #5d2683);
+      .dz-red .dlabel {
+        background: #b3261e;
       }
-      .dz-purple .dp {
-        color: #5d2683;
+      .dz-red .dp {
+        color: #9b1f18;
       }
-      .dz-purple .badge {
-        background: #5d2683;
+      .dz-red .badge {
+        background: #9b1f18;
       }
-      .dz-purple .dday.drop {
-        background: rgba(122, 53, 168, 0.09);
+      .dz-red .dday.drop {
+        background: rgba(179, 38, 30, 0.08);
       }
       .dz-orange .dlabel {
-        background: linear-gradient(135deg, #f07828, #d9660f);
+        background: #e8641c;
       }
       .dz-orange .dp {
         color: #d9660f;
@@ -1506,15 +1518,7 @@
         overflow: hidden;
       }
       #loyalty::before {
-        content: "";
-        position: absolute;
-        top: -220px;
-        right: -160px;
-        width: 520px;
-        height: 520px;
-        border-radius: 50%;
-        background: radial-gradient(circle, rgba(255, 143, 82, 0.14), rgba(255, 143, 82, 0) 70%);
-        pointer-events: none;
+        display: none; /* decorative glow orb removed */
       }
       .lywrap {
         max-width: 1120px;
@@ -1523,15 +1527,15 @@
         position: relative;
       }
       .lywrap .k {
-        font-family: "Space Mono", monospace;
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
         font-size: clamp(12px, 1.4vw, 14px);
-        letter-spacing: 0.28em;
-        text-transform: uppercase;
+        letter-spacing: 0;
+        text-transform: none;
         color: var(--blue);
       }
       .lywrap h2 {
         font-size: clamp(30px, 5.4vw, 60px);
-        font-weight: 800;
+        font-weight: 400;
         margin-top: 10px;
         letter-spacing: -0.02em;
       }
@@ -1585,14 +1589,14 @@
       .lycard {
         background: #fff;
         border: 1px solid var(--grey);
-        border-radius: 16px;
+        border-radius: 6px;
         padding: 14px 14px 20px;
         text-align: left;
-        box-shadow: 0 16px 40px rgba(11, 36, 71, 0.07);
+        box-shadow: 0 0 0 1px rgba(11, 36, 71, 0.12);
       }
       .lycard .limg {
         height: 132px;
-        border-radius: 11px;
+        border-radius: 6px;
         background: #fff;
         border: 1px solid var(--grey);
         display: flex;
@@ -1607,7 +1611,7 @@
         object-fit: cover;
       }
       .lycard h3 {
-        font-family: "Bricolage Grotesque";
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
         font-weight: 800;
         font-size: 17px;
         letter-spacing: -0.01em;
@@ -1643,10 +1647,10 @@
       }
       /* mystery box scroll-reveal */
       .brhint {
-        font-family: "Space Mono", monospace;
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
         font-size: clamp(11px, 1.3vw, 13px);
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
+        letter-spacing: 0;
+        text-transform: none;
         color: var(--muted);
         margin-top: clamp(12px, 2vw, 22px);
       }
@@ -1696,10 +1700,10 @@
         width: clamp(62px, 8vw, 94px);
         height: clamp(62px, 8vw, 94px);
         margin-left: calc(-1 * clamp(31px, 4vw, 47px));
-        border-radius: 14px;
+        border-radius: 6px;
         background: #fff;
         border: 1px solid var(--grey);
-        box-shadow: 0 16px 38px rgba(11, 36, 71, 0.22);
+        box-shadow: 0 0 0 1px rgba(11, 36, 71, 0.12);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -1728,15 +1732,15 @@
         padding: clamp(64px, 8vw, 116px) clamp(20px, 5vw, 44px);
       }
       .fhead .k {
-        font-family: "Space Mono", monospace;
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
         font-size: clamp(12px, 1.4vw, 14px);
-        letter-spacing: 0.28em;
-        text-transform: uppercase;
+        letter-spacing: 0;
+        text-transform: none;
         color: var(--blue);
       }
       .fhead h2 {
         font-size: clamp(30px, 5vw, 58px);
-        font-weight: 800;
+        font-weight: 400;
         margin-top: 12px;
         letter-spacing: -0.025em;
         line-height: 1.02;
@@ -1762,10 +1766,10 @@
         position: relative;
         background: #fff;
         border: 1px solid var(--grey);
-        border-radius: 22px;
+        border-radius: 6px;
         padding: 26px 24px 28px;
         text-align: left;
-        box-shadow: 0 16px 40px rgba(11, 36, 71, 0.07);
+        box-shadow: 0 0 0 1px rgba(11, 36, 71, 0.12);
         transition:
           transform 0.25s,
           box-shadow 0.25s;
@@ -1773,7 +1777,7 @@
       }
       .fcard:hover {
         transform: translateY(-6px);
-        box-shadow: 0 26px 56px rgba(11, 36, 71, 0.14);
+        box-shadow: 0 0 0 1px rgba(11, 36, 71, 0.12);
       }
       .fcard .tagpill {
         position: absolute;
@@ -1793,7 +1797,7 @@
       .fcard .fimg {
         width: 100%;
         height: clamp(150px, 17vw, 190px);
-        border-radius: 14px;
+        border-radius: 6px;
         overflow: hidden;
         background: #fff;
         margin-bottom: 18px;
@@ -1825,7 +1829,7 @@
         align-items: center;
         gap: 8px;
         margin-top: 18px;
-        font-family: "Bricolage Grotesque";
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
         font-size: clamp(16px, 1.7vw, 19px);
         font-weight: 800;
         letter-spacing: -0.01em;
@@ -1858,15 +1862,15 @@
         margin: 0 auto;
       }
       .peb {
-        font-family: "Space Mono", monospace;
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
         font-size: 13px;
-        letter-spacing: 0.24em;
-        text-transform: uppercase;
+        letter-spacing: 0;
+        text-transform: none;
         color: var(--blue);
       }
       #price h2 {
         font-size: clamp(34px, 6vw, 66px);
-        font-weight: 800;
+        font-weight: 400;
         margin-top: 10px;
       }
       #price h2 .g {
@@ -1889,7 +1893,7 @@
       .day {
         background: #fff;
         border: 1px solid var(--grey);
-        border-radius: 14px;
+        border-radius: 6px;
         padding: 16px 6px;
       }
       .day .dn {
@@ -1900,8 +1904,9 @@
         color: var(--muted);
       }
       .day .dp {
-        font-family: "Bricolage Grotesque";
-        font-weight: 800;
+        font-family: "Anton", "Impact", "Arial Narrow", sans-serif;
+        text-transform: uppercase;
+        font-weight: 400;
         font-size: clamp(20px, 2.4vw, 30px);
         margin-top: 6px;
       }
@@ -1933,13 +1938,13 @@
         gap: 14px;
         background: #fff;
         border: 1px solid var(--grey);
-        border-radius: 16px;
+        border-radius: 6px;
         padding: 20px 22px;
       }
       .when .ib {
         flex: 0 0 44px;
         height: 44px;
-        border-radius: 12px;
+        border-radius: 6px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -1969,11 +1974,11 @@
       .when .lk {
         display: inline-block;
         margin-top: 9px;
-        font-family: "Space Mono", monospace;
-        font-size: 12px;
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
+        font-size: 15px;
         font-weight: 700;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
+        letter-spacing: 0;
+        text-transform: none;
       }
       .when .lk.b {
         color: var(--blue);
@@ -2014,15 +2019,15 @@
         }
       }
       .mhead .k {
-        font-family: "Space Mono", monospace;
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
         font-size: 13px;
-        letter-spacing: 0.22em;
-        text-transform: uppercase;
+        letter-spacing: 0;
+        text-transform: none;
         color: var(--blue);
       }
       .mhead h2 {
         font-size: clamp(26px, 3.4vw, 44px);
-        font-weight: 800;
+        font-weight: 400;
         margin-top: 6px;
         letter-spacing: -0.025em;
         line-height: 1.02;
@@ -2071,10 +2076,10 @@
         right: 0;
         bottom: 0;
         padding: 12px 16px 4px;
-        font-family: "Space Mono", monospace;
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
         font-size: clamp(9px, 1vw, 11px);
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
+        letter-spacing: 0;
+        text-transform: none;
         color: var(--muted);
         text-align: center;
       }
@@ -2086,20 +2091,20 @@
         margin-top: clamp(14px, 2.4vh, 30px);
         background: var(--orange);
         color: #0b2447;
-        font-family: "Bricolage Grotesque";
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
         font-weight: 800;
         font-size: clamp(14px, 1.4vw, 16px);
         padding: 9px 22px;
         border-radius: 999px;
         text-decoration: none;
-        box-shadow: 0 10px 26px rgba(240, 120, 40, 0.3);
+        box-shadow: none;
         transition:
           transform 0.2s,
           box-shadow 0.2s;
       }
       .mcta.big:hover {
         transform: translateY(-3px);
-        box-shadow: 0 22px 52px rgba(240, 120, 40, 0.5);
+        box-shadow: none;
       }
       .mcta.big span {
         font-family: "Space Mono", monospace;
@@ -2176,7 +2181,7 @@
         border: 1px solid var(--grey);
         border-radius: 999px;
         background: #fff;
-        box-shadow: 0 8px 22px rgba(11, 36, 71, 0.1);
+        box-shadow: 0 0 0 1px rgba(11, 36, 71, 0.12);
       }
       .mtag .tn {
         font-family: "Space Mono", monospace;
@@ -2186,8 +2191,9 @@
         color: var(--blue);
       }
       .mtag .tp {
-        font-family: "Bricolage Grotesque";
-        font-weight: 800;
+        font-family: "Anton", "Impact", "Arial Narrow", sans-serif;
+        text-transform: uppercase;
+        font-weight: 400;
         font-size: clamp(19px, 2.1vw, 26px);
         color: var(--navy);
       }
@@ -2235,7 +2241,7 @@
       }
       .ustage h2 {
         font-size: clamp(28px, 4vw, 52px);
-        font-weight: 800;
+        font-weight: 400;
         letter-spacing: -0.025em;
         line-height: 1.03;
         margin-top: 6px;
@@ -2254,10 +2260,10 @@
         width: 100%;
         max-width: 820px;
         aspect-ratio: 16/9;
-        border-radius: 18px;
+        border-radius: 6px;
         overflow: hidden;
         background: #fff;
-        box-shadow: 0 24px 60px rgba(11, 36, 71, 0.14);
+        box-shadow: 0 0 0 1px rgba(11, 36, 71, 0.12);
       }
       .uvid video {
         width: 100%;
@@ -2275,10 +2281,11 @@
       }
       .ucar-h {
         text-align: center;
-        font-family: "Bricolage Grotesque", sans-serif;
-        font-weight: 800;
+        font-family: "Anton", "Impact", "Arial Narrow", sans-serif;
+        text-transform: uppercase;
+        font-weight: 400;
         font-size: clamp(23px, 3.2vw, 40px);
-        letter-spacing: -0.02em;
+        letter-spacing: 0.005em;
         line-height: 1.06;
         color: var(--navy);
         margin: 0 auto clamp(20px, 3vh, 36px);
@@ -2370,15 +2377,15 @@
         align-items: center;
       }
       .mcopy .k {
-        font-family: "Space Mono", monospace;
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
         font-size: 13px;
-        letter-spacing: 0.22em;
-        text-transform: uppercase;
+        letter-spacing: 0;
+        text-transform: none;
         color: var(--sky);
       }
       .mcopy h2 {
         font-size: clamp(32px, 5vw, 58px);
-        font-weight: 800;
+        font-weight: 400;
         margin-top: 10px;
       }
       .mcopy h2 .o {
@@ -2411,7 +2418,7 @@
       }
       .gbadge .glogo b {
         color: #4285f4;
-        font-family: "Bricolage Grotesque";
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
         font-size: 14px;
       }
       .gbadge .gstars {
@@ -2432,20 +2439,21 @@
         min-width: 110px;
         background: rgba(255, 255, 255, 0.08);
         border: 1px solid rgba(255, 255, 255, 0.16);
-        border-radius: 14px;
+        border-radius: 6px;
         padding: 16px 14px;
         text-align: center;
       }
       .tier .tn {
-        font-family: "Space Mono", monospace;
-        font-size: 11px;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
+        font-size: 14px;
+        letter-spacing: 0;
+        text-transform: none;
         color: var(--sky);
       }
       .tier .tv {
-        font-family: "Bricolage Grotesque";
-        font-weight: 800;
+        font-family: "Anton", "Impact", "Arial Narrow", sans-serif;
+        text-transform: uppercase;
+        font-weight: 400;
         font-size: 30px;
         margin-top: 4px;
       }
@@ -2459,7 +2467,7 @@
         margin-top: 24px;
         background: var(--orange);
         color: #3a1600;
-        font-family: "Bricolage Grotesque";
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
         font-weight: 800;
         font-size: 17px;
         padding: 15px 28px;
@@ -2480,8 +2488,8 @@
       }
       .mbox-vis img,
       .mbox-vis video {
-        border-radius: 20px;
-        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        border-radius: 6px;
+        box-shadow: none;
         width: 100%;
         max-height: 74vh;
         object-fit: contain;
@@ -2495,9 +2503,9 @@
         margin: clamp(30px, 3.5vw, 46px) auto 0;
         background: #fff;
         border: 1px solid var(--grey);
-        border-radius: 18px;
+        border-radius: 6px;
         padding: 26px 28px;
-        box-shadow: 0 16px 40px rgba(11, 36, 71, 0.08);
+        box-shadow: 0 0 0 1px rgba(11, 36, 71, 0.12);
         text-align: center;
       }
       .alertcard h3 {
@@ -2535,7 +2543,7 @@
         border-color: var(--blue);
       }
       .alertform button {
-        font-family: "Bricolage Grotesque";
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
         font-weight: 800;
         font-size: 15px;
         background: var(--orange);
@@ -2546,7 +2554,7 @@
         cursor: pointer;
         white-space: nowrap;
         transition: transform 0.2s;
-        box-shadow: 0 8px 20px rgba(240, 120, 40, 0.28);
+        box-shadow: none;
       }
       .alertform button:hover {
         transform: translateY(-2px);
@@ -2554,7 +2562,7 @@
       .alertok {
         display: none;
         margin-top: 16px;
-        font-family: "Bricolage Grotesque";
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
         font-weight: 800;
         font-size: 17px;
         color: var(--green);
@@ -2578,15 +2586,15 @@
         text-align: center;
       }
       #hauls .k {
-        font-family: "Space Mono", monospace;
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
         font-size: 13px;
-        letter-spacing: 0.22em;
-        text-transform: uppercase;
+        letter-spacing: 0;
+        text-transform: none;
         color: var(--sky);
       }
       #hauls h2 {
         font-size: clamp(30px, 5vw, 56px);
-        font-weight: 800;
+        font-weight: 400;
         margin-top: 10px;
         color: #fff;
       }
@@ -2626,13 +2634,13 @@
       .hslide .hmedia {
         position: relative;
         aspect-ratio: 9/16;
-        border-radius: 18px;
+        border-radius: 6px;
         overflow: hidden;
         background: #0d2c55;
         transition:
           filter 0.5s ease,
           opacity 0.5s ease;
-        box-shadow: 0 24px 54px rgba(0, 0, 0, 0.4);
+        box-shadow: none;
       }
       .hslide .hmedia img,
       .hslide .hmedia video {
@@ -2642,8 +2650,8 @@
         display: block;
       }
       .hslide:not(.act) .hmedia {
-        filter: blur(7px) saturate(0.85);
-        opacity: 0.6;
+        filter: saturate(0.7);
+        opacity: 0.45;
       }
       .hslide:not(.act) {
         pointer-events: auto;
@@ -2653,11 +2661,11 @@
         top: 10px;
         left: 10px;
         z-index: 2;
-        font-family: "Space Mono", monospace;
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
         font-size: 9px;
         font-weight: 700;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
+        letter-spacing: 0;
+        text-transform: none;
         background: rgba(255, 143, 82, 0.92);
         color: #0b2447;
         padding: 4px 8px;
@@ -2667,7 +2675,7 @@
         display: block;
         margin-top: 12px;
         background: linear-gradient(135deg, #1455d6, #0e3fa6);
-        border-radius: 14px;
+        border-radius: 6px;
         padding: 12px 16px;
         text-align: left;
         opacity: 0;
@@ -2675,7 +2683,7 @@
         transition:
           opacity 0.45s ease 0.12s,
           transform 0.45s ease 0.12s;
-        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.3);
+        box-shadow: none;
       }
       .hslide.act .hinfo {
         opacity: 1;
@@ -2683,7 +2691,7 @@
       }
       .hslide .hinfo b {
         display: block;
-        font-family: "Bricolage Grotesque";
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
         font-weight: 800;
         font-size: 14.5px;
         color: #fff;
@@ -2706,7 +2714,7 @@
         position: absolute;
         inset: 0;
         border: 2px dashed rgba(255, 255, 255, 0.28);
-        border-radius: 18px;
+        border-radius: 6px;
         background: rgba(255, 255, 255, 0.04);
         display: flex;
         flex-direction: column;
@@ -2726,14 +2734,14 @@
         stroke-linejoin: round;
       }
       .hslide .gbox .gt {
-        font-family: "Space Mono", monospace;
-        font-size: 11px;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
+        font-size: 14px;
+        letter-spacing: 0;
+        text-transform: none;
         color: var(--sky);
       }
       .hslide .gbox .gd {
-        font-family: "Bricolage Grotesque";
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
         font-weight: 800;
         font-size: 16px;
         color: #fff;
@@ -2749,15 +2757,16 @@
         border: none;
         background: #fff;
         color: var(--navy);
-        font-family: "Bricolage Grotesque";
+        font-family: "Anton", "Impact", "Arial Narrow", sans-serif;
+        text-transform: uppercase;
         font-size: 26px;
-        font-weight: 800;
+        font-weight: 400;
         line-height: 1;
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
-        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+        box-shadow: none;
         transition: transform 0.18s;
       }
       .hnav:hover {
@@ -2788,15 +2797,15 @@
         margin-bottom: clamp(24px, 3vw, 38px);
       }
       .qhead .k {
-        font-family: "Space Mono", monospace;
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
         font-size: 13px;
-        letter-spacing: 0.22em;
-        text-transform: uppercase;
+        letter-spacing: 0;
+        text-transform: none;
         color: var(--blue);
       }
       .qhead h2 {
         font-size: clamp(30px, 5vw, 56px);
-        font-weight: 800;
+        font-weight: 400;
         margin-top: 10px;
       }
       .qhead h2 .o {
@@ -2813,7 +2822,7 @@
         align-items: center;
         gap: 14px;
         padding: 20px 2px;
-        font-family: "Bricolage Grotesque";
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
         font-weight: 800;
         font-size: clamp(17px, 2vw, 21px);
         letter-spacing: -0.01em;
@@ -2823,9 +2832,10 @@
       }
       #faq summary::after {
         content: "+";
-        font-family: "Bricolage Grotesque";
+        font-family: "Anton", "Impact", "Arial Narrow", sans-serif;
+        text-transform: uppercase;
         font-size: 26px;
-        font-weight: 800;
+        font-weight: 400;
         color: var(--orange);
         flex: 0 0 auto;
         transition: transform 0.2s;
@@ -2857,15 +2867,15 @@
         text-align: center;
       }
       .rhead .k {
-        font-family: "Space Mono", monospace;
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
         font-size: 13px;
-        letter-spacing: 0.22em;
-        text-transform: uppercase;
+        letter-spacing: 0;
+        text-transform: none;
         color: var(--blue);
       }
       .rhead h2 {
         font-size: clamp(30px, 5vw, 56px);
-        font-weight: 800;
+        font-weight: 400;
         margin-top: 10px;
       }
       .rhead h2 .o {
@@ -2910,9 +2920,9 @@
         flex: 0 0 clamp(300px, 32vw, 360px);
         background: #fff;
         border: 1px solid var(--grey);
-        border-radius: 18px;
+        border-radius: 6px;
         padding: 22px 24px;
-        box-shadow: 0 10px 26px rgba(11, 36, 71, 0.06);
+        box-shadow: 0 0 0 1px rgba(11, 36, 71, 0.12);
       }
       .rstars {
         color: #ffc64b;
@@ -2938,7 +2948,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-family: "Bricolage Grotesque";
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
         font-weight: 800;
         color: #fff;
       }
@@ -2997,10 +3007,10 @@
       }
       .blabel {
         text-align: center;
-        font-family: "Space Mono", monospace;
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
         font-size: clamp(9px, 1.1vw, 11px);
-        letter-spacing: 0.24em;
-        text-transform: uppercase;
+        letter-spacing: 0;
+        text-transform: none;
         color: var(--sky);
         margin-bottom: clamp(8px, 1vw, 12px);
       }
@@ -3040,7 +3050,7 @@
         opacity: 0.94;
       }
       .bword {
-        font-family: "Bricolage Grotesque";
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
         font-weight: 800;
         font-size: clamp(16px, 2vw, 24px);
         color: #fff;
@@ -3060,15 +3070,15 @@
         margin: 0 auto;
       }
       #careers .k {
-        font-family: "Space Mono", monospace;
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
         font-size: 13px;
-        letter-spacing: 0.24em;
-        text-transform: uppercase;
+        letter-spacing: 0;
+        text-transform: none;
         color: var(--sky);
       }
       #careers h2 {
         font-size: clamp(34px, 6vw, 64px);
-        font-weight: 800;
+        font-weight: 400;
         margin-top: 10px;
       }
       #careers h2 .o {
@@ -3091,18 +3101,18 @@
       .cperk {
         background: rgba(255, 255, 255, 0.08);
         border: 1px solid rgba(255, 255, 255, 0.16);
-        border-radius: 14px;
+        border-radius: 6px;
         padding: 16px 22px;
         font-weight: 700;
         font-size: 15px;
       }
       .cperk span {
         display: block;
-        font-family: "Space Mono", monospace;
-        font-size: 11px;
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
+        font-size: 14px;
         font-weight: 400;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
+        letter-spacing: 0;
+        text-transform: none;
         color: var(--sky);
         margin-top: 4px;
       }
@@ -3110,7 +3120,7 @@
         display: inline-block;
         background: var(--orange);
         color: #3a1600;
-        font-family: "Bricolage Grotesque";
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
         font-weight: 800;
         font-size: 17px;
         padding: 15px 30px;
@@ -3138,7 +3148,7 @@
       }
       .fcta h2 {
         font-size: clamp(34px, 6vw, 64px);
-        font-weight: 800;
+        font-weight: 400;
         color: var(--navy);
       }
       .fcta h2 .b {
@@ -3158,11 +3168,11 @@
       .loc {
         background: var(--paper);
         border: 1px solid var(--grey);
-        border-radius: 16px;
+        border-radius: 6px;
         padding: 20px;
       }
       .loc .city {
-        font-family: "Bricolage Grotesque";
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
         font-weight: 800;
         font-size: 19px;
         display: flex;
@@ -3230,7 +3240,7 @@
         flex-wrap: wrap;
       }
       .fnav a {
-        font-family: "Bricolage Grotesque";
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
         font-weight: 700;
         font-size: 14px;
         color: var(--blue);
@@ -3271,7 +3281,7 @@
         display: flex;
         align-items: center;
         gap: 1px;
-        font-family: "Bricolage Grotesque";
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
         font-weight: 800;
         font-size: 17px;
         color: #fff;
@@ -3503,11 +3513,11 @@
       @media (hover: none) {
         .pcard:hover {
           transform: none;
-          box-shadow: 0 14px 30px rgba(11, 36, 71, 0.1);
+          box-shadow: 0 0 0 1px rgba(11, 36, 71, 0.12);
         }
         .fcard:hover {
           transform: none;
-          box-shadow: 0 16px 40px rgba(11, 36, 71, 0.07);
+          box-shadow: 0 0 0 1px rgba(11, 36, 71, 0.12);
         }
         .dbtn:hover,
         .mcta:hover,
@@ -3516,7 +3526,7 @@
         }
         .mcta.big:hover {
           transform: none;
-          box-shadow: 0 10px 26px rgba(240, 120, 40, 0.3);
+          box-shadow: none;
         }
         .fcard .flk:hover {
           gap: 8px;
@@ -3535,8 +3545,8 @@
         font-family: Roboto, Arial, "Helvetica Neue", sans-serif;
         background: #fff;
         border: 1px solid #dadce0;
-        border-radius: 12px;
-        box-shadow: 0 1px 4px rgba(60, 64, 67, 0.18);
+        border-radius: 6px;
+        box-shadow: none;
         padding: 18px 20px;
       }
       #mtrack .gstyle .rf {
@@ -3626,7 +3636,7 @@
       .ccta:hover,
       #lyjoin button:hover {
         transform: translateY(-2px);
-        box-shadow: 0 14px 30px rgba(11, 36, 71, 0.22);
+        box-shadow: 0 0 0 1px rgba(11, 36, 71, 0.12);
       }
       .dbtn:active,
       .sbtn:active,
@@ -3672,43 +3682,50 @@
     <style id="mbxbtns">
       .mcta.big,
       .mcta.big span {
-        font-family: "Archivo", sans-serif !important;
+        font-family: "Hanken Grotesk", system-ui, sans-serif !important;
       }
 
       /* premium button pass — mystery box page */
       .mbuy {
         border: 1.5px solid rgba(11, 36, 71, 0.1) !important;
-        border-radius: 20px !important;
+        border-radius: 6px !important;
         padding: 16px 26px 14px !important;
         background: linear-gradient(180deg, #ffffff, #f7f9fd) !important;
-        box-shadow: 0 12px 30px rgba(11, 36, 71, 0.1) !important;
+        box-shadow: 0 0 0 1px rgba(11, 36, 71, 0.12);
         gap: 3px !important;
       }
       .mbuy .tn {
         font:
-          700 11px "Archivo",
+          400 20px "Anton",
           sans-serif !important;
-        letter-spacing: 0.22em !important;
+        letter-spacing: 0.01em !important;
         text-transform: uppercase !important;
-        color: var(--muted) !important;
+        color: #0b2447 !important;
+      }
+      /* Classic is the regulars' pick, so it reads first */
+      .mbuy[data-add="classic"] {
+        border: 2px solid #0b2447 !important;
+      }
+      .mbuy[data-add="classic"] .tn {
+        color: var(--orange) !important;
       }
       .mbuy .tp {
         font:
-          900 clamp(26px, 2.4vw, 34px) "Archivo",
+          400 clamp(26px, 2.4vw, 34px) "Anton",
           sans-serif !important;
         color: #0b2447 !important;
         line-height: 1.05 !important;
       }
       .mbuy .td {
         font:
-          600 13px "Archivo",
+          600 13px "Hanken Grotesk",
           sans-serif !important;
         color: var(--orange) !important;
       }
       .mbuy .tgo {
         margin-top: 8px !important;
         font:
-          700 12px "Archivo",
+          700 12px "Hanken Grotesk",
           sans-serif !important;
         color: #0b2447 !important;
         background: rgba(11, 36, 71, 0.06);
@@ -3720,7 +3737,7 @@
       }
       .mbuy:hover {
         border-color: var(--orange) !important;
-        box-shadow: 0 22px 48px rgba(11, 36, 71, 0.18) !important;
+        box-shadow: 0 0 0 1px rgba(11, 36, 71, 0.12);
       }
       .mbuy:hover .tgo {
         background: var(--orange);
@@ -3729,13 +3746,13 @@
       #shop .sbtn {
         letter-spacing: 0.01em;
         padding: 14px 30px;
-        box-shadow: 0 12px 28px rgba(11, 36, 71, 0.22);
+        box-shadow: 0 0 0 1px rgba(11, 36, 71, 0.12);
       }
       #mbcart .paybtn {
         background: #0b2447 !important;
         border-radius: 999px !important;
         letter-spacing: 0.01em;
-        box-shadow: 0 12px 28px rgba(11, 36, 71, 0.3);
+        box-shadow: 0 0 0 1px rgba(11, 36, 71, 0.12);
       }
       #mbcart .paybtn:not([disabled]):hover {
         background: var(--orange) !important;
@@ -3746,7 +3763,7 @@
       #mbfab {
         background: var(--orange) !important;
         color: #0b2447 !important;
-        box-shadow: 0 14px 34px rgba(255, 143, 82, 0.5) !important;
+        box-shadow: none;
       }
       #mbcart .cq button {
         width: 30px !important;
@@ -3763,7 +3780,7 @@
       .hnav {
         background: rgba(255, 255, 255, 0.92) !important;
         border: 1.5px solid rgba(11, 36, 71, 0.12) !important;
-        box-shadow: 0 10px 26px rgba(11, 36, 71, 0.14) !important;
+        box-shadow: 0 0 0 1px rgba(11, 36, 71, 0.12);
         color: #0b2447 !important;
       }
       .hnav:hover {
@@ -3874,9 +3891,9 @@
           cursor: pointer;
           border: 1.5px solid rgba(11, 36, 71, 0.14);
           background: #fff;
-          border-radius: 18px;
+          border-radius: 6px;
           padding: 14px 20px;
-          box-shadow: 0 14px 34px rgba(11, 36, 71, 0.12);
+          box-shadow: 0 0 0 1px rgba(11, 36, 71, 0.12);
           transition:
             transform 0.22s ease,
             box-shadow 0.22s ease,
@@ -3886,7 +3903,7 @@
         .mbuy:hover {
           transform: translateY(-4px);
           border-color: var(--orange);
-          box-shadow: 0 22px 48px rgba(11, 36, 71, 0.2);
+          box-shadow: 0 0 0 1px rgba(11, 36, 71, 0.12);
         }
         .mbuy .tgo {
           margin-top: 6px;
@@ -3957,7 +3974,7 @@
           ></a
         >
         <div class="ucar" style="margin-top: clamp(56px, 9vw, 110px)">
-          <h3 class="ucar-h">Real brands. Real finds. Every single box.</h3>
+          <h3 class="ucar-h">The kind of stuff that goes in.</h3>
           <div class="ustrip"><div class="strack" id="strackBot"></div></div>
         </div>
       </div>
@@ -3967,7 +3984,7 @@
 
     <!-- REAL HAULS: real phone footage from the floor -->
     <section id="hauls">
-      <h2>See what real customers <span class="o">found in their boxes.</span></h2>
+      <h2>What customers <span class="o">found in their boxes.</span></h2>
       <p class="sub">New unboxings every week, straight from our customers.</p>
       <div class="hwrap">
         <button class="hnav prev" id="hcprev" aria-label="Previous clip">&lsaquo;</button>
@@ -3985,10 +4002,7 @@
                   preload="metadata"
                 ></video>
               </div>
-              <figcaption class="hinfo">
-                <b>Fresh bins hit the floor</b
-                ><span>Drop day &middot; <em>$14</em> &middot; best selection of the week</span>
-              </figcaption>
+              <figcaption class="hinfo"><b>Bulk pack of underwear</b><span>Held up at the shoe aisle</span></figcaption>
             </figure>
             <figure class="hslide">
               <div class="hmedia">
@@ -4002,10 +4016,7 @@
                   preload="metadata"
                 ></video>
               </div>
-              <figcaption class="hinfo">
-                <b>Digging the pile</b
-                ><span>Straight off the pallet &middot; totally unsorted</span>
-              </figcaption>
+              <figcaption class="hinfo"><b>Outside and inside the store</b><span>Pushing a cart past the mattresses</span></figcaption>
             </figure>
             <figure class="hslide">
               <div class="hmedia">
@@ -4019,9 +4030,7 @@
                   preload="metadata"
                 ></video>
               </div>
-              <figcaption class="hinfo">
-                <b>The big-brand pull</b><span>Brand-new in box &middot; from the bins</span>
-              </figcaption>
+              <figcaption class="hinfo"><b>Purple velvet loafers</b><span>Pulled from the shoe wall</span></figcaption>
             </figure>
             <figure class="hslide">
               <div class="hmedia">
@@ -4035,10 +4044,7 @@
                   preload="metadata"
                 ></video>
               </div>
-              <figcaption class="hinfo">
-                <b>On the floor, live</b
-                ><span>Shot in store &middot; real shoppers, real finds</span>
-              </figcaption>
+              <figcaption class="hinfo"><b>A shopper’s walk through the store</b><span>Cart in, arms up in the aisle</span></figcaption>
             </figure>
             <figure class="hslide">
               <div class="hmedia">
@@ -4052,9 +4058,7 @@
                   preload="metadata"
                 ></video>
               </div>
-              <figcaption class="hinfo">
-                <b>The haul, laid out</b><span>One trip &middot; pocket change</span>
-              </figcaption>
+              <figcaption class="hinfo"><b>Full bins of clothing</b><span>Shoppers working every row</span></figcaption>
             </figure>
             <figure class="hslide">
               <div class="hmedia">
@@ -4068,9 +4072,7 @@
                   preload="metadata"
                 ></video>
               </div>
-              <figcaption class="hinfo">
-                <b>Fresh pallets, fresh finds</b><span>Straight off the truck</span>
-              </figcaption>
+              <figcaption class="hinfo"><b>Unwrapping Amazon packages</b><span>Shoes inside the gray mailers</span></figcaption>
             </figure>
             <figure class="hslide">
               <div class="hmedia">
@@ -4084,9 +4086,7 @@
                   preload="metadata"
                 ></video>
               </div>
-              <figcaption class="hinfo">
-                <b>Digging for gold</b><span>Every bin hides something</span>
-              </figcaption>
+              <figcaption class="hinfo"><b>Opening an Amazon box</b></figcaption>
             </figure>
             <figure class="hslide">
               <div class="hmedia">
@@ -4100,9 +4100,7 @@
                   preload="metadata"
                 ></video>
               </div>
-              <figcaption class="hinfo">
-                <b>The lucky pull</b><span>Right place, right bin</span>
-              </figcaption>
+              <figcaption class="hinfo"><b>Mystery box, cut open</b><span>An Amazon box on an empty bin</span></figcaption>
             </figure>
             <figure class="hslide">
               <div class="hmedia">
@@ -4116,7 +4114,7 @@
                   preload="metadata"
                 ></video>
               </div>
-              <figcaption class="hinfo"><b>Bin day energy</b><span>Shot in store</span></figcaption>
+              <figcaption class="hinfo"><b>Bagged clothing bin</b><span>Sealed packs, including jeans</span></figcaption>
             </figure>
             <figure class="hslide">
               <div class="hmedia">
@@ -4130,9 +4128,7 @@
                   preload="metadata"
                 ></video>
               </div>
-              <figcaption class="hinfo">
-                <b>The full walkaround</b><span>Real shoppers, real finds</span>
-              </figcaption>
+              <figcaption class="hinfo"><b>Bins of bagged clothing</b><span>Rows of plastic-wrapped packs</span></figcaption>
             </figure>
             <figure class="hslide">
               <div class="hmedia">
@@ -4146,9 +4142,7 @@
                   preload="metadata"
                 ></video>
               </div>
-              <figcaption class="hinfo">
-                <b>Another day, another haul</b><span>From the floor</span>
-              </figcaption>
+              <figcaption class="hinfo"><b>Checking a bagged pair of jeans</b><span>From a bin of sealed clothing</span></figcaption>
             </figure>
             <figure class="hslide">
               <div class="hmedia">
@@ -4162,9 +4156,7 @@
                   preload="metadata"
                 ></video>
               </div>
-              <figcaption class="hinfo">
-                <b>Straight into the pile</b><span>Shot in store</span>
-              </figcaption>
+              <figcaption class="hinfo"><b>Behind the pallet boxes</b><span>Staff explains what came in</span></figcaption>
             </figure>
             <figure class="hslide">
               <div class="hmedia">
@@ -4178,9 +4170,7 @@
                   preload="metadata"
                 ></video>
               </div>
-              <figcaption class="hinfo">
-                <b>First dig of the day</b><span>Fresh pallets</span>
-              </figcaption>
+              <figcaption class="hinfo"><b>Shoe boxes off a pallet</b><span>Nike, Hoka, Sam Edelman, Huk</span></figcaption>
             </figure>
             <figure class="hslide">
               <div class="hmedia">
@@ -4194,9 +4184,7 @@
                   preload="metadata"
                 ></video>
               </div>
-              <figcaption class="hinfo">
-                <b>The good stuff surfaces</b><span>Real finds</span>
-              </figcaption>
+              <figcaption class="hinfo"><b>A “Panic at the Desk-O” sign</b><span>Pulled from a bin of home goods</span></figcaption>
             </figure>
             <figure class="hslide">
               <div class="hmedia">
@@ -4210,9 +4198,7 @@
                   preload="metadata"
                 ></video>
               </div>
-              <figcaption class="hinfo">
-                <b>The whole run</b><span>Bins to checkout</span>
-              </figcaption>
+              <figcaption class="hinfo"><b>Walking in with the price sheet</b><span>Rows of bins, busy floor</span></figcaption>
             </figure>
           </div>
         </div>
@@ -4345,10 +4331,11 @@
           text-align: center;
         }
         #shop > h2 {
-          font-family: "Bricolage Grotesque", sans-serif;
-          font-weight: 800;
+          font-family: "Anton", "Impact", "Arial Narrow", sans-serif;
+        text-transform: uppercase;
+          font-weight: 400;
           font-size: clamp(38px, 5.6vw, 72px);
-          letter-spacing: -0.025em;
+          letter-spacing: 0.005em;
           line-height: 1;
           color: #0b2447;
           margin: 0;
@@ -4383,9 +4370,9 @@
           position: relative;
           background: #fff;
           border: 1px solid rgba(11, 36, 71, 0.1);
-          border-radius: 22px;
+          border-radius: 6px;
           padding: clamp(22px, 3vw, 34px);
-          box-shadow: 0 18px 44px rgba(11, 36, 71, 0.08);
+          box-shadow: 0 0 0 1px rgba(11, 36, 71, 0.12);
           display: flex;
           flex-direction: column;
           gap: 8px;
@@ -4396,7 +4383,7 @@
         }
         #shop .scard:hover {
           transform: translateY(-4px);
-          box-shadow: 0 26px 60px rgba(11, 36, 71, 0.13);
+          box-shadow: 0 0 0 1px rgba(11, 36, 71, 0.12);
         }
         #shop .scard.pop {
           border: 2.5px solid var(--orange);
@@ -4411,15 +4398,17 @@
           color: #4a5a75;
         }
         #shop .stier {
-          font-family: "Bricolage Grotesque", sans-serif;
-          font-weight: 800;
+          font-family: "Anton", "Impact", "Arial Narrow", sans-serif;
+        text-transform: uppercase;
+          font-weight: 400;
           font-size: clamp(20px, 2.2vw, 26px);
-          letter-spacing: -0.01em;
+          letter-spacing: 0.005em;
           color: #0b2447;
         }
         #shop .sprice {
-          font-family: "Bricolage Grotesque", sans-serif;
-          font-weight: 800;
+          font-family: "Anton", "Impact", "Arial Narrow", sans-serif;
+        text-transform: uppercase;
+          font-weight: 400;
           font-size: clamp(52px, 6.5vw, 78px);
           color: #0b2447;
           line-height: 0.95;
@@ -4451,17 +4440,17 @@
           top: -16px;
           left: 50%;
           transform: translateX(-50%) rotate(-2deg);
-          font-family: "Space Mono", monospace;
+          font-family: "Hanken Grotesk", system-ui, sans-serif;
           background: var(--orange);
           color: #fff;
           font:
             800 12px "Hanken Grotesk",
             sans-serif;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
+          letter-spacing: 0;
+          text-transform: none;
           padding: 6px 16px;
           border-radius: 999px;
-          box-shadow: 0 6px 16px rgba(248, 155, 28, 0.4);
+          box-shadow: none;
           white-space: nowrap;
         }
         #shop .sbtn {
@@ -4482,7 +4471,7 @@
         }
         #shop .sbtn.hot {
           background: linear-gradient(135deg, #f89b1c, #ff8f52);
-          box-shadow: 0 10px 26px rgba(248, 155, 28, 0.35);
+          box-shadow: none;
         }
         #shop .sbtn:hover {
           background: var(--orange);
@@ -4500,7 +4489,7 @@
           width: min(400px, 100vw);
           background: #fff;
           z-index: 300;
-          box-shadow: -24px 0 60px rgba(11, 36, 71, 0.18);
+          box-shadow: 0 0 0 1px rgba(11, 36, 71, 0.12);
           transform: translateX(105%);
           transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
           display: flex;
@@ -4517,7 +4506,7 @@
           padding: 18px 20px;
           border-bottom: 1px solid rgba(11, 36, 71, 0.1);
           font:
-            800 18px "Bricolage Grotesque",
+            800 18px "Hanken Grotesk",
             sans-serif;
           color: #0b2447;
         }
@@ -4582,7 +4571,7 @@
           color: #fff;
           background: #635bff;
           padding: 15px 0;
-          border-radius: 12px;
+          border-radius: 6px;
         }
         #mbcart .paybtn[disabled] {
           background: #b9c1d9;
@@ -4608,7 +4597,7 @@
             sans-serif;
           padding: 14px 22px;
           border-radius: 999px;
-          box-shadow: 0 14px 34px rgba(11, 36, 71, 0.3);
+          box-shadow: 0 0 0 1px rgba(11, 36, 71, 0.12);
           display: none;
         }
         #mbfab.show {
@@ -4833,7 +4822,7 @@
         <div class="frow">
           <div class="hours">
             <b>Hours</b> &nbsp;Sun&ndash;Thurs 9a&ndash;7p &middot; Fri 9a&ndash;5p &middot;
-            <b>Sat closed</b> (restock)
+            <b>Sat closed</b>
           </div>
           <nav class="fnav" aria-label="Footer">
             <a href="deals.html">Daily Deals</a>
@@ -5634,9 +5623,9 @@
         var dtoday = document.getElementById("dtoday");
         if (!dtoday) return; /* page without the discover section */
         dtoday.innerHTML =
-          "Everything below is <b>" + todayP + " today.</b> Tomorrow it drops another dollar.";
+          "Everything below is <b>" + todayP + " today.</b>" + window.MRB_NEXT_LINE(day);
         var items = window.MRB_ITEMS || [];
-        var friTag = tp === null || day >= 5 ? "&darr; restock Sat" : "&darr; $" + FRI + " Fri";
+        var friTag = window.MRB_TAG(day);
         var t = document.getElementById("track"),
           h = "";
         for (var i = 0; i < items.length; i++) {
