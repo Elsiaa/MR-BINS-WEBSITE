@@ -597,6 +597,18 @@
         .brandlogo { display: block; height: auto; width: 100%; max-width: 134px; max-height: 27px; object-fit: contain; object-position: left center; }
       }
       @media (max-width: 350px) { .clock .dot { display: none; } }
+      /* the price "slot machine": a tall $ from the row above peeked into the window */
+      .bigslot { clip-path: inset(0.08em 0 0.02em 0); }
+      @media (max-width: 760px) {
+        /* big headlines wrap to 2-4 lines on a phone; at 0.86 the lines touched */
+        .mega { line-height: 0.95; }
+        /* hero copy sits in the lower part of the screen, clear of the store's painted wall sign */
+        .cap { justify-content: flex-end; padding-bottom: 92px; }
+        .cap.c0 .logo { width: min(520px, 78vw); }
+        .cap p { margin-top: 16px; }
+        /* day name was touching the big price under it */
+        .bigslot { margin-top: 0.08em; }
+      }
     </style>
   </head>
   <body>

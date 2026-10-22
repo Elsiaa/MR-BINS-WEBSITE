@@ -3808,6 +3808,20 @@
         .clock { padding: 0 9px !important; font-size: 11px !important; height: 38px !important; }
         .hright, .bar .right, .bar .actions { gap: 5px !important; }
       }
+      /* phones: each box is a compact row (picture left, price card right) instead of
+         three tall stacked boxes with tiny cards, so all three fit on about one screen */
+      @media (max-width: 760px) {
+        #online .mstage { padding: 96px 16px 36px; gap: 14px; }
+        #online .mboxes { gap: 14px; max-width: 460px; margin-top: 6px; }
+        #online .mbox { width: 100%; flex-direction: row; align-items: center; gap: 14px; }
+        #online .mbox .bxm { height: 128px !important; width: 44% !important; max-width: none !important; flex: none; }
+        #online .mbox::before { display: none; }
+        #online .mbuy { flex: 1; min-width: 0; padding: 16px 12px; }
+      }
+      @media (max-width: 760px) {
+        .hslide { width: min(62vw, 300px); }
+        .hstage { height: calc(min(62vw, 300px) * 1.7778 + 112px); }
+      }
     </style>
   </head>
   <body>
@@ -5772,6 +5786,11 @@
               if (!v.getAttribute("src") && v.dataset.src && Math.abs(d) <= 1) {
                 v.src = v.dataset.src;
                 v.preload = "auto";
+              } else if (Math.abs(d) > 1 && v.getAttribute("src")) {
+                /* release clips that are 2+ slides away (each loaded clip holds memory on iPhone) */
+                v.pause();
+                v.removeAttribute("src");
+                v.load();
               }
               if (d === 0) {
                 v.muted = true;

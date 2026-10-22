@@ -3845,6 +3845,11 @@
         .clock { padding: 0 9px !important; font-size: 11px !important; height: 38px !important; }
         .hright, .bar .right, .bar .actions { gap: 5px !important; }
       }
+      /* phones: a wider center clip in the gallery carousel */
+      @media (max-width: 760px) {
+        .hslide { width: min(62vw, 300px); }
+        .hstage { height: calc(min(62vw, 300px) * 1.7778 + 112px); }
+      }
     </style>
   </head>
   <body>
@@ -5310,6 +5315,11 @@
               if (!v.getAttribute("src") && v.dataset.src && Math.abs(d) <= 1) {
                 v.src = v.dataset.src;
                 v.preload = "auto";
+              } else if (Math.abs(d) > 1 && v.getAttribute("src")) {
+                /* release clips that are 2+ slides away (each loaded clip holds memory on iPhone) */
+                v.pause();
+                v.removeAttribute("src");
+                v.load();
               }
               if (d === 0) {
                 v.muted = true;
